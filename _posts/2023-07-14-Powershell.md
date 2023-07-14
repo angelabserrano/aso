@@ -1,10 +1,10 @@
 ---
-
----
-
 | typora-copy-images-to    | typora-root-url | layout     | title | categories | conToc | permalink  |
 | ------------------------ | --------------- | ---------- | ----- | ---------- | ------ | ---------- |
 | ../assets/img/powershell | ../             | Powershell |       | parte1     | true   | powershell |
+
+---
+
 
 ## Apuntes PowerShell 
 
@@ -37,4 +37,4 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2) Entorno comando: Windows Powershell
 
-![image-20230714204002349](/image-20230714204002349.png)
+![image-20230714204551248](/home/angela/aso/assets/img/powershell/image-20230714204551248.png)
