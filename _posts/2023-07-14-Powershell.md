@@ -1,4 +1,8 @@
-### Apuntes PowerShell 
+
+
+## Apuntes PowerShell 
+
+
 
 Índice 
 
@@ -12,3 +16,19 @@
 8. Comandos de archivos y carpetas 
 9. Importación de datos 
 10. Funciones
+
+
+
+
+
+## 1. Introducción
+
+**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.
+
+[Manual de PowerShell 5.1 de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1)
+
+Tenemos dos opciones a la hora de ejecutar PowerShell:
+1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
+2) Entorno comando: Windows Powershell
+
+![image-20230714203335374](/home/angela/aso/assets/img/powershell/image-20230714203335374.png)
