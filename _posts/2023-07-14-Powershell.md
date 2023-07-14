@@ -1,8 +1,10 @@
 ---
-typora-root-url: ../assets/img/powershell
+
 ---
 
-
+| typora-copy-images-to    | typora-root-url | layout     | title | categories | conToc | permalink  |
+| ------------------------ | --------------- | ---------- | ----- | ---------- | ------ | ---------- |
+| ../assets/img/powershell | ../             | Powershell |       | parte1     | true   | powershell |
 
 ## Apuntes PowerShell 
 
