@@ -2,7 +2,7 @@
 typora-copy-images-to: ../assets/img/powershell/
 typora-root-url: ../
 layout: post
-title:  powershell
+title:  Powershell
 categories: parte1
 conToc: true
 permalink: powershell
