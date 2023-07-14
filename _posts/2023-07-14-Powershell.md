@@ -1,3 +1,7 @@
+---
+typora-root-url: ../assets/img/powershell
+---
+
 
 
 ## Apuntes PowerShell 
@@ -31,4 +35,4 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2) Entorno comando: Windows Powershell
 
-![image-20230714203335374](/home/angela/aso/assets/img/powershell/image-20230714203335374.png)
+![image-20230714204002349](/image-20230714204002349.png)
