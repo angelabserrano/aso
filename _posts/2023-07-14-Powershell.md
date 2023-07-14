@@ -1,17 +1,3 @@
----
-<<<<<<< HEAD
-
-=======
-typora-copy-images-to: ../assets/img/powershell/
-typora-root-url: ../
-layout: post
-title:  Powershell
-categories: parte1
-conToc: true
-permalink: powershell
->>>>>>> origin
-
----
 
 
 ## Apuntes PowerShell 
@@ -46,3 +32,8 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 2) Entorno comando: Windows Powershell
 
 ![image-20230714211446318](../assets/img/powershell/image-20230714211446318.png)
+
+
+
+## 2. Comandos básicos
+
