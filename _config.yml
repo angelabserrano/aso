@@ -26,7 +26,7 @@ kramdown:
       start_line: 1
 transliterated_header_ids: true
 #highlighter: rouged
-title: Your awesome title
+title: Apuntes ASO
 email: your-email@example.com
 description: >- # this means to ignore newlines until "url:"
   Write an awesome description for your new site here. You can edit this
