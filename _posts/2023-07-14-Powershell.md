@@ -1,31 +1,4 @@
----
-typora-copy-images-to: ../assets/img/powershell/
-typora-root-url: ../
-layout: post
-title:  Powershell
-categories: parte1
-conToc: true
-permalink: powershell
----
-
-## Apuntes PowerShell 
-
-
-
-Índice 
-
-1. Introducción 
-2. Comandos básicos 
-3. Comentarios, variables y tipos de datos en PowerShell 
-4. Operaciones básicas en PowerShell 
-5. Estructuras condicionales 
-6. Estructuras repetitivas 
-7. Comandos de fecha y hora 
-8. Comandos de archivos y carpetas 
-9. Importación de datos 
-10. Funciones
-
-
+## Apuntes Powershell
 
 
 
@@ -39,7 +12,7 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2) Entorno comando: Windows Powershell
 
-![image-20230714211446318](/assets/img/powershell/image-20230714211446318.png)
+![](../assets/img/powershell/image-20230714211446318.png)
 
 
 
@@ -47,13 +20,13 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 
 - **$psversiontable** : Muestra la versión de PowerShell instalada.
 
-![image-20230715104849336](/assets/img/powershell/image-20230715104849336.png)
+![image-20230715104849336](../assets/img/powershell/image-20230715104849336.png)
 
 -  **Get-Command** : Muestra todos los comandos disponibles
 
 - **Clear-Host** : Limpia la pantalla
 
-  ![image-20230715104944576](/assets/img/powershell/image-20230715104944576.png)
+  ![image-20230715104944576](../assets/img/powershell/image-20230715104944576.png)
 
 ### 2.1 Comandos básicos. Alias
 
@@ -61,4 +34,4 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 - Get-Alias : Nos devuelve un listado con todos los alias definidos en el sistema
 
-  ![image-20230715105148686](/assets/img/powershell/image-20230715105148686.png)
+  ![image-20230715105148686](../assets/img/powershell/image-20230715105148686.png)
