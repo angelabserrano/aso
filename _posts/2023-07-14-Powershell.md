@@ -59,19 +59,20 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadilla** (#).
 
-▸ Comentar una línea.
+▸ **Comentar una línea.**
 
- **#**Este es un comentario.
+```
+ #Este es un comentario.
+```
 
-▸ Comentar un bloque
+▸ **Comentar un bloque**
 
-**<#**
-
+```
+<#
 Esto es un comentario
-
 de varias líneas
-
-**#>**
+#>
+```
 
 Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*. 
 
@@ -107,4 +108,51 @@ $hola = “Hola mundo”
 | **$home**  | El directorio home del usuario actual.                       |
 | **$host**  | Información de instalación del host.                         |
 | **$error** | Lista de los errores que han ocurrido desde que se ha iniciado WPS. |
+
+PowerShell puede acceder a las **variables de entorno**. Estas variables se exponen a través de una unidad denominada env:.
+
+- Muestra todas las variables de entorno
+
+```
+Get-ChildItem env:
+```
+
+- Muestra el usuario del sistema
+
+```
+$env:USERNAME
+```
+
+- Muestra el nombre del equipo
+
+```
+$env:COMPUTERNAME
+```
+
+
+
+### 3.3 Tipos de datos básicos
+
+![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)
+
+### 3.4 Comando para obtener el tipo de datos de una variable
+
+```
+$numero = 15
+$numero.GetType()
+```
+
+![img](https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048)
+
+### 3.5 Definición de variables
+
+Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.
+
+**[int] $var = 15**
+
+es equivalente a
+
+**$var = 15**
+
+
 
