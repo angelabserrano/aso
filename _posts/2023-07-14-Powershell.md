@@ -26,7 +26,7 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 
 - **Clear-Host** : Limpia la pantalla
 
-  ![image-20230715104944576](/asoassets/img/powershell/image-20230715104944576.png)
+  ![image-20230715104944576](/aso/assets/img/powershell/image-20230715104944576.png)
 
 ### 2.1 Comandos básicos. Alias
 
@@ -34,4 +34,4 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 - Get-Alias : Nos devuelve un listado con todos los alias definidos en el sistema
 
-  ![image-20230715105148686](/assets/img/powershell/image-20230715105148686.png)
+  ![image-20230715105148686](/aso/assets/img/powershell/image-20230715105148686.png)
