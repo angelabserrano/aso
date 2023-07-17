@@ -35,7 +35,8 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 
 - **Clear-Host** : Limpia la pantalla
 
-  ![image-20230715104944576](/aso/assets/img/powershell/image-20230715104944576.png)
+
+![image-20230715104944576](/aso/assets/img/powershell/image-20230715104944576.png)
 
 ### 2.1 Comandos básicos. Alias
 
@@ -148,11 +149,62 @@ $numero.GetType()
 
 Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.
 
-**[int] $var = 15**
+```
+[int] $var = 15
+```
 
 es equivalente a
 
-**$var = 15**
+```
+$var = 15
+```
 
 
+
+## 4 Operaciones básicas en Powershell
+
+- Read-Host => Guarda en una variable lo que escriba el usuario, **pero como texto **
+
+- Write-Host => Muestra en pantalla un texto o el contenido de una variable.
+
+  **Pedir información al usuario**
+
+![img](https://lh3.googleusercontent.com/avW1MyAsuCw4WyLTOY4-JoVJMEdE7vGHkohbMvMOKAXRklhAPMZke70n2GNPZRtvrlgoKWZbAjsKR-aDOUxaMl6-Uz_qYjk9_A6MjwyDPVRzLteHp10SCgOQkMVrt_kLOeXZTRJLdXaU3TIlZpVC2s1dtA=s2048)
+
+**Mostrar información al usuario**
+
+![img](https://lh6.googleusercontent.com/G4BO5_x70Jq_pL4u_TlF6NKL9tIPezgAjTzHblJ1ZKfKvyQuG7-T2PDjjd00Nd4bl1s_v1MMOzoxf3LzEx5NUjN0-SosPAEJ-4pkXSErqPnLR0aeHG8CDo4uHR5W9IwRqED4y3SPxlIH0IpHL6M5ElmY1g=s2048)
+
+```
+$edad = Read-Host “Escribe tu edad”
+```
+
+Read-Host siempre almacena las variables como String.
+
+Para forzar a que sea un entero:
+
+```
+[int]$edad = **Read-Host** “Escribe tu edad”
+```
+
+
+
+**Operadores aritméticos**
+
+| Operador | Función        | Ejemplo             |
+| :------: | -------------- | ------------------- |
+|    +     | Suma           | $resultado = $x + 3 |
+|    -     | Resta          | $resultado = $x - 3 |
+|    *     | Multiplicación | $resultado = $x * 3 |
+|    /     | División       | $resultado = $x / 3 |
+|    %     | Resto          | $resultado = $x % 3 |
+
+**Operadores aritméticos especiales**
+
+| Operador | Significado                        | Ejemplo | Equivalencia |
+| :------: | ---------------------------------- | ------- | ------------ |
+|    +=    | Incrementa el valor de la variable | $x+=3   | $x = $x + 3  |
+|    -=    | Reduce el valor de la variable     | $x-=3   | $x = $x - 3  |
+|    *=    | Multiplica el valor de la variable | $x*=3   | $x = $x * 3  |
+|    /=    | Divide el valor de la variable     | $x/=3   | $x = $x / 3  |
 
