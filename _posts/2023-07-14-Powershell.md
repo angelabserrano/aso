@@ -12,7 +12,7 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2) Entorno comando: Windows Powershell
 
-![image-20230714211446318](./assets/img/powershell/image-20230714211446318.png)
+![image-20230714211446318](../assets/img/powershell/image-20230714211446318.png)
 
 
 
