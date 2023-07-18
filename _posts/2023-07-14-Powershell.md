@@ -46,11 +46,11 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 ![](/aso/assets/img/powershell/image-20230715105148686.png)
 
-- **Get-Help <Comando> :** Muestra ayuda del comando indicado
+- **Get-Help  \<Comando> :** Muestra ayuda del comando indicado
 
   ![img](https://lh4.googleusercontent.com/vdl-YzlGFChqGyNfmfPvza78qpBGxjUz8Pw5uc4ndTbIKO90eeQpvZkGvSLly-V9V-Fr66U_7xeog3CA0Pul1c2ev9XAenYdyNoTSMdUAZjc-mJvxZCFCBsxyibjzF4VTAaCnDpIkUwPk5CcuHa0J9fbIw=s2048)
 
-- **Get-Help <Comando> -examples:** Muestra ayuda del comando indicado, mostrando ejemplos.
+- **Get-Help  \<Comando> -examples:** Muestra ayuda del comando indicado, mostrando ejemplos.
 
 ![img](https://lh6.googleusercontent.com/WKSh_5cbRsntD99JZI2aJHzUcNgx5yAvqzfOUZsvD83SXA0y083CBEAYWXwIvnVftLtD8EpmyqDqo1Ow6N_NA2FPoS15gQrOvSSUD3fiJmq0tqdbs7YIteCEEEfCPuCsV56725r7UfARi-EYLLTiKt03vw=s2048)
 
@@ -89,7 +89,6 @@ $hola = “Hola mundo”
 
 ```powershell
 New-variable hola
-
 $hola = “Hola mundo”
 ```
 
@@ -175,7 +174,7 @@ $var = 15
 
 ![img](https://lh6.googleusercontent.com/G4BO5_x70Jq_pL4u_TlF6NKL9tIPezgAjTzHblJ1ZKfKvyQuG7-T2PDjjd00Nd4bl1s_v1MMOzoxf3LzEx5NUjN0-SosPAEJ-4pkXSErqPnLR0aeHG8CDo4uHR5W9IwRqED4y3SPxlIH0IpHL6M5ElmY1g=s2048)
 
-```
+```powershell
 $edad = Read-Host “Escribe tu edad”
 ```
 
@@ -183,7 +182,7 @@ $edad = Read-Host “Escribe tu edad”
 
 Para forzar a que sea un entero:
 
-```
+```powershell
 [int]$edad = **Read-Host** “Escribe tu edad”
 ```
 
