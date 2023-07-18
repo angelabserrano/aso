@@ -163,13 +163,13 @@ $var = 15
 
 ## 4 Operaciones básicas en Powershell
 
-- Read-Host => Guarda en una variable lo que escriba el usuario, **pero como texto **
+- **Read-Host** => Guarda en una variable lo que escriba el usuario, **pero como texto **
 
-- Write-Host => Muestra en pantalla un texto o el contenido de una variable.
-
-  **Pedir información al usuario**
+**Pedir información al usuario**
 
 ![img](https://lh3.googleusercontent.com/avW1MyAsuCw4WyLTOY4-JoVJMEdE7vGHkohbMvMOKAXRklhAPMZke70n2GNPZRtvrlgoKWZbAjsKR-aDOUxaMl6-Uz_qYjk9_A6MjwyDPVRzLteHp10SCgOQkMVrt_kLOeXZTRJLdXaU3TIlZpVC2s1dtA=s2048)
+
+- **Write-Host** => Muestra en pantalla un texto o el contenido de una variable.
 
 **Mostrar información al usuario**
 
@@ -179,7 +179,7 @@ $var = 15
 $edad = Read-Host “Escribe tu edad”
 ```
 
-Read-Host siempre almacena las variables como String.
+**Read-Host siempre almacena las variables como String.**
 
 Para forzar a que sea un entero:
 
@@ -189,7 +189,9 @@ Para forzar a que sea un entero:
 
 
 
-**Operadores aritméticos**
+#### Operadores aritméticos
+
+
 
 | Operador | Función        | Ejemplo             |
 | :------: | -------------- | ------------------- |
@@ -208,3 +210,39 @@ Para forzar a que sea un entero:
 |    *=    | Multiplica el valor de la variable | $x*=3   | $x = $x * 3  |
 |    /=    | Divide el valor de la variable     | $x/=3   | $x = $x / 3  |
 
+**Operadores de comparación**
+
+|   Operador   | Significado                                                  | Ejemplo <br />($true)   |
+| :----------: | ------------------------------------------------------------ | ----------------------- |
+|     -eq      | Igual                                                        | 1 -eq 1                 |
+|     -ieq     | Igual <br />Con valores de tipo texto, no tendrá en cuenta la diferencia entre mayúsculas y minúsculas. | "Hola" -ieq "HOLA"      |
+|     -ceq     | Igual<br />Con valores de tipo texto, tendrá en cuenta la diferencia entre mayúsculas y minúsculas. | "HOLA" -ceq "HOLA"      |
+|     -ne      | Diferente                                                    | 3 -ne 5                 |
+|     -lt      | Menor                                                        | 3 -lt 5                 |
+|     -le      | Menor o igual                                                | 5 -le 5<br />3 -le 5    |
+|     -gt      | Mayor                                                        | 5 -gt 3                 |
+|     -ge      | Mayor o igual                                                | 5 -ge 5<br />5 -ge 3    |
+|    -like     | Es como                                                      | "Fermín" -like "Fer*"   |
+|   -notlike   | No es como                                                   | "Fermín" -notlike "Fa*" |
+|  -contains   | Contiene                                                     | 9,5,2 -contains 5       |
+| -notcontains | No contiene                                                  | 9,5,2 -notcontains 1    |
+
+
+
+------
+
+
+
+#### Operaciones con cadenas
+
+- Una de las operaciones más habituales es la **concatenación (+)**, que nos permite unir dos o más variables.
+
+```
+$nombre=”Pepe ”
+$apellidos=”Garcia Sanchez”
+$nombreCompleto=$nombre+$apellidos
+```
+
+- El método **IndexOf** nos permite buscar un determinado texto.
+
+  ![image-20230718093834882](/aso/assets/img/powershell/image-20230718093834882.png)
