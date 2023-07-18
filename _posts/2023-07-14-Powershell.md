@@ -62,13 +62,13 @@ Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadill
 
 ▸ **Comentar una línea.**
 
-```
+```powershell
  #Este es un comentario.
 ```
 
 ▸ **Comentar un bloque**
 
-```
+```powershell
 <#
 Esto es un comentario
 de varias líneas
@@ -81,13 +81,13 @@ Comienzan con el carácter **$**
 
 **Definición Implícita**
 
-```
+```powershell
 $hola = “Hola mundo”
 ```
 
 **Definición Explícita**
 
-```
+```powershell
 New-variable hola
 
 $hola = “Hola mundo”
@@ -114,19 +114,19 @@ PowerShell puede acceder a las **variables de entorno**. Estas variables se expo
 
 - Muestra todas las variables de entorno
 
-```
+```powershell
 Get-ChildItem env:
 ```
 
 - Muestra el usuario del sistema
 
-```
+```powershell
 $env:USERNAME
 ```
 
 - Muestra el nombre del equipo
 
-```
+```powershell
 $env:COMPUTERNAME
 ```
 
@@ -138,7 +138,7 @@ $env:COMPUTERNAME
 
 ### 3.4 Comando para obtener el tipo de datos de una variable
 
-```
+```powershell
 $numero = 15
 $numero.GetType()
 ```
@@ -149,13 +149,13 @@ $numero.GetType()
 
 Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.
 
-```
+```powershell
 [int] $var = 15
 ```
 
 es equivalente a
 
-```
+```powershell
 $var = 15
 ```
 
@@ -237,7 +237,7 @@ Para forzar a que sea un entero:
 
 - Una de las operaciones más habituales es la **concatenación (+)**, que nos permite unir dos o más variables.
 
-```
+```powershell
 $nombre=”Pepe ”
 $apellidos=”Garcia Sanchez”
 $nombreCompleto=$nombre+$apellidos
