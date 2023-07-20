@@ -183,7 +183,7 @@ $edad = Read-Host “Escribe tu edad”
 Para forzar a que sea un entero:
 
 ```powershell
-[int]$edad = **Read-Host** “Escribe tu edad”
+[int]$edad = Read-Host “Escribe tu edad”
 ```
 
 
@@ -209,7 +209,7 @@ Para forzar a que sea un entero:
 |    *=    | Multiplica el valor de la variable | $x*=3   | $x = $x * 3  |
 |    /=    | Divide el valor de la variable     | $x/=3   | $x = $x / 3  |
 
-**Operadores de comparación**
+#### **Operadores de comparación**
 
 |   Operador   | Significado                                                  | Ejemplo <br />($true)   |
 | :----------: | ------------------------------------------------------------ | ----------------------- |
@@ -230,6 +230,18 @@ Para forzar a que sea un entero:
 
 ------
 
+#### Operadores lógicos
+
+| Operador | Significado                                             | Ejemplo                             |
+| -------- | ------------------------------------------------------- | ----------------------------------- |
+| -and     | AND lógico. TRUE cuando las dos expresiones son ciertas | (1 -eq 1) -and (1 -eq 2)<br />False |
+| -or      | OR lógico. TRUE cuando alguna expresión es cierta       | (1 -eq 1) -or (1 -eq 2) <br />True  |
+| -xor     | OR exclusivo. TRUE cuando sólo una expresión es cierta  | (1 -eq 1) -xor (2 -eq 2)<br />False |
+| -not     | Negación lógica. Niega la expresión                     | -not (1 -eq 1)<br />False           |
+| !        | Idéntico a -not                                         | !(1 -eq 1)<br />False               |
+
+
+
 
 
 #### Operaciones con cadenas
@@ -245,3 +257,55 @@ $nombreCompleto=$nombre+$apellidos
 - El método **IndexOf** nos permite buscar un determinado texto.
 
   ![image-20230718093834882](/aso/assets/img/powershell/image-20230718093834882.png)
+
+## 5. Estructuras condicionales
+
+### Uso de la orden if
+
+```powershell
+if(condicion) { Bloque de codigo 1}
+else {Bloque de codigo 2}
+```
+
+- C*ondición* se refiere a una expresión lógica. Es decir, que al evaluarla se obtendrá un valor **$true** o **$false**.
+
+- El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor **$true**. 
+
+  
+
+### Uso de la orden switch
+
+La instrucción **switch** permite organizar bloques de código de forma que se ejecutan cuando se cumpla la condición.
+
+```powershell
+switch(valor de prueba) {
+Patron 1 {Bloque de codigo 1}
+Patron 2 {Bloque de codigo 2}
+Patron n {Bloque de codigo n}
+default {Bloque por defecto}
+}
+```
+
+```powershell
+[Int]$x = Read-Host "Introduce un valor"
+#Bloque Switch
+switch ($x) { 
+	1 {
+		#Bloque de instrucciones cuando $x es igual a 1
+		Write-Host "Has introducido el valor 1"
+	}
+	2 {
+		#Bloque de instrucciones cuando $x es igual a 2
+		Write-Host "Has introducido el valor 2"
+	}
+	3 {
+		#Bloque de instrucciones cuando $x es igual a 3
+		Write-Host "Has introducido el valor 3"
+	}
+	default {
+		#Cualquier otro valor
+		Write-Host "Has introducido cualquier otro valor"
+	}
+}
+```
+
