@@ -285,6 +285,7 @@ Patron n {Bloque de codigo n}
 default {Bloque por defecto}
 }
 ```
+**Ejemplo 1:**
 
 ```powershell
 [Int]$x = Read-Host "Introduce un valor"
@@ -308,4 +309,215 @@ switch ($x) {
 	}
 }
 ```
+
+**Ejemplo 2:**
+
+```powershell
+[int]$nota = Read-Host "Escribe una nota"
+switch ($nota) {
+	{$_ -lt 5}						{Write-Host "Suspenso"}
+	{($_ -ge 5) -and ($_ -le 10)}	{Write-Host "Aprobado"}
+	{$_ -in 1..4}					{Write-Host "Insuficiente"}
+	5								{Write-Host "Suficiente"}
+	6								{Write-Host "Bien"}
+	{$_ -in 7,8}					{Write-Host "Notable"}
+	{$_ -in 9,10}					{Write-Host "Sobresaliente"}
+	default							{Write-Host "No conozco esa nota"}
+}
+```
+
+
+
+## 6. Estructuras repetitivas
+
+Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:
+
+- **do while**: repite mientras la condición vale $true
+
+- **while**: repite mientras la condición vale $true
+
+- **do until**: repite hasta que la condición vale $true
+
+- **for:** repite durante un nº de veces
+
+- **foreach:** repite una vez para cada elemento de la lista
+
+  
+
+### 6.1 La estructura do while
+
+```powershell
+do { 
+	Bloque de codigo
+}
+while (condicion)
+```
+**Ejemplo:**
+
+```powershell
+$a = 1
+do 
+{
+	Write-Host $a
+	$a++
+}while ($a -le 5)
+
+```
+**Resultado por pantalla:** 
+1
+2
+3
+4
+5
+
+### 6.2 La estructura while
+
+```powershell
+while (condicion){
+	Bloque de codigo
+}
+```
+
+**Ejemplo:**
+
+```powershell
+$a = 1
+while ($a -le 5)
+{
+	Write-Host $a
+	$a++
+}
+```
+
+**Resultado por pantalla:**
+
+1
+2
+3
+4
+5
+
+### 6.3 La estructura do until
+
+```powershell
+do {
+	Bloque de codigo
+}
+until (condicion)
+```
+
+**Ejemplo:**
+
+```powershell
+$a = 1
+do
+{
+	Write-Host $a
+	$a++
+} until ($a -gt 5)
+```
+
+**Resultado por pantalla:**
+
+1
+2
+3
+4
+5
+
+### 6.4 La estructura for
+
+```powershell
+for (inicializacion; condicion; incremento)
+{
+	Bloque de codigo
+}
+```
+
+Ejemplo:
+
+```powershell
+for ($a = 1; $a -le 5; $a++)
+{
+	Write-Host $a
+} 
+```
+
+**Resultado por pantalla:**
+
+1
+2
+3
+4
+5
+
+### 6.5 La estructura foreach
+
+La estructura **foreach** funciona en cualquier situación donde pueda obtenerse una lista de elementos.
+
+```powershell
+foreach (elemento in coleccion)
+{
+	Bloque de codigo
+}
+```
+
+Ejemplo:
+
+```powershell
+foreach ($a in 1,2,3,4,5)
+{
+	Write-Host $a
+} 
+```
+
+**Resultado por pantalla:**
+
+1
+2
+3
+4
+5
+
+**Ejemplo:**
+
+```powershell
+$ruta = "C:\Windows\System32"
+$texto = Read-Host "Escribe el texto a buscar"
+foreach ($archivo in Get-ChildItem $ruta) {
+	if($archivo.Name.IndexOf($texto) -ge 0) {
+		Write-Host $archivo.Name
+	}
+}
+```
+
+![image-20230720204431719](/aso/assets/img/powershell/image-20230720204431719.png)
+
+
+
+## 7 Comandos de fecha y hora
+
+El comando **Get-Date** nos permite recuperar la fecha y hora actuales.
+
+![img](https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048)
+
+Si deseamos obtener solo la fecha o la hora usaremos el parámetro **-DisplayHint**
+
+![img](https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048)![img](https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048)
+
+
+
+Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.
+
+```powershell
+$fechaActual = Get-Date
+
+$fechaHora=Get-Date “01/12/2018 11:00 AM” 
+
+$fecha = Get-Date “01/12/2018”
+```
+
+
+
+## 8 Comandos de archivos y carpetas
 
