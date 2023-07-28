@@ -597,7 +597,48 @@ Test-Path $elem -PathType container
 
 
 
+## 9 Importación de datos ##
+
+1. **Importación de un archivo de texto**
+
+Para importar los datos de un fichero .txt usaremos el comando **Get-Content** para almacenar los datos en una variable.
+
+```powershell
+$ciudades = Get-Content ciudades.txt
+foreach($ciudad in $ciudades)
+{
+	Write-Host $ciudad
+}
+```
+
+![img](https://lh3.googleusercontent.com/TtRQwDNRx_itz1YhGKWjOxzqRlFjLfDpntT3nXOGIk3msPmFo7ovMJk_SC6dRgQ7pGEunsFXNXQc-3yR994285QmRKEMKLsKkiCd5deFoy_tIy2Uh7oCKqY2UqMDcFnAqkR6x238xNMtaSTLYn5EqbWwpg=s2048)
+
+**Importación de un archivo CSV**
+
+Para importar los datos de un fichero csv usaremos el método **Import-CSV** para almacenar los datos en una variable.
+
+![img](https://lh6.googleusercontent.com/Ttx7qIRKdpHuxwALhTiQM1XEHzETH1zL9o0LeffANPCQL6oahyeZ37VbnP35QKV2KzpOehdO8JB_RhPz38kMPOFkvPf9aUXrfXfK5NdJmIHg3pOyjKaPb0gtnt423vEHVS3UzrvAiC6XKjP-vSUZEbdg2A=s2048)
 
 
 
+
+
+![img](https://lh4.googleusercontent.com/oWQbVFqzpSUTpMwWeFuHDdnleWjJXb_DVh7yepZPq_T6YKo8Emfwk_eGLgxklv4uUl7EiwEvKOAFAI_yZ-ZrS82KiZul1bZ3HpqT1Wj3XPFrP15CK2z04zc0D_mpfJWwRiu0tvlt1pcJpYah8gFgsqow8g=s2048)
+
+![img](https://lh5.googleusercontent.com/lv4H5XO8V1iKYKGhpxDfHFPQC9PW7MxtQlXsnybhZbfyNBEQP4DnQDe9ZRsX0a43CKL8cmIfx_zwlrGD7UsBIiOC0HcvDOQMWQwVCFLgnTMV8-m4DNttOY5VANeJGEKg_jIsbOFsmpWtwmod-fGRUo1wNQ=s2048)
+
+
+
+**Import-CSV**: con powershell podemos importar cualquier archivo CSV. Por defecto el delimitador es la coma, pero se puede indicar otro.La cabecera del archivo pasan a ser los nombres de las propiedades pero también se pueden indicar otros.
+
+![img](https://lh6.googleusercontent.com/uS2-CyRXvA04jp9IZbw9dbrctMhrR-MFsKJXddh7A_wnKKnewzJq4_AXdaaPu292f2PKmuVm1AXFsaSwVTZHEKF1Y0Hysnd_0BQmwbo4BiocpBOhAljub2NdZSk7F-L25mF4WUe3079-Bty2Lu-oH52RjA=s2048)
+
+```powershell
+$empleados = Import-Csv C:\scripts\empleados.csv -Delimiter “;”
+
+foreach ($em in $empleados)
+{
+ 	Write-Host “Usuario: $($em.nombre) $($em.apellido)”
+}
+```
 
