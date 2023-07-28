@@ -62,7 +62,9 @@ Tenemos las siguientes políticas de ejecución:
 
 ### 2.1 Comandos básicos. Alias
 
-Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable. El tema es que podemos utilizar el alias en lugar de el nombre completo del cmdlet. Podemos utilizar en **Windows Powershell** comandos como “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell
+> -info- Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable. 
+
+Podemos utilizar el alias en lugar de el nombre completo del cmdlet. Por ejemplo, podemos utilizar los comandos  “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell
 
 - **Get-Alias** : Nos devuelve un listado con todos los alias definidos en el sistema
 
@@ -200,6 +202,8 @@ Test-Path $elem -PathType container
 
 ## 5. Comentarios, variables y tipos de datos
 
+
+
 Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadilla** (#).
 
 ▸ **Comentar una línea.**
@@ -217,7 +221,7 @@ de varias líneas
 #>
 ```
 
-Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*. 
+> -info- Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*. 
 
 Comienzan con el carácter **$** 
 
