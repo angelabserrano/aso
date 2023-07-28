@@ -13,7 +13,9 @@ permalink: powershell
 
 ## 1. Introducción
 
-**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
+**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. 
+
+> -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
 
 [Manual de PowerShell 5.1 de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1)
 
@@ -31,17 +33,17 @@ La política de ejecución de PowerShell es una característica de sesguridad de
 
 Tenemos las siguientes políticas de ejecución:
 
-- Unrestricted: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.
+- **Unrestricted**: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.
 
-- Bypass: Al igual que unrestricted, esta política de ejecución no bloquea nada. 
+- **Bypass**: Al igual que unrestricted, esta política de ejecución no bloquea nada. 
 
-- Undefined: PowerShell elimina cualquier política de ejecución asignada.
+- **Undefined**: PowerShell elimina cualquier política de ejecución asignada.
 
-- RemoteSigned: Esta política, establece que todos los scripts remotos deben estar firmados.
+- **RemoteSigned**: Esta política, establece que todos los scripts remotos deben estar firmados.
 
-- AllSigned: Todos los scripts deben esta firmados.
+- **AllSigned**: Todos los scripts deben esta firmados.
 
-- Restricted: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.
+- **Restricted**: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.
 
   
 
@@ -76,6 +78,8 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 
 
+
+
 ## 3.  Comandos de fecha y hora
 
 El comando **Get-Date** nos permite recuperar la fecha y hora actuales.
@@ -92,9 +96,7 @@ Podemos asignar a una variable el resultado del comando Get-Date para almacenar 
 
 ```powershell
 $fechaActual = Get-Date
-
 $fechaHora=Get-Date “01/12/2018 11:00 AM” 
-
 $fecha = Get-Date “01/12/2018”
 ```
 

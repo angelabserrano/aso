@@ -1,0 +1,47 @@
+I"�	<ul id="menu" class="atypora-menu">
+  <li><a href="#apuntes-powershell">Apuntes Powershell</a></li>
+  <li><a href="#1-introducción">1. Introducción</a>
+    <ul>
+      <li><a href="#execution-policy">Execution Policy</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-comandos-básicos">2. Comandos básicos</a>
+    <ul>
+      <li><a href="#21-comandos-básicos-alias">2.1 Comandos básicos. Alias</a></li>
+      <li><a href="#pregunta-1">Pregunta 1</a></li>
+    </ul>
+  </li>
+  <li><a href="#3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</a></li>
+  <li><a href="#4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</a></li>
+  <li><a href="#5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</a>
+    <ul>
+      <li><a href="#52-variables-predefinidas">5.2 Variables predefinidas</a></li>
+      <li><a href="#53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</a></li>
+      <li><a href="#54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</a></li>
+      <li><a href="#55-definición-de-variables">5.5 Definición de variables</a></li>
+    </ul>
+  </li>
+  <li><a href="#6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</a>
+      - {:.} <a href="#operadores-aritméticos">Operadores aritméticos</a>
+      - {:.} <a href="#operadores-de-comparación"><strong>Operadores de comparación</strong></a>
+      - {:.} <a href="#operadores-lógicos">Operadores lógicos</a>
+      - {:.} <a href="#operaciones-con-cadenas">Operaciones con cadenas</a></li>
+  <li><a href="#7-estructuras-condicionales">7. Estructuras condicionales</a>
+    <ul>
+      <li><a href="#uso-de-la-orden-if">Uso de la orden if</a></li>
+      <li><a href="#uso-de-la-orden-switch">Uso de la orden switch</a></li>
+    </ul>
+  </li>
+  <li><a href="#8-estructuras-repetitivas">8. Estructuras repetitivas</a>
+    <ul>
+      <li><a href="#81-la-estructura-do-while">8.1 La estructura do while</a></li>
+      <li><a href="#82-la-estructura-while">8.2 La estructura while</a></li>
+      <li><a href="#83-la-estructura-do-until">8.3 La estructura do until</a></li>
+      <li><a href="#84-la-estructura-for">8.4 La estructura for</a></li>
+      <li><a href="#85-la-estructura-foreach">8.5 La estructura foreach</a></li>
+    </ul>
+  </li>
+  <li><a href="#9-importación-de-datos">9 Importación de datos</a></li>
+  <li><a href="#10-funciones">10. Funciones</a></li>
+</ul>
+:ET

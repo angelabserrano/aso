@@ -46,42 +46,49 @@
             
                 <ul id="menu" class="atypora-menu">
   <li><a href="#apuntes-powershell">Apuntes Powershell</a></li>
-  <li><a href="#1-introducción">1. Introducción</a></li>
+  <li><a href="#1-introducción">1. Introducción</a>
+    <ul>
+      <li><a href="#execution-policy">Execution Policy</a></li>
+    </ul>
+  </li>
   <li><a href="#2-comandos-básicos">2. Comandos básicos</a>
     <ul>
       <li><a href="#21-comandos-básicos-alias">2.1 Comandos básicos. Alias</a></li>
+      <li><a href="#pregunta-1">Pregunta 1</a></li>
     </ul>
   </li>
-  <li><a href="#3-comentarios-variables-y-tipos-de-datos">3. Comentarios, variables y tipos de datos</a>
+  <li><a href="#3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</a></li>
+  <li><a href="#4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</a></li>
+  <li><a href="#5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</a>
     <ul>
-      <li><a href="#32-variables-predefinidas">3.2 Variables predefinidas</a></li>
-      <li><a href="#33-tipos-de-datos-básicos">3.3 Tipos de datos básicos</a></li>
-      <li><a href="#34-comando-para-obtener-el-tipo-de-datos-de-una-variable">3.4 Comando para obtener el tipo de datos de una variable</a></li>
-      <li><a href="#35-definición-de-variables">3.5 Definición de variables</a></li>
+      <li><a href="#52-variables-predefinidas">5.2 Variables predefinidas</a></li>
+      <li><a href="#53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</a></li>
+      <li><a href="#54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</a></li>
+      <li><a href="#55-definición-de-variables">5.5 Definición de variables</a></li>
     </ul>
   </li>
-  <li><a href="#4-operaciones-básicas-en-powershell">4 Operaciones básicas en Powershell</a>
+  <li><a href="#6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</a>
       - {:.} <a href="#operadores-aritméticos">Operadores aritméticos</a>
       - {:.} <a href="#operadores-de-comparación"><strong>Operadores de comparación</strong></a>
       - {:.} <a href="#operadores-lógicos">Operadores lógicos</a>
       - {:.} <a href="#operaciones-con-cadenas">Operaciones con cadenas</a></li>
-  <li><a href="#5-estructuras-condicionales">5. Estructuras condicionales</a>
+  <li><a href="#7-estructuras-condicionales">7. Estructuras condicionales</a>
     <ul>
       <li><a href="#uso-de-la-orden-if">Uso de la orden if</a></li>
       <li><a href="#uso-de-la-orden-switch">Uso de la orden switch</a></li>
     </ul>
   </li>
-  <li><a href="#6-estructuras-repetitivas">6. Estructuras repetitivas</a>
+  <li><a href="#8-estructuras-repetitivas">8. Estructuras repetitivas</a>
     <ul>
-      <li><a href="#61-la-estructura-do-while">6.1 La estructura do while</a></li>
-      <li><a href="#62-la-estructura-while">6.2 La estructura while</a></li>
-      <li><a href="#63-la-estructura-do-until">6.3 La estructura do until</a></li>
-      <li><a href="#64-la-estructura-for">6.4 La estructura for</a></li>
-      <li><a href="#65-la-estructura-foreach">6.5 La estructura foreach</a></li>
+      <li><a href="#81-la-estructura-do-while">8.1 La estructura do while</a></li>
+      <li><a href="#82-la-estructura-while">8.2 La estructura while</a></li>
+      <li><a href="#83-la-estructura-do-until">8.3 La estructura do until</a></li>
+      <li><a href="#84-la-estructura-for">8.4 La estructura for</a></li>
+      <li><a href="#85-la-estructura-foreach">8.5 La estructura foreach</a></li>
     </ul>
   </li>
-  <li><a href="#7-comandos-de-fecha-y-hora">7 Comandos de fecha y hora</a></li>
-  <li><a href="#8-comandos-de-archivos-y-carpetas">8 Comandos de archivos y carpetas</a></li>
+  <li><a href="#9-importación-de-datos">9 Importación de datos</a></li>
+  <li><a href="#10-funciones">10. Funciones</a></li>
 </ul>
 
             
@@ -89,42 +96,49 @@
                 
                     <ul id="menuFixed" class="typora-menu-hidden">
   <li><a href="#apuntes-powershell">Apuntes Powershell</a></li>
-  <li><a href="#1-introducción">1. Introducción</a></li>
+  <li><a href="#1-introducción">1. Introducción</a>
+    <ul>
+      <li><a href="#execution-policy">Execution Policy</a></li>
+    </ul>
+  </li>
   <li><a href="#2-comandos-básicos">2. Comandos básicos</a>
     <ul>
       <li><a href="#21-comandos-básicos-alias">2.1 Comandos básicos. Alias</a></li>
+      <li><a href="#pregunta-1">Pregunta 1</a></li>
     </ul>
   </li>
-  <li><a href="#3-comentarios-variables-y-tipos-de-datos">3. Comentarios, variables y tipos de datos</a>
+  <li><a href="#3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</a></li>
+  <li><a href="#4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</a></li>
+  <li><a href="#5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</a>
     <ul>
-      <li><a href="#32-variables-predefinidas">3.2 Variables predefinidas</a></li>
-      <li><a href="#33-tipos-de-datos-básicos">3.3 Tipos de datos básicos</a></li>
-      <li><a href="#34-comando-para-obtener-el-tipo-de-datos-de-una-variable">3.4 Comando para obtener el tipo de datos de una variable</a></li>
-      <li><a href="#35-definición-de-variables">3.5 Definición de variables</a></li>
+      <li><a href="#52-variables-predefinidas">5.2 Variables predefinidas</a></li>
+      <li><a href="#53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</a></li>
+      <li><a href="#54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</a></li>
+      <li><a href="#55-definición-de-variables">5.5 Definición de variables</a></li>
     </ul>
   </li>
-  <li><a href="#4-operaciones-básicas-en-powershell">4 Operaciones básicas en Powershell</a>
+  <li><a href="#6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</a>
       - {:.} <a href="#operadores-aritméticos">Operadores aritméticos</a>
       - {:.} <a href="#operadores-de-comparación"><strong>Operadores de comparación</strong></a>
       - {:.} <a href="#operadores-lógicos">Operadores lógicos</a>
       - {:.} <a href="#operaciones-con-cadenas">Operaciones con cadenas</a></li>
-  <li><a href="#5-estructuras-condicionales">5. Estructuras condicionales</a>
+  <li><a href="#7-estructuras-condicionales">7. Estructuras condicionales</a>
     <ul>
       <li><a href="#uso-de-la-orden-if">Uso de la orden if</a></li>
       <li><a href="#uso-de-la-orden-switch">Uso de la orden switch</a></li>
     </ul>
   </li>
-  <li><a href="#6-estructuras-repetitivas">6. Estructuras repetitivas</a>
+  <li><a href="#8-estructuras-repetitivas">8. Estructuras repetitivas</a>
     <ul>
-      <li><a href="#61-la-estructura-do-while">6.1 La estructura do while</a></li>
-      <li><a href="#62-la-estructura-while">6.2 La estructura while</a></li>
-      <li><a href="#63-la-estructura-do-until">6.3 La estructura do until</a></li>
-      <li><a href="#64-la-estructura-for">6.4 La estructura for</a></li>
-      <li><a href="#65-la-estructura-foreach">6.5 La estructura foreach</a></li>
+      <li><a href="#81-la-estructura-do-while">8.1 La estructura do while</a></li>
+      <li><a href="#82-la-estructura-while">8.2 La estructura while</a></li>
+      <li><a href="#83-la-estructura-do-until">8.3 La estructura do until</a></li>
+      <li><a href="#84-la-estructura-for">8.4 La estructura for</a></li>
+      <li><a href="#85-la-estructura-foreach">8.5 La estructura foreach</a></li>
     </ul>
   </li>
-  <li><a href="#7-comandos-de-fecha-y-hora">7 Comandos de fecha y hora</a></li>
-  <li><a href="#8-comandos-de-archivos-y-carpetas">8 Comandos de archivos y carpetas</a></li>
+  <li><a href="#9-importación-de-datos">9 Importación de datos</a></li>
+  <li><a href="#10-funciones">10. Funciones</a></li>
 </ul>
 
                 
@@ -142,7 +156,7 @@
 
 <h2 id="1-introducción">1. Introducción</h2>
 
-<p><strong>PowerShell</strong> es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.</p>
+<p><strong>PowerShell</strong> es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Las órdenes incluidas en Powershell son muchas y reciben el nombre de <strong>cmdlets</strong> .</p>
 
 <p><a href="https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1">Manual de PowerShell 5.1 de Microsoft</a></p>
 
@@ -151,6 +165,33 @@
 2) Entorno comando: Windows Powershell</p>
 
 <p><img src="/aso/assets/img/powershell/image-20230714211446318.png" alt="image-20230714211446318" /></p>
+
+<h3 id="execution-policy">Execution Policy</h3>
+
+<p>La política de ejecución de PowerShell es una característica de sesguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.</p>
+
+<p>Tenemos las siguientes políticas de ejecución:</p>
+
+<ul>
+  <li>
+    <p><strong>Unrestricted</strong>: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.</p>
+  </li>
+  <li>
+    <p><strong>Bypass</strong>: Al igual que unrestricted, esta política de ejecución no bloquea nada.</p>
+  </li>
+  <li>
+    <p><strong>Undefined</strong>: PowerShell elimina cualquier política de ejecución asignada.</p>
+  </li>
+  <li>
+    <p><strong>RemoteSigned</strong>: Esta política, establece que todos los scripts remotos deben estar firmados.</p>
+  </li>
+  <li>
+    <p><strong>AllSigned</strong>: Todos los scripts deben esta firmados.</p>
+  </li>
+  <li>
+    <p><strong>Restricted</strong>: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.</p>
+  </li>
+</ul>
 
 <h2 id="2-comandos-básicos">2. Comandos básicos</h2>
 
@@ -194,7 +235,138 @@
 
 <p><img src="https://lh6.googleusercontent.com/WKSh_5cbRsntD99JZI2aJHzUcNgx5yAvqzfOUZsvD83SXA0y083CBEAYWXwIvnVftLtD8EpmyqDqo1Ow6N_NA2FPoS15gQrOvSSUD3fiJmq0tqdbs7YIteCEEEfCPuCsV56725r7UfARi-EYLLTiKt03vw=s2048" alt="img" /></p>
 
-<h2 id="3-comentarios-variables-y-tipos-de-datos">3. Comentarios, variables y tipos de datos</h2>
+<h3 id="pregunta-1">Pregunta 1</h3>
+
+<p>¿Cuál es la capital de Francia?</p>
+
+<ul class="task-list">
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Londres</p>
+  </li>
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />París</p>
+  </li>
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Berlín</p>
+  </li>
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Roma</p>
+  </li>
+</ul>
+
+<h2 id="3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</h2>
+
+<p>El comando <strong>Get-Date</strong> nos permite recuperar la fecha y hora actuales.</p>
+
+<p><img src="https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048" alt="img" /></p>
+
+<p>Si deseamos obtener solo la fecha o la hora usaremos el parámetro <strong>-DisplayHint</strong></p>
+
+<p><img src="https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048" alt="img" /><img src="https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048" alt="img" /></p>
+
+<p>Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$fechaActual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w">
+
+</span><span class="nv">$fechaHora</span><span class="o">=</span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="w"> </span><span class="nx">11:00</span><span class="w"> </span><span class="nx">AM</span><span class="err">”</span><span class="w"> 
+
+</span><span class="nv">$fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</h2>
+
+<p><strong>Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)</strong></p>
+
+<p><strong>Copiar archivos y carpetas</strong></p>
+
+<p>El comando <strong>Copy-Item</strong> nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Copy-Item</span><span class="w"> </span><span class="nx">E:\scripts\</span><span class="o">*</span><span class="w"> </span><span class="nx">C:\Users\scripts\</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Crear una nueva carpeta o archivo</strong></p>
+
+<p>El comando <strong>New-Item</strong> nos permite crear un nuevo archivo o carpeta</p>
+
+<p>Ejemplo: Crea la carpeta scripts en la unidad C:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">New-Item</span><span class="w"> </span><span class="nx">C:\scripts</span><span class="w"> </span><span class="nt">-ItemType</span><span class="w"> </span><span class="nx">directory</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">New-Item</span><span class="w"> </span><span class="nx">C:\scripts\ejemplo1.ps1</span><span class="w"> </span><span class="nt">-ItemType</span><span class="w"> </span><span class="nx">file</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Borrar un archivo o carpeta</strong></p>
+
+<p>El comando <strong>Remove-Item</strong> nos permite borrar un archivo o carpeta.</p>
+
+<p>Ejemplo: Borra el archivo prueba1.ps1</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Remove-Item</span><span class="w"> </span><span class="nx">C:\scripts\prueba1.ps1</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ejemplo: Borra todos los archivos de la carpeta scripts</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Remove-Item</span><span class="w"> </span><span class="nx">C:\scripts\</span><span class="o">*</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Mover un archivo o carpeta</strong></p>
+
+<p>El comando <strong>Move-Item</strong> nos permite mover un archivo de una ubicación a otra.</p>
+
+<p>Ejemplo: Borra el archivo prueba1.ps1</p>
+
+<p>Remove-Item C:\scripts\prueba1.ps1</p>
+
+<p>Ejemplo: Borra todos los archivos de la carpeta scripts</p>
+
+<p>Remove-Item C:\scripts*</p>
+
+<p><strong>Renombrar un archivo o carpeta</strong></p>
+
+<p>El comando <strong>Rename-Item</strong> nos permite cambiar el nombre de archivos y carpetas</p>
+
+<p>Ejemplo: Cambia el nombre de script1 a script2</p>
+
+<p>Rename-Item C:\scripts\script1.ps1 script2.ps1</p>
+
+<p><strong>Verificar la existencia de un archivo o carpeta</strong></p>
+
+<p>Uno de los principales usos de <strong>Test-Path</strong> es verificar la existencia de un archivo o carpeta. Si obtenemos el valor <strong>true</strong> existe, en caso contrario devuelve el valor <strong>false</strong></p>
+
+<p>Ejemplo: Devuelve true si script1.ps1 existe</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Test-Path</span><span class="w"> </span><span class="nx">C:\scripts\script1.ps1</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Verificar la existencia de un archivo o carpeta</strong></p>
+
+<p>Uno de los principales usos de <strong>Test-Path</strong> es verificar la existencia de un archivo o carpeta. Si obtenemos el valor <strong>true</strong> existe, en caso contrario devuelve el valor <strong>false</strong></p>
+
+<p>Ejemplo 1: Devuelve true si script1.ps1 existe</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Test-Path</span><span class="w"> </span><span class="nx">C:\scripts\script1.ps1</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ejemplo 2: Devuelve true si $elem existe y es un directorio</p>
+
+<p>Test-Path $elem -PathType container</p>
+
+<h2 id="5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</h2>
 
 <p>Los comentarios en PowerShell se escriben utilizando el símbolo de <strong>almohadilla</strong> (#).</p>
 
@@ -240,7 +412,7 @@ de varias líneas
 
 <p><img src="https://lh3.googleusercontent.com/mJwXgV3s86CFMH801um9mlUmqbYHkKb_VQbRDvnz6jW5S1tXZdUVUAVgv7XG7bvXxb0NA-Ww4IV7JjxKc3eAcsh2VEqnHIFFjCRsRYKD3uDMmPzhGRZWpacHaLUkn5bdpVXWABM29t7eXsXT4bNMIla2pw=s2048" alt="img" /></p>
 
-<h3 id="32-variables-predefinidas">3.2 Variables predefinidas</h3>
+<h3 id="52-variables-predefinidas">5.2 Variables predefinidas</h3>
 
 <p><strong>Windows Powershell</strong> dispone de muchas variables predefinidas también llamadas “<em>variables integradas</em>” o “<em>variables internas</em>“.</p>
 
@@ -297,11 +469,11 @@ de varias líneas
 </pre></td><td class="rouge-code"><pre><span class="nv">$</span><span class="nn">env</span><span class="p">:</span><span class="nv">COMPUTERNAME</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="33-tipos-de-datos-básicos">3.3 Tipos de datos básicos</h3>
+<h3 id="53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</h3>
 
 <p><img src="https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048" alt="img" /></p>
 
-<h3 id="34-comando-para-obtener-el-tipo-de-datos-de-una-variable">3.4 Comando para obtener el tipo de datos de una variable</h3>
+<h3 id="54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</h3>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -311,7 +483,7 @@ de varias líneas
 
 <p><img src="https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048" alt="img" /></p>
 
-<h3 id="35-definición-de-variables">3.5 Definición de variables</h3>
+<h3 id="55-definición-de-variables">5.5 Definición de variables</h3>
 
 <p>Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.</p>
 
@@ -325,7 +497,7 @@ de varias líneas
 </pre></td><td class="rouge-code"><pre><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<h2 id="4-operaciones-básicas-en-powershell">4 Operaciones básicas en Powershell</h2>
+<h2 id="6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</h2>
 
 <ul>
   <li><strong>Read-Host</strong> =&gt; Guarda en una variable lo que escriba el usuario, **pero como texto **</li>
@@ -570,7 +742,7 @@ de varias líneas
   </li>
 </ul>
 
-<h2 id="5-estructuras-condicionales">5. Estructuras condicionales</h2>
+<h2 id="7-estructuras-condicionales">7. Estructuras condicionales</h2>
 
 <h3 id="uso-de-la-orden-if">Uso de la orden if</h3>
 
@@ -676,7 +848,7 @@ de varias líneas
 </span><span class="p">}</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<h2 id="6-estructuras-repetitivas">6. Estructuras repetitivas</h2>
+<h2 id="8-estructuras-repetitivas">8. Estructuras repetitivas</h2>
 
 <p>Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:</p>
 
@@ -698,7 +870,7 @@ de varias líneas
   </li>
 </ul>
 
-<h3 id="61-la-estructura-do-while">6.1 La estructura do while</h3>
+<h3 id="81-la-estructura-do-while">8.1 La estructura do while</h3>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -733,7 +905,7 @@ de varias líneas
 4
 5</p>
 
-<h3 id="62-la-estructura-while">6.2 La estructura while</h3>
+<h3 id="82-la-estructura-while">8.2 La estructura while</h3>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -767,7 +939,7 @@ de varias líneas
 4
 5</p>
 
-<h3 id="63-la-estructura-do-until">6.3 La estructura do until</h3>
+<h3 id="83-la-estructura-do-until">8.3 La estructura do until</h3>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -803,7 +975,7 @@ de varias líneas
 4
 5</p>
 
-<h3 id="64-la-estructura-for">6.4 La estructura for</h3>
+<h3 id="84-la-estructura-for">8.4 La estructura for</h3>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -835,7 +1007,7 @@ de varias líneas
 4
 5</p>
 
-<h3 id="65-la-estructura-foreach">6.5 La estructura foreach</h3>
+<h3 id="85-la-estructura-foreach">8.5 La estructura foreach</h3>
 
 <p>La estructura <strong>foreach</strong> funciona en cualquier situación donde pueda obtenerse una lista de elementos.</p>
 
@@ -889,32 +1061,94 @@ de varias líneas
 
 <p><img src="/aso/assets/img/powershell/image-20230720204431719.png" alt="image-20230720204431719" /></p>
 
-<h2 id="7-comandos-de-fecha-y-hora">7 Comandos de fecha y hora</h2>
+<h2 id="9-importación-de-datos">9 Importación de datos</h2>
 
-<p>El comando <strong>Get-Date</strong> nos permite recuperar la fecha y hora actuales.</p>
+<ol>
+  <li><strong>Importación de un archivo de texto</strong></li>
+</ol>
 
-<p><img src="https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048" alt="img" /></p>
-
-<p>Si deseamos obtener solo la fecha o la hora usaremos el parámetro <strong>-DisplayHint</strong></p>
-
-<p><img src="https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048" alt="img" /><img src="https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048" alt="img" /></p>
-
-<p>Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.</p>
+<p>Para importar los datos de un fichero .txt usaremos el comando <strong>Get-Content</strong> para almacenar los datos en una variable.</p>
 
 <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="nv">$fechaActual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w">
-
-</span><span class="nv">$fechaHora</span><span class="o">=</span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="w"> </span><span class="nx">11:00</span><span class="w"> </span><span class="nx">AM</span><span class="err">”</span><span class="w"> 
-
-</span><span class="nv">$fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="err">”</span><span class="w">
+</pre></td><td class="rouge-code"><pre><span class="nv">$ciudades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Content</span><span class="w"> </span><span class="nx">ciudades.txt</span><span class="w">
+</span><span class="kr">foreach</span><span class="p">(</span><span class="nv">$ciudad</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nv">$ciudades</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$ciudad</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<h2 id="8-comandos-de-archivos-y-carpetas">8 Comandos de archivos y carpetas</h2>
+<p><img src="https://lh3.googleusercontent.com/TtRQwDNRx_itz1YhGKWjOxzqRlFjLfDpntT3nXOGIk3msPmFo7ovMJk_SC6dRgQ7pGEunsFXNXQc-3yR994285QmRKEMKLsKkiCd5deFoy_tIy2Uh7oCKqY2UqMDcFnAqkR6x238xNMtaSTLYn5EqbWwpg=s2048" alt="img" /></p>
 
+<p><strong>Importación de un archivo CSV</strong></p>
+
+<p>Para importar los datos de un fichero csv usaremos el método <strong>Import-CSV</strong> para almacenar los datos en una variable.</p>
+
+<p><img src="https://lh6.googleusercontent.com/Ttx7qIRKdpHuxwALhTiQM1XEHzETH1zL9o0LeffANPCQL6oahyeZ37VbnP35QKV2KzpOehdO8JB_RhPz38kMPOFkvPf9aUXrfXfK5NdJmIHg3pOyjKaPb0gtnt423vEHVS3UzrvAiC6XKjP-vSUZEbdg2A=s2048" alt="img" /></p>
+
+<p><img src="https://lh4.googleusercontent.com/oWQbVFqzpSUTpMwWeFuHDdnleWjJXb_DVh7yepZPq_T6YKo8Emfwk_eGLgxklv4uUl7EiwEvKOAFAI_yZ-ZrS82KiZul1bZ3HpqT1Wj3XPFrP15CK2z04zc0D_mpfJWwRiu0tvlt1pcJpYah8gFgsqow8g=s2048" alt="img" /></p>
+
+<p><img src="https://lh5.googleusercontent.com/lv4H5XO8V1iKYKGhpxDfHFPQC9PW7MxtQlXsnybhZbfyNBEQP4DnQDe9ZRsX0a43CKL8cmIfx_zwlrGD7UsBIiOC0HcvDOQMWQwVCFLgnTMV8-m4DNttOY5VANeJGEKg_jIsbOFsmpWtwmod-fGRUo1wNQ=s2048" alt="img" /></p>
+
+<p><strong>Import-CSV</strong>: con powershell podemos importar cualquier archivo CSV. Por defecto el delimitador es la coma, pero se puede indicar otro.La cabecera del archivo pasan a ser los nombres de las propiedades pero también se pueden indicar otros.</p>
+
+<p><img src="https://lh6.googleusercontent.com/uS2-CyRXvA04jp9IZbw9dbrctMhrR-MFsKJXddh7A_wnKKnewzJq4_AXdaaPu292f2PKmuVm1AXFsaSwVTZHEKF1Y0Hysnd_0BQmwbo4BiocpBOhAljub2NdZSk7F-L25mF4WUe3079-Bty2Lu-oH52RjA=s2048" alt="img" /></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nv">$empleados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Import-Csv</span><span class="w"> </span><span class="nx">C:\scripts\empleados.csv</span><span class="w"> </span><span class="nt">-Delimiter</span><span class="w"> </span><span class="err">“</span><span class="p">;</span><span class="err">”</span><span class="w">
+
+</span><span class="kr">foreach</span><span class="w"> </span><span class="p">(</span><span class="nv">$em</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="nv">$empleados</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+ 	</span><span class="n">Write-Host</span><span class="w"> </span><span class="err">“</span><span class="nx">Usuario:</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="nv">$em</span><span class="o">.</span><span class="nf">nombre</span><span class="p">)</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="nv">$em</span><span class="o">.</span><span class="nf">apellido</span><span class="p">)</span><span class="err">”</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="10-funciones">10. Funciones</h2>
+
+<p>Una función no es más que un conjunto de instrucciones a las que le damos un nombre.</p>
+
+<p><strong>Sintaxis</strong></p>
+
+<p><strong>Function</strong> <nombre> {</nombre></p>
+
+<bloque de="" código=""> 
+
+}
+
+**Ejemplo**
+
+![img](https://lh3.googleusercontent.com/m3Kua6IrOTb491a5Ly93mHgjlrOaRNa45n9OPWaXygiBJnoKFHjlA-MLxbyKGMlQZevvIYOWuUKCG_F1Tqdeg2syvGr3cj_gfAXq8Ui3H9Op6zxkzRwiP7qXRQ3SE9P7fdjSjKSTNrBdkB_q6yBZsFFseQ=s2048)
+
+function TestPing($Address) {
+
+$Result=Test-Connection -ComputerName $Address -ErrorAction SilentlyContinue
+
+if ($? -eq $true) {
+
+  		write-output "ICMP Test to ${Address}: OK"
+
+}else{
+
+  		write-output "ICMP Test to ${Address}: Error"
+
+}
+
+}
+
+En nuestro ejemplo, creamos una función denominada TESTPING para probar la conectividad a una dirección variable.
+
+Para utilizar la función, debemos realizar la llamada:
+
+TestPing (‘8.8.8.8’)
+</bloque>
 
         </div>
         <div class="PageNavigation" id="pageNavigation">
