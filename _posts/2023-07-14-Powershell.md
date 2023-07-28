@@ -321,15 +321,15 @@ $var = 15
 ![img](https://lh6.googleusercontent.com/G4BO5_x70Jq_pL4u_TlF6NKL9tIPezgAjTzHblJ1ZKfKvyQuG7-T2PDjjd00Nd4bl1s_v1MMOzoxf3LzEx5NUjN0-SosPAEJ-4pkXSErqPnLR0aeHG8CDo4uHR5W9IwRqED4y3SPxlIH0IpHL6M5ElmY1g=s2048)
 
 ```powershell
-$edad = Read-Host “Escribe tu edad”
+$edad = Read-Host "Escribe tu edad"
 ```
 
-> -alert- **Read-Host siempre almacena las variables como String.**
+> -alert- **Read-Host **siempre almacena las variables como **String**(cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.
 
 Para forzar a que sea un entero:
 
 ```powershell
-[int]$edad = Read-Host “Escribe tu edad”
+[int]$edad = Read-Host "Escribe tu edad"
 ```
 
 
