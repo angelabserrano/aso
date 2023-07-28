@@ -56,7 +56,127 @@ Un **alias** es un nombre alternativo o sobrenombre para un cmdlet o un elemento
 
 
 
-## 3. Comentarios, variables y tipos de datos
+## 3.  Comandos de fecha y hora
+
+El comando **Get-Date** nos permite recuperar la fecha y hora actuales.
+
+![img](https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048)
+
+Si deseamos obtener solo la fecha o la hora usaremos el parámetro **-DisplayHint**
+
+![img](https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048)![img](https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048)
+
+
+
+Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.
+
+```powershell
+$fechaActual = Get-Date
+
+$fechaHora=Get-Date “01/12/2018 11:00 AM” 
+
+$fecha = Get-Date “01/12/2018”
+```
+
+
+
+## 4.  Comandos de archivos y carpetas
+
+**Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)**
+
+
+
+**Copiar archivos y carpetas**
+
+El comando **Copy-Item** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
+
+```powershell
+Copy-Item E:\scripts\* C:\Users\scripts\
+```
+
+**Crear una nueva carpeta o archivo**
+
+El comando **New-Item** nos permite crear un nuevo archivo o carpeta
+
+Ejemplo: Crea la carpeta scripts en la unidad C:
+
+```powershell
+New-Item C:\scripts -ItemType directory
+```
+
+Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts
+
+```powershell
+New-Item C:\scripts\ejemplo1.ps1 -ItemType file
+```
+
+ 
+
+**Borrar un archivo o carpeta**
+
+El comando **Remove-Item** nos permite borrar un archivo o carpeta.
+
+Ejemplo: Borra el archivo prueba1.ps1
+
+```powershell
+Remove-Item C:\scripts\prueba1.ps1
+```
+
+Ejemplo: Borra todos los archivos de la carpeta scripts
+
+```powershell
+Remove-Item C:\scripts\*
+```
+
+**Mover un archivo o carpeta**
+
+El comando **Move-Item** nos permite mover un archivo de una ubicación a otra.
+
+Ejemplo: Borra el archivo prueba1.ps1
+
+Remove-Item C:\scripts\prueba1.ps1
+
+Ejemplo: Borra todos los archivos de la carpeta scripts
+
+Remove-Item C:\scripts\*
+
+**Renombrar un archivo o carpeta**
+
+El comando **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
+
+Ejemplo: Cambia el nombre de script1 a script2
+
+Rename-Item C:\scripts\script1.ps1 script2.ps1
+
+**Verificar la existencia de un archivo o carpeta**
+
+Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
+
+Ejemplo: Devuelve true si script1.ps1 existe
+
+```powershell
+Test-Path C:\scripts\script1.ps1
+```
+
+**Verificar la existencia de un archivo o carpeta**
+
+Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
+
+Ejemplo 1: Devuelve true si script1.ps1 existe
+
+```powershell
+Test-Path C:\scripts\script1.ps1
+```
+
+Ejemplo 2: Devuelve true si $elem existe y es un directorio
+
+Test-Path $elem -PathType container 
+
+
+
+
+
+## 5. Comentarios, variables y tipos de datos
 
 Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadilla** (#).
 
@@ -96,7 +216,7 @@ $hola = “Hola mundo”
 
 ![img](https://lh3.googleusercontent.com/mJwXgV3s86CFMH801um9mlUmqbYHkKb_VQbRDvnz6jW5S1tXZdUVUAVgv7XG7bvXxb0NA-Ww4IV7JjxKc3eAcsh2VEqnHIFFjCRsRYKD3uDMmPzhGRZWpacHaLUkn5bdpVXWABM29t7eXsXT4bNMIla2pw=s2048)
 
-### 3.2 Variables predefinidas
+### 5.2 Variables predefinidas
 
 **Windows Powershell** dispone de muchas variables predefinidas también llamadas “*variables integradas*” o “*variables internas*“.
 
@@ -131,11 +251,11 @@ $env:COMPUTERNAME
 
 
 
-### 3.3 Tipos de datos básicos
+### 5.3 Tipos de datos básicos
 
 ![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)
 
-### 3.4 Comando para obtener el tipo de datos de una variable
+### 5.4 Comando para obtener el tipo de datos de una variable
 
 ```powershell
 $numero = 15
@@ -144,7 +264,7 @@ $numero.GetType()
 
 ![img](https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048)
 
-### 3.5 Definición de variables
+### 5.5 Definición de variables
 
 Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.
 
@@ -160,7 +280,7 @@ $var = 15
 
 
 
-## 4 Operaciones básicas en Powershell
+## 6 Operaciones básicas en Powershell
 
 - **Read-Host** => Guarda en una variable lo que escriba el usuario, **pero como texto **
 
@@ -258,7 +378,7 @@ $nombreCompleto=$nombre+$apellidos
 
   ![image-20230718093834882](/aso/assets/img/powershell/image-20230718093834882.png)
 
-## 5. Estructuras condicionales
+## 7. Estructuras condicionales
 
 ### Uso de la orden if
 
@@ -328,7 +448,7 @@ switch ($nota) {
 
 
 
-## 6. Estructuras repetitivas
+## 8. Estructuras repetitivas
 
 Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:
 
@@ -344,7 +464,7 @@ Todos los lenguajes de programación necesitan un método que les permita repeti
 
   
 
-### 6.1 La estructura do while
+### 8.1 La estructura do while
 
 ```powershell
 do { 
@@ -370,7 +490,7 @@ do
 4
 5
 
-### 6.2 La estructura while
+### 8.2 La estructura while
 
 ```powershell
 while (condicion){
@@ -397,7 +517,7 @@ while ($a -le 5)
 4
 5
 
-### 6.3 La estructura do until
+### 8.3 La estructura do until
 
 ```powershell
 do {
@@ -425,7 +545,7 @@ do
 4
 5
 
-### 6.4 La estructura for
+### 8.4 La estructura for
 
 ```powershell
 for (inicializacion; condicion; incremento)
@@ -451,7 +571,7 @@ for ($a = 1; $a -le 5; $a++)
 4
 5
 
-### 6.5 La estructura foreach
+### 8.5 La estructura foreach
 
 La estructura **foreach** funciona en cualquier situación donde pueda obtenerse una lista de elementos.
 
@@ -494,122 +614,6 @@ foreach ($archivo in Get-ChildItem $ruta) {
 ![image-20230720204431719](/aso/assets/img/powershell/image-20230720204431719.png)
 
 
-
-## 7 Comandos de fecha y hora
-
-El comando **Get-Date** nos permite recuperar la fecha y hora actuales.
-
-![img](https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048)
-
-Si deseamos obtener solo la fecha o la hora usaremos el parámetro **-DisplayHint**
-
-![img](https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048)![img](https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048)
-
-
-
-Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.
-
-```powershell
-$fechaActual = Get-Date
-
-$fechaHora=Get-Date “01/12/2018 11:00 AM” 
-
-$fecha = Get-Date “01/12/2018”
-```
-
-
-
-## 8 Comandos de archivos y carpetas
-
-**Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)**
-
-
-
-**Copiar archivos y carpetas**
-
-El comando **Copy-Item** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
-
-```powershell
-Copy-Item E:\scripts\* C:\Users\scripts\
-```
-
-**Crear una nueva carpeta o archivo**
-
-El comando **New-Item** nos permite crear un nuevo archivo o carpeta
-
-Ejemplo: Crea la carpeta scripts en la unidad C:
-
-```powershell
-New-Item C:\scripts -ItemType directory
-```
-
-Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts
-
-```powershell
-New-Item C:\scripts\ejemplo1.ps1 -ItemType file
-```
-
- 
-
-**Borrar un archivo o carpeta**
-
-El comando **Remove-Item** nos permite borrar un archivo o carpeta.
-
-Ejemplo: Borra el archivo prueba1.ps1
-
-```powershell
-Remove-Item C:\scripts\prueba1.ps1
-```
-
-Ejemplo: Borra todos los archivos de la carpeta scripts
-
-```powershell
-Remove-Item C:\scripts\*
-```
-
-**Mover un archivo o carpeta**
-
-El comando **Move-Item** nos permite mover un archivo de una ubicación a otra.
-
-Ejemplo: Borra el archivo prueba1.ps1
-
-Remove-Item C:\scripts\prueba1.ps1
-
-Ejemplo: Borra todos los archivos de la carpeta scripts
-
-Remove-Item C:\scripts\*
-
-**Renombrar un archivo o carpeta**
-
-El comando **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
-
-Ejemplo: Cambia el nombre de script1 a script2
-
-Rename-Item C:\scripts\script1.ps1 script2.ps1
-
-**Verificar la existencia de un archivo o carpeta**
-
-Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
-
-Ejemplo: Devuelve true si script1.ps1 existe
-
-```powershell
-Test-Path C:\scripts\script1.ps1
-```
-
-**Verificar la existencia de un archivo o carpeta**
-
-Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
-
-Ejemplo 1: Devuelve true si script1.ps1 existe
-
-```powershell
-Test-Path C:\scripts\script1.ps1
-```
-
-Ejemplo 2: Devuelve true si $elem existe y es un directorio
-
-Test-Path $elem -PathType container 
 
 
 
