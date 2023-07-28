@@ -3,7 +3,7 @@ typora-copy-images-to: ../assets/img/powershell
 typora-root-url: ../../
 layout: post
 title: Powershell
-categories: parte1
+categories: scripts
 conToc: true
 permalink: powershell
 ---
@@ -529,7 +529,9 @@ $fecha = Get-Date “01/12/2018”
 
 El comando **Copy-Item** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
 
+```powershell
 Copy-Item E:\scripts\* C:\Users\scripts\
+```
 
 **Crear una nueva carpeta o archivo**
 
@@ -537,11 +539,17 @@ El comando **New-Item** nos permite crear un nuevo archivo o carpeta
 
 Ejemplo: Crea la carpeta scripts en la unidad C:
 
+```powershell
 New-Item C:\scripts -ItemType directory
+```
 
 Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts
 
-New-Item C:\scripts\ejemplo1.ps1 -ItemType file 
+```powershell
+New-Item C:\scripts\ejemplo1.ps1 -ItemType file
+```
+
+ 
 
 **Borrar un archivo o carpeta**
 
@@ -549,11 +557,15 @@ El comando **Remove-Item** nos permite borrar un archivo o carpeta.
 
 Ejemplo: Borra el archivo prueba1.ps1
 
+```powershell
 Remove-Item C:\scripts\prueba1.ps1
+```
 
 Ejemplo: Borra todos los archivos de la carpeta scripts
 
+```powershell
 Remove-Item C:\scripts\*
+```
 
 **Mover un archivo o carpeta**
 
@@ -581,7 +593,9 @@ Uno de los principales usos de **Test-Path** es verificar la existencia de un ar
 
 Ejemplo: Devuelve true si script1.ps1 existe
 
+```powershell
 Test-Path C:\scripts\script1.ps1
+```
 
 **Verificar la existencia de un archivo o carpeta**
 
@@ -589,7 +603,9 @@ Uno de los principales usos de **Test-Path** es verificar la existencia de un ar
 
 Ejemplo 1: Devuelve true si script1.ps1 existe
 
+```powershell
 Test-Path C:\scripts\script1.ps1
+```
 
 Ejemplo 2: Devuelve true si $elem existe y es un directorio
 
@@ -642,3 +658,40 @@ foreach ($em in $empleados)
 }
 ```
 
+## 10. Funciones ##
+
+Una función no es más que un conjunto de instrucciones a las que le damos un nombre. 
+
+**Sintaxis**							
+
+**Function** <nombre> { 
+
+<bloque de código> 
+
+}
+
+**Ejemplo**
+
+![img](https://lh3.googleusercontent.com/m3Kua6IrOTb491a5Ly93mHgjlrOaRNa45n9OPWaXygiBJnoKFHjlA-MLxbyKGMlQZevvIYOWuUKCG_F1Tqdeg2syvGr3cj_gfAXq8Ui3H9Op6zxkzRwiP7qXRQ3SE9P7fdjSjKSTNrBdkB_q6yBZsFFseQ=s2048)
+
+function TestPing($Address) {
+
+$Result=Test-Connection -ComputerName $Address -ErrorAction SilentlyContinue
+
+if ($? -eq $true) {
+
+  		write-output "ICMP Test to ${Address}: OK"
+
+}else{
+
+  		write-output "ICMP Test to ${Address}: Error"
+
+}
+
+}
+
+En nuestro ejemplo, creamos una función denominada TESTPING para probar la conectividad a una dirección variable.
+
+Para utilizar la función, debemos realizar la llamada:
+
+TestPing (‘8.8.8.8’)
