@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="//favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//favicon.ico" type="image/x-icon"> 
+    <link href="//assets/css/syntax.css" rel="stylesheet">
+    <link rel="stylesheet" href="//assets/css/styles.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css' integrity='sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp' crossorigin='anonymous'>
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
+  </head>
+  <body class='preview-zenburn'>
+   <a id="top"></a>
+    <div id='write-wrapper'>
+      <nav class="topnav" id="myTopnav">
+  
+    <a href="//" >Índice</a>
+  
+    <a href="//search.html" class="active">Buscar</a>
+  
+  <a href="javascript:void(0);" class="icon" onclick="showMenu()">
+    <i class="fa fa-bars"></i>
+  </a>
+</nav>
+
+      <div id='write'>
+        <div class="search">
+	<form action="//search.html" method="get">
+  <label for="search-box">Búsqueda</label>
+  <input type="text" id="search-box" name="query">
+  <input type="submit" value="Buscar">
+</form>
+
+<ul id="search-results"></ul>
+
+<script>
+  window.store = {
+    
+      "powershell": {
+        "title": "Powershell",
+        "content": "Apuntes Powershell\n\n1. Introducción\n\nPowerShell es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.\n\nManual de PowerShell 5.1 de Microsoft\n\nTenemos dos opciones a la hora de ejecutar PowerShell:\n1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).\n2) Entorno comando: Windows Powershell\n\n\n\n2. Comandos básicos\n\n\n  $psversiontable : Muestra la versión de PowerShell instalada.\n\n\n\n\n\n  \n    Get-Command : Muestra todos los comandos disponibles\n  \n  \n    Clear-Host : Limpia la pantalla\n  \n\n\n\n\n2.1 Comandos básicos. Alias\n\nUn alias es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable. El tema es que podemos utilizar el alias en lugar de el nombre completo del cmdlet. Podemos utilizar en Windows Powershell comandos como “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell\n\n\n  Get-Alias : Nos devuelve un listado con todos los alias definidos en el sistema\n\n\n\n\n\n  \n    Get-Help  &lt;Comando&gt; : Muestra ayuda del comando indicado\n\n    \n  \n  \n    Get-Help  &lt;Comando&gt; -examples: Muestra ayuda del comando indicado, mostrando ejemplos.\n  \n\n\n\n\n3. Comentarios, variables y tipos de datos\n\nLos comentarios en PowerShell se escriben utilizando el símbolo de almohadilla (#).\n\n▸ Comentar una línea.\n\n1\n #Este es un comentario.\n\n\n▸ Comentar un bloque\n\n1\n2\n3\n4\n&lt;#\nEsto es un comentario\nde varias líneas\n#&gt;\n\n\nUna variable es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del script.\n\nComienzan con el carácter $\n\nDefinición Implícita\n\n1\n$hola = “Hola mundo”\n\n\nDefinición Explícita\n\n1\n2\nNew-variable hola\n$hola = “Hola mundo”\n\n\n\n  Get-Variable : Devuelve un listado completo de las variables que se han definido\n\n\n\n\n3.2 Variables predefinidas\n\nWindows Powershell dispone de muchas variables predefinidas también llamadas “variables integradas” o “variables internas“.\n\n\n  \n    \n      $true\n      Valor true.\n    \n  \n  \n    \n      $false\n      Valor false.\n    \n    \n      $home\n      El directorio home del usuario actual.\n    \n    \n      $host\n      Información de instalación del host.\n    \n    \n      $error\n      Lista de los errores que han ocurrido desde que se ha iniciado WPS.\n    \n  \n\n\nPowerShell puede acceder a las variables de entorno. Estas variables se exponen a través de una unidad denominada env:.\n\n\n  Muestra todas las variables de entorno\n\n\n1\nGet-ChildItem env:\n\n\n\n  Muestra el usuario del sistema\n\n\n1\n$env:USERNAME\n\n\n\n  Muestra el nombre del equipo\n\n\n1\n$env:COMPUTERNAME\n\n\n3.3 Tipos de datos básicos\n\n\n\n3.4 Comando para obtener el tipo de datos de una variable\n\n1\n2\n$numero = 15\n$numero.GetType()\n\n\n\n\n3.5 Definición de variables\n\nPodemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.\n\n1\n[int] $var = 15\n\n\nes equivalente a\n\n1\n$var = 15\n\n\n4 Operaciones básicas en Powershell\n\n\n  Read-Host =&gt; Guarda en una variable lo que escriba el usuario, **pero como texto **\n\n\nPedir información al usuario\n\n\n\n\n  Write-Host =&gt; Muestra en pantalla un texto o el contenido de una variable.\n\n\nMostrar información al usuario\n\n\n\n1\n$edad = Read-Host “Escribe tu edad”\n\n\nRead-Host siempre almacena las variables como String.\n\nPara forzar a que sea un entero:\n\n1\n[int]$edad = Read-Host “Escribe tu edad”\n\n\nOperadores aritméticos\n\n\n  \n    \n      Operador\n      Función\n      Ejemplo\n    \n  \n  \n    \n      +\n      Suma\n      $resultado = $x + 3\n    \n    \n      -\n      Resta\n      $resultado = $x - 3\n    \n    \n      *\n      Multiplicación\n      $resultado = $x * 3\n    \n    \n      /\n      División\n      $resultado = $x / 3\n    \n    \n      %\n      Resto\n      $resultado = $x % 3\n    \n  \n\n\nOperadores aritméticos especiales\n\n\n  \n    \n      Operador\n      Significado\n      Ejemplo\n      Equivalencia\n    \n  \n  \n    \n      +=\n      Incrementa el valor de la variable\n      $x+=3\n      $x = $x + 3\n    \n    \n      -=\n      Reduce el valor de la variable\n      $x-=3\n      $x = $x - 3\n    \n    \n      *=\n      Multiplica el valor de la variable\n      $x*=3\n      $x = $x * 3\n    \n    \n      /=\n      Divide el valor de la variable\n      $x/=3\n      $x = $x / 3\n    \n  \n\n\nOperadores de comparación\n\n\n  \n    \n      Operador\n      Significado\n      Ejemplo ($true)\n    \n  \n  \n    \n      -eq\n      Igual\n      1 -eq 1\n    \n    \n      -ieq\n      Igual Con valores de tipo texto, no tendrá en cuenta la diferencia entre mayúsculas y minúsculas.\n      “Hola” -ieq “HOLA”\n    \n    \n      -ceq\n      IgualCon valores de tipo texto, tendrá en cuenta la diferencia entre mayúsculas y minúsculas.\n      “HOLA” -ceq “HOLA”\n    \n    \n      -ne\n      Diferente\n      3 -ne 5\n    \n    \n      -lt\n      Menor\n      3 -lt 5\n    \n    \n      -le\n      Menor o igual\n      5 -le 53 -le 5\n    \n    \n      -gt\n      Mayor\n      5 -gt 3\n    \n    \n      -ge\n      Mayor o igual\n      5 -ge 55 -ge 3\n    \n    \n      -like\n      Es como\n      “Fermín” -like “Fer*”\n    \n    \n      -notlike\n      No es como\n      “Fermín” -notlike “Fa*”\n    \n    \n      -contains\n      Contiene\n      9,5,2 -contains 5\n    \n    \n      -notcontains\n      No contiene\n      9,5,2 -notcontains 1\n    \n  \n\n\n\n\nOperadores lógicos\n\n\n  \n    \n      Operador\n      Significado\n      Ejemplo\n    \n  \n  \n    \n      -and\n      AND lógico. TRUE cuando las dos expresiones son ciertas\n      (1 -eq 1) -and (1 -eq 2)False\n    \n    \n      -or\n      OR lógico. TRUE cuando alguna expresión es cierta\n      (1 -eq 1) -or (1 -eq 2) True\n    \n    \n      -xor\n      OR exclusivo. TRUE cuando sólo una expresión es cierta\n      (1 -eq 1) -xor (2 -eq 2)False\n    \n    \n      -not\n      Negación lógica. Niega la expresión\n      -not (1 -eq 1)False\n    \n    \n      !\n      Idéntico a -not\n      !(1 -eq 1)False\n    \n  \n\n\nOperaciones con cadenas\n\n\n  Una de las operaciones más habituales es la concatenación (+), que nos permite unir dos o más variables.\n\n\n1\n2\n3\n$nombre=”Pepe ”\n$apellidos=”Garcia Sanchez”\n$nombreCompleto=$nombre+$apellidos\n\n\n\n  \n    El método IndexOf nos permite buscar un determinado texto.\n\n    \n  \n\n\n5. Estructuras condicionales\n\nUso de la orden if\n\n1\n2\nif(condicion) { Bloque de codigo 1}\nelse {Bloque de codigo 2}\n\n\n\n  \n    Condición se refiere a una expresión lógica. Es decir, que al evaluarla se obtendrá un valor $true o $false.\n  \n  \n    El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor $true.\n  \n\n\nUso de la orden switch\n\nLa instrucción switch permite organizar bloques de código de forma que se ejecutan cuando se cumpla la condición.\n\n1\n2\n3\n4\n5\n6\nswitch(valor de prueba) {\nPatron 1 {Bloque de codigo 1}\nPatron 2 {Bloque de codigo 2}\nPatron n {Bloque de codigo n}\ndefault {Bloque por defecto}\n}\n\nEjemplo 1:\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n[Int]$x = Read-Host \"Introduce un valor\"\n#Bloque Switch\nswitch ($x) { \n\t1 {\n\t\t#Bloque de instrucciones cuando $x es igual a 1\n\t\tWrite-Host \"Has introducido el valor 1\"\n\t}\n\t2 {\n\t\t#Bloque de instrucciones cuando $x es igual a 2\n\t\tWrite-Host \"Has introducido el valor 2\"\n\t}\n\t3 {\n\t\t#Bloque de instrucciones cuando $x es igual a 3\n\t\tWrite-Host \"Has introducido el valor 3\"\n\t}\n\tdefault {\n\t\t#Cualquier otro valor\n\t\tWrite-Host \"Has introducido cualquier otro valor\"\n\t}\n}\n\n\nEjemplo 2:\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n[int]$nota = Read-Host \"Escribe una nota\"\nswitch ($nota) {\n\t{$_ -lt 5}\t\t\t\t\t\t{Write-Host \"Suspenso\"}\n\t{($_ -ge 5) -and ($_ -le 10)}\t{Write-Host \"Aprobado\"}\n\t{$_ -in 1..4}\t\t\t\t\t{Write-Host \"Insuficiente\"}\n\t5\t\t\t\t\t\t\t\t{Write-Host \"Suficiente\"}\n\t6\t\t\t\t\t\t\t\t{Write-Host \"Bien\"}\n\t{$_ -in 7,8}\t\t\t\t\t{Write-Host \"Notable\"}\n\t{$_ -in 9,10}\t\t\t\t\t{Write-Host \"Sobresaliente\"}\n\tdefault\t\t\t\t\t\t\t{Write-Host \"No conozco esa nota\"}\n}\n\n\n6. Estructuras repetitivas\n\nTodos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:\n\n\n  \n    do while: repite mientras la condición vale $true\n  \n  \n    while: repite mientras la condición vale $true\n  \n  \n    do until: repite hasta que la condición vale $true\n  \n  \n    for: repite durante un nº de veces\n  \n  \n    foreach: repite una vez para cada elemento de la lista\n  \n\n\n6.1 La estructura do while\n\n1\n2\n3\n4\ndo { \n\tBloque de codigo\n}\nwhile (condicion)\n\nEjemplo:\n\n1\n2\n3\n4\n5\n6\n7\n$a = 1\ndo \n{\n\tWrite-Host $a\n\t$a++\n}while ($a -le 5)\n\n\nResultado por pantalla: \n1\n2\n3\n4\n5\n\n6.2 La estructura while\n\n1\n2\n3\nwhile (condicion){\n\tBloque de codigo\n}\n\n\nEjemplo:\n\n1\n2\n3\n4\n5\n6\n$a = 1\nwhile ($a -le 5)\n{\n\tWrite-Host $a\n\t$a++\n}\n\n\nResultado por pantalla:\n\n1\n2\n3\n4\n5\n\n6.3 La estructura do until\n\n1\n2\n3\n4\ndo {\n\tBloque de codigo\n}\nuntil (condicion)\n\n\nEjemplo:\n\n1\n2\n3\n4\n5\n6\n$a = 1\ndo\n{\n\tWrite-Host $a\n\t$a++\n} until ($a -gt 5)\n\n\nResultado por pantalla:\n\n1\n2\n3\n4\n5\n\n6.4 La estructura for\n\n1\n2\n3\n4\nfor (inicializacion; condicion; incremento)\n{\n\tBloque de codigo\n}\n\n\nEjemplo:\n\n1\n2\n3\n4\nfor ($a = 1; $a -le 5; $a++)\n{\n\tWrite-Host $a\n} \n\n\nResultado por pantalla:\n\n1\n2\n3\n4\n5\n\n6.5 La estructura foreach\n\nLa estructura foreach funciona en cualquier situación donde pueda obtenerse una lista de elementos.\n\n1\n2\n3\n4\nforeach (elemento in coleccion)\n{\n\tBloque de codigo\n}\n\n\nEjemplo:\n\n1\n2\n3\n4\nforeach ($a in 1,2,3,4,5)\n{\n\tWrite-Host $a\n} \n\n\nResultado por pantalla:\n\n1\n2\n3\n4\n5\n\nEjemplo:\n\n1\n2\n3\n4\n5\n6\n7\n$ruta = \"C:\\Windows\\System32\"\n$texto = Read-Host \"Escribe el texto a buscar\"\nforeach ($archivo in Get-ChildItem $ruta) {\n\tif($archivo.Name.IndexOf($texto) -ge 0) {\n\t\tWrite-Host $archivo.Name\n\t}\n}\n\n\n\n\n7 Comandos de fecha y hora\n\nEl comando Get-Date nos permite recuperar la fecha y hora actuales.\n\n\n\nSi deseamos obtener solo la fecha o la hora usaremos el parámetro -DisplayHint\n\n\n\nPodemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.\n\n1\n2\n3\n4\n5\n$fechaActual = Get-Date\n\n$fechaHora=Get-Date “01/12/2018 11:00 AM” \n\n$fecha = Get-Date “01/12/2018”\n\n\n8 Comandos de archivos y carpetas\n\n",
+        "url": "//powershell"
+      }
+      
+    
+  };
+</script>
+<script src="//assets/js/lunr.min.js"></script>
+<script src="//assets/js/search.js"></script>
+
+</div>
+
+        <a href="#top" id='back-to-top-link'><i class='fa fa-angle-up'></i></a>
+      </div>
+    </div>    
+    <script src="//assets/js/main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+  </body>
+</html>

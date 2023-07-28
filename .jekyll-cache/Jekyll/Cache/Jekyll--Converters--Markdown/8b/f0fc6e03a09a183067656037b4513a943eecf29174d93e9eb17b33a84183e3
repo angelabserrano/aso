@@ -1,0 +1,778 @@
+I"*�<h2 id="apuntes-powershell">Apuntes Powershell</h2>
+
+<h2 id="1-introducción">1. Introducción</h2>
+
+<p><strong>PowerShell</strong> es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.</p>
+
+<p><a href="https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1">Manual de PowerShell 5.1 de Microsoft</a></p>
+
+<p>Tenemos dos opciones a la hora de ejecutar PowerShell:
+1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
+2) Entorno comando: Windows Powershell</p>
+
+<p><img src="/aso/assets/img/powershell/image-20230714211446318.png" alt="image-20230714211446318" /></p>
+
+<h2 id="2-comandos-básicos">2. Comandos básicos</h2>
+
+<ul>
+  <li><strong>$psversiontable</strong> : Muestra la versión de PowerShell instalada.</li>
+</ul>
+
+<p><img src="/aso/assets/img/powershell/image-20230715104849336.png" alt="image-20230715104849336" /></p>
+
+<ul>
+  <li>
+    <p><strong>Get-Command</strong> : Muestra todos los comandos disponibles</p>
+  </li>
+  <li>
+    <p><strong>Clear-Host</strong> : Limpia la pantalla</p>
+  </li>
+</ul>
+
+<p><img src="/aso/assets/img/powershell/image-20230715104944576.png" alt="image-20230715104944576" /></p>
+
+<h3 id="21-comandos-básicos-alias">2.1 Comandos básicos. Alias</h3>
+
+<p>Un <strong>alias</strong> es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable. El tema es que podemos utilizar el alias en lugar de el nombre completo del cmdlet. Podemos utilizar en <strong>Windows Powershell</strong> comandos como “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell</p>
+
+<ul>
+  <li><strong>Get-Alias</strong> : Nos devuelve un listado con todos los alias definidos en el sistema</li>
+</ul>
+
+<p><img src="/aso/assets/img/powershell/image-20230715105148686.png" alt="" /></p>
+
+<ul>
+  <li>
+    <p><strong>Get-Help  &lt;Comando&gt; :</strong> Muestra ayuda del comando indicado</p>
+
+    <p><img src="https://lh4.googleusercontent.com/vdl-YzlGFChqGyNfmfPvza78qpBGxjUz8Pw5uc4ndTbIKO90eeQpvZkGvSLly-V9V-Fr66U_7xeog3CA0Pul1c2ev9XAenYdyNoTSMdUAZjc-mJvxZCFCBsxyibjzF4VTAaCnDpIkUwPk5CcuHa0J9fbIw=s2048" alt="img" /></p>
+  </li>
+  <li>
+    <p><strong>Get-Help  &lt;Comando&gt; -examples:</strong> Muestra ayuda del comando indicado, mostrando ejemplos.</p>
+  </li>
+</ul>
+
+<p><img src="https://lh6.googleusercontent.com/WKSh_5cbRsntD99JZI2aJHzUcNgx5yAvqzfOUZsvD83SXA0y083CBEAYWXwIvnVftLtD8EpmyqDqo1Ow6N_NA2FPoS15gQrOvSSUD3fiJmq0tqdbs7YIteCEEEfCPuCsV56725r7UfARi-EYLLTiKt03vw=s2048" alt="img" /></p>
+
+<h2 id="3-comentarios-variables-y-tipos-de-datos">3. Comentarios, variables y tipos de datos</h2>
+
+<p>Los comentarios en PowerShell se escriben utilizando el símbolo de <strong>almohadilla</strong> (#).</p>
+
+<p>▸ <strong>Comentar una línea.</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="w"> </span><span class="c">#Este es un comentario.</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>▸ <strong>Comentar un bloque</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="cm">&lt;#
+Esto es un comentario
+de varias líneas
+#&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Una <strong>variable</strong> es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del <em>script</em>.</p>
+
+<p>Comienzan con el carácter <strong>$</strong></p>
+
+<p><strong>Definición Implícita</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$hola</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">“</span><span class="n">Hola</span><span class="w"> </span><span class="nx">mundo</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Definición Explícita</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="n">New-variable</span><span class="w"> </span><span class="nx">hola</span><span class="w">
+</span><span class="nv">$hola</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">“</span><span class="n">Hola</span><span class="w"> </span><span class="nx">mundo</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li><strong>Get-Variable</strong> : Devuelve un listado completo de las variables que se han definido</li>
+</ul>
+
+<p><img src="https://lh3.googleusercontent.com/mJwXgV3s86CFMH801um9mlUmqbYHkKb_VQbRDvnz6jW5S1tXZdUVUAVgv7XG7bvXxb0NA-Ww4IV7JjxKc3eAcsh2VEqnHIFFjCRsRYKD3uDMmPzhGRZWpacHaLUkn5bdpVXWABM29t7eXsXT4bNMIla2pw=s2048" alt="img" /></p>
+
+<h3 id="32-variables-predefinidas">3.2 Variables predefinidas</h3>
+
+<p><strong>Windows Powershell</strong> dispone de muchas variables predefinidas también llamadas “<em>variables integradas</em>” o “<em>variables internas</em>“.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>$true</th>
+      <th>Valor true.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>$false</strong></td>
+      <td>Valor false.</td>
+    </tr>
+    <tr>
+      <td><strong>$home</strong></td>
+      <td>El directorio home del usuario actual.</td>
+    </tr>
+    <tr>
+      <td><strong>$host</strong></td>
+      <td>Información de instalación del host.</td>
+    </tr>
+    <tr>
+      <td><strong>$error</strong></td>
+      <td>Lista de los errores que han ocurrido desde que se ha iniciado WPS.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>PowerShell puede acceder a las <strong>variables de entorno</strong>. Estas variables se exponen a través de una unidad denominada env:.</p>
+
+<ul>
+  <li>Muestra todas las variables de entorno</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">Get-ChildItem</span><span class="w"> </span><span class="nx">env:</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Muestra el usuario del sistema</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$</span><span class="nn">env</span><span class="p">:</span><span class="nv">USERNAME</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>Muestra el nombre del equipo</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$</span><span class="nn">env</span><span class="p">:</span><span class="nv">COMPUTERNAME</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="33-tipos-de-datos-básicos">3.3 Tipos de datos básicos</h3>
+
+<p><img src="https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048" alt="img" /></p>
+
+<h3 id="34-comando-para-obtener-el-tipo-de-datos-de-una-variable">3.4 Comando para obtener el tipo de datos de una variable</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nv">$numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w">
+</span><span class="nv">$numero</span><span class="o">.</span><span class="nf">GetType</span><span class="p">()</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048" alt="img" /></p>
+
+<h3 id="35-definición-de-variables">3.5 Definición de variables</h3>
+
+<p>Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">int</span><span class="p">]</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>es equivalente a</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="4-operaciones-básicas-en-powershell">4 Operaciones básicas en Powershell</h2>
+
+<ul>
+  <li><strong>Read-Host</strong> =&gt; Guarda en una variable lo que escriba el usuario, **pero como texto **</li>
+</ul>
+
+<p><strong>Pedir información al usuario</strong></p>
+
+<p><img src="https://lh3.googleusercontent.com/avW1MyAsuCw4WyLTOY4-JoVJMEdE7vGHkohbMvMOKAXRklhAPMZke70n2GNPZRtvrlgoKWZbAjsKR-aDOUxaMl6-Uz_qYjk9_A6MjwyDPVRzLteHp10SCgOQkMVrt_kLOeXZTRJLdXaU3TIlZpVC2s1dtA=s2048" alt="img" /></p>
+
+<ul>
+  <li><strong>Write-Host</strong> =&gt; Muestra en pantalla un texto o el contenido de una variable.</li>
+</ul>
+
+<p><strong>Mostrar información al usuario</strong></p>
+
+<p><img src="https://lh6.googleusercontent.com/G4BO5_x70Jq_pL4u_TlF6NKL9tIPezgAjTzHblJ1ZKfKvyQuG7-T2PDjjd00Nd4bl1s_v1MMOzoxf3LzEx5NUjN0-SosPAEJ-4pkXSErqPnLR0aeHG8CDo4uHR5W9IwRqED4y3SPxlIH0IpHL6M5ElmY1g=s2048" alt="img" /></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nv">$edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Read-Host</span><span class="w"> </span><span class="err">“</span><span class="nx">Escribe</span><span class="w"> </span><span class="nx">tu</span><span class="w"> </span><span class="nx">edad</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Read-Host siempre almacena las variables como String.</strong></p>
+
+<p>Para forzar a que sea un entero:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">int</span><span class="p">]</span><span class="nv">$edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Read-Host</span><span class="w"> </span><span class="err">“</span><span class="nx">Escribe</span><span class="w"> </span><span class="nx">tu</span><span class="w"> </span><span class="nx">edad</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="operadores-aritméticos">Operadores aritméticos</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th>Función</th>
+      <th>Ejemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">+</td>
+      <td>Suma</td>
+      <td>$resultado = $x + 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td>Resta</td>
+      <td>$resultado = $x - 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*</td>
+      <td>Multiplicación</td>
+      <td>$resultado = $x * 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">/</td>
+      <td>División</td>
+      <td>$resultado = $x / 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">%</td>
+      <td>Resto</td>
+      <td>$resultado = $x % 3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Operadores aritméticos especiales</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th>Significado</th>
+      <th>Ejemplo</th>
+      <th>Equivalencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">+=</td>
+      <td>Incrementa el valor de la variable</td>
+      <td>$x+=3</td>
+      <td>$x = $x + 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-=</td>
+      <td>Reduce el valor de la variable</td>
+      <td>$x-=3</td>
+      <td>$x = $x - 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">*=</td>
+      <td>Multiplica el valor de la variable</td>
+      <td>$x*=3</td>
+      <td>$x = $x * 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">/=</td>
+      <td>Divide el valor de la variable</td>
+      <td>$x/=3</td>
+      <td>$x = $x / 3</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operadores-de-comparación"><strong>Operadores de comparación</strong></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operador</th>
+      <th>Significado</th>
+      <th>Ejemplo <br />($true)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">-eq</td>
+      <td>Igual</td>
+      <td>1 -eq 1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-ieq</td>
+      <td>Igual <br />Con valores de tipo texto, no tendrá en cuenta la diferencia entre mayúsculas y minúsculas.</td>
+      <td>“Hola” -ieq “HOLA”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-ceq</td>
+      <td>Igual<br />Con valores de tipo texto, tendrá en cuenta la diferencia entre mayúsculas y minúsculas.</td>
+      <td>“HOLA” -ceq “HOLA”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-ne</td>
+      <td>Diferente</td>
+      <td>3 -ne 5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-lt</td>
+      <td>Menor</td>
+      <td>3 -lt 5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-le</td>
+      <td>Menor o igual</td>
+      <td>5 -le 5<br />3 -le 5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-gt</td>
+      <td>Mayor</td>
+      <td>5 -gt 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-ge</td>
+      <td>Mayor o igual</td>
+      <td>5 -ge 5<br />5 -ge 3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-like</td>
+      <td>Es como</td>
+      <td>“Fermín” -like “Fer*”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-notlike</td>
+      <td>No es como</td>
+      <td>“Fermín” -notlike “Fa*”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-contains</td>
+      <td>Contiene</td>
+      <td>9,5,2 -contains 5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-notcontains</td>
+      <td>No contiene</td>
+      <td>9,5,2 -notcontains 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h4 id="operadores-lógicos">Operadores lógicos</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operador</th>
+      <th>Significado</th>
+      <th>Ejemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-and</td>
+      <td>AND lógico. TRUE cuando las dos expresiones son ciertas</td>
+      <td>(1 -eq 1) -and (1 -eq 2)<br />False</td>
+    </tr>
+    <tr>
+      <td>-or</td>
+      <td>OR lógico. TRUE cuando alguna expresión es cierta</td>
+      <td>(1 -eq 1) -or (1 -eq 2) <br />True</td>
+    </tr>
+    <tr>
+      <td>-xor</td>
+      <td>OR exclusivo. TRUE cuando sólo una expresión es cierta</td>
+      <td>(1 -eq 1) -xor (2 -eq 2)<br />False</td>
+    </tr>
+    <tr>
+      <td>-not</td>
+      <td>Negación lógica. Niega la expresión</td>
+      <td>-not (1 -eq 1)<br />False</td>
+    </tr>
+    <tr>
+      <td>!</td>
+      <td>Idéntico a -not</td>
+      <td>!(1 -eq 1)<br />False</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="operaciones-con-cadenas">Operaciones con cadenas</h4>
+
+<ul>
+  <li>Una de las operaciones más habituales es la <strong>concatenación (+)</strong>, que nos permite unir dos o más variables.</li>
+</ul>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nv">$nombre</span><span class="o">=</span><span class="err">”</span><span class="n">Pepe</span><span class="w"> </span><span class="err">”</span><span class="w">
+</span><span class="nv">$apellidos</span><span class="o">=</span><span class="err">”</span><span class="n">Garcia</span><span class="w"> </span><span class="nx">Sanchez</span><span class="err">”</span><span class="w">
+</span><span class="nv">$nombreCompleto</span><span class="o">=</span><span class="nv">$nombre</span><span class="o">+</span><span class="nv">$apellidos</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>
+    <p>El método <strong>IndexOf</strong> nos permite buscar un determinado texto.</p>
+
+    <p><img src="/aso/assets/img/powershell/image-20230718093834882.png" alt="image-20230718093834882" /></p>
+  </li>
+</ul>
+
+<h2 id="5-estructuras-condicionales">5. Estructuras condicionales</h2>
+
+<h3 id="uso-de-la-orden-if">Uso de la orden if</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="kr">if</span><span class="p">(</span><span class="n">condicion</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w"> </span><span class="nx">1</span><span class="p">}</span><span class="w">
+</span><span class="kr">else</span><span class="w"> </span><span class="p">{</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w"> </span><span class="nx">2</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>
+    <p>C<em>ondición</em> se refiere a una expresión lógica. Es decir, que al evaluarla se obtendrá un valor <strong>$true</strong> o <strong>$false</strong>.</p>
+  </li>
+  <li>
+    <p>El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor <strong>$true</strong>.</p>
+  </li>
+</ul>
+
+<h3 id="uso-de-la-orden-switch">Uso de la orden switch</h3>
+
+<p>La instrucción <strong>switch</strong> permite organizar bloques de código de forma que se ejecutan cuando se cumpla la condición.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kr">switch</span><span class="p">(</span><span class="n">valor</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">prueba</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="n">Patron</span><span class="w"> </span><span class="nx">1</span><span class="w"> </span><span class="p">{</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w"> </span><span class="nx">1</span><span class="p">}</span><span class="w">
+</span><span class="n">Patron</span><span class="w"> </span><span class="nx">2</span><span class="w"> </span><span class="p">{</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w"> </span><span class="nx">2</span><span class="p">}</span><span class="w">
+</span><span class="n">Patron</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">{</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w"> </span><span class="nx">n</span><span class="p">}</span><span class="w">
+</span><span class="n">default</span><span class="w"> </span><span class="p">{</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">por</span><span class="w"> </span><span class="nx">defecto</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Ejemplo 1:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">Int</span><span class="p">]</span><span class="nv">$x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Read-Host</span><span class="w"> </span><span class="s2">"Introduce un valor"</span><span class="w">
+</span><span class="c">#Bloque Switch</span><span class="w">
+</span><span class="kr">switch</span><span class="w"> </span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+	</span><span class="mi">1</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="c">#Bloque de instrucciones cuando $x es igual a 1</span><span class="w">
+		</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Has introducido el valor 1"</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+	</span><span class="mi">2</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="c">#Bloque de instrucciones cuando $x es igual a 2</span><span class="w">
+		</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Has introducido el valor 2"</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+	</span><span class="mi">3</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="c">#Bloque de instrucciones cuando $x es igual a 3</span><span class="w">
+		</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Has introducido el valor 3"</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+	</span><span class="n">default</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="c">#Cualquier otro valor</span><span class="w">
+		</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Has introducido cualquier otro valor"</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Ejemplo 2:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="p">[</span><span class="n">int</span><span class="p">]</span><span class="nv">$nota</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Read-Host</span><span class="w"> </span><span class="s2">"Escribe una nota"</span><span class="w">
+</span><span class="kr">switch</span><span class="w"> </span><span class="p">(</span><span class="nv">$nota</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="p">{</span><span class="bp">$_</span><span class="w"> </span><span class="o">-lt</span><span class="w"> </span><span class="mi">5</span><span class="p">}</span><span class="w">						</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Suspenso"</span><span class="p">}</span><span class="w">
+	</span><span class="p">{(</span><span class="bp">$_</span><span class="w"> </span><span class="o">-ge</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">-and</span><span class="w"> </span><span class="p">(</span><span class="bp">$_</span><span class="w"> </span><span class="o">-le</span><span class="w"> </span><span class="mi">10</span><span class="p">)}</span><span class="w">	</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Aprobado"</span><span class="p">}</span><span class="w">
+	</span><span class="p">{</span><span class="bp">$_</span><span class="w"> </span><span class="nt">-in</span><span class="w"> </span><span class="mi">1</span><span class="o">..</span><span class="mi">4</span><span class="p">}</span><span class="w">					</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Insuficiente"</span><span class="p">}</span><span class="w">
+	</span><span class="mi">5</span><span class="w">								</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Suficiente"</span><span class="p">}</span><span class="w">
+	</span><span class="mi">6</span><span class="w">								</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Bien"</span><span class="p">}</span><span class="w">
+	</span><span class="p">{</span><span class="bp">$_</span><span class="w"> </span><span class="nt">-in</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">}</span><span class="w">					</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Notable"</span><span class="p">}</span><span class="w">
+	</span><span class="p">{</span><span class="bp">$_</span><span class="w"> </span><span class="nt">-in</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">}</span><span class="w">					</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"Sobresaliente"</span><span class="p">}</span><span class="w">
+	</span><span class="n">default</span><span class="w">							</span><span class="p">{</span><span class="n">Write-Host</span><span class="w"> </span><span class="s2">"No conozco esa nota"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="6-estructuras-repetitivas">6. Estructuras repetitivas</h2>
+
+<p>Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:</p>
+
+<ul>
+  <li>
+    <p><strong>do while</strong>: repite mientras la condición vale $true</p>
+  </li>
+  <li>
+    <p><strong>while</strong>: repite mientras la condición vale $true</p>
+  </li>
+  <li>
+    <p><strong>do until</strong>: repite hasta que la condición vale $true</p>
+  </li>
+  <li>
+    <p><strong>for:</strong> repite durante un nº de veces</p>
+  </li>
+  <li>
+    <p><strong>foreach:</strong> repite una vez para cada elemento de la lista</p>
+  </li>
+</ul>
+
+<h3 id="61-la-estructura-do-while">6.1 La estructura do while</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">do</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+	</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="n">condicion</span><span class="p">)</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Ejemplo:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nv">$a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="kr">do</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$a</span><span class="w">
+	</span><span class="nv">$a</span><span class="o">++</span><span class="w">
+</span><span class="p">}</span><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="w"> </span><span class="o">-le</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">
+
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+<p><strong>Resultado por pantalla:</strong> 
+1
+2
+3
+4
+5</p>
+
+<h3 id="62-la-estructura-while">6.2 La estructura while</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="n">condicion</span><span class="p">){</span><span class="w">
+	</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Ejemplo:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nv">$a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="kr">while</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="w"> </span><span class="o">-le</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$a</span><span class="w">
+	</span><span class="nv">$a</span><span class="o">++</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Resultado por pantalla:</strong></p>
+
+<p>1
+2
+3
+4
+5</p>
+
+<h3 id="63-la-estructura-do-until">6.3 La estructura do until</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">do</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="kr">until</span><span class="w"> </span><span class="p">(</span><span class="n">condicion</span><span class="p">)</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Ejemplo:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nv">$a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="kr">do</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$a</span><span class="w">
+	</span><span class="nv">$a</span><span class="o">++</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="kr">until</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="w"> </span><span class="o">-gt</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Resultado por pantalla:</strong></p>
+
+<p>1
+2
+3
+4
+5</p>
+
+<h3 id="64-la-estructura-for">6.4 La estructura for</h3>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">inicializacion</span><span class="p">;</span><span class="w"> </span><span class="n">condicion</span><span class="p">;</span><span class="w"> </span><span class="n">incremento</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ejemplo:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="nv">$a</span><span class="w"> </span><span class="o">-le</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="nv">$a</span><span class="o">++</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$a</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Resultado por pantalla:</strong></p>
+
+<p>1
+2
+3
+4
+5</p>
+
+<h3 id="65-la-estructura-foreach">6.5 La estructura foreach</h3>
+
+<p>La estructura <strong>foreach</strong> funciona en cualquier situación donde pueda obtenerse una lista de elementos.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">foreach</span><span class="w"> </span><span class="p">(</span><span class="n">elemento</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">coleccion</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Bloque</span><span class="w"> </span><span class="nx">de</span><span class="w"> </span><span class="nx">codigo</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Ejemplo:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="kr">foreach</span><span class="w"> </span><span class="p">(</span><span class="nv">$a</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$a</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><strong>Resultado por pantalla:</strong></p>
+
+<p>1
+2
+3
+4
+5</p>
+
+<p><strong>Ejemplo:</strong></p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="nv">$ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"C:\Windows\System32"</span><span class="w">
+</span><span class="nv">$texto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Read-Host</span><span class="w"> </span><span class="s2">"Escribe el texto a buscar"</span><span class="w">
+</span><span class="kr">foreach</span><span class="w"> </span><span class="p">(</span><span class="nv">$archivo</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="n">Get-ChildItem</span><span class="w"> </span><span class="nv">$ruta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="kr">if</span><span class="p">(</span><span class="nv">$archivo</span><span class="o">.</span><span class="nf">Name</span><span class="o">.</span><span class="nf">IndexOf</span><span class="p">(</span><span class="nv">$texto</span><span class="p">)</span><span class="w"> </span><span class="o">-ge</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="n">Write-Host</span><span class="w"> </span><span class="nv">$archivo</span><span class="o">.</span><span class="nf">Name</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><img src="/aso/assets/img/powershell/image-20230720204431719.png" alt="image-20230720204431719" /></p>
+
+<h2 id="7-comandos-de-fecha-y-hora">7 Comandos de fecha y hora</h2>
+
+<p>El comando <strong>Get-Date</strong> nos permite recuperar la fecha y hora actuales.</p>
+
+<p><img src="https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048" alt="img" /></p>
+
+<p>Si deseamos obtener solo la fecha o la hora usaremos el parámetro <strong>-DisplayHint</strong></p>
+
+<p><img src="https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048" alt="img" /><img src="https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048" alt="img" /></p>
+
+<p>Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nv">$fechaActual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w">
+
+</span><span class="nv">$fechaHora</span><span class="o">=</span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="w"> </span><span class="nx">11:00</span><span class="w"> </span><span class="nx">AM</span><span class="err">”</span><span class="w"> 
+
+</span><span class="nv">$fecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Date</span><span class="w"> </span><span class="err">“</span><span class="nx">01/12/2018</span><span class="err">”</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="8-comandos-de-archivos-y-carpetas">8 Comandos de archivos y carpetas</h2>
+
+:ET

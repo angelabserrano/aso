@@ -521,3 +521,83 @@ $fecha = Get-Date “01/12/2018”
 
 ## 8 Comandos de archivos y carpetas
 
+**Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)**
+
+
+
+**Copiar archivos y carpetas**
+
+El comando **Copy-Item** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
+
+Copy-Item E:\scripts\* C:\Users\scripts\
+
+**Crear una nueva carpeta o archivo**
+
+El comando **New-Item** nos permite crear un nuevo archivo o carpeta
+
+Ejemplo: Crea la carpeta scripts en la unidad C:
+
+New-Item C:\scripts -ItemType directory
+
+Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts
+
+New-Item C:\scripts\ejemplo1.ps1 -ItemType file 
+
+**Borrar un archivo o carpeta**
+
+El comando **Remove-Item** nos permite borrar un archivo o carpeta.
+
+Ejemplo: Borra el archivo prueba1.ps1
+
+Remove-Item C:\scripts\prueba1.ps1
+
+Ejemplo: Borra todos los archivos de la carpeta scripts
+
+Remove-Item C:\scripts\*
+
+**Mover un archivo o carpeta**
+
+El comando **Move-Item** nos permite mover un archivo de una ubicación a otra.
+
+Ejemplo: Borra el archivo prueba1.ps1
+
+Remove-Item C:\scripts\prueba1.ps1
+
+Ejemplo: Borra todos los archivos de la carpeta scripts
+
+Remove-Item C:\scripts\*
+
+**Renombrar un archivo o carpeta**
+
+El comando **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
+
+Ejemplo: Cambia el nombre de script1 a script2
+
+Rename-Item C:\scripts\script1.ps1 script2.ps1
+
+**Verificar la existencia de un archivo o carpeta**
+
+Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
+
+Ejemplo: Devuelve true si script1.ps1 existe
+
+Test-Path C:\scripts\script1.ps1
+
+**Verificar la existencia de un archivo o carpeta**
+
+Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
+
+Ejemplo 1: Devuelve true si script1.ps1 existe
+
+Test-Path C:\scripts\script1.ps1
+
+Ejemplo 2: Devuelve true si $elem existe y es un directorio
+
+Test-Path $elem -PathType container 
+
+
+
+
+
+
+
