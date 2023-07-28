@@ -324,7 +324,7 @@ $var = 15
 $edad = Read-Host “Escribe tu edad”
 ```
 
-**Read-Host siempre almacena las variables como String.**
+> -alert- **Read-Host siempre almacena las variables como String.**
 
 Para forzar a que sea un entero:
 
