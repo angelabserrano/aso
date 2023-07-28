@@ -13,7 +13,7 @@ permalink: powershell
 
 ## 1. Introducción
 
-**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.
+**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
 
 [Manual de PowerShell 5.1 de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1)
 
@@ -24,6 +24,26 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 ![image-20230714211446318](/aso/assets/img/powershell/image-20230714211446318.png)
 
 
+
+### Execution Policy ###
+
+La política de ejecución de PowerShell es una característica de sesguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.
+
+Tenemos las siguientes políticas de ejecución:
+
+- Unrestricted: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.
+
+- Bypass: Al igual que unrestricted, esta política de ejecución no bloquea nada. 
+
+- Undefined: PowerShell elimina cualquier política de ejecución asignada.
+
+- RemoteSigned: Esta política, establece que todos los scripts remotos deben estar firmados.
+
+- AllSigned: Todos los scripts deben esta firmados.
+
+- Restricted: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.
+
+  
 
 ## 2. Comandos básicos
 
