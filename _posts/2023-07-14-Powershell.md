@@ -29,7 +29,7 @@ Tenemos dos opciones a la hora de ejecutar PowerShell:
 
 ### Execution Policy ###
 
-La política de ejecución de PowerShell es una característica de sesguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.
+La política de ejecución de PowerShell es una característica de seguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.
 
 Tenemos las siguientes políticas de ejecución:
 
@@ -324,7 +324,7 @@ $var = 15
 $edad = Read-Host "Escribe tu edad"
 ```
 
-> -alert- **Read-Host **siempre almacena las variables como **String**(cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.
+> -alert- Read-Host  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.
 
 Para forzar a que sea un entero:
 
@@ -334,7 +334,7 @@ Para forzar a que sea un entero:
 
 
 
-#### Operadores aritméticos
+#### Operadores aritméticos ####
 
 
 
@@ -663,9 +663,12 @@ foreach($ciudad in $ciudades)
 
 Para importar los datos de un fichero csv usaremos el método **Import-CSV** para almacenar los datos en una variable.
 
-![img](https://lh6.googleusercontent.com/Ttx7qIRKdpHuxwALhTiQM1XEHzETH1zL9o0LeffANPCQL6oahyeZ37VbnP35QKV2KzpOehdO8JB_RhPz38kMPOFkvPf9aUXrfXfK5NdJmIHg3pOyjKaPb0gtnt423vEHVS3UzrvAiC6XKjP-vSUZEbdg2A=s2048)
-
-
+```powershell
+$ordenadores = import-CSV computers.csv
+foreach($pc in $ordenadores) {
+	Write-Host "Equipo: $($pc.Nombre) $($pc.IP) $($pc.Oficina)"
+}
+```
 
 
 
@@ -702,25 +705,31 @@ Una función no es más que un conjunto de instrucciones a las que le damos un n
 
 **Ejemplo**
 
-![img](https://lh3.googleusercontent.com/m3Kua6IrOTb491a5Ly93mHgjlrOaRNa45n9OPWaXygiBJnoKFHjlA-MLxbyKGMlQZevvIYOWuUKCG_F1Tqdeg2syvGr3cj_gfAXq8Ui3H9Op6zxkzRwiP7qXRQ3SE9P7fdjSjKSTNrBdkB_q6yBZsFFseQ=s2048)
+```powershell
+Function Sumar ($x, $y) {
+	$sumar = $x + $y
+	Write-Host "La respuesta es $sumar"
+}
+```
 
+
+
+```powershell
 function TestPing($Address) {
+    $Result=Test-Connection -ComputerName $Address -ErrorAction SilentlyContinue
 
-$Result=Test-Connection -ComputerName $Address -ErrorAction SilentlyContinue
+    if ($? -eq $true) {
 
-if ($? -eq $true) {
+            write-output "ICMP Test to ${Address}: OK"
 
-  		write-output "ICMP Test to ${Address}: OK"
+    }else{
 
-}else{
-
-  		write-output "ICMP Test to ${Address}: Error"
-
+            write-output "ICMP Test to ${Address}: Error"
+    }
 }
+```
 
-}
-
-En nuestro ejemplo, creamos una función denominada TESTPING para probar la conectividad a una dirección variable.
+En nuestro ejemplo, creamos una función denominada **TestPing** para probar la conectividad a una dirección variable.
 
 Para utilizar la función, debemos realizar la llamada:
 
