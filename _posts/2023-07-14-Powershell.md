@@ -2,13 +2,11 @@
 typora-copy-images-to: ../assets/img/powershell
 typora-root-url: ../../
 layout: post
-title: Powershell
+title: Unidad 1. Scripting en Windows. PowerShell
 categories: scripts
 conToc: true
 permalink: powershell
 ---
-## Apuntes Powershell
-
 
 
 ## 1. Introducción
