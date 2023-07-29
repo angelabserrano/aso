@@ -332,9 +332,7 @@ Para forzar a que sea un entero:
 [int]$edad = Read-Host "Escribe tu edad"
 ```
 
-
-
-#### Operadores aritméticos ####
+### 6.2 Operadores aritméticos ###
 
 
 
@@ -355,7 +353,7 @@ Para forzar a que sea un entero:
 |    *=    | Multiplica el valor de la variable | $x*=3   | $x = $x * 3  |
 |    /=    | Divide el valor de la variable     | $x/=3   | $x = $x / 3  |
 
-#### **Operadores de comparación**
+### 6.3 **Operadores de comparación**
 
 |   Operador   | Significado                                                  | Ejemplo <br />($true)   |
 | :----------: | ------------------------------------------------------------ | ----------------------- |
@@ -376,7 +374,7 @@ Para forzar a que sea un entero:
 
 ------
 
-#### Operadores lógicos
+### 6.4 Operadores lógicos
 
 | Operador | Significado                                             | Ejemplo                             |
 | -------- | ------------------------------------------------------- | ----------------------------------- |
@@ -390,7 +388,7 @@ Para forzar a que sea un entero:
 
 
 
-#### Operaciones con cadenas
+### 6.5 Operaciones con cadenas
 
 - Una de las operaciones más habituales es la **concatenación (+)**, que nos permite unir dos o más variables.
 
