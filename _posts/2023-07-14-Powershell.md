@@ -308,13 +308,13 @@ $var = 15
 
 ## 6 Operaciones básicas en Powershell
 
-- **Read-Host** => Guarda en una variable lo que escriba el usuario, **pero como texto **
+- **Read-Host** . Guarda en una variable lo que escriba el usuario, **pero como texto **
 
 **Pedir información al usuario**
 
 ![img](https://lh3.googleusercontent.com/avW1MyAsuCw4WyLTOY4-JoVJMEdE7vGHkohbMvMOKAXRklhAPMZke70n2GNPZRtvrlgoKWZbAjsKR-aDOUxaMl6-Uz_qYjk9_A6MjwyDPVRzLteHp10SCgOQkMVrt_kLOeXZTRJLdXaU3TIlZpVC2s1dtA=s2048)
 
-- **Write-Host** => Muestra en pantalla un texto o el contenido de una variable.
+- **Write-Host**  .Muestra en pantalla un texto o el contenido de una variable.
 
 **Mostrar información al usuario**
 
@@ -697,11 +697,13 @@ Una función no es más que un conjunto de instrucciones a las que le damos un n
 
 **Sintaxis**							
 
-**Function** <nombre> { 
+```
+Function <nombre> { 
 
 <bloque de código> 
 
 }
+```
 
 **Ejemplo**
 
