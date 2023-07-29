@@ -221,9 +221,9 @@ de varias líneas
 #>
 ```
 
-> -info- Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*. 
+> -info- Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. 
 
-Comienzan con el carácter **$** 
+Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*.  Comienzan con el carácter **$** 
 
 **Definición Implícita**
 
@@ -307,6 +307,8 @@ $var = 15
 
 
 ## 6 Operaciones básicas en Powershell
+
+### 6.1 Entrada y salida de información ###
 
 - **Read-Host** . Guarda en una variable lo que escriba el usuario, **pero como texto **
 
