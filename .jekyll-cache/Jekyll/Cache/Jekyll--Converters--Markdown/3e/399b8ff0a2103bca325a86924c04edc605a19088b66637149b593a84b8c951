@@ -1,167 +1,9 @@
-<!doctype html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>Scripting en Windows. PowerShell</title>
-    <link rel="shortcut icon" href="//favicon.ico" type="image/x-icon">
-    <link rel="icon" href="//favicon.ico" type="image/x-icon"> 
-    <link href="//assets/css/syntax.css" rel="stylesheet">
-    <link rel="stylesheet" href="//assets/css/styles.css">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css' integrity='sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp' crossorigin='anonymous'>
-    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
-  </head>
-  <body class='preview-zenburn'>
-   <a id="top"></a>
-    <div id='write-wrapper'>
-      <nav class="topnav" id="myTopnav">
-  
-    <a href="//" >Índice</a>
-  
-    <a href="//search.html" >Buscar</a>
-  
-  <a href="javascript:void(0);" class="icon" onclick="showMenu()">
-    <i class="fa fa-bars"></i>
-  </a>
-</nav>
-
-      <div id='write'>
-        <div class="PageNavigation" id="pageNavigation">
-    
-    
-</div>
-
-
-<h1>Scripting en Windows. PowerShell</h1>
-
-        
-        
-        
-        
-        
-        
-        
-        <div>
-            
-                <ul id="menu" class="atypora-menu">
-  <li><a href="#1-introducción">1. Introducción</a>
-    <ul>
-      <li><a href="#execution-policy">Execution Policy</a></li>
-    </ul>
-  </li>
-  <li><a href="#2-comandos-básicos">2. Comandos básicos</a>
-    <ul>
-      <li><a href="#21-comandos-básicos-alias">2.1 Comandos básicos. Alias</a></li>
-    </ul>
-  </li>
-  <li><a href="#3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</a></li>
-  <li><a href="#4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</a></li>
-  <li><a href="#5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</a>
-    <ul>
-      <li><a href="#52-variables-predefinidas">5.2 Variables predefinidas</a></li>
-      <li><a href="#53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</a></li>
-      <li><a href="#54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</a></li>
-      <li><a href="#55-definición-de-variables">5.5 Definición de variables</a></li>
-    </ul>
-  </li>
-  <li><a href="#6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</a>
-    <ul>
-      <li><a href="#61-entrada-y-salida-de-información">6.1 Entrada y salida de información</a></li>
-      <li><a href="#62-operadores-aritméticos">6.2 Operadores aritméticos</a></li>
-      <li><a href="#63-operadores-de-comparación">6.3 <strong>Operadores de comparación</strong></a></li>
-      <li><a href="#64-operadores-lógicos">6.4 Operadores lógicos</a></li>
-      <li><a href="#65-operaciones-con-cadenas">6.5 Operaciones con cadenas</a></li>
-    </ul>
-  </li>
-  <li><a href="#7-estructuras-condicionales">7. Estructuras condicionales</a>
-    <ul>
-      <li><a href="#uso-de-la-orden-if">Uso de la orden if</a></li>
-      <li><a href="#uso-de-la-orden-switch">Uso de la orden switch</a></li>
-    </ul>
-  </li>
-  <li><a href="#8-estructuras-repetitivas">8. Estructuras repetitivas</a>
-    <ul>
-      <li><a href="#81-la-estructura-do-while">8.1 La estructura do while</a></li>
-      <li><a href="#82-la-estructura-while">8.2 La estructura while</a></li>
-      <li><a href="#83-la-estructura-do-until">8.3 La estructura do until</a></li>
-      <li><a href="#84-la-estructura-for">8.4 La estructura for</a></li>
-      <li><a href="#85-la-estructura-foreach">8.5 La estructura foreach</a></li>
-    </ul>
-  </li>
-  <li><a href="#9-importación-de-datos">9 Importación de datos</a></li>
-  <li><a href="#10-funciones">10. Funciones</a></li>
-</ul>
-
-            
-            <div id="menuContainer">
-                
-                    <ul id="menuFixed" class="typora-menu-hidden">
-  <li><a href="#1-introducción">1. Introducción</a>
-    <ul>
-      <li><a href="#execution-policy">Execution Policy</a></li>
-    </ul>
-  </li>
-  <li><a href="#2-comandos-básicos">2. Comandos básicos</a>
-    <ul>
-      <li><a href="#21-comandos-básicos-alias">2.1 Comandos básicos. Alias</a></li>
-    </ul>
-  </li>
-  <li><a href="#3--comandos-de-fecha-y-hora">3.  Comandos de fecha y hora</a></li>
-  <li><a href="#4--comandos-de-archivos-y-carpetas">4.  Comandos de archivos y carpetas</a></li>
-  <li><a href="#5-comentarios-variables-y-tipos-de-datos">5. Comentarios, variables y tipos de datos</a>
-    <ul>
-      <li><a href="#52-variables-predefinidas">5.2 Variables predefinidas</a></li>
-      <li><a href="#53-tipos-de-datos-básicos">5.3 Tipos de datos básicos</a></li>
-      <li><a href="#54-comando-para-obtener-el-tipo-de-datos-de-una-variable">5.4 Comando para obtener el tipo de datos de una variable</a></li>
-      <li><a href="#55-definición-de-variables">5.5 Definición de variables</a></li>
-    </ul>
-  </li>
-  <li><a href="#6-operaciones-básicas-en-powershell">6 Operaciones básicas en Powershell</a>
-    <ul>
-      <li><a href="#61-entrada-y-salida-de-información">6.1 Entrada y salida de información</a></li>
-      <li><a href="#62-operadores-aritméticos">6.2 Operadores aritméticos</a></li>
-      <li><a href="#63-operadores-de-comparación">6.3 <strong>Operadores de comparación</strong></a></li>
-      <li><a href="#64-operadores-lógicos">6.4 Operadores lógicos</a></li>
-      <li><a href="#65-operaciones-con-cadenas">6.5 Operaciones con cadenas</a></li>
-    </ul>
-  </li>
-  <li><a href="#7-estructuras-condicionales">7. Estructuras condicionales</a>
-    <ul>
-      <li><a href="#uso-de-la-orden-if">Uso de la orden if</a></li>
-      <li><a href="#uso-de-la-orden-switch">Uso de la orden switch</a></li>
-    </ul>
-  </li>
-  <li><a href="#8-estructuras-repetitivas">8. Estructuras repetitivas</a>
-    <ul>
-      <li><a href="#81-la-estructura-do-while">8.1 La estructura do while</a></li>
-      <li><a href="#82-la-estructura-while">8.2 La estructura while</a></li>
-      <li><a href="#83-la-estructura-do-until">8.3 La estructura do until</a></li>
-      <li><a href="#84-la-estructura-for">8.4 La estructura for</a></li>
-      <li><a href="#85-la-estructura-foreach">8.5 La estructura foreach</a></li>
-    </ul>
-  </li>
-  <li><a href="#9-importación-de-datos">9 Importación de datos</a></li>
-  <li><a href="#10-funciones">10. Funciones</a></li>
-</ul>
-
-                
-                <div class="top-hidden" id="topFixed">
-                    <a title='Mostrar/Ocultar menú' class="toogle expanded pull-left js-toolbar-action" aria-label="" href="#"><i class="fas fa-align-justify"></i></a>
-                </div>
-                <div class="top-hidden indice btn btn-sm btn-primary shadow p-2 px-3 popup-trigger"
-                    data-popup-trigger="one" id="indexFixed" style='cursor:pointer'>
-                    <a title='Índice' class="toogle expanded pull-left js-toolbar-action" aria-label="" onclick='return false'><i class="fas fa-list"></i></a>
-                </div>
-            </div>
-        </div>
-        <div id='content'>
-        <h2 id="1-introducción">1. Introducción</h2>
+I"�<h2 id="1-introducción">1. Introducción</h2>
 
 <p><strong>PowerShell</strong> es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada.</p>
 
 <blockquote>
-  <p class="info"><i class="fa fa-info icon-blockquote"></i>  Las órdenes incluidas en Powershell son muchas y reciben el nombre de <strong>cmdlets</strong> .</p>
+  <p>-info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de <strong>cmdlets</strong> .</p>
 </blockquote>
 
 <p><a href="https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1">Manual de PowerShell 5.1 de Microsoft</a></p>
@@ -221,7 +63,7 @@
 <h3 id="21-comandos-básicos-alias">2.1 Comandos básicos. Alias</h3>
 
 <blockquote>
-  <p class="info"><i class="fa fa-info icon-blockquote"></i>  Un <strong>alias</strong> es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable.</p>
+  <p>-info- Un <strong>alias</strong> es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable.</p>
 </blockquote>
 
 <p>Podemos utilizar el alias en lugar de el nombre completo del cmdlet. Por ejemplo, podemos utilizar los comandos  “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell</p>
@@ -376,7 +218,7 @@ de varias líneas
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
-  <p class="info"><i class="fa fa-info icon-blockquote"></i>  Una <strong>variable</strong> es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo.</p>
+  <p>-info- Una <strong>variable</strong> es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo.</p>
 </blockquote>
 
 <p>Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del <em>script</em>.  Comienzan con el carácter <strong>$</strong></p>
@@ -511,7 +353,7 @@ de varias líneas
 </span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
-  <p class="alert"><i class="fa fa-bomb icon-blockquote"></i>  Read-Host  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.</p>
+  <p>-alert- Read-Host  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.</p>
 </blockquote>
 
 <p>Para forzar a que sea un entero:</p>
@@ -1173,39 +1015,4 @@ de varias líneas
 <p>Para utilizar la función, debemos realizar la llamada:</p>
 
 <p>TestPing (‘8.8.8.8’)</p>
-
-        </div>
-        <div class="PageNavigation" id="pageNavigation">
-    
-    
-</div>
-
-<!-- body overlay -->
-<div class="body-blackout"></div>
-
-<!-- Modals Triggers -->
-
-<div 
-  class="popup-modal shadow" 
-  data-popup-modal="one">
-  <i class="fas fa-2x fa-times text-white bg-primary p-3 popup-modal__close"></i>
-  <iframe id="iframeIndice" scrolling="yes" frameborder="0" style="position: relative; height: 100%; width: 100%;" src='/manteniment/index-popup.html'></iframe>
- 
-</div>
-
-        <a href="#top" id='back-to-top-link'><i class='fa fa-angle-up'></i></a>
-      </div>
-    </div>    
-    <script src="//assets/js/main.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '');
-</script>
-
-  </body>
-</html>
+:ET

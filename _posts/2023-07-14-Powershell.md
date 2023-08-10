@@ -2,7 +2,7 @@
 typora-copy-images-to: ../assets/img/powershell
 typora-root-url: ../../
 layout: post
-title: Unidad 1. Scripting en Windows. PowerShell
+title: Scripting en Windows. PowerShell
 categories: scripts
 conToc: true
 permalink: powershell
@@ -11,45 +11,109 @@ permalink: powershell
 
 ## 1. Introducción
 
+### 1.1 ¿Qué es PowerShell? ###
+
 **PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. 
 
 > -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
 
 [Manual de PowerShell 5.1 de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1)
 
-Tenemos dos opciones a la hora de ejecutar PowerShell:
-1) Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
-2) Entorno comando: Windows Powershell
+**1.2 Versiones de PowerShell**
+
+A partir de la versión 6, PowerShell se puede instalar en varios sistemas operativos. A esta versión se la conoce como **PowerShell Core**. A continuación, se muestran las diferentes versiones de PowerShell:
+
+
+
+| Versión                | Fecha de lanzamiento | Descripción                                                  |
+| ---------------------- | -------------------- | ------------------------------------------------------------ |
+| PowerShell 7.2         | Noviembre de 2024    | Compilado en .NET 6.0                                        |
+| PowerShell 7.1         | Noviembre de 2020    | Compilado en .NET 5.0                                        |
+| PowerShell 7.0         | Marzo de 2020        | Compilado en .NET Core 3.1                                   |
+| PowerShell 6.2         | Marzo de 2019        |                                                              |
+| PowerShell 6.1         | Septiembre de 2018   | Compilado en .NET Core 2.1                                   |
+| PowerShell 6.0         | Enero de 2018        | Primera versión compilada en .NET Core 2.0 . Instalable en Windows, MacOS y Linux. |
+| Windows PowerShell 5.1 | Agosto de 2016       | Publicado en Windows 10 Anniversary Update y Windows Server 2016, WMF 5.1 |
+| Windows PowerShell 5.0 | Febrero de 2016      | Publicado en Windows Management Framework [WMF] 5.0          |
+| Windows PowerShell 4.0 | Octubre de 2013      | Integrado en Windows 8.1 y con Windows Server 2012 R2, WMF 4.0 |
+| Windows PowerShell 3.0 | Octubre de 2012      | Integrado en Windows 8 y con Windows Server 2012, WMF 3.0    |
+| Windows PowerShell 2.0 | Julio de 2009        | Integrado en Windows 7 y Windows Server 2008 R2              |
+| Windows PowerShell 1.0 | Noviembre de 2006    | Componente opcional en Windows Server 2008                   |
+
+Para obtener la versión de PowerShell instalada:
+
+```
+$psversiontable
+```
+
+![image-20230715104849336](/aso/assets/img/powershell/image-20230715104849336.png)
+
+
+
+### 1.3 Ejecución de PowerShell ###
+
+Tenemos dos opciones a la hora de ejecutar PowerShell en **Windows**:
+
+1. Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
+2. Entorno comando: Windows Powershell
 
 ![image-20230714211446318](/aso/assets/img/powershell/image-20230714211446318.png)
 
 
 
-### Execution Policy ###
+En **Linux** tenemos varios métodos para instalar PowerShell.
 
-La política de ejecución de PowerShell es una característica de seguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.
+Instalación de PowerShell en Ubuntu:
+
+Accedemos al respositorio oficial de PowerShell https://github.com/PowerShell y nos descargamos el paquete .deb para la versión de Ubuntu que tenemos instalada en nuestro PC.
+
+```
+dpkg -i powershell-lts_7.2.13-1.deb_amd64.deb
+```
+
+Una vez instalado,  para abrir PowerShell tecleamos en el terminal:
+
+```
+pwsh
+```
+
+
+
+### 1.4 Execution Policies
+
+La **política de ejecución** (execution policy) de PowerShell es una característica de seguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.
 
 Tenemos las siguientes políticas de ejecución:
 
-- **Unrestricted**: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.
+**Unrestricted**: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.
 
-- **Bypass**: Al igual que unrestricted, esta política de ejecución no bloquea nada. 
+**Bypass**: Al igual que unrestricted, esta política de ejecución no bloquea nada. 
 
-- **Undefined**: PowerShell elimina cualquier política de ejecución asignada.
+**Undefined**: PowerShell elimina cualquier política de ejecución asignada.
 
-- **RemoteSigned**: Esta política, establece que todos los scripts remotos deben estar firmados.
+**RemoteSigned**: Esta política, establece que todos los scripts remotos deben estar firmados.
 
-- **AllSigned**: Todos los scripts deben esta firmados.
+**AllSigned**: Todos los scripts deben esta firmados.
 
-- **Restricted**: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.
+**Restricted**: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.
 
-  
+
+
+Por razones de seguridad, PowerShell está configurado de forma predeterminada para permitir solo la ejecución de scripts firmados. La ejecución del siguiente comando le permitirá ejecutar scripts sin firmar (debe ejecutar PowerShell como administrador para hacer esto)
+
+```powershell
+Set-ExecutionPolicy RemoteSigned
+```
+
+
+
+
 
 ## 2. Comandos básicos
 
 - **$psversiontable** : Muestra la versión de PowerShell instalada.
 
-![image-20230715104849336](/aso/assets/img/powershell/image-20230715104849336.png)
+
 
 -  **Get-Command** : Muestra todos los comandos disponibles
 
@@ -221,7 +285,7 @@ de varias líneas
 
 > -info- Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. 
 
-Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*.  Comienzan con el carácter **$** 
+Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del *script*.  Comienzan con el carácter **$**. Los nombres de variable en PowerShell no distinguen **mayúsculas de minúsculas ** .
 
 **Definición Implícita**
 
