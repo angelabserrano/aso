@@ -52,7 +52,7 @@ $psversiontable
 
 ### 1.3 Ejecución de PowerShell ###
 
-Tenemos dos opciones a la hora de ejecutar PowerShell en **Windows**:
+ En **Windows **tenemos dos opciones a la hora de ejecutar PowerShell:
 
 1. Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2. Entorno comando: Windows Powershell
@@ -99,6 +99,18 @@ Tenemos las siguientes políticas de ejecución:
 
 
 
+Para consultar la política de ejecución configurada ejecutamos el siguiente comando:
+
+```powershell
+Get-ExecutionPolicy
+```
+
+Si deseamos consultar todas las políticas de ejecución disponibles:
+
+```Powershell
+Get-ExecutionPolicy -List
+```
+
 Por razones de seguridad, PowerShell está configurado de forma predeterminada para permitir solo la ejecución de scripts firmados. La ejecución del siguiente comando le permitirá ejecutar scripts sin firmar (debe ejecutar PowerShell como administrador para hacer esto)
 
 ```powershell
@@ -109,9 +121,11 @@ Set-ExecutionPolicy RemoteSigned
 
 ## 2. Comandos básicos
 
+A continuación, abordaremos los comandos básicos de PowerShell 
+
 -  **Get-Command** : Muestra todos los comandos disponibles
 
-- **Clear-Host** : Limpia la pantalla
+-  **Clear-Host** : Limpia la pantalla
 
 
 ![image-20230715104944576](/aso/assets/img/powershell/image-20230715104944576.png)
@@ -138,7 +152,7 @@ Podemos utilizar el alias en lugar de el nombre completo del cmdlet. Por ejemplo
 
 
 
-## 3.  Comandos de fecha y hora
+### 2.3  Comandos de fecha y hora
 
 El comando **Get-Date** nos permite recuperar la fecha y hora actuales.
 
@@ -160,7 +174,7 @@ $fecha = Get-Date “01/12/2018”
 
 
 
-## 4.  Comandos de archivos y carpetas
+### 2.4.  Comandos de archivos y carpetas
 
 **Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)**
 
@@ -214,11 +228,15 @@ El comando **Move-Item** nos permite mover un archivo de una ubicación a otra.
 
 Ejemplo: Borra el archivo prueba1.ps1
 
+```powershell
 Remove-Item C:\scripts\prueba1.ps1
+```
 
 Ejemplo: Borra todos los archivos de la carpeta scripts
 
+```powershell
 Remove-Item C:\scripts\*
+```
 
 **Renombrar un archivo o carpeta**
 
@@ -226,7 +244,9 @@ El comando **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
 
 Ejemplo: Cambia el nombre de script1 a script2
 
+```powershell
 Rename-Item C:\scripts\script1.ps1 script2.ps1
+```
 
 **Verificar la existencia de un archivo o carpeta**
 
@@ -256,7 +276,7 @@ Test-Path $elem -PathType container
 
 
 
-## 5. Comentarios, variables y tipos de datos
+## 3. Comentarios, variables y tipos de datos
 
 
 
@@ -298,7 +318,7 @@ $hola = “Hola mundo”
 
 ![img](https://lh3.googleusercontent.com/mJwXgV3s86CFMH801um9mlUmqbYHkKb_VQbRDvnz6jW5S1tXZdUVUAVgv7XG7bvXxb0NA-Ww4IV7JjxKc3eAcsh2VEqnHIFFjCRsRYKD3uDMmPzhGRZWpacHaLUkn5bdpVXWABM29t7eXsXT4bNMIla2pw=s2048)
 
-### 5.2 Variables predefinidas
+### 3.2 Variables predefinidas
 
 **Windows Powershell** dispone de muchas variables predefinidas también llamadas “*variables integradas*” o “*variables internas*“.
 
@@ -333,11 +353,11 @@ $env:COMPUTERNAME
 
 
 
-### 5.3 Tipos de datos básicos
+### 3.3 Tipos de datos básicos
 
 ![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)
 
-### 5.4 Comando para obtener el tipo de datos de una variable
+### 3.4 Comando para obtener el tipo de datos de una variable
 
 ```powershell
 $numero = 15
@@ -346,7 +366,7 @@ $numero.GetType()
 
 ![img](https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048)
 
-### 5.5 Definición de variables
+### 3.5 Definición de variables
 
 Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.
 
@@ -362,9 +382,9 @@ $var = 15
 
 
 
-## 6 Operaciones básicas en Powershell
+## 4 Operaciones básicas en Powershell
 
-### 6.1 Entrada y salida de información ###
+### 4.1 Entrada y salida de información ###
 
 - **Read-Host** . Guarda en una variable lo que escriba el usuario, **pero como texto **
 
@@ -390,7 +410,7 @@ Para forzar a que sea un entero:
 [int]$edad = Read-Host "Escribe tu edad"
 ```
 
-### 6.2 Operadores aritméticos ###
+### 4.2 Operadores aritméticos ###
 
 
 
@@ -411,7 +431,7 @@ Para forzar a que sea un entero:
 |    *=    | Multiplica el valor de la variable | $x*=3   | $x = $x * 3  |
 |    /=    | Divide el valor de la variable     | $x/=3   | $x = $x / 3  |
 
-### 6.3 **Operadores de comparación**
+### 4.3 **Operadores de comparación**
 
 |   Operador   | Significado                                                  | Ejemplo <br />($true)   |
 | :----------: | ------------------------------------------------------------ | ----------------------- |
@@ -432,7 +452,7 @@ Para forzar a que sea un entero:
 
 ------
 
-### 6.4 Operadores lógicos
+### 4.4 Operadores lógicos
 
 | Operador | Significado                                             | Ejemplo                             |
 | -------- | ------------------------------------------------------- | ----------------------------------- |
@@ -446,7 +466,7 @@ Para forzar a que sea un entero:
 
 
 
-### 6.5 Operaciones con cadenas
+### 4.5 Operaciones con cadenas
 
 - Una de las operaciones más habituales es la **concatenación (+)**, que nos permite unir dos o más variables.
 
@@ -460,7 +480,7 @@ $nombreCompleto=$nombre+$apellidos
 
   ![image-20230718093834882](/aso/assets/img/powershell/image-20230718093834882.png)
 
-## 7. Estructuras condicionales
+## 5. Estructuras condicionales
 
 ### Uso de la orden if
 
@@ -530,7 +550,7 @@ switch ($nota) {
 
 
 
-## 8. Estructuras repetitivas
+## 6. Estructuras repetitivas
 
 Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:
 
@@ -546,7 +566,7 @@ Todos los lenguajes de programación necesitan un método que les permita repeti
 
   
 
-### 8.1 La estructura do while
+### 6.1 La estructura do while
 
 ```powershell
 do { 
@@ -572,7 +592,7 @@ do
 4
 5
 
-### 8.2 La estructura while
+### 6.2 La estructura while
 
 ```powershell
 while (condicion){
@@ -599,7 +619,7 @@ while ($a -le 5)
 4
 5
 
-### 8.3 La estructura do until
+### 6.3 La estructura do until
 
 ```powershell
 do {
@@ -627,7 +647,7 @@ do
 4
 5
 
-### 8.4 La estructura for
+### 6.4 La estructura for
 
 ```powershell
 for (inicializacion; condicion; incremento)
@@ -653,7 +673,7 @@ for ($a = 1; $a -le 5; $a++)
 4
 5
 
-### 8.5 La estructura foreach
+### 6.5 La estructura foreach
 
 La estructura **foreach** funciona en cualquier situación donde pueda obtenerse una lista de elementos.
 
@@ -699,7 +719,7 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 
 
-## 9 Importación de datos ##
+## 7 Importación de datos ##
 
 1. **Importación de un archivo de texto**
 
@@ -732,7 +752,7 @@ foreach($pc in $ordenadores) {
 
 ![img](https://lh5.googleusercontent.com/lv4H5XO8V1iKYKGhpxDfHFPQC9PW7MxtQlXsnybhZbfyNBEQP4DnQDe9ZRsX0a43CKL8cmIfx_zwlrGD7UsBIiOC0HcvDOQMWQwVCFLgnTMV8-m4DNttOY5VANeJGEKg_jIsbOFsmpWtwmod-fGRUo1wNQ=s2048)
 
-
+2.4.  Comandos de archivos y carpetas
 
 **Import-CSV**: con powershell podemos importar cualquier archivo CSV. Por defecto el delimitador es la coma, pero se puede indicar otro.La cabecera del archivo pasan a ser los nombres de las propiedades pero también se pueden indicar otros.
 
@@ -747,7 +767,7 @@ foreach ($em in $empleados)
 }
 ```
 
-## 10. Funciones ##
+## 8. Funciones ##
 
 Una función no es más que un conjunto de instrucciones a las que le damos un nombre. 
 
