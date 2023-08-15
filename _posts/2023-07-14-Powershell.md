@@ -812,3 +812,37 @@ En nuestro ejemplo, creamos una función denominada **TestPing** para probar la 
 Para utilizar la función, debemos realizar la llamada:
 
 TestPing (‘8.8.8.8’)
+
+## 9. Ejercicios prácticos
+
+### Práctica 1. 
+
+**Ejercicio 1**. Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
+
+**Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
+
+### Práctica 2
+
+**Ejercicio 1.** Crea un script en lenguaje PowerShell con el nombre **ejercicio1.ps1** que muestre al usuario los siguientes mensajes:
+
+- Hola *nombre de usuario*
+- Tu directorio de trabajo es *directorio*
+- Perteneces al dominio *Nombre_dominio*
+- Tu equipo se llama *Nombre_equipo.*
+
+**Ejercicio 2.** Crea un script con el nombre **ejercicio2.ps1** en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
+
+**Ejercicio 3**. Crea un script con el nombre **ejercicio3.ps1** que pida dos números y dé su suma, la resta, la multiplicación, división y resto.
+
+**Ejercicio 4**. Crea un script con el nombre **ejercicio4.ps1** basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
+
+Ejemplo:
+
+**************** CALCULADORA ********************
+
+1. Sumar 
+2. Restar 
+3. Multiplicar 
+4. Dividir
+
+¿Qué desea hacer?Elige una opción:
