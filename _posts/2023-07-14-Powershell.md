@@ -17,7 +17,7 @@ permalink: powershell
 
 > -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
 
-[Manual de PowerShell 5.1 de Microsoft](https://docs.microsoft.com/es-es/powershell/scripting/overview?view=powershell-5.1)
+PowerShell se ejecuta en Windows, Linux y MacOS. 
 
 **1.2 Versiones de PowerShell**
 
@@ -107,13 +107,7 @@ Set-ExecutionPolicy RemoteSigned
 
 
 
-
-
 ## 2. Comandos básicos
-
-- **$psversiontable** : Muestra la versión de PowerShell instalada.
-
-
 
 -  **Get-Command** : Muestra todos los comandos disponibles
 
