@@ -846,3 +846,47 @@ Ejemplo:
 4. Dividir
 
 ¿Qué desea hacer?Elige una opción:
+
+**Ejercicio 6** 
+
+Crea un script con el nombre ejercicio6.ps1 que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
+
+**Ejercicio 7** 
+
+Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima por pantalla la lista de archivos del directorio de trabajo del usuario. 
+
+**Ejercicio 8** 
+
+Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima por pantalla la lista de archivos del directorio de trabajo del usuario con la extensión que le indique el usuario. 
+
+**Ejercicio 9** 
+
+Crea un script en lenguaje PowerShell con el nombre ejercicio9.ps1 que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es m**Ejercicio 10** 
+
+Crea un script con el nombre **ejercicio10.ps1** en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
+
+**Ejercicio 11** 
+
+Crea un script con el nombre **ejercicio11.ps1** modificando el script anterior para que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse. 
+
+**Ejercicio 12** 
+
+Crea un script con el nombre **ejercicio12.ps1** que muestre un menú con las siguientes opciones: 
+
+a) Crear una carpeta 
+
+b) Crear un fichero nuevo 
+
+c) Cambiar el nombre de un fichero o carpeta 
+
+d) Borrar un archivo o carpeta 
+
+e) Verificar si existe un fichero o carpeta 
+
+f) Mostrar el contenido de un directorio. 
+
+g) Mostar la fecha y hora actuales 
+
+x) Salir 
+
+El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. ayor o menor que el que hay que adivinar. Se termina cuando el usuario introduzca un 0 (Se rinde), o lo adivine (Enhorabuena).
