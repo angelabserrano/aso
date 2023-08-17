@@ -19,7 +19,7 @@ permalink: powershell
 
 PowerShell se ejecuta en Windows, Linux y MacOS. 
 
-**1.2 Versiones de PowerShell**
+### **1.2 Versiones de PowerShell**
 
 A partir de la versión 6, PowerShell se puede instalar en varios sistemas operativos. A esta versión se la conoce como **PowerShell Core**. A continuación, se muestran las diferentes versiones de PowerShell:
 
@@ -118,6 +118,10 @@ Set-ExecutionPolicy RemoteSigned
 ```
 
 
+
+> -reto- Ejercicio 1. Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
+
+> -reto-  **Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
 
 ## 2. Comandos básicos
 
@@ -815,13 +819,7 @@ TestPing (‘8.8.8.8’)
 
 ## 9. Ejercicios prácticos
 
-### Práctica 1. 
 
-**Ejercicio 1**. Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
-
-**Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
-
-### Práctica 2
 
 **Ejercicio 1.** Crea un script en lenguaje PowerShell con el nombre **ejercicio1.ps1** que muestre al usuario los siguientes mensajes:
 
