@@ -117,13 +117,11 @@ Por razones de seguridad, PowerShell está configurado de forma predeterminada p
 Set-ExecutionPolicy RemoteSigned
 ```
 
+#### Práctica 1
 
+> -reto- **Ejercicio 1** . Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
-> #### -reto- Ejercicio 1. 
->
-> Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
-
-> -reto-  **Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
+> -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
 
 ## 2. Comandos básicos
 
