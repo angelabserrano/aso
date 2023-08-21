@@ -121,7 +121,7 @@ Set-ExecutionPolicy RemoteSigned
 
 #### Práctica 1
 
-> -reto- **Ejercicio 1** . Realiza una instalación de PowerShell Core en Windows 2019 Server y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
+> -reto- **Ejercicio 1** . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
 > -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
 
@@ -486,6 +486,19 @@ $nombreCompleto=$nombre+$apellidos
 
   ![image-20230718093834882](/aso/assets/img/powershell/image-20230718093834882.png)
 
+### 4.6 Ejercicios
+
+#### Práctica 2
+
+> -reto- **Ejercicio 1.** Crea un script en lenguaje PowerShell que muestre al usuario los siguientes mensajes:
+>
+> - Hola *nombre de usuario*
+> - Tu directorio de trabajo es *directorio*
+> - Perteneces al dominio *Nombre_dominio*
+> - Tu equipo se llama *Nombre_equipo.*
+
+
+
 ## 5. Estructuras condicionales
 
 ### Uso de la orden if
@@ -822,13 +835,6 @@ TestPing (‘8.8.8.8’)
 ## 9. Ejercicios prácticos
 
 
-
-**Ejercicio 1.** Crea un script en lenguaje PowerShell con el nombre **ejercicio1.ps1** que muestre al usuario los siguientes mensajes:
-
-- Hola *nombre de usuario*
-- Tu directorio de trabajo es *directorio*
-- Perteneces al dominio *Nombre_dominio*
-- Tu equipo se llama *Nombre_equipo.*
 
 **Ejercicio 2.** Crea un script con el nombre **ejercicio2.ps1** en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
 
