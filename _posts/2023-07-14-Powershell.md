@@ -497,6 +497,8 @@ $nombreCompleto=$nombre+$apellidos
 > - Perteneces al dominio *Nombre_dominio*
 > - Tu equipo se llama *Nombre_equipo.*
 
+> -reto- **Ejercicio2**.  Crea un script en PowerShell que pida dos números al usuario e imprima por pantalla su suma, la resta, la multiplicación, división y resto.
+
 
 
 ## 5. Estructuras condicionales
@@ -834,11 +836,7 @@ TestPing (‘8.8.8.8’)
 
 ## 9. Ejercicios prácticos
 
-
-
 **Ejercicio 2.** Crea un script con el nombre **ejercicio2.ps1** en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
-
-**Ejercicio 3**. Crea un script con el nombre **ejercicio3.ps1** que pida dos números y dé su suma, la resta, la multiplicación, división y resto.
 
 **Ejercicio 4**. Crea un script con el nombre **ejercicio4.ps1** basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 
