@@ -503,7 +503,7 @@ $nombreCompleto=$nombre+$apellidos
 
 ## 5. Estructuras condicionales
 
-### Uso de la orden if
+### Uso de la orden If, Else, ElseIf
 
 ```powershell
 if(condicion) { Bloque de codigo 1}
@@ -514,7 +514,39 @@ else {Bloque de codigo 2}
 
 - El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor **$true**. 
 
-  
+#### **Ejemplos**
+
+**Bloque if** 
+
+```powershell
+if ($x  -gt 50) {
+	Write-Host "La variable x es mayor que 50"
+}
+```
+
+**Bloque if-else**
+
+```powershell
+if ($x -gt 50){
+	Write-Host "La variable x es mayor que 50"
+}else {
+	Write-Host "La variable es menor o igual que 50"
+}
+```
+
+**Bloque if-ElseIf**
+
+```powershell
+if ($x -gt 50){
+	Write-Host "La variable x es mayor que 50"
+}ElseIf ($x -eq 50) {
+	Write-Host "La variable x es igual a 50"
+}Else {
+	Write_host "La variable es es menor que 50"
+}
+```
+
+
 
 ### Uso de la orden switch
 
@@ -569,7 +601,24 @@ switch ($nota) {
 }
 ```
 
+### Ejercicios
 
+#### Práctica 3
+
+> -reto- **Ejercicio 1.** Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
+
+> -reto- **Ejercicio 2**. Crea un script  basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
+>
+> Ejemplo:
+>
+> **************** CALCULADORA ********************
+>
+> 1. Sumar 
+> 2. Restar 
+> 3. Multiplicar 
+> 4. Dividir
+>
+> ¿Qué desea hacer?Elige una opción:
 
 ## 6. Estructuras repetitivas
 
@@ -836,20 +885,9 @@ TestPing (‘8.8.8.8’)
 
 ## 9. Ejercicios prácticos
 
-**Ejercicio 2.** Crea un script con el nombre **ejercicio2.ps1** en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
 
-**Ejercicio 4**. Crea un script con el nombre **ejercicio4.ps1** basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 
-Ejemplo:
 
-**************** CALCULADORA ********************
-
-1. Sumar 
-2. Restar 
-3. Multiplicar 
-4. Dividir
-
-¿Qué desea hacer?Elige una opción:
 
 **Ejercicio 6** 
 
@@ -865,7 +903,9 @@ Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima p
 
 **Ejercicio 9** 
 
-Crea un script en lenguaje PowerShell con el nombre ejercicio9.ps1 que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es m**Ejercicio 10** 
+Crea un script en lenguaje PowerShell con el nombre ejercicio9.ps1 que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+
+**Ejercicio 10** 
 
 Crea un script con el nombre **ejercicio10.ps1** en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
 
