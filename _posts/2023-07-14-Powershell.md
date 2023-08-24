@@ -310,14 +310,14 @@ Su objetivo consiste en permitir el almacenamiento de un valor en particular par
 **Definición Implícita**
 
 ```powershell
-$hola = “Hola mundo”
+$hola = "Hola mundo"
 ```
 
 **Definición Explícita**
 
 ```powershell
 New-variable hola
-$hola = “Hola mundo”
+$hola = "Hola mundo"
 ```
 
 - **Get-Variable** : Devuelve un listado completo de las variables que se han definido
@@ -506,20 +506,18 @@ $nombreCompleto=$nombre+$apellidos
 ### Uso de la orden If, Else, ElseIf
 
 ```powershell
-if(condicion) { Bloque de codigo 1}
-else {Bloque de codigo 2}
+If(condicion) { Bloque de codigo 1}
+Else {Bloque de codigo 2}
 ```
 
 - C*ondición* se refiere a una expresión lógica. Es decir, que al evaluarla se obtendrá un valor **$true** o **$false**.
 
 - El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor **$true**. 
 
-#### **Ejemplos**
-
-**Bloque if** 
+**Bloque If** 
 
 ```powershell
-if ($x  -gt 50) {
+If ($x  -gt 50) {
 	Write-Host "La variable x es mayor que 50"
 }
 ```
@@ -527,17 +525,17 @@ if ($x  -gt 50) {
 **Bloque if-else**
 
 ```powershell
-if ($x -gt 50){
+If ($x -gt 50){
 	Write-Host "La variable x es mayor que 50"
-}else {
+}Else {
 	Write-Host "La variable es menor o igual que 50"
 }
 ```
 
-**Bloque if-ElseIf**
+**Bloque if-ElseIf** 
 
 ```powershell
-if ($x -gt 50){
+If ($x -gt 50){
 	Write-Host "La variable x es mayor que 50"
 }ElseIf ($x -eq 50) {
 	Write-Host "La variable x es igual a 50"
@@ -619,6 +617,10 @@ switch ($nota) {
 > 4. Dividir
 >
 > ¿Qué desea hacer?Elige una opción:
+
+> -reto- **Ejercicio 3**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
+
+
 
 ## 6. Estructuras repetitivas
 
@@ -785,9 +787,33 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 ![image-20230720204431719](/aso/assets/img/powershell/image-20230720204431719.png)
 
+### 6.6 Ejercicios
 
+#### Práctica 3
 
+> -reto- **Ejercicio 1**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
 
+> -reto- **Ejercicio 2.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+
+> -reto- **Ejercicio 3**. Crea un script  que muestre un menú con las siguientes opciones: 
+>
+> a) Crear una carpeta 
+>
+> b) Crear un fichero nuevo 
+>
+> c) Cambiar el nombre de un fichero o carpeta 
+>
+> d) Borrar un archivo o carpeta 
+>
+> e) Verificar si existe un fichero o carpeta 
+>
+> f) Mostrar el contenido de un directorio. 
+>
+> g) Mostar la fecha y hora actuales 
+>
+> x) Salir 
+>
+> El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. ayor o menor que el que hay que adivinar. Se termina cuando el usuario introduzca un 0 (Se rinde), o lo adivine (Enhorabuena).
 
 ## 7 Importación de datos ##
 
@@ -881,17 +907,9 @@ En nuestro ejemplo, creamos una función denominada **TestPing** para probar la 
 
 Para utilizar la función, debemos realizar la llamada:
 
-TestPing (‘8.8.8.8’)
+TestPing  ‘8.8.8.8’ 
 
 ## 9. Ejercicios prácticos
-
-
-
-
-
-**Ejercicio 6** 
-
-Crea un script con el nombre ejercicio6.ps1 que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
 
 **Ejercicio 7** 
 
@@ -901,36 +919,11 @@ Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima p
 
 Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima por pantalla la lista de archivos del directorio de trabajo del usuario con la extensión que le indique el usuario. 
 
-**Ejercicio 9** 
 
-Crea un script en lenguaje PowerShell con el nombre ejercicio9.ps1 que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
 
-**Ejercicio 10** 
 
-Crea un script con el nombre **ejercicio10.ps1** en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
 
 **Ejercicio 11** 
 
 Crea un script con el nombre **ejercicio11.ps1** modificando el script anterior para que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse. 
 
-**Ejercicio 12** 
-
-Crea un script con el nombre **ejercicio12.ps1** que muestre un menú con las siguientes opciones: 
-
-a) Crear una carpeta 
-
-b) Crear un fichero nuevo 
-
-c) Cambiar el nombre de un fichero o carpeta 
-
-d) Borrar un archivo o carpeta 
-
-e) Verificar si existe un fichero o carpeta 
-
-f) Mostrar el contenido de un directorio. 
-
-g) Mostar la fecha y hora actuales 
-
-x) Salir 
-
-El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. ayor o menor que el que hay que adivinar. Se termina cuando el usuario introduzca un 0 (Se rinde), o lo adivine (Enhorabuena).
