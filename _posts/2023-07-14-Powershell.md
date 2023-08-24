@@ -499,7 +499,7 @@ $nombreCompleto=$nombre+$apellidos
 
 > -reto- **Ejercicio2**.  Crea un script en PowerShell que pida dos números al usuario e imprima por pantalla su suma, la resta, la multiplicación, división y resto.
 
-
+> -reto- **Ejercicio3**. Crea un script en PowerShell que pregunte al usuario por el número de horas trabajadas y el coste por hora. Después debe mostrar por pantalla el salario que debemos pagarle.
 
 ## 5. Estructuras condicionales
 
@@ -603,9 +603,13 @@ switch ($nota) {
 
 #### Práctica 3
 
-> -reto- **Ejercicio 1.** Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
+> -reto- **Ejercicio 1**. Crea un script que solicite un número al usuario. El programa debe indicar si el número es impar o par.
 
-> -reto- **Ejercicio 2**. Crea un script  basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
+> -reto- **Ejercicio2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla si es mayor de edad o no.
+
+> -reto- **Ejercicio 3.** Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
+
+> -reto- **Ejercicio 4**. Crea un script  basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 >
 > Ejemplo:
 >
@@ -618,7 +622,7 @@ switch ($nota) {
 >
 > ¿Qué desea hacer?Elige una opción:
 
-> -reto- **Ejercicio 3**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
+> -reto- **Ejercicio 5**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
 
 
 
@@ -789,13 +793,15 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 ### 6.6 Ejercicios
 
-#### Práctica 3
+#### Práctica 4
 
-> -reto- **Ejercicio 1**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
+> -reto- **Ejercicio1**. Escribir un programa que pregunte el nombre del usuario en la consola y un número entero e imprima por pantalla en líneas distintas el nombre del usuario tantas veces como el número introducido.
 
-> -reto- **Ejercicio 2.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+> -reto- **Ejercicio 2**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
 
-> -reto- **Ejercicio 3**. Crea un script  que muestre un menú con las siguientes opciones: 
+> -reto- **Ejercicio 3.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+
+> -reto- **Ejercicio 4**. Crea un script  que muestre un menú con las siguientes opciones: 
 >
 > a) Crear una carpeta 
 >
