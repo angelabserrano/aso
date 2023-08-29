@@ -385,7 +385,21 @@ $env:COMPUTERNAME
 
 ### 3.3 Tipos de datos básicos
 
-![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)
+![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)D
+
+**Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
+
+-[ ] Int
+
+-[ ] Long
+
+-[ ] Double
+
+-[ ] String
+
+> -toogle- Ver la respuesta
+>
+> El tipo de dato almacenado es **double**
 
 ### 3.4 Comando para obtener el tipo de datos de una variable
 
@@ -944,18 +958,6 @@ En nuestro ejemplo, creamos una función denominada **TestPing** para probar la 
 Para utilizar la función, debemos realizar la llamada:
 
 TestPing  ‘8.8.8.8’ 
-
-## 9. Ejercicios prácticos
-
-**Ejercicio 7** 
-
-Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima por pantalla la lista de archivos del directorio de trabajo del usuario. 
-
-**Ejercicio 8** 
-
-Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima por pantalla la lista de archivos del directorio de trabajo del usuario con la extensión que le indique el usuario. 
-
-
 
 
 
