@@ -13,11 +13,13 @@ permalink: powershell
 
 ### 1.1 ¿Qué es PowerShell? ###
 
-**PowerShell** es un intérprete de línea de comandos orientado a objetos. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. 
+**PowerShell** es un intérprete de línea de comandos orientado a objetos de Microsoft. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Se incluye por defecto desde WS 2008 R2 y Windows 7.
 
-> -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** .
+> -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** . Un cmdlet se nombra siempre mediante el siguiente formato: <Verbo>-<Nombre>
 
 PowerShell se ejecuta en Windows, Linux y MacOS. 
+
+
 
 ### **1.2 Versiones de PowerShell**
 
@@ -43,7 +45,7 @@ A partir de la versión 6, PowerShell se puede instalar en varios sistemas opera
 Para obtener la versión de PowerShell instalada:
 
 ```
-$psversiontable
+$PSVersionTable
 ```
 
 ![image-20230715104849336](/aso/assets/img/powershell/image-20230715104849336.png)
@@ -52,7 +54,7 @@ $psversiontable
 
 ### 1.3 Ejecución de PowerShell ###
 
- En **Windows **tenemos dos opciones a la hora de ejecutar PowerShell:
+ En **Windows ** tenemos dos opciones a la hora de ejecutar PowerShell:
 
 1. Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2. Entorno comando: Windows Powershell
@@ -182,9 +184,31 @@ $fecha = Get-Date “01/12/2018”
 
 ### 2.4.  Comandos de archivos y carpetas
 
-**Get-Location (pwd), Set-Location (cd) y Get-ChildItem (ls)**
+**Ruta del directorio actual**
 
+El comando **Get-Location (gl,pwd)** se utiliza para obtener la ruta del directorio actual en el que se está trabajando
 
+```powershell
+Get-Location 
+```
+
+**Navegar entre directorios **
+
+El comando **Set-Location(sl, cd)** establece la ubicación de trabajo en una ubicación especificada. Esa ubicación puede ser un directorio, subdirectorio, una ubicación del registro o cualquier ruta de acceso del proveedor.
+
+```powershell
+Set-Location D:\scripts
+```
+
+**Listar archivos en una carpeta** 
+
+El comando **Get-ChildItem (gci, ls) **  en PowerShell se utiliza para obtener una **lista de los elementos que se encuentran en el directorio actual**, incluyendo archivos y subdirectorios.
+
+Puedes usarlo para buscar archivos o carpetas específicos y para explorar el contenido del directorio actual. 
+
+```powershell
+Get-ChildItem
+```
 
 **Copiar archivos y carpetas**
 
@@ -477,8 +501,8 @@ Para forzar a que sea un entero:
 - Una de las operaciones más habituales es la **concatenación (+)**, que nos permite unir dos o más variables.
 
 ```powershell
-$nombre=”Pepe ”
-$apellidos=”Garcia Sanchez”
+$nombre="Pepe "
+$apellidos="Garcia Sanchez"
 $nombreCompleto=$nombre+$apellidos
 ```
 
@@ -623,6 +647,8 @@ switch ($nota) {
 > ¿Qué desea hacer?Elige una opción:
 
 > -reto- **Ejercicio 5**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
+
+> -reto- **Ejercicio 6.**  Crea un script   que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse. 
 
 
 
@@ -797,11 +823,15 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 > -reto- **Ejercicio1**. Escribir un programa que pregunte el nombre del usuario en la consola y un número entero e imprima por pantalla en líneas distintas el nombre del usuario tantas veces como el número introducido.
 
-> -reto- **Ejercicio 2**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
+> -reto- **Ejercicio 2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su edad).
 
-> -reto- **Ejercicio 3.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+> -reto **Ejercicio3**. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.
 
-> -reto- **Ejercicio 4**. Crea un script  que muestre un menú con las siguientes opciones: 
+> -reto- **Ejercicio 4**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
+
+> -reto- **Ejercicio 5.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+
+> -reto- **Ejercicio 6**. Crea un script  que muestre un menú con las siguientes opciones: 
 >
 > a) Crear una carpeta 
 >
@@ -854,7 +884,7 @@ foreach($pc in $ordenadores) {
 
 ![img](https://lh5.googleusercontent.com/lv4H5XO8V1iKYKGhpxDfHFPQC9PW7MxtQlXsnybhZbfyNBEQP4DnQDe9ZRsX0a43CKL8cmIfx_zwlrGD7UsBIiOC0HcvDOQMWQwVCFLgnTMV8-m4DNttOY5VANeJGEKg_jIsbOFsmpWtwmod-fGRUo1wNQ=s2048)
 
-2.4.  Comandos de archivos y carpetas
+
 
 **Import-CSV**: con powershell podemos importar cualquier archivo CSV. Por defecto el delimitador es la coma, pero se puede indicar otro.La cabecera del archivo pasan a ser los nombres de las propiedades pero también se pueden indicar otros.
 
@@ -928,8 +958,4 @@ Crea un script en lenguaje PowerShell con el nombre ejercicio7.ps1 que imprima p
 
 
 
-
-**Ejercicio 11** 
-
-Crea un script con el nombre **ejercicio11.ps1** modificando el script anterior para que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse. 
 
