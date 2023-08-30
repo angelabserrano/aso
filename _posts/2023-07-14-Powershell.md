@@ -406,9 +406,8 @@ $numero.GetType()
 > - [ ] String
 
 >  -toogle-Ver la respuesta correcta
-> El tipo de dato almacenado es **double**
->
 > 
+>El tipo de dato almacenado es **double**
 
 ### 3.5 Definición de variables
 
@@ -839,7 +838,7 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 > -reto- **Ejercicio 2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su edad).
 
-> -reto **Ejercicio3**. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.
+> -reto- **Ejercicio3**. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.
 
 > -reto- **Ejercicio 4**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
 
