@@ -387,20 +387,6 @@ $env:COMPUTERNAME
 
 ![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)D
 
-> -task-**Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
-
-- [ ] Int
-
-- [ ] Long
-
-- [x] Double
-
-- [ ] String
-
-> -toogle- Ver la respuesta correcta
->
-> El tipo de dato almacenado es **double**
-
 ### 3.4 Comando para obtener el tipo de datos de una variable
 
 ```powershell
@@ -409,6 +395,22 @@ $numero.GetType()
 ```
 
 ![img](https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048)
+
+
+
+> -task-**Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
+>
+> - [ ] Int
+>
+> - [ ] Long
+>
+> - [ ] Double
+>
+> - [ ] String
+
+> -toogle- Ver la respuesta correcta
+>
+> El tipo de dato almacenado es **double**
 
 ### 3.5 Definición de variables
 
