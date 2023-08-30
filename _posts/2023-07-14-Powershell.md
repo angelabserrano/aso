@@ -401,16 +401,15 @@ $numero.GetType()
 > -task-**Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
 >
 > - [ ] Int
->
 > - [ ] Long
->
 > - [ ] Double
->
 > - [ ] String
 
-> -toogle- Ver la respuesta correcta
+> -toogle-Ver la respuesta correcta
 >
 > El tipo de dato almacenado es **double**
+>
+> 
 
 ### 3.5 Definición de variables
 
