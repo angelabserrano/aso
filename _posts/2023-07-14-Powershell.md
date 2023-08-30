@@ -404,6 +404,7 @@ $numero.GetType()
 > - [ ] Long
 > - [ ] Double
 > - [ ] String
+
 >  -toogle-Ver la respuesta correcta
 > El tipo de dato almacenado es **double**
 >
