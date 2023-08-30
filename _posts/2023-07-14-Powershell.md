@@ -109,7 +109,7 @@ Get-ExecutionPolicy
 
 Si deseamos consultar todas las políticas de ejecución disponibles:
 
-```Powershell
+```powershell
 Get-ExecutionPolicy -List
 ```
 
