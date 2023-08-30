@@ -387,17 +387,17 @@ $env:COMPUTERNAME
 
 ![img](https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048)D
 
-> -task-Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
+> -task-**Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?**
 
 - [ ] Int
 
 - [ ] Long
 
-- [ ] Double
+- [x] Double
 
 - [ ] String
 
-> -toogle-Ver la respuesta correcta
+> -toogle- Ver la respuesta correcta
 >
 > El tipo de dato almacenado es **double**
 
