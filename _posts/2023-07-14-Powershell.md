@@ -186,7 +186,7 @@ $fecha = Get-Date “01/12/2018”
 
 **Ruta del directorio actual**
 
-El comando **Get-Location (gl,pwd)** se utiliza para obtener la ruta del directorio actual en el que se está trabajando
+El cmdlet **Get-Location (gl,pwd)** se utiliza para obtener la ruta del directorio actual en el que se está trabajando
 
 ```powershell
 Get-Location 
@@ -194,7 +194,7 @@ Get-Location
 
 **Navegar entre directorios **
 
-El comando **Set-Location(sl, cd)** establece la ubicación de trabajo en una ubicación especificada. Esa ubicación puede ser un directorio, subdirectorio, una ubicación del registro o cualquier ruta de acceso del proveedor.
+El cmdlet **Set-Location(sl, cd)** establece la ubicación de trabajo en una ubicación especificada. Esa ubicación puede ser un directorio, subdirectorio, una ubicación del registro o cualquier ruta de acceso del proveedor.
 
 ```powershell
 Set-Location D:\scripts
@@ -202,17 +202,17 @@ Set-Location D:\scripts
 
 **Listar archivos en una carpeta** 
 
-El comando **Get-ChildItem (gci, ls) **  en PowerShell se utiliza para obtener una **lista de los elementos que se encuentran en el directorio actual**, incluyendo archivos y subdirectorios.
+El cmdlet **Get-ChildItem (gci, ls,dir) **  en PowerShell se utiliza para obtener una **lista de los elementos que se encuentran en el directorio actual**, incluyendo archivos y subdirectorios.
 
 Puedes usarlo para buscar archivos o carpetas específicos y para explorar el contenido del directorio actual. 
 
 ```powershell
-Get-ChildItem
+Get-ChildItem -Path C:\ -Recurse
 ```
 
 **Copiar archivos y carpetas**
 
-El comando **Copy-Item** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
+El cmdlet **Copy-Item (copy, cp, cpi)** nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:
 
 ```powershell
 Copy-Item E:\scripts\* C:\Users\scripts\
@@ -220,7 +220,7 @@ Copy-Item E:\scripts\* C:\Users\scripts\
 
 **Crear una nueva carpeta o archivo**
 
-El comando **New-Item** nos permite crear un nuevo archivo o carpeta
+El cmdlet **New-Item (ni)**  nos permite crear un nuevo archivo o carpeta
 
 Ejemplo: Crea la carpeta scripts en la unidad C:
 
@@ -238,7 +238,7 @@ New-Item C:\scripts\ejemplo1.ps1 -ItemType file
 
 **Borrar un archivo o carpeta**
 
-El comando **Remove-Item** nos permite borrar un archivo o carpeta.
+El cmdlet **Remove-Item (del, erase, rm, ri, rmdir)** nos permite borrar un archivo o carpeta.
 
 Ejemplo: Borra el archivo prueba1.ps1
 
@@ -254,23 +254,17 @@ Remove-Item C:\scripts\*
 
 **Mover un archivo o carpeta**
 
-El comando **Move-Item** nos permite mover un archivo de una ubicación a otra.
+El cmdlet **Move-Item (mi, move, mv)** nos permite mover un archivo de una ubicación a otra.
 
-Ejemplo: Borra el archivo prueba1.ps1
-
-```powershell
-Remove-Item C:\scripts\prueba1.ps1
-```
-
-Ejemplo: Borra todos los archivos de la carpeta scripts
+Ejemplo: Mueve el archivo fichero1.txt a la ruta indicada
 
 ```powershell
-Remove-Item C:\scripts\*
+Move-Item -Path "C:\fichero1.txt" -Destination "C:\copias" 
 ```
 
 **Renombrar un archivo o carpeta**
 
-El comando **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
+El cmdlet **Rename-Item** nos permite cambiar el nombre de archivos y carpetas
 
 Ejemplo: Cambia el nombre de script1 a script2
 
@@ -278,14 +272,14 @@ Ejemplo: Cambia el nombre de script1 a script2
 Rename-Item C:\scripts\script1.ps1 script2.ps1
 ```
 
-**Verificar la existencia de un archivo o carpeta**
+**Muestra el contenido de un archivo** 
 
-Uno de los principales usos de **Test-Path** es verificar la existencia de un archivo o carpeta. Si obtenemos el valor **true** existe, en caso contrario devuelve el valor **false** 
+El cmdlet **Get-Content** nos permite mostrar el contenido de un archivo.
 
-Ejemplo: Devuelve true si script1.ps1 existe
+Ejemplo:
 
 ```powershell
-Test-Path C:\scripts\script1.ps1
+Get-Content -Path "C:\copias\fichero1.txt"
 ```
 
 **Verificar la existencia de un archivo o carpeta**
@@ -300,7 +294,9 @@ Test-Path C:\scripts\script1.ps1
 
 Ejemplo 2: Devuelve true si $elem existe y es un directorio
 
+```powershell
 Test-Path $elem -PathType container 
+```
 
 
 
