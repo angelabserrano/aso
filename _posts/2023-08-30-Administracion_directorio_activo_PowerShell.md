@@ -224,3 +224,42 @@ Remove-ADOrganizationalUnit -Identity  "OU=INFORMATICA,DC=IESELCAMINAS,DC=LOCAL"
 - `-Identity "OU=INFORMATICA,DC=IESELCAMINAS,DC=LOCAL"`: Esta parte especifica la identidad de la OU que deseas eliminar. En este caso, es "OU=INFORMATICA,DC=IESELCAMINAS,DC=LOCAL".
 - `-Recursive`: Este interruptor indica que deseas eliminar la OU y todos sus objetos secundarios (sub-OUs, usuarios, grupos, etc.) de forma recursiva.
 - `-Confirm:$False`: Esto se utiliza para desactivar la solicitud de confirmación. Cuando se establece en `$False`, significa que no se te pedirá confirmación antes de que se elimine la OU. Ten precaución al usar esta opción, ya que puede provocar eliminaciones accidentales.
+
+## 4. Recursos compartidos
+
+Los cmdlets para trabajar con recursos compartidos se encuentran dentro del módulo **SmbShare**
+
+A los recursos compartidos se les puede asociar los distintos ***tipos de permisos***:
+
+- **Control Total**: Todas las operaciones y cambio de permisos.
+- **Cambiar**: Permite crear, modificar y borrar carpetas y archivos.
+- **Lectura**: Sólo permite la lectura y ejecución de archivos.
+
+### 4.1 Mostrar información de  recursos compartidos
+
+El cmdlet **Get-SmbShare (gsmbs)** devuelve los recursos compartidos del sistema.
+
+```powershell
+Get-SmbShare
+```
+
+Para mostrar los datos de un recurso compartido especificado:
+
+```powershell
+# Muestra información del recurso compartido datos
+Get-SmbShare -Name datos
+# Muestra información del recurso compartido datos en formato lista (Format-List, alias fl)
+Get-SmbShare -Name datos | fl
+```
+
+### 4.2 Crear recurso compartido
+
+El cmdlet **New-SmbShare (nsmbs)** crea un recurso compartido. 
+
+```powershell
+# creación de un recurso compartido sin especificar
+New-SmbShare -Path C:\datos -Name datos
+#Creación del recurso compartido datos, de forma que al usuario profesor le damos todos los permisos y al usuario alumno, solo lectura
+New-SmbShare -Path C:\datos -Name datos -FullAccess profesor -ReadAccess alumno
+```
+
