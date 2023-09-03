@@ -12,7 +12,7 @@ permalink: powershell-directorio-activo
 
 ### 1.1 Creación de cuentas de usuario 
 
-El cmdlet [New-ADUser](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee617253(v=technet.10)?redirectedfrom=MSDN) crea un usuario en el directorio activo.
+El cmdlet [**New-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-aduser?view=windowsserver2022-ps) crea un usuario en el directorio activo.
 
 **Ejemplo:**
 
@@ -32,7 +32,7 @@ New-ADUser -Name "Maria Garcia" -Path "CN=Users,DC=Empresa,DC=Local" -SamAccount
 
 - `-UserPrincipalName "mariag@EMPRESA.LOCAL"`: Especifica el Nombre Principal de Usuario (UPN) para el usuario. El UPN también debe ser único.
 
-- `-AccountPassword (ConvertTo-SecureString "aso2023." -AsPlainText -Force)`: Establece la contraseña inicial para el usuario. En este ejemplo, la contraseña es "aso2023." 
+- `-AccountPassword (ConvertTo-SecureString "aso2023." -AsPlainText -Force)`: Establece la contraseña inicial para el usuario. En este ejemplo, la contraseña es "aso2023."
 
 - `-GivenName "Maria"`: Especifica el primer nombre del usuario.
 
@@ -44,7 +44,7 @@ New-ADUser -Name "Maria Garcia" -Path "CN=Users,DC=Empresa,DC=Local" -SamAccount
 
 ### 1.2 Eliminación de usuarios
 
-El cmdlet [Remove-ADUser](https://docs.microsoft.com/en-us/powershell/module/addsadministration/remove-aduser?view=win10-ps) elimina un usuario del directorio activo.
+El cmdlet [**Remove-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-aduser?view=windowsserver2022-ps) elimina un usuario del directorio activo.
 
 Ejemplo:
 
@@ -58,7 +58,7 @@ Remove-ADUser -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local"
 
 ### 1.3 Deshabilitar una cuenta de usuario
 
-El cmdlet [Disable-ADAccount](https://docs.microsoft.com/en-us/powershell/module/addsadministration/disable-adaccount?view=win10-ps) deshabilita una cuenta de usuario del directorio activo
+El cmdlet [Disable-ADAccount](https://learn.microsoft.com/es-es/powershell/module/activedirectory/disable-adaccount?view=windowsserver2022-ps) deshabilita una cuenta de usuario del directorio activo
 
 Ejemplo:
 
@@ -72,7 +72,7 @@ Disable-ADAccount -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local"
 
 ### 1.4 Modificación de cuentas de usuario
 
-Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet **Set-ADUser**
+Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet **[Set-ADUser](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-aduser?view=windowsserver2022-ps)**
 
 ```powershell
 Set-ADUser -Identity "mariag" -EmailAddress "mariag@empresa.local"
@@ -80,7 +80,7 @@ Set-ADUser -Identity "mariag" -EmailAddress "mariag@empresa.local"
 
 ### 1.5 Consultar usuarios
 
-El cmdlet **Get-ADUser** nos pemite consulltar las cuentas de usuario.
+El cmdlet [**Get-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-aduser?view=windowsserver2022-ps) nos pemite consulltar las cuentas de usuario.
 
 Para visualizar ejemplos de cómo utilizar el comando: 
 
@@ -128,15 +128,16 @@ Aquí tienes algunos ejemplos de cómo puedes utilizarlo:
    Get-ADUser -Filter {Enabled -eq $true}
    ```
    
+
 Este comando recupera una lista de todos los usuarios que están habilitados en Active Directory, es decir, cuentas de usuario activas.
-   
+
 
 
 ## 2. Gestión de grupos de Active Directory con PowerShell
 
 ### 2.1 Creación de grupos
 
-El comando [New-ADGroup](https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adgroup?view=win10-ps) crea un nuevo grupo en el dominio especificado
+El comando [New-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-adgroup?view=windowsserver2022-ps) crea un nuevo grupo en el dominio especificado
 
 Ejemplo:
 
@@ -144,9 +145,33 @@ Ejemplo:
 New-ADGroup -Name "Profesores" -GroupCategory Security -GroupScope Global -Path "CN=Users,DC=EMPRESA,DC=LOCAL"
 ```
 
-### 2.2 Añadir usuarios a un grupo del dominio
+### 2.2 Eliminación de grupos 
 
-El comando [Add-ADGroupMember](https://docs.microsoft.com/en-us/powershell/module/addsadministration/add-adgroupmember?view=win10-ps) añade usuarios al grupo especificado
+El cmdlet **[Remove-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroup?view=windowsserver2022-ps)** elimina un grupo del dominio.
+
+```powershell
+Remove-ADGroup -Identity "CN=Profesores,CN=Users,DC=EMPRESA,DC=LOCAL" -Confirm:$false
+```
+
+### 2.3 Modificación de grupos
+
+El cmdlet **[Set-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps)** modifica las propiedades de un grupo del dominio.
+
+```powershell
+Set-ADGroup -Identity Profesores -GroupScope Universal
+```
+
+### 2.4 Consultar grupos
+
+El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-adgroup?view=windowsserver2022-ps)** muesetra todas las propiedades de un grupo del dominio.
+
+```powershell
+Get-ADGroup -Identity Profesores
+```
+
+### 2.5 Añadir usuarios a un grupo del dominio
+
+El cmdlet **[Add-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/add-adgroupmember?view=windowsserver2022-ps)** añade usuarios al grupo especificado
 
 Ejemplo:
 
@@ -154,9 +179,9 @@ Ejemplo:
 Add-ADGroupMember -Identity "Profesores" -Members mariag,pepe
 ```
 
-### 2.3 Quitar usuarios de un grupo del dominio
+### 2.6 Quitar usuarios de un grupo del dominio
 
-El comando [Remove-ADGroupMember](https://docs.microsoft.com/en-us/powershell/module/addsadministration/remove-adgroupmember?view=win10-ps) quita usuarios del grupo especificado
+El cmdlet **[Remove-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroupmember?view=windowsserver2022-ps)** quita usuarios del grupo especificado
 
 Ejemplo:
 
@@ -164,13 +189,15 @@ Ejemplo:
 Remove-ADGroupMember -Identity "Profesores" -Members mariag
 ```
 
+2.7 Consultar miembros de un grupo
 
+El cmdlet Get-ADGroupMember nos permite consultar  
 
 ## 3. Gestión de unidades organizativas de Active Directory con PowerShell
 
 ### 3.1 Creación de unidades organizativas
 
-El comando [New-ADOrganizationalUnit](https://docs.microsoft.com/en-us/powershell/module/addsadministration/new-adorganizationalunit?view=win10-ps) crea una unidad organizativa.
+El cmdlet [**New-ADOrganizationalUnit**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-adorganizationalunit?view=windowsserver2022-ps) crea una unidad organizativa.
 
 Ejemplo:
 
@@ -184,7 +211,7 @@ New-ADOrganizationalUnit -Name "Finanzas" -Path "OU=EMPRESA,DC=EMPRESA,DC=LOCAL"
 
 ### 3.2 Eliminación de unidades organizativas
 
-El comando Remove_ADOrganizationalUnit elimina una unidad organizativa.
+El cmdlet **[Remove_ADOrganizationalUnit](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adorganizationalunit?view=windowsserver2022-ps)** elimina una unidad organizativa.
 
 ```powershell
 Remove-ADOrganizationalUnit -Identity  "OU=INFORMATICA,DC=IESELCAMINAS,DC=LOCAL" -Recursive -Confirm:$False
