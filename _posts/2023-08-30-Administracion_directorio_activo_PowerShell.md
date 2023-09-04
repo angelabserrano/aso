@@ -231,11 +231,11 @@ Los cmdlets para trabajar con recursos compartidos se encuentran dentro del mód
 
 A los recursos compartidos se les puede asociar los distintos ***tipos de permisos***:
 
-- **Control Total**: Todas las operaciones y cambio de permisos.
-- **Cambiar**: Permite crear, modificar y borrar carpetas y archivos.
-- **Lectura**: Sólo permite la lectura y ejecución de archivos.
+- **Control Total (FullAccess)** : Todas las operaciones y cambio de permisos.
+- **Cambiar (ChangeAccess)**: Permite crear, modificar y borrar carpetas y archivos.
+- **Lectura (ReadAccess)**: Sólo permite la lectura y ejecución de archivos.
 
-### 4.1 Mostrar información de  recursos compartidos
+### 4.1 Mostrar información de  recurso compartido
 
 El cmdlet **Get-SmbShare (gsmbs)** devuelve los recursos compartidos del sistema.
 
@@ -262,4 +262,16 @@ New-SmbShare -Path C:\datos -Name datos
 #Creación del recurso compartido datos, de forma que al usuario profesor le damos todos los permisos y al usuario alumno, solo lectura
 New-SmbShare -Path C:\datos -Name datos -FullAccess profesor -ReadAccess alumno
 ```
+
+### 4.3 Eliminar recurso compartido
+
+El cmdlet **Remove-SmbShare (rsmbs)** elimina un recurso compartido. La propiedad -Force evita el mensaje de confirmación de eliminación.
+
+```powershell
+Remove-SmbShare -Name datos -Force
+```
+
+### 4.4 Administrar permisos de un recurso compartido
+
+El cmdlet **Grant-SmbShareAccess(grsmba)** permite añadir/quitar permisos a un usuario o un grupo.
 
