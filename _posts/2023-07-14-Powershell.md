@@ -15,7 +15,7 @@ permalink: powershell
 
 **PowerShell** es un intérprete de línea de comandos orientado a objetos de Microsoft. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Se incluye por defecto desde WS 2008 R2 y Windows 7.
 
-> -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** . Un cmdlet se nombra siempre mediante el siguiente formato: <Verbo>-<Nombre>
+> -info- Las órdenes incluidas en Powershell son muchas y reciben el nombre de **cmdlets** . Un cmdlet se nombra siempre mediante el siguiente formato: Verbo-Sustantivo
 
 PowerShell se ejecuta en Windows, Linux y MacOS. 
 
@@ -54,7 +54,7 @@ $PSVersionTable
 
 ### 1.3 Ejecución de PowerShell ###
 
- En **Windows ** tenemos dos opciones a la hora de ejecutar PowerShell:
+ En **Windows** tenemos dos opciones a la hora de ejecutar PowerShell:
 
 1. Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).
 2. Entorno comando: Windows Powershell
@@ -125,7 +125,7 @@ Set-ExecutionPolicy RemoteSigned
 
 > -reto- **Ejercicio 1** . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
-> -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en una máquina virtual con Ubuntu. Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
+> -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.  Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. 
 
 ## 2. Comandos básicos
 
