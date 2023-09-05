@@ -443,7 +443,7 @@ $var = 15
 $edad = Read-Host "Escribe tu edad"
 ```
 
-> -alert- Read-Host  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.
+> -alert- **Read-Host**  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.
 
 Para forzar a que sea un entero:
 
