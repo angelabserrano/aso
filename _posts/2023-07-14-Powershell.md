@@ -127,7 +127,7 @@ Set-ExecutionPolicy RemoteSigned
 
 > -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.  
 >
-> Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. 
+> Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. Tip: [Docker cheat sheet](/aso/assets/img/docker/docker.jpeg)
 
 ## 2. Comandos básicos
 
