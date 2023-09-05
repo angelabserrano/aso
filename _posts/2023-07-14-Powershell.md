@@ -125,7 +125,9 @@ Set-ExecutionPolicy RemoteSigned
 
 > -reto- **Ejercicio 1** . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
-> -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.  Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. 
+> -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.  
+>
+> Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. 
 
 ## 2. Comandos básicos
 
@@ -192,7 +194,7 @@ El cmdlet **Get-Location (gl,pwd)** se utiliza para obtener la ruta del director
 Get-Location 
 ```
 
-**Navegar entre directorios **
+**Navegar entre directorios**
 
 El cmdlet **Set-Location(sl, cd)** establece la ubicación de trabajo en una ubicación especificada. Esa ubicación puede ser un directorio, subdirectorio, una ubicación del registro o cualquier ruta de acceso del proveedor.
 
