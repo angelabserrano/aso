@@ -95,7 +95,21 @@ Existen 3 métodos de instalación:
 
 ![img](https://lh4.googleusercontent.com/B_Bew_qhCmNfTdaSTAQYMqyFXdgvjIj_zqybRNCnyu21MvPAJOu-4jVoMCuuUORDNamCo8ytBXSMZzzBDIRZeEj6h3IZhpZ6yRUP6gnrJdyCxRTWVFhhv9U4JkFX4cA7UhjnoJewLJ6zQZe3YnWBzUyn=s2048)
 
+![image-20230910135549160](/aso/assets/img/powershell/image-20230910135549160.png)
 
+
+
+![image-20230910135626044](/aso/assets/img/powershell/image-20230910135626044.png)
+
+![image-20230910135654515](/aso/assets/img/powershell/image-20230910135654515.png)
+
+
+
+![image-20230910135709834](/aso/assets/img/powershell/image-20230910135709834.png)
+
+![image-20230910135739606](/aso/assets/img/powershell/image-20230910135739606.png)
+
+![image-20230910135904288](/aso/assets/img/powershell/image-20230910135904288.png)
 
 
 
