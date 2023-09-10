@@ -19,7 +19,18 @@ permalink: powershell-directorio-activo
   ![image-20230910113519819](/aso/assets/img/powershell/image-20230910113519819.png)
 
 - **Bosque (Forest) :** Colección de árboles 
-- 
+
+  ![image-20230910115708152](/aso/assets/img/powershell/image-20230910115708152.png)
+
+- **Catálogo Global (Global Catalog):** incluye una copia parcial de solo lectura que contiene información de los atributos más utilizados de los objetos del bosque.
+
+  ![image-20230910115844695](/aso/assets/img/powershell/image-20230910115844695.png)
+
+- **DNS :** El objetivo principal es traducir un nombre de dominio a una IP
+
+​	[www.microsoft.com](http://www.microsoft.com) => 2.21.180.244
+
+
 
 ## 2.Gestión de usuarios de Active Directory con PowerShell 
 
