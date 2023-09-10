@@ -30,6 +30,73 @@ permalink: powershell-directorio-activo
 
 ​	[www.microsoft.com](http://www.microsoft.com) => 2.21.180.244
 
+## 2. Instalación de Active Directory
+
+Existen 3 métodos de instalación:
+
+- Mediante PowerShell
+
+- - Install-WindowsFeature AD-Domain-Services
+  - Install-ADDSDomainController
+
+- Mediante el administrador del servidor
+
+- Mediante dcpromo /unattend:<path> 
+
+### 2.1 Instalación de Active Directory mediante el Administrador del Servidor
+
+- Realizamos una instalación limpia de Windows Server 2019 con interfaz gráfica (GUI) en VirtualBox. 
+
+  ![image-20230910121125218](/aso/assets/img/powershell/image-20230910121125218.png)
+
+- El adaptador de red en VirtualBox lo cambiamos a **Red Interna.**
+
+![image-20230910121215311](/aso/assets/img/powershell/image-20230910121215311.png)
+
+- Instalamos VirtualBox Guest Additions 
+
+![image-20230910121259019](/aso/assets/img/powershell/image-20230910121259019.png)
+
+- Renombramos el nombre del equipo a **empresa-DC1**
+
+![image-20230910121347212](/aso/assets/img/powershell/image-20230910121347212.png)
+
+- Abrimos el **Administrador del Servidor**
+
+  - Seleccionamos **Servidor Local**
+
+    ![image-20230910121710000](/aso/assets/img/powershell/image-20230910121710000.png)
+
+- Un controlador de dominio (DC) no puede tener una IP dinámica, así que la cambiamos por la siguiente estática:
+
+![image-20230910121803201](/aso/assets/img/powershell/image-20230910121803201.png)
+
+
+
+- A continuación hacemos click en **Administrar -> Agregar roles y características** (Parte superior derecha del Administrador del Servidor)
+
+![image-20230910121844060](/aso/assets/img/powershell/image-20230910121844060.png)
+
+![img](https://lh4.googleusercontent.com/Y5areCLP1bKHQ-iTCb89jfMnE4qnmUbBk9UplMlAMunAipnZ0f5XDhoBPhR8Rbjdxm46Po2cvAZpoxYFmfQLx9eoyPWJrMWlzi9aXRu6gPUZo-bM_NdRA9JOOy1760dU8K-wSun7_qCMY5eHXFuPe4Jk=s2048)
+
+![img](https://lh4.googleusercontent.com/IJLTPO1XUX0QTxemfPECs8LjP1VO5jw-TzMsxplaVnKoCbhfZDX0Rb3YJ0ZtFk4q7ZACFRY7y0hKO4r0M6rEaqMIVZUglfOn_71G1V8O4xft91O7jHxT2mpQawUAmc-BYFc-P6ZdcxD3w7NtmuHr4Ff6=s2048)
+
+
+
+![image-20230910122001429](/aso/assets/img/powershell/image-20230910122001429.png)
+
+- En las siguientes pantallas hacemos clic en Siguiente y dejamos las opciones por defecto. Finalmente presionamos el botón de **Instalar**
+
+![img](https://lh6.googleusercontent.com/3lGshqsZ3s49c7fxaH2EnCNU4sLnGftoWMjcaOYS65OxnfM4ifrP4x2CS4cuWtRxeibVV8-A_sfiZI7yuPkkXuii9AhMM2G-zD7ktwjIy6pli-w7GRrT-Bw8UlTV5l50F1KCShxtp8XiSfhIXJhr6STY=s2048)
+
+![img](https://lh4.googleusercontent.com/eEE-jvDDhbGiABwjbpOKlVCneSW9zEl-UYF7DPOx1kPasyL_yLtav5kbt2h8PpNN9keOFFNiBEmMqR7A4xN8q6DAH6OQKVX5wyowTaZx7vSH607YIwOeKLAMQM0FHW6c0ezRiiwfSWqhk6xzs7Fn5CHk=s2048)
+
+![img](https://lh5.googleusercontent.com/Y-uBy35sDydQuu3RaGicxKMh7_t92npEunPy-h5FGcviszT52pfgJRakRBZBW2WIWLmWpalh7WK9yCSAGXjfcnbajOrThaMgB_lZ0FyYyR5kcPNShLvrrgeySEAOZ578ZKwptPKlMprifZAaJwzX5K0i=s2048)
+
+![img](https://lh4.googleusercontent.com/B_Bew_qhCmNfTdaSTAQYMqyFXdgvjIj_zqybRNCnyu21MvPAJOu-4jVoMCuuUORDNamCo8ytBXSMZzzBDIRZeEj6h3IZhpZ6yRUP6gnrJdyCxRTWVFhhv9U4JkFX4cA7UhjnoJewLJ6zQZe3YnWBzUyn=s2048)
+
+
+
 
 
 ## 2.Gestión de usuarios de Active Directory con PowerShell 
