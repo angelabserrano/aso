@@ -184,7 +184,7 @@ Existen 3 métodos de instalación:
 
 ### 4.1 Gestión de usuarios de Active Directory con PowerShell 
 
-##### 4.1.1 Creación de cuentas de usuario 
+#### 4.1.1 Creación de cuentas de usuario 
 
 El cmdlet [**New-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-aduser?view=windowsserver2022-ps) crea un usuario en el directorio activo.
 
@@ -216,7 +216,7 @@ New-ADUser -Name "Maria Garcia" -Path "CN=Users,DC=Empresa,DC=Local" -SamAccount
 
 - `-Enabled $true`: Habilita la cuenta de usuario. Si deseas crear la cuenta pero dejarla deshabilitada inicialmente, puedes establecer esto en `$false`.
 
-### 4.2 Eliminación de usuarios
+#### 4.1.2 Eliminación de usuarios
 
 El cmdlet [**Remove-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-aduser?view=windowsserver2022-ps) elimina un usuario del directorio activo.
 
@@ -230,7 +230,7 @@ Remove-ADUser -Identity "mariag"
 Remove-ADUser -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local" 
 ```
 
-### 4.3 Deshabilitar una cuenta de usuario
+#### 4.1.3 Deshabilitar una cuenta de usuario
 
 El cmdlet [Disable-ADAccount](https://learn.microsoft.com/es-es/powershell/module/activedirectory/disable-adaccount?view=windowsserver2022-ps) deshabilita una cuenta de usuario del directorio activo
 
@@ -244,7 +244,7 @@ Disable-ADAccount -Identity "mariag"
 Disable-ADAccount -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local" 
 ```
 
-### 4.4 Modificación de cuentas de usuario
+#### 4.1.4 Modificación de cuentas de usuario
 
 Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet **[Set-ADUser](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-aduser?view=windowsserver2022-ps)**
 
@@ -252,7 +252,7 @@ Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet 
 Set-ADUser -Identity "mariag" -EmailAddress "mariag@empresa.local"
 ```
 
-### 4.5 Consultar usuarios
+#### 4.1.5 Consultar usuarios
 
 El cmdlet [**Get-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-aduser?view=windowsserver2022-ps) nos pemite consulltar las cuentas de usuario.
 
@@ -307,9 +307,9 @@ Este comando recupera una lista de todos los usuarios que están habilitados en 
 
 
 
-## 5. Gestión de grupos de Active Directory con PowerShell
+### 4.2. Gestión de grupos 
 
-### 5.1 Creación de grupos
+#### 4.2.1 Creación de grupos
 
 El comando [New-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-adgroup?view=windowsserver2022-ps) crea un nuevo grupo en el dominio especificado
 
@@ -319,7 +319,7 @@ Ejemplo:
 New-ADGroup -Name "Profesores" -GroupCategory Security -GroupScope Global -Path "CN=Users,DC=EMPRESA,DC=LOCAL"
 ```
 
-### 5.2 Eliminación de grupos 
+#### 4.2.2 Eliminación de grupos 
 
 El cmdlet **[Remove-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroup?view=windowsserver2022-ps)** elimina un grupo del dominio.
 
@@ -327,7 +327,7 @@ El cmdlet **[Remove-ADGroup](https://learn.microsoft.com/es-es/powershell/module
 Remove-ADGroup -Identity "CN=Profesores,CN=Users,DC=EMPRESA,DC=LOCAL" -Confirm:$false
 ```
 
-### 5.3 Modificación de grupos
+#### 4.2.3 Modificación de grupos
 
 El cmdlet **[Set-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps)** modifica las propiedades de un grupo del dominio.
 
@@ -335,7 +335,7 @@ El cmdlet **[Set-ADGroup](https://learn.microsoft.com/es-es/powershell/module/ac
 Set-ADGroup -Identity Profesores -GroupScope Universal
 ```
 
-### 5.4 Consultar grupos
+#### 4.2.4 Consultar grupos
 
 El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-adgroup?view=windowsserver2022-ps)** muesetra todas las propiedades de un grupo del dominio.
 
@@ -343,7 +343,7 @@ El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/ac
 Get-ADGroup -Identity Profesores
 ```
 
-### 5.5 Añadir usuarios a un grupo del dominio
+#### 4.2.5 Añadir usuarios a un grupo del dominio
 
 El cmdlet **[Add-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/add-adgroupmember?view=windowsserver2022-ps)** añade usuarios al grupo especificado
 
@@ -353,7 +353,7 @@ Ejemplo:
 Add-ADGroupMember -Identity "Profesores" -Members mariag,pepe
 ```
 
-### 5.6 Quitar usuarios de un grupo del dominio
+#### 4.2.6 Quitar usuarios de un grupo del dominio
 
 El cmdlet **[Remove-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroupmember?view=windowsserver2022-ps)** quita usuarios del grupo especificado
 
