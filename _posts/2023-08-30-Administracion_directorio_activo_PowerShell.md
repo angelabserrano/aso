@@ -160,14 +160,15 @@ Existen 3 métodos de instalación:
 > -alert- En caso de error:
 >
 > - Verificar la dirección IP del cliente y del servidor que se encuentren en la misma red
->
-> - - Realizar ping del cliente a la dirección IP del servidor: **ping 172.16.0.10**
->
+>   - Realizar ping del cliente a la dirección IP del servidor: **ping 172.16.0.10**
 > - Verificar el servidor DNS
->
-> - - Realizar **ping empresa.local**
+>   - Realizar **ping empresa.local**
 
+- En caso de estar todo bien configurado nos pedirá las credenciales de Administrador del servidor para poder unir el cliente al dominio.
 
+  ![img](https://lh6.googleusercontent.com/QD8nqguTaESykSu8ubgkESKdAYldxqxCKxWKtxlMAtYa20CgxyoFKy1eoX6S3VNDu0vDU0zRgULAL4LjO5D4We9wt69RPKnUHWB-Mo5PDY3-jrldYDGWAOYf63ThYxkX7jRrBDWWFb55tbcjX-qJg_k4=s2048)![img](https://lh3.googleusercontent.com/qGEF309tmQmpKGThQWXFpOF2QFETP4OvPj6NnJRwq39vrul9yAEq4vjMq7z39cAN6Lne7677jrOfhE6Rm9aEoyqUoJlBoqy5wbZzZzSplsDZ6_gVORu2gCzHM0ZuoEgGVT1MxlHe1qhYW9ZZv-D_ayrg=s2048)
+
+  
 
 ## 3. Gestión de usuarios de Active Directory con PowerShell 
 
