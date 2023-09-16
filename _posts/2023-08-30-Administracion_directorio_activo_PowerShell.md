@@ -170,9 +170,21 @@ Existen 3 métodos de instalación:
 
   
 
-## 3. Gestión de usuarios de Active Directory con PowerShell 
+## 3. Gestión del directorio activo a través de la interfaz gráfica
 
-### 3.1 Creación de cuentas de usuario 
+### 3.1 Cuentas de usuario y equipo
+
+- Una **cuenta de usuario** es un objeto que posibilita el acceso a los recursos del dominio. No siempre representan a personas concretas, sino que también pueden ser utilizadas como mecanismos de acceso para determinados servicios o aplicaciones de la máquina local o, incluso, de un equipo remoto. 
+
+>  -info- Cada cuenta de usuario dispone de un identificador de seguridad (**SID****,** **Security IDentifier**) que es único en el dominio.
+
+- Una **cuenta de equipo** sirve para autenticar a los diferentes equipos que se conectan al dominio, permitiendo o denegando su acceso a los diferentes recursos del dominio. Aunque una cuenta de equipo se puede crear de forma manual (como veremos más adelante), también se puede crear en el momento en el que el equipo se une al dominio.
+
+## 4. Gestión del directorio activo con PowerShell
+
+### 4.1 Gestión de usuarios de Active Directory con PowerShell 
+
+##### 4.1.1 Creación de cuentas de usuario 
 
 El cmdlet [**New-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-aduser?view=windowsserver2022-ps) crea un usuario en el directorio activo.
 
@@ -204,7 +216,7 @@ New-ADUser -Name "Maria Garcia" -Path "CN=Users,DC=Empresa,DC=Local" -SamAccount
 
 - `-Enabled $true`: Habilita la cuenta de usuario. Si deseas crear la cuenta pero dejarla deshabilitada inicialmente, puedes establecer esto en `$false`.
 
-### 2.2 Eliminación de usuarios
+### 4.2 Eliminación de usuarios
 
 El cmdlet [**Remove-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-aduser?view=windowsserver2022-ps) elimina un usuario del directorio activo.
 
@@ -218,7 +230,7 @@ Remove-ADUser -Identity "mariag"
 Remove-ADUser -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local" 
 ```
 
-### 2.3 Deshabilitar una cuenta de usuario
+### 4.3 Deshabilitar una cuenta de usuario
 
 El cmdlet [Disable-ADAccount](https://learn.microsoft.com/es-es/powershell/module/activedirectory/disable-adaccount?view=windowsserver2022-ps) deshabilita una cuenta de usuario del directorio activo
 
@@ -232,7 +244,7 @@ Disable-ADAccount -Identity "mariag"
 Disable-ADAccount -Identity "CN=Maria Garcia,CN=Users,DC=Empresa,DC=Local" 
 ```
 
-### 2.4 Modificación de cuentas de usuario
+### 4.4 Modificación de cuentas de usuario
 
 Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet **[Set-ADUser](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-aduser?view=windowsserver2022-ps)**
 
@@ -240,7 +252,7 @@ Podemos modificar alguna propiedad de la cuenta de usuario a través del cmdlet 
 Set-ADUser -Identity "mariag" -EmailAddress "mariag@empresa.local"
 ```
 
-### 2.5 Consultar usuarios
+### 4.5 Consultar usuarios
 
 El cmdlet [**Get-ADUser**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-aduser?view=windowsserver2022-ps) nos pemite consulltar las cuentas de usuario.
 
@@ -295,9 +307,9 @@ Este comando recupera una lista de todos los usuarios que están habilitados en 
 
 
 
-## 3. Gestión de grupos de Active Directory con PowerShell
+## 5. Gestión de grupos de Active Directory con PowerShell
 
-### 3.1 Creación de grupos
+### 5.1 Creación de grupos
 
 El comando [New-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-adgroup?view=windowsserver2022-ps) crea un nuevo grupo en el dominio especificado
 
@@ -307,7 +319,7 @@ Ejemplo:
 New-ADGroup -Name "Profesores" -GroupCategory Security -GroupScope Global -Path "CN=Users,DC=EMPRESA,DC=LOCAL"
 ```
 
-### 3.2 Eliminación de grupos 
+### 5.2 Eliminación de grupos 
 
 El cmdlet **[Remove-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroup?view=windowsserver2022-ps)** elimina un grupo del dominio.
 
@@ -315,7 +327,7 @@ El cmdlet **[Remove-ADGroup](https://learn.microsoft.com/es-es/powershell/module
 Remove-ADGroup -Identity "CN=Profesores,CN=Users,DC=EMPRESA,DC=LOCAL" -Confirm:$false
 ```
 
-### 3.3 Modificación de grupos
+### 5.3 Modificación de grupos
 
 El cmdlet **[Set-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps)** modifica las propiedades de un grupo del dominio.
 
@@ -323,7 +335,7 @@ El cmdlet **[Set-ADGroup](https://learn.microsoft.com/es-es/powershell/module/ac
 Set-ADGroup -Identity Profesores -GroupScope Universal
 ```
 
-### 3.4 Consultar grupos
+### 5.4 Consultar grupos
 
 El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-adgroup?view=windowsserver2022-ps)** muesetra todas las propiedades de un grupo del dominio.
 
@@ -331,7 +343,7 @@ El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/ac
 Get-ADGroup -Identity Profesores
 ```
 
-### 3.5 Añadir usuarios a un grupo del dominio
+### 5.5 Añadir usuarios a un grupo del dominio
 
 El cmdlet **[Add-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/add-adgroupmember?view=windowsserver2022-ps)** añade usuarios al grupo especificado
 
@@ -341,7 +353,7 @@ Ejemplo:
 Add-ADGroupMember -Identity "Profesores" -Members mariag,pepe
 ```
 
-### 3.6 Quitar usuarios de un grupo del dominio
+### 5.6 Quitar usuarios de un grupo del dominio
 
 El cmdlet **[Remove-ADGroupMember](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adgroupmember?view=windowsserver2022-ps)** quita usuarios del grupo especificado
 
@@ -355,9 +367,9 @@ Remove-ADGroupMember -Identity "Profesores" -Members mariag
 
 El cmdlet Get-ADGroupMember nos permite consultar  
 
-## 4. Gestión de unidades organizativas de Active Directory con PowerShell
+## 6. Gestión de unidades organizativas de Active Directory con PowerShell
 
-### 4.1 Creación de unidades organizativas
+### 6.1 Creación de unidades organizativas
 
 El cmdlet [**New-ADOrganizationalUnit**](https://learn.microsoft.com/es-es/powershell/module/activedirectory/new-adorganizationalunit?view=windowsserver2022-ps) crea una unidad organizativa.
 
@@ -371,7 +383,7 @@ New-ADOrganizationalUnit -Name "Empresa" -Path "DC=EMPRESA,DC=LOCAL" -Descriptio
 New-ADOrganizationalUnit -Name "Finanzas" -Path "OU=EMPRESA,DC=EMPRESA,DC=LOCAL" -Description "Unidad de finanzas"
 ```
 
-### 4.2 Eliminación de unidades organizativas
+### 6.2 Eliminación de unidades organizativas
 
 El cmdlet **[Remove_ADOrganizationalUnit](https://learn.microsoft.com/es-es/powershell/module/activedirectory/remove-adorganizationalunit?view=windowsserver2022-ps)** elimina una unidad organizativa.
 
@@ -387,7 +399,7 @@ Remove-ADOrganizationalUnit -Identity  "OU=INFORMATICA,DC=IESELCAMINAS,DC=LOCAL"
 - `-Recursive`: Este interruptor indica que deseas eliminar la OU y todos sus objetos secundarios (sub-OUs, usuarios, grupos, etc.) de forma recursiva.
 - `-Confirm:$False`: Esto se utiliza para desactivar la solicitud de confirmación. Cuando se establece en `$False`, significa que no se te pedirá confirmación antes de que se elimine la OU. Ten precaución al usar esta opción, ya que puede provocar eliminaciones accidentales.
 
-## 5. Recursos compartidos
+## 7. Recursos compartidos
 
 Los cmdlets para trabajar con recursos compartidos se encuentran dentro del módulo **SmbShare**
 
@@ -397,7 +409,7 @@ A los recursos compartidos se les puede asociar los distintos ***tipos de permis
 - **Cambiar (ChangeAccess)**: Permite crear, modificar y borrar carpetas y archivos.
 - **Lectura (ReadAccess)**: Sólo permite la lectura y ejecución de archivos.
 
-### 5.1 Mostrar información de  recurso compartido
+### 7.1 Mostrar información de  recurso compartido
 
 El cmdlet **Get-SmbShare (gsmbs)** devuelve los recursos compartidos del sistema.
 
@@ -414,7 +426,7 @@ Get-SmbShare -Name datos
 Get-SmbShare -Name datos | fl
 ```
 
-### 5.2 Crear recurso compartido
+### 7.2 Crear recurso compartido
 
 El cmdlet **New-SmbShare (nsmbs)** crea un recurso compartido. 
 
@@ -425,7 +437,7 @@ New-SmbShare -Path C:\datos -Name datos
 New-SmbShare -Path C:\datos -Name datos -FullAccess profesor -ReadAccess alumno
 ```
 
-### 5.3 Eliminar recurso compartido
+### 7.3 Eliminar recurso compartido
 
 El cmdlet **Remove-SmbShare (rsmbs)** elimina un recurso compartido. La propiedad -Force evita el mensaje de confirmación de eliminación.
 
@@ -433,7 +445,7 @@ El cmdlet **Remove-SmbShare (rsmbs)** elimina un recurso compartido. La propieda
 Remove-SmbShare -Name datos -Force
 ```
 
-### 5.4 Administrar permisos de un recurso compartido
+### 7.4 Administrar permisos de un recurso compartido
 
 El cmdlet **Grant-SmbShareAccess(grsmba)** permite añadir/quitar permisos a un usuario o un grupo.
 
