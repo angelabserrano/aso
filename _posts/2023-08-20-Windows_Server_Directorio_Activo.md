@@ -179,3 +179,91 @@ Existen 3 métodos de instalación:
 >  -info- Cada cuenta de usuario dispone de un identificador de seguridad (**SID****,** **Security IDentifier**) que es único en el dominio.
 
 - Una **cuenta de equipo** sirve para autenticar a los diferentes equipos que se conectan al dominio, permitiendo o denegando su acceso a los diferentes recursos del dominio. Aunque una cuenta de equipo se puede crear de forma manual (como veremos más adelante), también se puede crear en el momento en el que el equipo se une al dominio.
+
+Para crear una cuenta de usuario acceder al menú **Herramientas** del **Administrador del Servidor**
+
+![img](https://lh4.googleusercontent.com/2AO1H1nDtDIACHLJw9H4AMT3k4L5oMe_lI6gF1mbSAaa_IlLBBY1u6bmfrw7NrwGYZFxq2Gj8SR27OfQnZcKtAGWFbgUj4AI3WUTH64dADTEW6jSJtyiIxkaEA5acyzk4fdodRUgyJvjoaS2a5xSInllVQ=s2048)
+
+![img](https://lh5.googleusercontent.com/0KARPXuboJSRtPBVECjA0A2kO7jaNfFy1PHEjNF3pGie6qaSakIcLjjT4kZdfPFDSNH2m3Zd3yChjhyvdC0tfTthk10FppSt-SCF60SZSTyS7pHF_X3-tsRrOzTjVPzNlNiTw4COWITLiJiCHgH6b2Vf4g=s2048)
+
+- Creación de un nuevo Usuario
+
+  ![img](https://lh6.googleusercontent.com/7erZe9BrNMNVOq_bZ3lCuXWwhn3jQmnkSU-mVY432IlFKK5Q87eds14wTbuBZ6zhGMiKKahwTzIIt3WhSumJ5hcl-QcnmkLo_Aa_stZfdKsEdLqACvsRbL34bABl8gn6cKn_wzBfYHo_Xbz0BeYxKNjikw=s2048)
+
+  Una vez creado un usuario, podemos cambiar sus propiedades.
+
+  ![image-20230917113354040](/aso/assets/img/windows_server/image-20230917113354040.png)
+
+  ![image-20230917113410413](/aso/assets/img/windows_server/image-20230917113410413.png)
+
+  **Pestaña: Cuenta**
+
+  **Establecer horas de inicio de sesión**
+
+  ![image-20230917113501840](/aso/assets/img/windows_server/image-20230917113501840.png)
+
+**Pestaña: Cuenta**
+
+**Limitar los equipos desde los que un usuario puede acceder**
+
+![image-20230917113539602](/aso/assets/img/windows_server/image-20230917113539602.png)
+
+El **perfil de un usuario** consiste en la personalización del entorno. Por defecto, se crea una carpeta en el equipo en el que se inicia sesión, pero esto puede modificarse.
+
+- **Perfil móvil:** El usuario dispondrá de su personalización en todos los equipos del bosque en los que se autentifique.
+- **Perfil obligatorio**: El usuario no podrá personalizar su entorno. Podrá hacer modificaciones pero al iniciar sesión de nuevo se habrán perdido los cambios. 
+
+**Pestaña: Perfil** 
+
+
+
+![img](https://lh3.googleusercontent.com/CZSjYC_lkk2J9FXSihvmVcm9WSQcWRH66MjO7Vr0jURtoO7BQCXtcLEqQHzmQncbO7xpjcdRIM8j_mgs1PZhgOX6T4fySZgX8CJflClGEkfJPz9M17FLhZJpxThPfrSF8MrugMO4ww6XQEgc7KkUhym8fw=s2048)
+
+**Ruta de acceso al perfil**: Indica donde se guardará el perfil. Si ponemos una ruta de red tendremos un perfil móvil.
+
+**Script de inicio de sesión:** Se puede asociar un script para que se ejecute cada vez que el usuario inicie sesión.
+
+**Pestaña: Miembro de**
+
+**Agregar / quitar grupos a los que pertenece un usuario**
+
+![img](https://lh3.googleusercontent.com/VfkW3SdhutiPhQt8GvRAAwdPUpoLkk0ewPc4Qto_HAB1isPS7JhRUa1CZtpXRm5F5ruFhasZmiGfs0ycfkjLUvSE76wzURjE6Zmvb8XbKWpAZgXzWymtTo17-uSvr8Wmjxd9xwlABlBxenMeReNv_7y7Ag=s2048)
+
+![img](https://lh6.googleusercontent.com/fLJFYWdoDXQISQQ18L9EBRi_N_IZYWIYbhC1EmWXDZIh14Yv-QQHU-boxqcmbqT9rbMmgUV2tPjXDQOJiHYX2mg-vNqhL1KE7P1eyE__fKspYGtlZUqtYYpTti4wcbA3wS23BBWAork3KsKRbLe9oY9pbA=s2048)
+
+
+
+
+
+
+
+- Creación de un nuevo equipo
+
+  ![img](https://lh3.googleusercontent.com/pDqRQFN0xQg6A30QEiSAPp_n5klyxB0W5ab45Rnu_zIfbGhqBixYM-hel02yqBuv2jyQtuzEP_Dkv3PbX7C50sIin0t4Ndq1QCezmMwLGJHNVyi8kF0pylgjhEL3pvkP6QuuAZHrnJUyEOir29vAqhCivw=s2048)
+
+
+
+### 3.2 Cuentas de grupo
+
+Una cuenta de grupo es una colección de cuentas de usuario que se puede utilizar para asignar un conjunto de permisos y derechos a varios usuarios al mismo tiempo. Un grupo también puede contener contactos, equipos y otros grupos.
+
+Para crear una cuenta de grupo acceder al menú **Herramientas** del **Administrador del Servidor => Usuarios y equipos de AD**
+
+![img](https://lh6.googleusercontent.com/EeaYgp_eN8g7ARDIVlQubgJ0-sOLztriJmSgl8XHv-t3GQwn355FYZM2Je7xezky6fQcvBsOMFo4IywHlcDhCHFLjcrdHrzVEEEzrk8_v2iG4ZZGFVzwfmWH8SaQtXmeC1dwHgl5Sb7oCUHhDwmSzmAOYQ=s2048)
+
+#### 3.2.1 Tipos de grupos
+
+Existen dos tipos de grupos:
+
+- **Distribución**: Para crear listas de distribución de correo electrónico.
+
+- **Seguridad:** Para asignar permisos a los recursos compartidos
+
+  
+
+#### 3.2.2 Ámbitos de un grupo
+
+El ámbito de un grupo establece su alcance, es decir, en qué partes de la red puede utilizarse, y el tipo de cuentas que pueden formar parte de él.
+
+![img](https://lh6.googleusercontent.com/-hSTqYGLYAZO945hDGEr4Tm5eVadfhdgk-P3VTKNqEnE8Z_SDxsSTi-kiXX8sHJB31ahFJfNxmFSm40z2P6SyAsc7R9ij495dENrNyvHGrr-St1HVhu-aqMA0Zd_Q89rK9Rcs6mOhHVl3LYoTO-zLyRIBA=s2048)
+
