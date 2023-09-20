@@ -267,3 +267,7 @@ El ámbito de un grupo establece su alcance, es decir, en qué partes de la red 
 
 ![img](https://lh6.googleusercontent.com/-hSTqYGLYAZO945hDGEr4Tm5eVadfhdgk-P3VTKNqEnE8Z_SDxsSTi-kiXX8sHJB31ahFJfNxmFSm40z2P6SyAsc7R9ij495dENrNyvHGrr-St1HVhu-aqMA0Zd_Q89rK9Rcs6mOhHVl3LYoTO-zLyRIBA=s2048)
 
+**Ámbito local**:
+
+- Los grupos de este ámbito tienen permisos sobre recursos de su dominio.
+- Pueden ser miembros de este grupo los grupos globales, locales o universales.
