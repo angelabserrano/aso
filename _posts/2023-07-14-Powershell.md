@@ -668,10 +668,7 @@ Ejercicios basados en https://aprendeconalf.es/docencia/python/ejercicios/condic
 > -reto- **Ejercicio 8.**  Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A esta formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto.
 > Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.
 
-> -reto- **Ejercicio 9.** Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:
-
-| Renta | Tipo Impositivo |
-| ----- | -----|
+> -reto- **Ejercicio 9.** Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes: | Renta | Tipo Impositivo || ----- | -----|
 | Menos de 10000€ | 5% |
 | Entre 10000€ y 20000€ | 15% |
 | Entre 20000€ y 35000€ | 20% |
