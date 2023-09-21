@@ -660,8 +660,24 @@ switch ($nota) {
 > -reto- **Ejercicio 5**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no. 
 
 > -reto- **Ejercicio 6.**  Crea un script   que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse. 
+> -reto- **Ejercicio 7.**  Escribir un programa que almacene la cadena de caracteres contraseña en una variable, pregunte al usuario por la contraseña e imprima por pantalla si la contraseña introducida por el usuario coincide con la guardada en la variable sin tener en cuenta mayúsculas y minúsculas. 
+> -reto- **Ejercicio 8.**  Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A esta formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto. Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.
+> -reto- **Ejercicio 9.** Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:
+Renta 	Tipo impositivo
+Menos de 10000€ 	5%
+Entre 10000€ y 20000€ 	15%
+Entre 20000€ y 35000€ 	20%
+Entre 35000€ y 60000€ 	30%
+Más de 60000€ 	45%
 
+Escribir un programa que pregunte al usuario su renta anual y muestre por pantalla el tipo impositivo que le corresponde.
+> -reto- **Ejercicio 10.** En una determinada empresa, sus empleados son evaluados al final de cada año. Los puntos que pueden obtener en la evaluación comienzan en 0.0 y pueden ir aumentando, traduciéndose en mejores beneficios. Los puntos que pueden conseguir los empleados pueden ser 0.0, 0.4, 0.6 o más, pero no valores intermedios entre las cifras mencionadas. A continuación se muestra una tabla con los niveles correspondientes a cada puntuación. La cantidad de dinero conseguida en cada nivel es de 2.400€ multiplicada por la puntuación del nivel.
+Nivel 	Puntuación
+Inaceptable 	0.0
+Aceptable 	0.4
+Meritorio 	0.6 o más
 
+Escribir un programa que lea la puntuación del usuario e indique su nivel de rendimiento, así como la cantidad de dinero que recibirá el usuario.
 
 ## 6. Estructuras repetitivas
 
