@@ -668,6 +668,7 @@ switch ($nota) {
 > Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.
 
 > -reto- **Ejercicio 9.** Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes: 
+
 | Renta | Tipo Impositivo |
 | ----- | -----|
 | Menos de 10000€ | 5% |
