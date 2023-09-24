@@ -697,7 +697,9 @@ switch ($nota) {
 > - Ingredientes no vegetarianos: Peperoni, Jamón y Salmón.
 > Escribir un programa que pregunte al usuario si quiere una pizza vegetariana o no, y en función de su respuesta le muestre un menú con los ingredientes disponibles para que elija. Solo se puede eligir un ingrediente además de la mozzarella y el tomate que están en todas la pizzas. Al final se debe mostrar por pantalla si la pizza elegida es vegetariana o no y todos los ingredientes que lleva.
 
-Ejercicios basados en el siguiente recurso: https://aprendeconalf.es/docencia/python/ejercicios/condicionales/
+Los enunciados de estos ejercicos están extraidos de la siguiente página web:
+
+https://aprendeconalf.es/docencia/python/ejercicios/condicionales/
 
 ## 6. Estructuras repetitivas
 
@@ -873,12 +875,20 @@ foreach ($archivo in Get-ChildItem $ruta) {
 > -reto- **Ejercicio 2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su edad).
 
 > -reto- **Ejercicio3**. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.
+>
+> -reto- **Ejercicio4** Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla todos los números impares desde 1 hasta ese número separados por comas.
 
-> -reto- **Ejercicio 4**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
+> -reto- **Ejercicio 5**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario. 
 
-> -reto- **Ejercicio 5.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
+> -reto- **Ejercicio 6.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
 
-> -reto- **Ejercicio 6**. Crea un script  que muestre un menú con las siguientes opciones: 
+> -reto- **Ejercicio 7** Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo, de altura el número introducido.
+>
+> ![image-20230924192557853](/aso/assets/img/powershell/image-20230924192557853.png) 
+
+> -reto- **Ejercicio 8 ** Escribir un programa que almacene la cadena de caracteres `contraseña` en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
+
+> -reto- **Ejercicio 9**. Crea un script  que muestre un menú con las siguientes opciones: 
 >
 > a) Crear una carpeta 
 >
