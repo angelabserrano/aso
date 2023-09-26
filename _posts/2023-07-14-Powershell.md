@@ -888,11 +888,7 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 > -reto- **Ejercicio 8** Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo.
 >
-> 1
-> 3 1
-> 5 3 1
-> 7 5 3 1
-> 9 7 5 3 1
+> ![image-20230926115734084](/aso/assets/img/powershell/image-20230926115734084.png)
 
 > -reto- **Ejercicio 9** Escribir un programa que almacene la cadena de caracteres `contraseña` en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
 
