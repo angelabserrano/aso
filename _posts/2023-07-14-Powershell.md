@@ -886,9 +886,17 @@ foreach ($archivo in Get-ChildItem $ruta) {
 >
 > ![image-20230924192557853](/aso/assets/img/powershell/image-20230924192557853.png) 
 
-> -reto- **Ejercicio 8** Escribir un programa que almacene la cadena de caracteres `contraseña` en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
+> -reto- **Ejercicio 8** Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo.
+>
+> 1
+> 3 1
+> 5 3 1
+> 7 5 3 1
+> 9 7 5 3 1
 
-> -reto- **Ejercicio 9**. Crea un script  que muestre un menú con las siguientes opciones: 
+> -reto- **Ejercicio 9** Escribir un programa que almacene la cadena de caracteres `contraseña` en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
+
+> -reto- **Ejercicio 10**. Crea un script  que muestre un menú con las siguientes opciones: 
 >
 > a) Crear una carpeta 
 >
