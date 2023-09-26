@@ -910,7 +910,7 @@ foreach ($archivo in Get-ChildItem $ruta) {
 >
 > x) Salir 
 >
-> El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. ayor o menor que el que hay que adivinar. Se termina cuando el usuario introduzca un 0 (Se rinde), o lo adivine (Enhorabuena).
+> El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. 
 
 ## 7 Importación de datos ##
 
