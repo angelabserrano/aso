@@ -964,6 +964,15 @@ foreach ($em in $empleados)
 
 Una función no es más que un conjunto de instrucciones a las que le damos un nombre. 
 
+Las funciones tienen varias ventajas en la programación:
+
+1. **Reutilización de código**: Puedes definir una función una vez y luego llamarla en múltiples partes de tu programa. Esto evita la necesidad de repetir el mismo código una y otra vez.
+2. **Modularidad**: Las funciones permiten dividir un programa grande y complejo en partes más pequeñas y manejables. Cada función se encarga de una tarea específica, lo que facilita la comprensión y mantenimiento del código.
+3. **Abstracción**: Una función te permite encapsular un conjunto de operaciones en un nombre significativo. Esto hace que el código sea más legible y fácil de entender.
+4. **Facilita la depuración**: Al dividir un programa en funciones más pequeñas, es más fácil identificar y corregir errores o fallos en el código.
+5. **Permite la organización**: Al utilizar funciones, puedes organizar tu código de manera lógica y estructurada, lo que facilita su comprensión y mantenimiento.
+6. **Mejora la colaboración**: Al trabajar en equipo, las funciones permiten a diferentes programadores trabajar en diferentes partes del código al mismo tiempo sin interferir con el trabajo de los demás.
+
 **Sintaxis**							
 
 ```
@@ -974,7 +983,28 @@ Function <nombre> {
 }
 ```
 
-**Ejemplo**
+**Ejemplo 1** 
+
+
+
+En PowerShell, hay dos formas de definir parámetros en una función:
+
+1. Usando la palabra clave `param`:
+
+   ```powershell
+   Function Sumar {
+       param (
+           [int]$x,
+           [int]$y
+       )
+       $sumar = $x + $y
+       Write-Host "La respuesta es $sumar"
+   }
+   ```
+
+   
+
+2. Especificando los parámetros directamente en la definición de la función:
 
 ```powershell
 Function Sumar ($x, $y) {
@@ -983,7 +1013,15 @@ Function Sumar ($x, $y) {
 }
 ```
 
+Para usar esta función, simplemente llama a `Sumar` y proporciona los valores para `$x` y `$y`. Por ejemplo:
 
+```powershell
+Sumar 3 5
+```
+
+Ambas formas son correctas y válidas en PowerShell. Sin embargo, la primera opción (`param`) proporciona una mayor claridad en cuanto a la declaración de los tipos de datos esperados para cada parámetro. Esto puede hacer que tu código sea más legible y menos propenso a errores si los tipos de datos incorrectos se pasan a la función.
+
+**Ejemplo 2** 
 
 ```powershell
 function TestPing($Address) {
@@ -1004,7 +1042,9 @@ En nuestro ejemplo, creamos una función denominada **TestPing** para probar la 
 
 Para utilizar la función, debemos realizar la llamada:
 
-TestPing  ‘8.8.8.8’ 
+```powershell
+TestPing  "8.8.8.8" 
+```
 
 
 
