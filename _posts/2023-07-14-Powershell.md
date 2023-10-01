@@ -645,7 +645,7 @@ switch ($nota) {
 
 > -reto- **Ejercicio 3.** Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
 
-> -reto- **Ejercicio 4**. Crea un script  basado en el anterior. Debe ser una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
+> -reto- **Ejercicio 4**. Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 >
 > Ejemplo:
 >
@@ -952,11 +952,11 @@ foreach($pc in $ordenadores) {
 ![img](https://lh6.googleusercontent.com/uS2-CyRXvA04jp9IZbw9dbrctMhrR-MFsKJXddh7A_wnKKnewzJq4_AXdaaPu292f2PKmuVm1AXFsaSwVTZHEKF1Y0Hysnd_0BQmwbo4BiocpBOhAljub2NdZSk7F-L25mF4WUe3079-Bty2Lu-oH52RjA=s2048)
 
 ```powershell
-$empleados = Import-Csv C:\scripts\empleados.csv -Delimiter “;”
+$empleados = Import-Csv C:\scripts\empleados.csv -Delimiter ";"
 
 foreach ($em in $empleados)
 {
- 	Write-Host “Usuario: $($em.nombre) $($em.apellido)”
+ 	Write-Host "Usuario: $($em.nombre) $($em.apellido)"
 }
 ```
 
@@ -1046,5 +1046,37 @@ Para utilizar la función, debemos realizar la llamada:
 TestPing  "8.8.8.8" 
 ```
 
+### Ejercicios
 
+#### Práctica 5
+
+En esta práctica vas a reescribir algunos de los scripts realizados anteriormente, pero haciendo uso de las funciones.
+
+> -reto- **Ejercicio 1**  Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
+>
+> Ejemplo:
+>
+> **************** CALCULADORA ********************
+>
+> 1. Sumar 
+> 2. Restar 
+> 3. Multiplicar 
+> 4. Dividir
+> 5.  Salir
+>
+> ¿Qué desea hacer?Elige una opción: 
+>
+> Debes crear las funciones Sumar, Restar, Multiplicar y Dividir. Cada una de estas funciones tendrá dos parámetros.
+>
+> 
+
+
+
+> -reto- **Ejercicio 2** Haciendo uso de la estructura repetitiva foreach, debes leer todos los datos del archivo 
+>
+> [usuarios.csv]: /aso/assets/usuarios.csv
+>
+>  e imprimir el nombre, apellidos y grupo de los alumnos 
+>
+> 
 
