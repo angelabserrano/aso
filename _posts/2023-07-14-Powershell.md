@@ -1074,7 +1074,7 @@ En esta práctica vas a reescribir algunos de los scripts realizados anteriormen
 
 > -reto- **Ejercicio 2** Haciendo uso de la estructura repetitiva foreach, debes leer todos los datos del archivo 
 >
-> [usuarios.csv]: (/aso/assets/usuarios.csv)
+> [usuarios.csv]: (/aso/assets/usuarios.csv)	""Fichero de usuarios""
 >
 >  e imprimir el nombre, apellidos y grupo de los alumnos 
 >
