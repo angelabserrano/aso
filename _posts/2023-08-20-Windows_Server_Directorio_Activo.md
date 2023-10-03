@@ -332,3 +332,99 @@ Para ello, desde el Administrador de directivas de grupo (**gpmc.msc**), pulsare
 Las GPO’s de una OU prevalecen sobre las del dominio, que a su vez prevalecen sobre las de sitio, las cuales a su vez prevalecen sobre las del equipo local. 
 
 ![img](https://lh5.googleusercontent.com/vikG8tpbK-RuFvBG8ValDRiNvURmUiKtmxPtZyuZNrq2_YONbXNsk8eXauDv1O8ob2dE2O_xaV9j_y6L1PdSY3oqUiEzslE3v2hMWAHR3qiLveIH1KzI_SW4OcLb1wkO0dka_iC0sZY-OGR2Al-DyJ3QCQ=s2048)
+
+
+
+### 3.5 Permisos
+
+Los sistemas operativos de la familia Windows poseen dos niveles de permisos para los recursos compartidos:
+
+- **Permisos para carpetas compartidas**: se aplican cada vez que un usuario quiere acceder a un archivo o carpeta de la red.
+- **Permisos para archivos y carpetas (NTFS)**: se aplican sobre dispositivos con formato NTFS para definir en mayor detalle las acciones permitidas.
+
+- Si accedemos en modo **local** a los archivos o carpetas sólo intervienen los **permisos NTFS**
+
+- Si se accede a través de la red se aplican los **dos niveles de permisos**: 
+
+- - 1º Permisos de carpetas compartidas
+  - 2º Permisos NTFS
+
+- ![img](https://lh3.googleusercontent.com/L4rjQfrGZi7nrRN4T51M39YB0xZYvjciSiZY2J1i3tJhLwNbDihCSPlNRDeJ6_6J9haU90KVEH8T0bTsoaDMOR8L-9VoGwzEfMOnANVSIPuETBSX_bVUaeXGam4_RjKREgELFzRBz_oJz4-KlfkpedQBAw=s2048)
+
+#### 3.5.1 Permisos de recursos compartidos
+
+![img](https://lh3.googleusercontent.com/aFVKj4-bLFtYL8IjjcjDTfPBr9mtTBl8Bg17vqe51dm5W3K0mjt-rIAaxgiOBEJr7oEqx_yaghgrbV20dAYTaaqYotPzZmfRUDmbr020hAbGl4vXLBJYzdQBm6IiqkfyI2A4IStjRF_vNhL_U-D7wOc0xA=s2048)
+
+![img](https://lh3.googleusercontent.com/D6GQm-qnrhjZIGfYQqoh1bmPgx-a97DWQrD5LsAqDQRedCR81P6RQ3b3uRbCuKkxQ_Qj6Aug-ehul86VSbuNtJbmp7RytgBWVMus8dH5j00xQrbryxRZ1jE8DHNh60826vbKHBIaz685bnYG1GuvOUHmWQ=s2048)
+
+ 
+
+   
+
+![img](https://lh6.googleusercontent.com/kc7vZEe25XJhoED6JD9sgr9RwyKZo5-lciPeybtgtP6vXbGih6TcPt2ZG_YGEnJuoTRz90jXzLTZ1sDPTGb0l0Pm5u5ziGed553S4VLE1oZe8BJiDxS2iDuQC-PTwzcBnTQ42o4EgFlUhge0M6VZwGvmsQ=s2048)
+
+![img](https://lh6.googleusercontent.com/WmbcvaX9faQDVYiXM3f4JWKdrh2kjTUbDIAgYCmkn90YK6LZ9nUcRthKry6-B0bVR_z98mo1GT3gv1IzDrEGgkHncktzuTybjyw8HjvxqrQMockS2KW_HDJSyCfiObsmdzN9v0p6lhYE1OVQP2So6Dyg4g=s2048)
+
+![img](https://lh3.googleusercontent.com/YWA8YesWN5te_gesyJ7dnkY-4TH0AyZkOs2Q9TQJAeUpsjdhVxJxxkR9IKlHdh0oiKUHhe4Qzh6Vc77I-9v-i8vGFXxdncO1hCERMpdcPzRa6c4nvqCcbIVseFulmdB5Uuj2bFJPHqcInljQ_lKiYbempw=s2048)
+
+
+
+![img](https://lh5.googleusercontent.com/VeX1-fc9L8kmutmSs2hu_i0Zi8ZWiI73cootKGqvnnHJb9DQYh1O3hvGdm8pr2nXKp2YEM87rBcCGDwQ_gEFMhyHvmXHlrpssgyhzuPvf1A5zExM7jctLszZD7XuBQi8zZNr33B6XlWdl6OhQhp6Jt-QFg=s2048)
+
+
+
+**Tipos de permisos:**
+
+**Control Total:** Todas las operaciones y cambio de permisos.
+
+**Cambiar:** permite crear, modificar y borrar carpetas y archivos,.
+
+**Lectura:** sólo permite la lectura y ejecución de archivos.
+
+![img](https://lh4.googleusercontent.com/ozZtZs9FucA1-LKHJzpYumcV9hV5uONaV_L6V2VeWsbhSSPRbzkYKljhrAcmJu7GOjy3N9jy3Y3IfgD0Vs_gcwS6-cZ2Led__yn8cYcLOZ3q54FRutMtzdXc0Ycq9_X6i0_is3ZiTvGPsS2TYprxPOQiaw=s2048)
+
+
+
+**Establecer permisos de recursos compartidos**
+
+**1º Compartir con usuarios específicos** 
+
+Seleccionar el recurso y hacer clic con el botón secundario **‘Compartir con ….’ y usuarios específicos.**
+
+![img](https://lh3.googleusercontent.com/yHEOZvKq0OHmYPd6mqFD9IHs2omCoUtnwBbcQlPPdtTd_sbiFN7CQ1vtLAuSoR5-DaA8i5G8jSiZQI3xbrfKkkwf1p4fHjo2uFTE9lnTJ9hjzFjPzd_XwNcv-u4mcdE8rBR_X-eJoqZJxnAaQz9JkOhFKg=s2048)
+
+**2º Compartir mediante el uso de Compartido avanzado**
+
+![image-20231003120446770](/aso/assets/img/windows_server/image-20231003120446770.png)
+
+#### 3.5.2 Permisos NTFS
+
+**Los Permisos NTFS** permiten controlar qué usuarios y grupos puede tener acceso a archivos y carpetas en un volumen NTFS. 
+
+Podemos asignar los siguientes permisos:
+
+![img](https://lh5.googleusercontent.com/gnErA5oK7nF06-K_Ot_OHrVXd9LH06GOj3Pmz4uUsBXyfEhmKzzjxfQP3Eu-rxF1y03wtInRKo1nuckYoleZSkFBln7z7q66Hdx9mj5YOoYxbxdEVb3CfTEuCDMiRiyFjvtY0yaoWO4bGIR_GYIjEAX2Pw=s2048)
+
+- **Control total.** Otorga todos los permisos posibles, incluido el control total sobre los permisos NTFS y los permisos de compartir.
+- **Modificar.** Permite leer, escribir, modificar y eliminar archivos y subcarpetas, así como ejecutar archivos.
+- **Lectura y ejecución.** Permite ver el contenido de un archivo o carpeta y ejecutar archivos ejecutables, pero no permite modificarlos.
+- **Mostrar el contenido de la carpeta.** Permite ver el contenido de una carpeta, pero no permite acceder a los archivos dentro de ella ni ejecutarlos.
+- **Lectura.** Permite únicamente la lectura de archivos y carpetas, sin posibilidad de modificar o eliminar.
+- **Escritura.** Permite crear nuevos archivos y carpetas, así como modificar o eliminar los existentes, pero no permite ver el contenido de la carpeta. 
+
+![img](https://lh5.googleusercontent.com/FgYdt6u_xg4-yvztI5-9wsvSh4f0b0nTHT0kNO5Hyq_AWme1GRcl35MKzkmfb5HrOatTDxJu43CUSmRo111T93QCL1_pwSBKsF5A5HCPwi4HNGVXgq09hpBd8QE44S6-40FMQv8IET-2-TF6Ec_kKuvY3A=s2048)
+
+
+
+**Permisos NTFS avanzados**
+
+![image-20231003175922893](/aso/assets/img/windows_server/image-20231003175922893.png)
+
+![img](https://lh6.googleusercontent.com/73HZcMWYHi1EXY8lN6Gqgi-uqHx6Khz3MdTB3lyR2L1zEpj4cQrH60HOG2XP6uemMbcXnYQPc3dnwJGTum8MinVNNSa1gwJUtT0j6uk8-UghLmh_5phwFlMeYKy2MIN2lLfenyspRe_9F-UBn_GkvJy8rQ=s2048)
+
+![img](https://lh4.googleusercontent.com/W7KeYEvB286Ieo9H95XflYrWAsW57LNbflTKMw_Zk17XhdSajblambkEpTapUt3a8BCag2JGDxYDpvlbjm4lvxDyE_UQ70JUMtShes2R1SIR60yH0rKqLVY5IMpdmaF8wDI5NxJxOIcGIKkw6j5bbiDP1Q=s2048)
+
+
+
+
+
