@@ -428,3 +428,17 @@ Podemos asignar los siguientes permisos:
 
 
 
+### 3.6 Perfiles
+
+Podemos definir un perfil como aquellos aspectos de configuración del equipo y del entorno de trabajo propios del usuario y que además son exportables a otras máquinas de manera transparente al mismo. mediante los perfiles conseguimos que el usuario independientemente del equipo en el que inicie la sesión disponga de un entorno de trabajo similar.
+
+Existen tres tipos de perfiles:
+
+- **Perfiles locales** : se almacenan en el equipo
+- **Perfiles móviles**: se almacenan en el servidor
+- **Perfiles obligatorios**: son perfiles móviles de solo lectura. Sólo el administrador puede modificarlos.
+
+Hay que tener en cuenta de que cuando un usuario con perfil móvil inicia la sesión, la información del servidor se copia al cliente. Cuando cierra la sesión se realiza la operación inversa. Un alto número de usuarios con perfil móvil puede **sobrecargar la red** demasiado. 
+
+
+
