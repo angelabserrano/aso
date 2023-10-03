@@ -280,3 +280,16 @@ El ámbito de un grupo establece su alcance, es decir, en qué partes de la red 
 > -alert- Los grupos universales se replican en los controladores de dominio que albergan el **catálogo global**. Cada vez que se deben comprobar los permisos se debe consultar el catálogo global. 
 
 ![image-20231003113646220](/aso/assets/img/windows_server/image-20231003113646220.png)
+
+### 3.3 Unidades organizativas
+
+Una **Unidad Organizativa** es un contenedor de objetos que permite organizarlos en subconjuntos, dentro del dominio, siguiendo una jerarquía. De este modo, podremos establecer una estructura lógica que represente de forma adecuada nuestra organización y simplifique la administración. Me permiten delegar permisos y asignar políticas de seguridad para uno o varios objetos.
+
+Las unidades organizativas que vienen creadas por defecto son:
+
+- **Builtin**: Grupos creados por defecto del sistema.
+- **Computers**: Cuentas de equipo incorporadas al dominio.
+- **DomainControllers**: Equipos que son controladores. 
+- **Users:** Usuarios del dominio que se crean
+- **ForeignSecurityPrincipals**: Contenedor para entidades principales de seguridad de dominios externos de confianza. No se debe modificar manualmente.
+
