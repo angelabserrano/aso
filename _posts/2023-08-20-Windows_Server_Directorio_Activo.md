@@ -265,9 +265,18 @@ Existen dos tipos de grupos:
 
 El ámbito de un grupo establece su alcance, es decir, en qué partes de la red puede utilizarse, y el tipo de cuentas que pueden formar parte de él.
 
-![img](https://lh6.googleusercontent.com/-hSTqYGLYAZO945hDGEr4Tm5eVadfhdgk-P3VTKNqEnE8Z_SDxsSTi-kiXX8sHJB31ahFJfNxmFSm40z2P6SyAsc7R9ij495dENrNyvHGrr-St1HVhu-aqMA0Zd_Q89rK9Rcs6mOhHVl3LYoTO-zLyRIBA=s2048)
 
-**Ámbito local**:
 
-- Los grupos de este ámbito tienen permisos sobre recursos de su dominio.
-- Pueden ser miembros de este grupo los grupos globales, locales o universales.
+| Ámbito de grupo   | El grupo puede incluir como miembros ...                     | Al grupo se le pueden asignar permisos en ... |
+| ----------------- | ------------------------------------------------------------ | --------------------------------------------- |
+| **Universal**     | - Cuentas de cualquier dominio del bosque<br />- Grupos globales de cualquier dominio del bosque <br />- Grupos universales de cualquier dominio del bosque | Cualquier dominio del bosque                  |
+| **Global**        | - Cuentas del mismo dominio del grupo<br />- Grupos globales del mismo dominio del grupo | Cualquier dominio del bosque                  |
+| **Dominio local** | - Cuentas de cualquier dominio <br />- Grupos globales de cualquier dominio<br />- Grupos universales de cualquier dominio<br />- Grupos locales de su dominio | Su dominio                                    |
+
+
+
+
+
+> -alert- Los grupos universales se replican en los controladores de dominio que albergan el **catálogo global**. Cada vez que se deben comprobar los permisos se debe consultar el catálogo global. 
+
+![image-20231003113646220](/aso/assets/img/windows_server/image-20231003113646220.png)
