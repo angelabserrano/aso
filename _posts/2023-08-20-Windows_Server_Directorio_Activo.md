@@ -293,3 +293,42 @@ Las unidades organizativas que vienen creadas por defecto son:
 - **Users:** Usuarios del dominio que se crean
 - **ForeignSecurityPrincipals**: Contenedor para entidades principales de seguridad de dominios externos de confianza. No se debe modificar manualmente.
 
+### 3.4 Directivas de grupo 
+
+Las directivas de grupo son un **conjunto de reglas** que controlan el entorno de trabajo de **cuentas de usuario** y **cuentas de equipo**. Las directivas de grupo proporcionan la gestión centralizada y configuración de sistemas operativos, aplicaciones y configuración de los usuarios en un entorno de[ ](https://es.wikipedia.org/wiki/Active_Directory)Active Directory. 
+
+Para gestiona las directivas de grupo:
+
+ **Herramientas->Administración de directivas de grupo**
+
+Las configuraciones de las directivas de grupo se encuentran en los objetos de directiva de grupo (**GPO**), que se vinculan con los siguientes contenedores de servicio de directorio de Active Directory: **sitios, dominios o unidades organizativas**. 
+
+> -alert- **No pueden aplicarse a grupos.** Si se desea aplicar una GPO a un grupo debemos crear una UO y dentro de esta un nuevo grupo e incorporar a este los grupos y/o usuarios a los que queremos aplicar dicha política.
+
+![img](https://lh5.googleusercontent.com/uqSkI1Ldm7Oq5BMkxluRynNo6-eXJ9ye4R20EwXi5eG6G3Ojruo71_FoYG_aWihZM774f-_HbqbNBP2T7qBIHE0Yyh1l_D-GJ9o5mukGS59Sp4S-2oxPKorGzXljT1UJZG6hDHT40Pc051Jss7CChdqK6Q=s2048)
+
+**Default domain policy:** Es la política que se aplica a todo el dominio empresa.local
+
+#### 3.4.1 Creación de una nueva directiva
+
+![img](https://lh6.googleusercontent.com/YtBkDGrDpDXkj7pbLxr5YB_Vo3X5138JsG6ZBey6_BsNLfl_NhICI0flLYcf_Etuh-ubxqaO5rUwL5wzpdXaV86VKz9bonIjM_wPDjGIXzjnfKoGFJyTTgIb8hrXtSDMIhyXi10JBSeSqIu5TWj2kJlHXg=s2048)
+
+![img](https://lh5.googleusercontent.com/6mft6rJXdqQE_pHz63wGu0t5BPIbexEWfIIzUZLk8JrJk1GXADSOmn5ymbiNSUmrb4Fl7PKtDLB_IiVOdQDquEFUxOhXFGEmpCtRDvMNsXsHfN1hlj8FLF8S2Cx18uqXhXFBQSWmvSRhvC-2QFPOtmz4lg=s2048)
+
+![img](https://lh5.googleusercontent.com/6lxprGWu4okDhCf5za2FxZPxkuUn-O_SCCbE1toHSr9lD0W9T3fU-ZHzeKRdwUBIVCy6wtTP0-I7Nlbkh5vMGqLiwphn--vq4FW2yMQ2oQF4U71jkl-DkiscqEeBs09wkKs2VSDH1yR55HBpmh3OSGUtCw=s2048)
+
+#### 3.4.2 Vinculación de una directiva a una Unidad Organizativa
+
+Para ello, desde el Administrador de directivas de grupo (**gpmc.msc**), pulsaremos con el botón derecho sobre la unidad organizativa a la que queramos asignarle la directiva creada.
+
+![img](https://lh3.googleusercontent.com/6Y75mWXtl9APPigTMyhXZ5FkqjL_RvNes0TQfW6ZPXzaX1YbCsiMwYxzkSBQb-UiX3IqB8dAWYCdjXpRR6IovgKvOQRxYr8ax6fx5g2Y9bltI_vjQdOJliOpk23ZI06r6I581N0dHGEeg33-4R95Eitzig=s2048)
+
+
+
+#### 3.4.3 Orden de prioridad de las directivas de grupo
+
+![img](https://lh4.googleusercontent.com/ab2V7DtF4PJFTgYGN5_NTnjXlPlELrrYCXK5Q9NPlu745l8d7keLmQJpNPBKK7EFF3ca54uHyYj4nvxo8leuKFSvE8KMRCEa1qlxuzshifUF6EHtlJXnh-6ul_lJCPDU0eDbW2Z5tM488t96cjFgBeGQfg=s2048)
+
+Las GPO’s de una OU prevalecen sobre las del dominio, que a su vez prevalecen sobre las de sitio, las cuales a su vez prevalecen sobre las del equipo local. 
+
+![img](https://lh5.googleusercontent.com/vikG8tpbK-RuFvBG8ValDRiNvURmUiKtmxPtZyuZNrq2_YONbXNsk8eXauDv1O8ob2dE2O_xaV9j_y6L1PdSY3oqUiEzslE3v2hMWAHR3qiLveIH1KzI_SW4OcLb1wkO0dka_iC0sZY-OGR2Al-DyJ3QCQ=s2048)
