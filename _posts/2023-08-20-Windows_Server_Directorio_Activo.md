@@ -117,7 +117,11 @@ Existen 3 métodos de instalación:
 
 ![image-20230910135709834](/aso/assets/img/windows_server/image-20230910135709834.png)
 
+> -info- Ver script nos permite obtener un script en PowerShell para automatizar la instalación sin tener que volver a introducir de nuevo todos los datos. 
+
 ![image-20230910135739606](/aso/assets/img/windows_server/image-20230910135739606.png)
+
+En la pantalla de **Comprobación de requisitos**, se verifica que el sistema cumple todos los requisitos para convertirse en controlador de dominio. 
 
 ![image-20230910135904288](/aso/assets/img/windows_server/image-20230910135904288.png)
 
@@ -315,7 +319,7 @@ Las configuraciones de las directivas de grupo se encuentran en los objetos de d
 
 ![img](https://lh5.googleusercontent.com/uqSkI1Ldm7Oq5BMkxluRynNo6-eXJ9ye4R20EwXi5eG6G3Ojruo71_FoYG_aWihZM774f-_HbqbNBP2T7qBIHE0Yyh1l_D-GJ9o5mukGS59Sp4S-2oxPKorGzXljT1UJZG6hDHT40Pc051Jss7CChdqK6Q=s2048)
 
-**Default domain policy:** Es la política que se aplica a todo el dominio empresa.local
+**Default domain policy:** Es la política que se aplica a todo el dominio empresa.local, es decir, a todos sus usuarios y equipos. 
 
 #### 3.4.1 Creación de una nueva directiva
 
@@ -325,11 +329,15 @@ Las configuraciones de las directivas de grupo se encuentran en los objetos de d
 
 ![img](https://lh5.googleusercontent.com/6lxprGWu4okDhCf5za2FxZPxkuUn-O_SCCbE1toHSr9lD0W9T3fU-ZHzeKRdwUBIVCy6wtTP0-I7Nlbkh5vMGqLiwphn--vq4FW2yMQ2oQF4U71jkl-DkiscqEeBs09wkKs2VSDH1yR55HBpmh3OSGUtCw=s2048)
 
+
+
 #### 3.4.2 Vinculación de una directiva a una Unidad Organizativa
 
 Para ello, desde el Administrador de directivas de grupo (**gpmc.msc**), pulsaremos con el botón derecho sobre la unidad organizativa a la que queramos asignarle la directiva creada.
 
 ![img](https://lh3.googleusercontent.com/6Y75mWXtl9APPigTMyhXZ5FkqjL_RvNes0TQfW6ZPXzaX1YbCsiMwYxzkSBQb-UiX3IqB8dAWYCdjXpRR6IovgKvOQRxYr8ax6fx5g2Y9bltI_vjQdOJliOpk23ZI06r6I581N0dHGEeg33-4R95Eitzig=s2048)
+
+
 
 
 
