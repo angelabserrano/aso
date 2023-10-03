@@ -10,6 +10,8 @@ permalink: wserver-directorio-activo
 
 ## 1. Conceptos básicos de Active Directory
 
+El **Directorio Activo** (también conocido como **Active Directory** en inglés) es un servicio de directorio de red desarrollado por Microsoft. Su objetivo principal radica en proporcionar un servicio centralizado para la gestión y organización de recursos de red, como usuarios, grupos, impresoras y otros dispositivos, facilitando así la administración, autenticación y autorización en entornos empresariales de manera eficiente y segura.
+
 - **Dominio (Domain)** : Colección de objetos: usuarios, grupos, equipos, etc. Se representa por un nombre de dominio DNS. Ejemplo: empresa.local
 
 - **Controlador de dominio (Domain Controller):** Es el servidor con el directorio activo instalado, que contiene la base de datos de objetos del directorio para un determinado dominio. 
