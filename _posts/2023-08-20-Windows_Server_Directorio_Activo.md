@@ -426,6 +426,33 @@ Podemos asignar los siguientes permisos:
 
 
 
+**Herencia de permisos**
+
+Al crear un archivo o una carpeta en un volumen NTFS, ese objeto hereda automáticamente los permisos de su carpeta padre, y a la inversa. 
+
+En ocasiones, puede interesarnos eliminar esa herencia de permisos. Podemos eliminarla de tres formas:
+
+- Eliminar la herencia a nivel de la carpeta de nivel superior. Los objetos contenidos en ella dejan de heredar los permisos.
+- Eliminar la herencia a nivel de subcarpeta o archivo contenido dentro del recurso principal.
+- Permitir o denegar explícitamente un permiso de manera diferente a como está definido en el recurso contenedor. 
+
+Para *eliminar la herencia* seguimos los siguientes pasos:
+
+1 - Se selecciona el recurso con el botón derecho y se pulsa **Propiedades**
+
+2 - A través de la pestaña **Seguridad** accedemos a **Opciones avanzadas**
+
+3 - En el cuadro que aparece, en la pestaña **Permisos**, se pulsa el botón **Deshabilitar herencia**. 
+
+4 - Al pulsar en **Deshabilitar herencia** hay dos opciones:
+
+- Convertir los permisos heredados en permisos explícitos: mantiene los permisos de todos los archivos y subcarpetas, pero no están vinculados a los de nivel superior.
+- Quitar todos los permisos: elimina todos los permisos heredados.
+
+Como norma general se marcará la primera opción, convertir los permisos en permisos explícitos.
+
+
+
 
 
 ### 3.6 Perfiles
