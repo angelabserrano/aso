@@ -12,6 +12,8 @@ permalink: wserver-directorio-activo
 
 El **Directorio Activo** (también conocido como **Active Directory** en inglés) es un servicio de directorio de red desarrollado por Microsoft. Su objetivo principal radica en proporcionar un servicio centralizado para la gestión y organización de recursos de red, como usuarios, grupos, impresoras y otros dispositivos, facilitando así la administración, autenticación y autorización en entornos empresariales de manera eficiente y segura.
 
+Existe una serie de conceptos que se deben tener claros para comprender el funcionamiento del directorio activo:
+
 - **Dominio (Domain)** : Colección de objetos: usuarios, grupos, equipos, etc. Se representa por un nombre de dominio DNS. Ejemplo: empresa.local
 
 - **Controlador de dominio (Domain Controller):** Es el servidor con el directorio activo instalado, que contiene la base de datos de objetos del directorio para un determinado dominio. 
@@ -24,6 +26,8 @@ El **Directorio Activo** (también conocido como **Active Directory** en inglés
 
   ![image-20230910115708152](/aso/assets/img/windows_server/image-20230910115708152.png)
 
+- **Confianza** : Es la relación existente entre dos dominios, dos árboles o dos bosques. 
+
 - **Unidad organizativa** : Es un contenedor para organizar los objetos en un dominio, a la que se pueden asignar valores de configuración de directivas de grupo.
 
 - **Catálogo Global (Global Catalog):** incluye una copia parcial de solo lectura que contiene información de los atributos más utilizados de los objetos del bosque.
@@ -33,6 +37,8 @@ El **Directorio Activo** (también conocido como **Active Directory** en inglés
 - **DNS :** El objetivo principal es traducir un nombre de dominio a una IP
 
 ​	[www.microsoft.com](http://www.microsoft.com) => 2.21.180.244
+
+- **Sitios**: En una red física, un sitio representa un conjunto de equipos conectados mediante una línea de alta velocidad, como una red de área local. En AD, los sitios representan la estructura física, o topología de red. Es importante distinguir entre sitios y dominios. Lo sitios representan la estructura física de red, mientras que los dominios representan la estructura lógica de la organización.
 
 ## 2. Instalación de Active Directory
 
