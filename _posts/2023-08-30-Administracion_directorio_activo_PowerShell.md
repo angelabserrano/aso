@@ -391,17 +391,17 @@ $acl | Set-Acl -Path $ruta
 
 - La **herencia** (**Inheritance**) es a qué tipo de objetos secundarios se aplica la ACE 
 
-- - **ContainerInherit** = Los objetos contenedores secundarios se heredan de la ACE
+  - **ContainerInherit** = Los objetos contenedores secundarios se heredan de la ACE
   - **None** = Los objetos secundarios no se heredan de la ACE.
   - **ObjectInherit** = Los objetos hoja secundarios se heredan de la ACE.
 
-- 
+  
 
 ### Propagación
 
 - La **propagación** (**propagation)** controla a qué generación de objetos secundarios está restringida la ACE. 
 
-- - **Ninguno** = ACE se aplica a todos. 
+  - **Ninguno** = ACE se aplica a todos. 
   - **InheritOnly** = ACE se aplica solo a hijos y nietos, no a la carpeta de destino. 
   - **NoPropagateInherit** = Carpeta de destino y carpeta de destino hijos, no nietos
 
