@@ -293,3 +293,135 @@ Revoke-SmbShareAccess -Name datos -AccountName alumno -Force
 
 
 
+## 5. Permisos NTFS
+
+Los permisos NTFS (permisos básicos) se componen de cinco niveles de autorización:
+
+- **Control total**: un usuario que tenga este nivel de permisos puede modificar, añadir, desplazar o suprimir carpetas y archivos. También puede cambiar el permiso de acceso.
+
+- **Modificación**: el usuario puede visualizar y modificar los archivos, así como sus propiedades. También puede añadir y suprimir archivos.
+
+- **Lectura y ejecución**: el usuario puede visualizar el contenido de los archivos y lanzar archivos ejecutables y scripts.
+
+- **Lectura**: el usuario puede visualizar el contenido de los archivos.
+
+- **Escritura**: el usuario puede escribir en un archivo y añadir nuevos archivos en la carpeta.
+
+  
+
+Los permisos **NTFS** se pueden heredar (provienen de la carpeta padre) o pueden ser explícitos (configurados individualmente). De esta manera en cada **ACE** (**Access Control Entry**) configurada en el **ACL** (**Access Control List**) se puede definir si el permiso debe ser de tipo "Permitir" o "Denegar".
+
+La gestión de los permisos NTFS con PowerShell puede hacerse con dos cmdlets:
+
+- **Get-Acl**: permite recuperar los permisos configurados en un recurso (carpetas y archivos).
+- **Set-Acl**: permite modificar los permisos de un recurso.
+
+- El cmdlet **Get-Acl** permite obtener los permisos declarados en un recurso, como una carpeta, un archivo o una clave de registro. El cmdlet se puede usar simplemente con el parámetro -Path:
+
+| **Parámetro**  | **Descripción**                        |
+| -------------- | -------------------------------------- |
+| -Path <String> | Indica el camino de acceso al recurso. |
+
+```powershell
+Get-Acl -Path .\prueba | Format-List
+```
+
+En lugar de Format-List, podemos utilizar el alias fl 
+
+```powershell
+Get-Acl -Path .\prueba | fl
+```
+
+**Ejemplo 1**: Obtener los permisos del fichero prueba.txt y visualizar en formato tabla.
+
+```powershell
+(Get-Acl .\prueba.txt).Access | Format-Table
+```
+
+![img](https://lh6.googleusercontent.com/X03gwnAOD-F5ymfnPWapnkxg3CWi2v0m_kbLr9e1neAGFlXBffQ3XeB5S-2PpmDwsvoDkJW1f85tZfKHj1wB-BcXXpFdW7GzOP2vFcdbhwi1pAOCl38DeRj9nJ5WXUbSinTTp8eSUveDO-h-xz_3r_SyiA=s2048)
+
+
+
+**Ejemplo 2:** Obtener los permisos del directorio permisos y visualizar en formato tabla
+
+```powershell
+(Get-Acl .\permisos).Access | Format-Table
+```
+
+![img](https://lh6.googleusercontent.com/VaX-76oBZmEZ1v49hM1t0duOZQm4Gl7R69ScTSnO47YS4HXjkEahs1kZsiB16nLPwm3_mNVnfFSNC9arQISo9hW0dls7IpiKPr0Qo9XrxGcIo1JzaHHRZwasuK7p6o_9G5h0ouy5lhci4DKaTgj7GVOkFg=s2048)
+
+Como puede observarse, es la misma información que podemos recopilar en la GUI:
+
+![img](https://lh6.googleusercontent.com/TwMdsDVlawBvVsSsZJlT3WzpxzVJCyCDti58DGgDlHZgGMXB3PnzodXvLJrJ5e69-yuiIFYDOrq2150cqwCg2_W_rVZkPxHLadroPQPHSQ7zNCjNnXnzY3vWtdb3NbPDjzq7g6mRFouP8meVLdRW_Dk3_w=s2048)
+
+- El cmdlet **Set-Acl** permite definir los permisos en un recurso. Para usar este cmdlet y poder definir estos permisos, hay que utilizar los descriptores de seguridad usando Get-Acl, y aplicarlos después en el recurso deseado.
+
+  | **Parámetro**       | **Descripción**                                              |
+  | ------------------- | ------------------------------------------------------------ |
+  | -AclObject <Object> | Especifica los descriptores de seguridad que se van a aplicar |
+  | -Path <String>      | Indica el camino de acceso al recurso.                       |
+
+
+
+**Ejemplo 1: Aplicar permisos NTFS en la carpeta prueba**
+
+```powershell
+$ruta = "C:\prueba\"
+
+ New-Item -Path $ruta -ItemType Directory
+
+ $acl= Get-Acl -Path $ruta 
+
+#Crear regla de acceso
+
+<# System.Security.AccessControl.FileSystemAccessRule: Representa una abstracción de una entrada de control de acceso (ACE) que define una regla de acceso para un archivo o directorio #>
+
+$permisoadd = @('Todos', 'FullControl', 'ContainerInherit, ObjectInherit', 'None', 'Allow')
+
+$ace= New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permisoadd
+
+$acl.SetAccessRule($ace)
+
+#Añadir permisos a la carpeta
+
+$acl | Set-Acl -Path $ruta
+```
+
+### Herencia
+
+- La **herencia** (**Inheritance**) es a qué tipo de objetos secundarios se aplica la ACE 
+
+- - **ContainerInherit** = Los objetos contenedores secundarios se heredan de la ACE
+  - **None** = Los objetos secundarios no se heredan de la ACE.
+  - **ObjectInherit** = Los objetos hoja secundarios se heredan de la ACE.
+
+- 
+
+### Propagación
+
+- La **propagación** (**propagation)** controla a qué generación de objetos secundarios está restringida la ACE. 
+
+- - **Ninguno** = ACE se aplica a todos. 
+  - **InheritOnly** = ACE se aplica solo a hijos y nietos, no a la carpeta de destino. 
+  - **NoPropagateInherit** = Carpeta de destino y carpeta de destino hijos, no nietos
+
+
+
+**Ejemplo1:** Asignar permisos de control total a todos los usuarios
+
+```powershell
+$acl = Get-Acl .\permisos
+
+$acl.Access | Format-Table
+
+$permisoadd = @('Todos','FullControl','ContainerInherit,ObjectInherit','None','Allow')
+
+$ace= New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permisoadd
+
+$acl.setAccessRule($ace)
+
+$acl.Access | Format-Table
+
+$acl | Set-Acl .\permisos
+```
+
