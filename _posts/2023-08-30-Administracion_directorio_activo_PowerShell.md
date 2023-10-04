@@ -273,5 +273,23 @@ Remove-SmbShare -Name datos -Force
 
 ### 4.4 Administrar permisos de un recurso compartido
 
-El cmdlet **Grant-SmbShareAccess(grsmba)** permite añadir/quitar permisos a un usuario o un grupo.
+Los cmdlets `Grant-SmbShareAccess` y `Revoke-SmbShareAccess` son cmdlets de PowerShell que se utilizan para administrar los permisos de acceso a carpetas compartidas (shares) en un entorno de red SMB (Server Message Block). 
+
+El cmdlet **Grant-SmbShareAccess(grsmba)** permite otorgar permisos de acceso a una carpeta compartida. 
+
+El cmdlet **Revoke-SmbShareAccess** se utiliza para revocar o quitar los permisos de acceso a una carpeta compartida. 
+
+**Ejemplo 1**: Añadir el permiso de **control total** al usuario **profesor** sobre el recurso **datos**.
+
+```powershell
+Grant-SmbShareAccess -Name datos -AccountName profesor -AccessRight Full -Force 
+```
+
+**Ejemplo 2** : Quitar los permisos que tiene el usuario **alumno** sobre el recurso **datos**.
+
+```powershell
+Revoke-SmbShareAccess -Name datos -AccountName alumno -Force
+```
+
+
 
