@@ -8,6 +8,8 @@ conToc: true
 permalink: powershell-directorio-activo
 ---
 
+
+
 ## 1 Gestión de usuarios de Active Directory con PowerShell 
 
 ### 1.1 Creación de cuentas de usuario 
@@ -425,3 +427,31 @@ $acl.Access | Format-Table
 $acl | Set-Acl .\permisos
 ```
 
+
+
+
+
+## Anexo I. Referencia a los elementos del Active Directory
+
+Para referenciar a los objetos del Active Directory utilizamos su Distinguised Name (DN) . El DN permite identificar un objeto de manera única dentro de la jerarquía del Active Directory.  Se forma a partir de un atributo=valor, separado por comas. A continuación se muestran los diferentes tipos de atributos que existen:
+
+| Objeto              | Atributo                  |
+| ------------------- | ------------------------- |
+| Usuario             | CN [Common Name]          |
+| Grupo               | CN [Common Name]          |
+| Equipo              | CN [Common Name]          |
+| Unidad Organizativa | OU [Organizational Unit ] |
+| Dominio             | DC [Domain Component]     |
+
+**Ejemplo 1**: DN de una unidad organizativa
+
+```
+Distinguised Name: OU=VENTAS, OU=EMPRESA, DC=IESELCAMINAS,DC=LOCAL
+
+```
+
+**Ejemplo 2**: DN de un usuario que está ubicado dentro de la unidad organizativa ventas.
+
+```
+Distinguised Name: CN=usuario1,OU=VENTAS, OU=EMPRESA, DC=IESELCAMINAS,DC=LOCAL
+```
