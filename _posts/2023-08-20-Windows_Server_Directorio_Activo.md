@@ -69,7 +69,7 @@ Existen 3 métodos de instalación:
 
 - Renombramos el nombre del equipo a **empresa-DC1**
 
-![image-20230910121347212](/aso/assets/img/windows_server/image-20230910121347212.png)
+![image-20231007202930334](/aso/assets/img/windows_server/image-20231007202930334.png)
 
 - Abrimos el **Administrador del Servidor**
 
@@ -190,9 +190,74 @@ En la pantalla de **Comprobación de requisitos**, se verifica que el sistema cu
 
   
 
-## 3. Gestión del directorio activo a través de la interfaz gráfica
+## 3. Degradar un controlador de dominio desde la interfaz gráfica
 
-### 3.1 Cuentas de usuario y equipo
+La degradación del controlador de dominio se divide en dos pasos:
+
+- En primer lugar procederemos a la degradación del controlador de dominio. Al final de este paso, el servidor dejará de actuar como controlador de dominio.
+- A continuación, desinstalaremos los roles *Servicios de dominio de Active Directory y DNS*.
+
+
+
+En el **Administrador del servidor**, desplegaremos el menú **Administrar** y elegiremos la opción **Quitar roles y funciones**.
+
+![image-20231007195424356](/aso/assets/img/windows_server/image-20231007195424356.png)
+
+
+
+A continuación elegimos la opción "**Seleccionar un servidor del grupo de servidores**".
+
+![image-20231007203317189](/aso/assets/img/windows_server/image-20231007203317189.png)
+
+En la página Quitar roles de servidor, buscamos en la lista la entrada Servicios de dominio de Active Directory y hacemos clic para desmarcarla.
+
+![image-20231007195714453](/aso/assets/img/windows_server/image-20231007195714453.png)
+
+
+
+Después nos aparece un diálogo que nos indica que para eliminar los Servicios de dominio, también tendremos que eliminar las características.
+
+![image-20231007195908139](/aso/assets/img/windows_server/image-20231007195908139.png)
+
+
+
+Se realiza una validación para ver si se cumplen todos los requerimientos que permitan desinstalar el rol y muestra un error. 
+
+![image-20231007203356399](/aso/assets/img/windows_server/image-20231007203356399.png)
+
+
+
+Hacemos clic en **disminuir el nivel del controlador de dominio** para poder proceder con la desinstalación.
+
+Hacemos clic sobre **Forzar la eliminación de este controlador de dominio.** 
+
+![image-20231007203507554](/aso/assets/img/windows_server/image-20231007203507554.png)
+
+
+
+Para continuar, debemos marcar la opción *Continuar con la eliminación*.
+
+![image-20231007203609424](/aso/assets/img/windows_server/image-20231007203609424.png)
+
+
+
+Escribimos la contraseña para la cuenta de Administrador.
+
+![image-20231007203713083](/aso/assets/img/windows_server/image-20231007203713083.png)
+
+
+
+Hacemos clic en **Disminuir nivel**
+
+![image-20231007203809019](/aso/assets/img/windows_server/image-20231007203809019.png)
+
+
+
+Una vez terminado el proceso de Disminur nivel, debemos desinstalar los roles *Servicios de dominio de Active Directory* y *DNS*. 
+
+## 4. Gestión del directorio activo a través de la interfaz gráfica
+
+### 4.1 Cuentas de usuario y equipo
 
 - Una **cuenta de usuario** es un objeto que posibilita el acceso a los recursos del dominio. No siempre representan a personas concretas, sino que también pueden ser utilizadas como mecanismos de acceso para determinados servicios o aplicaciones de la máquina local o, incluso, de un equipo remoto. 
 
@@ -263,7 +328,7 @@ El **perfil de un usuario** consiste en la personalización del entorno. Por def
 
 
 
-### 3.2 Cuentas de grupo
+### 4.2 Cuentas de grupo
 
 Una cuenta de grupo es una colección de cuentas de usuario que se puede utilizar para asignar un conjunto de permisos y derechos a varios usuarios al mismo tiempo. Un grupo también puede contener contactos, equipos y otros grupos.
 
@@ -271,7 +336,7 @@ Para crear una cuenta de grupo acceder al menú **Herramientas** del **Administr
 
 ![img](https://lh6.googleusercontent.com/EeaYgp_eN8g7ARDIVlQubgJ0-sOLztriJmSgl8XHv-t3GQwn355FYZM2Je7xezky6fQcvBsOMFo4IywHlcDhCHFLjcrdHrzVEEEzrk8_v2iG4ZZGFVzwfmWH8SaQtXmeC1dwHgl5Sb7oCUHhDwmSzmAOYQ=s2048)
 
-#### 3.2.1 Tipos de grupos
+#### 4.2.1 Tipos de grupos
 
 Existen dos tipos de grupos:
 
@@ -281,7 +346,7 @@ Existen dos tipos de grupos:
 
   
 
-#### 3.2.2 Ámbitos de un grupo
+#### 4.2.2 Ámbitos de un grupo
 
 El ámbito de un grupo establece su alcance, es decir, en qué partes de la red puede utilizarse, y el tipo de cuentas que pueden formar parte de él.
 
@@ -301,7 +366,7 @@ El ámbito de un grupo establece su alcance, es decir, en qué partes de la red 
 
 ![image-20231003113646220](/aso/assets/img/windows_server/image-20231003113646220.png)
 
-### 3.3 Unidades organizativas
+### 4.3 Unidades organizativas
 
 Una **Unidad Organizativa** es un contenedor de objetos que permite organizarlos en subconjuntos, dentro del dominio, siguiendo una jerarquía. De este modo, podremos establecer una estructura lógica que represente de forma adecuada nuestra organización y simplifique la administración. Me permiten delegar permisos y asignar políticas de seguridad para uno o varios objetos.
 
@@ -313,7 +378,7 @@ Las unidades organizativas que vienen creadas por defecto son:
 - **Users:** Usuarios del dominio que se crean
 - **ForeignSecurityPrincipals**: Contenedor para entidades principales de seguridad de dominios externos de confianza. No se debe modificar manualmente.
 
-### 3.4 Directivas de grupo 
+### 4.4 Directivas de grupo 
 
 Las directivas de grupo son un **conjunto de reglas** que controlan el entorno de trabajo de **cuentas de usuario** y **cuentas de equipo**. Las directivas de grupo proporcionan la gestión centralizada y configuración de sistemas operativos, aplicaciones y configuración de los usuarios en un entorno de[ ](https://es.wikipedia.org/wiki/Active_Directory)Active Directory. 
 
@@ -329,7 +394,7 @@ Las configuraciones de las directivas de grupo se encuentran en los objetos de d
 
 **Default domain policy:** Es la política que se aplica a todo el dominio empresa.local, es decir, a todos sus usuarios y equipos. 
 
-#### 3.4.1 Creación de una nueva directiva
+#### 4.4.1 Creación de una nueva directiva
 
 ![img](https://lh6.googleusercontent.com/YtBkDGrDpDXkj7pbLxr5YB_Vo3X5138JsG6ZBey6_BsNLfl_NhICI0flLYcf_Etuh-ubxqaO5rUwL5wzpdXaV86VKz9bonIjM_wPDjGIXzjnfKoGFJyTTgIb8hrXtSDMIhyXi10JBSeSqIu5TWj2kJlHXg=s2048)
 
@@ -339,7 +404,7 @@ Las configuraciones de las directivas de grupo se encuentran en los objetos de d
 
 
 
-#### 3.4.2 Vinculación de una directiva a una Unidad Organizativa
+#### 4.4.2 Vinculación de una directiva a una Unidad Organizativa
 
 Para ello, desde el Administrador de directivas de grupo (**gpmc.msc**), pulsaremos con el botón derecho sobre la unidad organizativa a la que queramos asignarle la directiva creada.
 
@@ -349,7 +414,7 @@ Para ello, desde el Administrador de directivas de grupo (**gpmc.msc**), pulsare
 
 
 
-#### 3.4.3 Orden de prioridad de las directivas de grupo
+#### 4.4.3 Orden de prioridad de las directivas de grupo
 
 ![img](https://lh4.googleusercontent.com/ab2V7DtF4PJFTgYGN5_NTnjXlPlELrrYCXK5Q9NPlu745l8d7keLmQJpNPBKK7EFF3ca54uHyYj4nvxo8leuKFSvE8KMRCEa1qlxuzshifUF6EHtlJXnh-6ul_lJCPDU0eDbW2Z5tM488t96cjFgBeGQfg=s2048)
 
@@ -359,7 +424,7 @@ Las GPO’s de una OU prevalecen sobre las del dominio, que a su vez prevalecen 
 
 
 
-### 3.5 Permisos
+### 4.5 Permisos
 
 Los sistemas operativos de la familia Windows poseen dos niveles de permisos para los recursos compartidos:
 
@@ -375,7 +440,7 @@ Los sistemas operativos de la familia Windows poseen dos niveles de permisos par
 
 - ![img](https://lh3.googleusercontent.com/L4rjQfrGZi7nrRN4T51M39YB0xZYvjciSiZY2J1i3tJhLwNbDihCSPlNRDeJ6_6J9haU90KVEH8T0bTsoaDMOR8L-9VoGwzEfMOnANVSIPuETBSX_bVUaeXGam4_RjKREgELFzRBz_oJz4-KlfkpedQBAw=s2048)
 
-#### 3.5.1 Permisos de recursos compartidos
+#### 4.5.1 Permisos de recursos compartidos
 
 ![img](https://lh3.googleusercontent.com/aFVKj4-bLFtYL8IjjcjDTfPBr9mtTBl8Bg17vqe51dm5W3K0mjt-rIAaxgiOBEJr7oEqx_yaghgrbV20dAYTaaqYotPzZmfRUDmbr020hAbGl4vXLBJYzdQBm6IiqkfyI2A4IStjRF_vNhL_U-D7wOc0xA=s2048)
 
@@ -421,7 +486,7 @@ Seleccionar el recurso y hacer clic con el botón secundario **‘Compartir con 
 
 ![image-20231003120446770](/aso/assets/img/windows_server/image-20231003120446770.png)
 
-#### 3.5.2 Permisos NTFS
+#### 4.5.2 Permisos NTFS
 
 **Los Permisos NTFS** permiten controlar qué usuarios y grupos puede tener acceso a archivos y carpetas en un volumen NTFS. 
 
@@ -479,7 +544,7 @@ Como norma general se marcará la primera opción, convertir los permisos en per
 
 
 
-### 3.6 Perfiles
+### 4.6 Perfiles
 
 Podemos definir un perfil como aquellos aspectos de configuración del equipo y del entorno de trabajo propios del usuario y que además son exportables a otras máquinas de manera transparente al mismo. mediante los perfiles conseguimos que el usuario independientemente del equipo en el que inicie la sesión disponga de un entorno de trabajo similar.
 
