@@ -253,7 +253,31 @@ Hacemos clic en **Disminuir nivel**
 
 
 
+Después, el sistema comenzará a reiniciarse.
+
+![image-20231007204612720](/aso/assets/img/windows_server/image-20231007204612720.png)
+
+
+
+
+
 Una vez terminado el proceso de Disminur nivel, debemos desinstalar los roles *Servicios de dominio de Active Directory* y *DNS*. 
+
+En el *Administrador del servidor*, desplegaremos el menú *Administrar*. Y elegimos la opción Quitar roles y funciones.
+
+![image-20231007204912200](/aso/assets/img/windows_server/image-20231007204912200.png)
+
+
+
+Seleccionar un servidor del grupo de servidores
+
+![image-20231007204947091](/aso/assets/img/windows_server/image-20231007204947091.png)
+
+Y desmarcamos la opción de "Servicios de dominio de Active Directory"
+
+
+
+
 
 ## 4. Gestión del directorio activo a través de la interfaz gráfica
 
