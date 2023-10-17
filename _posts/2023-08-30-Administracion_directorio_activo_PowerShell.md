@@ -389,7 +389,57 @@ $acl.SetAccessRule($ace)
 $acl | Set-Acl -Path $ruta
 ```
 
-### Herencia
+
+
+### Herencia del padre
+
+`SetAccessRuleProtection` es un método que se utiliza en PowerShell para gestionar la herencia de reglas de acceso en objetos del sistema de archivos. Este método toma dos variables como argumentos:
+
+1. **$InheritFlag**:
+   - Este es el primer argumento que espera el método. Indica si deseas habilitar o deshabilitar la herencia de reglas de acceso para el objeto.
+   - Si `$InheritFlag` es `$true`, significa que se habilitará la herencia, lo que implica que el objeto heredará las reglas de acceso de su contenedor padre.
+   - Si `$InheritFlag` es `$false`, se deshabilitará la herencia, lo que significa que el objeto dejará de heredar las reglas de acceso de su contenedor padre.
+2. **$PreserveInheritance**:
+   - Este es el segundo argumento que espera el método. Indica si deseas preservar o eliminar las reglas de acceso heredadas al deshabilitar la herencia.
+   - Si `$PreserveInheritance` es `$true`, se preservarán las reglas de acceso heredadas, lo que significa que se mantendrán en el objeto incluso después de deshabilitar la herencia. Esto permite que el objeto tenga sus propias reglas de acceso además de las heredadas.
+   - Si `$PreserveInheritance` es `$false`, se eliminarán las reglas de acceso heredadas al deshabilitar la herencia. Esto significa que el objeto solo tendrá las reglas de acceso que se definan directamente en él.
+
+En resumen, `SetAccessRuleProtection` te permite controlar si un objeto hereda reglas de acceso y qué hacer con las reglas de acceso heredadas cuando se deshabilita la herencia.
+
+```powershell
+# Paso 1: Obtener las reglas de acceso actuales
+$Path = "C:\prueba"
+$Acl = Get-Acl -Path $Path
+
+# Mostrar las reglas de acceso antes de hacer cambios
+Write-Host "Reglas de acceso antes de los cambios:"
+$Acl.Access | Format-Table
+
+# Paso 2: Deshabilitar la herencia y preservar las reglas de acceso
+$Acl.SetAccessRuleProtection($true, $true)
+
+# Aplicar los cambios
+Set-Acl -Path $Path -AclObject $Acl
+
+# Mostrar las reglas de acceso después de deshabilitar la herencia
+Write-Host "Reglas de acceso después de deshabilitar la herencia:"
+Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
+
+# Paso 3: Eliminar todas las reglas de acceso
+$Acl | Get-Acl | ForEach-Object { $_.Access | ForEach-Object { $Acl | Remove-AccessRule $_ } }
+
+# Aplicar los cambios
+Set-Acl -Path $Path -AclObject $Acl
+
+# Mostrar las reglas de acceso después de eliminar todas las reglas
+Write-Host "Reglas de acceso después de eliminar todas las reglas:"
+Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
+
+```
+
+
+
+### Herencia en objetos secundarios
 
 - La **herencia** (**Inheritance**) es a qué tipo de objetos secundarios se aplica la ACE 
 
@@ -411,23 +461,7 @@ $acl | Set-Acl -Path $ruta
 
 **Ejemplo1:** Asignar permisos de control total a todos los usuarios
 
-```powershell
-$acl = Get-Acl .\permisos
-
-$acl.Access | Format-Table
-
-$permisoadd = @('Todos','FullControl','ContainerInherit,ObjectInherit','None','Allow')
-
-$ace= New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permisoadd
-
-$acl.setAccessRule($ace)
-
-$acl.Access | Format-Table
-
-$acl | Set-Acl .\permisos
-```
-
-
+![image-20231017112106087](/aso/assets/img/powershell/image-20231017112106087.png)
 
 
 
