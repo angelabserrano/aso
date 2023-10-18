@@ -165,7 +165,7 @@ Set-ADGroup -Identity Profesores -GroupScope Universal
 
 ### 2.4 Consultar grupos
 
-El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-adgroup?view=windowsserver2022-ps)** muesetra todas las propiedades de un grupo del dominio.
+El cmdlet **[Get-ADGroup](https://learn.microsoft.com/es-es/powershell/module/activedirectory/get-adgroup?view=windowsserver2022-ps)** muestra todas las propiedades de un grupo del dominio.
 
 ```powershell
 Get-ADGroup -Identity Profesores
@@ -391,6 +391,8 @@ $acl | Set-Acl -Path $ruta
 
 
 
+
+
 ### Deshabilitar o habilitar la herencia de permisos
 
 `SetAccessRuleProtection` es un método que se utiliza en PowerShell para gestionar la herencia de reglas de acceso en objetos del sistema de archivos. Este método toma dos variables como argumentos:
@@ -404,7 +406,7 @@ $acl | Set-Acl -Path $ruta
 
 En resumen, `SetAccessRuleProtection` te permite controlar si un objeto hereda reglas de acceso y qué hacer con las reglas de acceso heredadas cuando se deshabilita la herencia.
 
-**Ejemplo1:** Deshabilitar la herencia de la carpeta prueba utilizando la ruta física.
+**Ejemplo1:** Deshabilitar la herencia de la carpeta prueba utilizando la ruta física C:\prueba
 
 ```powershell
 # Paso 1: Obtener las reglas de acceso actuales
@@ -425,15 +427,6 @@ Set-Acl -Path $Path -AclObject $Acl
 Write-Host "Reglas de acceso después de deshabilitar la herencia:"
 Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
 
-# Paso 3: Eliminar todas las reglas de acceso
-$Acl | Get-Acl | ForEach-Object { $_.Access | ForEach-Object { $Acl | Remove-AccessRule $_ } }
-
-# Aplicar los cambios
-Set-Acl -Path $Path -AclObject $Acl
-
-# Mostrar las reglas de acceso después de eliminar todas las reglas
-Write-Host "Reglas de acceso después de eliminar todas las reglas:"
-Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
 
 ```
 
