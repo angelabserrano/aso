@@ -436,6 +436,30 @@ Si observamos los permisos en modo gráfico, podemos ver como hemos deshabilitad
 
 ![image-20231018114457068](/aso/assets/img/powershell/image-20231018114457068.png)
 
+**Ejemplo2:** Habilitar la herencia de la carpeta prueba 
+
+```powershell
+# Paso 1: Obtener las reglas de acceso actuales
+$Path = "C:\prueba"
+$Acl = Get-Acl -Path $Path
+
+# Mostrar las reglas de acceso antes de hacer cambios
+Write-Host "Reglas de acceso antes de los cambios:"
+$Acl.Access | Format-Table
+
+# Paso 2: Habilitar la herencia 
+$Acl.SetAccessRuleProtection($false, $true)
+
+# Aplicar los cambios
+Set-Acl -Path $Path -AclObject $Acl
+
+# Mostrar las reglas de acceso después de deshabilitar la herencia
+Write-Host "Reglas de acceso después de deshabilitar la herencia:"
+Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
+```
+
+
+
 ### Herencia en objetos secundarios
 
 - La **herencia** (**Inheritance**) es a qué tipo de objetos secundarios se aplica la ACE 
