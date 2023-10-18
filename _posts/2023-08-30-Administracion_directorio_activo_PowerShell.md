@@ -342,7 +342,8 @@ Get-Acl -Path .\prueba | fl
 **Ejemplo 1**: Obtener los permisos del fichero prueba.txt y visualizar en formato tabla.
 
 ```powershell
-(Get-Acl .\prueba.txt).Access | Format-Table
+$acl = Get-Acl .\prueba.txt
+$acl.Access | Format-Table
 ```
 
 ![img](https://lh6.googleusercontent.com/X03gwnAOD-F5ymfnPWapnkxg3CWi2v0m_kbLr9e1neAGFlXBffQ3XeB5S-2PpmDwsvoDkJW1f85tZfKHj1wB-BcXXpFdW7GzOP2vFcdbhwi1pAOCl38DeRj9nJ5WXUbSinTTp8eSUveDO-h-xz_3r_SyiA=s2048)
@@ -352,7 +353,8 @@ Get-Acl -Path .\prueba | fl
 **Ejemplo 2:** Obtener los permisos del directorio permisos y visualizar en formato tabla
 
 ```powershell
-(Get-Acl .\permisos).Access | Format-Table
+$acl = Get-Acl .\permisos
+$acl.Access | Format-Table
 ```
 
 ![img](https://lh6.googleusercontent.com/VaX-76oBZmEZ1v49hM1t0duOZQm4Gl7R69ScTSnO47YS4HXjkEahs1kZsiB16nLPwm3_mNVnfFSNC9arQISo9hW0dls7IpiKPr0Qo9XrxGcIo1JzaHHRZwasuK7p6o_9G5h0ouy5lhci4DKaTgj7GVOkFg=s2048)
