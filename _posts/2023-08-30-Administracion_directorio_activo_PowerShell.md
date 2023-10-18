@@ -309,7 +309,7 @@ Los permisos NTFS (permisos básicos) se componen de cinco niveles de autorizaci
 
 - **Escritura**: el usuario puede escribir en un archivo y añadir nuevos archivos en la carpeta.
 
-  
+
 
 Los permisos **NTFS** se pueden **heredar** (provienen de la carpeta padre) o pueden ser **explícitos** (configurados individualmente). De esta manera en cada **ACE** (**Access Control Entry**) configurada en el **ACL** (**Access Control List**) se puede definir si el permiso debe ser de tipo "Permitir" o "Denegar".
 
@@ -322,6 +322,10 @@ La gestión de los permisos NTFS con PowerShell puede hacerse con dos cmdlets:
 
 - **Get-Acl**: permite recuperar los permisos configurados en un recurso (carpetas y archivos).
 - **Set-Acl**: permite modificar los permisos de un recurso.
+
+
+
+### Consultar los permisos de un recurso en PowerShell
 
 - El cmdlet **Get-Acl** permite obtener los permisos declarados en un recurso, como una carpeta, un archivo o una clave de registro. El cmdlet se puede usar simplemente con el parámetro -Path:
 
@@ -362,6 +366,10 @@ $acl.Access | Format-Table
 Como puede observarse, es la misma información que podemos recopilar en la GUI:
 
 ![img](https://lh6.googleusercontent.com/TwMdsDVlawBvVsSsZJlT3WzpxzVJCyCDti58DGgDlHZgGMXB3PnzodXvLJrJ5e69-yuiIFYDOrq2150cqwCg2_W_rVZkPxHLadroPQPHSQ7zNCjNnXnzY3vWtdb3NbPDjzq7g6mRFouP8meVLdRW_Dk3_w=s2048)
+
+
+
+### Definir los permisos de un recurso en PowerShell
 
 - El cmdlet **Set-Acl** permite definir los permisos en un recurso. Para usar este cmdlet y poder definir estos permisos, hay que utilizar los descriptores de seguridad usando Get-Acl, y aplicarlos después en el recurso deseado.
 
