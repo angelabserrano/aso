@@ -391,20 +391,20 @@ $acl | Set-Acl -Path $ruta
 
 
 
-### Herencia del padre
+### Deshabilitar o habilitar la herencia de permisos
 
 `SetAccessRuleProtection` es un método que se utiliza en PowerShell para gestionar la herencia de reglas de acceso en objetos del sistema de archivos. Este método toma dos variables como argumentos:
 
-1. **$InheritFlag**:
-   - Este es el primer argumento que espera el método. Indica si deseas habilitar o deshabilitar la herencia de reglas de acceso para el objeto.
-   - Si `$InheritFlag` es `$true`, significa que se habilitará la herencia, lo que implica que el objeto heredará las reglas de acceso de su contenedor padre.
-   - Si `$InheritFlag` es `$false`, se deshabilitará la herencia, lo que significa que el objeto dejará de heredar las reglas de acceso de su contenedor padre.
-2. **$PreserveInheritance**:
-   - Este es el segundo argumento que espera el método. Indica si deseas preservar o eliminar las reglas de acceso heredadas al deshabilitar la herencia.
+1. **$isProtected**: Este es el primer argumento que espera el método. Indica si deseas habilitar o deshabilitar la herencia de reglas de acceso para el objeto.
+   - Si el valor es `$true`, significa que se **deshabilitará la herencia**, lo que significa que el objeto dejará de heredar las reglas de acceso de su contenedor padre.
+   - Si el valor es `$false`, se **habilitará la herencia**, lo que significa que el objeto  heredará las reglas de acceso de su contenedor padre.
+2. **$PreserveInheritance**: Este es el segundo argumento que espera el método. Indica si deseas preservar o eliminar las reglas de acceso heredadas al deshabilitar la herencia.
    - Si `$PreserveInheritance` es `$true`, se preservarán las reglas de acceso heredadas, lo que significa que se mantendrán en el objeto incluso después de deshabilitar la herencia. Esto permite que el objeto tenga sus propias reglas de acceso además de las heredadas.
    - Si `$PreserveInheritance` es `$false`, se eliminarán las reglas de acceso heredadas al deshabilitar la herencia. Esto significa que el objeto solo tendrá las reglas de acceso que se definan directamente en él.
 
 En resumen, `SetAccessRuleProtection` te permite controlar si un objeto hereda reglas de acceso y qué hacer con las reglas de acceso heredadas cuando se deshabilita la herencia.
+
+**Ejemplo1:** Deshabilitar la herencia de la carpeta prueba utilizando la ruta física.
 
 ```powershell
 # Paso 1: Obtener las reglas de acceso actuales
