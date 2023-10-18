@@ -455,8 +455,8 @@ $Acl.SetAccessRuleProtection($false, $true)
 # Aplicar los cambios
 Set-Acl -Path $Path -AclObject $Acl
 
-# Mostrar las reglas de acceso después de deshabilitar la herencia
-Write-Host "Reglas de acceso después de deshabilitar la herencia:"
+# Mostrar las reglas de acceso después de shabilitar la herencia
+Write-Host "Reglas de acceso después de habilitar la herencia:"
 Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
 ```
 
