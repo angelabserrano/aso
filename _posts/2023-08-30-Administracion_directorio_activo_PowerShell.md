@@ -311,7 +311,12 @@ Los permisos NTFS (permisos básicos) se componen de cinco niveles de autorizaci
 
   
 
-Los permisos **NTFS** se pueden heredar (provienen de la carpeta padre) o pueden ser explícitos (configurados individualmente). De esta manera en cada **ACE** (**Access Control Entry**) configurada en el **ACL** (**Access Control List**) se puede definir si el permiso debe ser de tipo "Permitir" o "Denegar".
+Los permisos **NTFS** se pueden **heredar** (provienen de la carpeta padre) o pueden ser **explícitos** (configurados individualmente). De esta manera en cada **ACE** (**Access Control Entry**) configurada en el **ACL** (**Access Control List**) se puede definir si el permiso debe ser de tipo "Permitir" o "Denegar".
+
+> -info- Debemos tener muy claro estos dos términos: 
+>
+> - ACL: lista de permisos completa del objeto.
+> - ACE: permiso concreto dentro de la lista de permisos.
 
 La gestión de los permisos NTFS con PowerShell puede hacerse con dos cmdlets:
 
@@ -391,8 +396,6 @@ $acl | Set-Acl -Path $ruta
 
 
 
-
-
 ### Deshabilitar o habilitar la herencia de permisos
 
 `SetAccessRuleProtection` es un método que se utiliza en PowerShell para gestionar la herencia de reglas de acceso en objetos del sistema de archivos. Este método toma dos variables como argumentos:
@@ -426,7 +429,6 @@ Set-Acl -Path $Path -AclObject $Acl
 # Mostrar las reglas de acceso después de deshabilitar la herencia
 Write-Host "Reglas de acceso después de deshabilitar la herencia:"
 Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
-
 
 ```
 
