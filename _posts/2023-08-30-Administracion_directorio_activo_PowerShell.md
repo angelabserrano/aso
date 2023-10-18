@@ -432,7 +432,9 @@ Get-Acl -Path $Path | Select-Object -ExpandProperty Access | Format-Table
 
 ```
 
+Si observamos los permisos en modo gráfico, podemos ver como hemos deshabilitado la herencia. 
 
+![image-20231018114457068](/aso/assets/img/powershell/image-20231018114457068.png)
 
 ### Herencia en objetos secundarios
 
