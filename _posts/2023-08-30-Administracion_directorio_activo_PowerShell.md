@@ -419,6 +419,16 @@ $acl | Set-Acl -Path $ruta
 
 En resumen, `SetAccessRuleProtection` te permite controlar si un objeto hereda reglas de acceso y qué hacer con las reglas de acceso heredadas cuando se deshabilita la herencia.
 
+> -info- Esquema
+>
+> | Comando                                     | Explicación detallada                                        |
+> | ------------------------------------------- | ------------------------------------------------------------ |
+> | $acl.setAccessRuleProtection ($true,$true)  | Deshabilita la herencia y conserva las reglas heredadas      |
+> | $acl.setAccessRuleProtection ($true,$false) | Deshabilita la herencia y elimina todas las reglas heredadas |
+> | $acl.setAccessRuleProtection ($false, X )   | Habilitar la herencia                                        |
+>
+> 
+
 **Ejemplo1:** Deshabilitar la herencia de la carpeta prueba utilizando la ruta física C:\prueba
 
 ```powershell
