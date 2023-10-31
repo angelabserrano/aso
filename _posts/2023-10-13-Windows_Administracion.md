@@ -94,6 +94,128 @@ Podemos distinguir:
 
 **Administrador de tareas**
 
-Podemos acceder al administrador de tareas pulsando las teclas Ctrl+Alt+Supr o ejecutando **taskmgr** desde la línea de comandos.
+Podemos acceder al administrador de tareas pulsando las teclas **Ctrl+Alt+Supr** o ejecutando **taskmgr** desde la línea de comandos.
 
-![image-20231013202252368](/aso/assets/img/windows_server/image-20231013202252368.png)
+![image-20231031112346989](/aso/assets/img/windows_server/image-20231031112346989.png)
+
+
+
+## 6. Comandos en PowerShell para administrar los procesos y servicios
+
+### 6.1 Consultar la información de procesos
+
+El cmdlet **Get-Process (ps)** nos permite mostrar la información de un proceso
+
+**Ejemplo: Mostrar los procesos activos**
+
+```powershell
+Get-Process 
+Get-Process | Out-GridView
+```
+
+**Columnas**:
+
+- **Handles**: nº de referencias abiertas por el proceso
+
+- **NPM y PM(KB)**: memoria utilizada (no paginada y paginada) por el proceso.
+
+- **WS(KB)**: Tamaño del proceso.
+
+- **CPU(s)**: Tiempo de procesador utlizado por el proceso.
+
+- **Id**: Número que identifica al proceso.
+
+- **SI**: Es un número que identifica al dueño del proceso.
+
+- **ProcessName**: Nombre del proceso.
+
+  
+
+**Ejemplo: Mostrar los 10 procesos que consume más CPU**
+
+1. Ordenamos los procesos por consumo de CPU en forma descendente
+
+2. Seleccionamos los 10 primeros .
+
+```powershell
+Get-Process | sort cpu -Descending | Select-Object -First 10
+```
+
+**Ejemplo: Muestra los procesos del usuario Administrador del dominio EMPRESA**
+
+![img](https://lh7-us.googleusercontent.com/D75pb-J6wK1oKECF5zSeHpZ_D_ZZQPUESe4S3gF-ge2Nyw81oA8SefdGK9CrG-eWw7PSUvwsWLRBP1nVEcb4pGXJAM-_PsP5l05y97r_YofSGfwmOAHLTLcpCdy8IB8ci-1zDOcPDgxHN90N61JW3N3gGw=s2048)
+
+
+
+**Ejemplo: Obtener información sobre un proceso: notepad **
+
+Ejecutamos el programa Notepad (Bloc de notas) 
+
+```powershell
+Get-Process -Name notepad
+Get-Process -Name Notepad  | fl *
+
+#Extraemos una propiedad de un proceso: Ubicación del archivo.
+(Get-Process notepad).path
+#Extraemos una propiedad de un proceso: Tamaño del proceso.
+(Get-Process notepad).ws 
+#Tamaño del proceso expresado en MB
+(Get-Process notepad).ws/1mb
+
+```
+
+### 6.2 Detener procesos
+
+El cmdlet **Stop-Process** nos permite detener uno o más procesos en ejecución
+
+Ejemplo: Detener el proceso notepad
+
+```powershell
+#Localizamos el proceso notepad
+Get-Process -Name notepad
+#Detenemos el proceso notepad
+Stop-Process -Name Notepad
+#También podemos detenerlo especificando el identificador
+Stop-Process -Id 4388
+```
+
+### 6.3 Iniciar procesos
+
+El cmdlet **Start-Process** nos permite iniciar procesos.
+
+```powershell
+# Iniciar un proceso especificando la ruta 
+Start-Process -FilePath "C:\Windows\notepad.exe"
+Start-Process -FilePath "C:\ProgramFiles(x86)\Google\Chrome\Application\chrome.exe"
+#Iniciar un proceso indicando el nombre.
+Start-Process notepad
+Start-Process chrome
+#También funciona indicando el nombre porque la ruta se encuentra en la variable de entorno PAHT
+echo $env:path
+```
+
+
+
+![img](https://lh7-us.googleusercontent.com/zC7aXVK1II2Pts5Ye7hhsw7TpmUdlu6oaCVx_2E-kRooX7E-pixC_N0z7CrdpiBx1DHtxLob_Wtn3lc_6IbIAurlCl8-lhwzu8mB-Wn7cx_KScM7M675Hte_Z30Atw0Qo2d_jnpwLC7xKOdkBwCYEIN_=s2048)
+
+**Iniciar una APP de Windows** 
+
+![img](https://lh7-us.googleusercontent.com/y_Jur6pCRPCVOcV_B3QXM_k3BCMxcpUmbO_3sr1ITVLxRUCZL3D6EY1tXTUOZs2TgM_n8_NblF3Rbl1Eb_ULsEhswgZZYdpfjJfvtCFhI2HODfCJXII3Jaec3JF905Djm5RZZ3Qfu3uHSsVu5uHIoOHo=s2048)
+
+![img](https://lh7-us.googleusercontent.com/R4J_s594SmgSsEujwVO7mibw3TssXPX7F6-od_JyYPqx4Juk1WBoJHkq_EzbHmgfNbrNiNKLk71xYBFBB_V60X8XVm_RTxLjLYX17ZJI5X5-H5CSgMOpgp7BN8QVMJOKaFJn8hJhR9Wy_4RhaNbrjbYk=s2048)
+
+![img](https://lh7-us.googleusercontent.com/Fy4-WxamL9wWQCVUA6djv8r6nOLGgd62GQIWp0wsnPpiNNF5dPdwywI6cixcgAfmpDaSeab9o0i6Rc23tyx1YhTEhLN3SABSOkrsdVrhFud78XGHBNvb_z0ZeIJApE7sxWfmA-MIkI4jVQr8VxTHElmB=s2048)
+
+![img](https://lh7-us.googleusercontent.com/huJh_7lUiWvqk7omqhs5hZhvvq6ow6y9dJACQ1QnbqgVwqHXMjGeLzUEFMsG2r_l4mB8G2geT7GzGNo-JrWgPdEODBN-4a-vJKYkGFvRVYybO7IYam0dxH_TF4a6TpLys2GyN4nKYeshPH8AcVlDTe0N=s2048)
+
+![img](https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048)
+
+![img](https://lh7-us.googleusercontent.com/zMgxAwgMZqDAL0Abj40uqhsx39ee5XRTcSUWMubParyK0d9xDTkvSJEFwwoM-pVKWtO5j9UjMUbU69xrI5M1u4ryTtgCgT0YVtGyOx0JmqJsvlV2v0pTRvNxnZIkaoOPymDm7SJ-wkESPOXu-cTx73Va=s2048)
+
+![img](https://lh7-us.googleusercontent.com/Tv5K5LlecVdeq1UA1HtvqkBtz4psnXZe4RhfQ7AZn4Q0oDlfQlTkeLlRa36xwa7TPMuNuZB4_3YtDHaA_1dO9B6oOjJav5zjcCwkbFHL9pJe2wvDrA2ZtC8IPyi6FRmJOoFely4o2aVEWuspCxNrHIO7=s2048)
+
+![img](https://lh7-us.googleusercontent.com/_5DHuS4EXB1Rpg8pg5Ziw26XDxmqdG8P2PhzQnWfD8jhuslzwPlVI_UfH7q4r1QETtglqz6JRTCkdIYYx3YYTiR-8R7mn_ID9R-mW9bF2iP6Lk-JCxS8PgHCmZuL2qYN8y8TRjNcy8rdNq2yx7U7kBda=s2048)
+
+![img](https://lh7-us.googleusercontent.com/Haf_LLhskrUjr-3mLfC2kXUK9dorvC95EmS6W_RX7wnn7RVHanmzMRkFtDTgAG5HeSyMMGQcZR6tpQV3OQjW6QWzddTJORqS9I-rodxSgduxJwSpkqpWx6ZCn2-RbRjFFXZsTt1uXhlu_2uxAi_WZFcR=s2048)
+
+![img](https://lh7-us.googleusercontent.com/sLU3kIa_QwwU2TwZ7xl6zPb1KjIz81Kg1MZHyhrcd8lT6z4zElAkL8VXpyqOeZD8XyQ3dElfuNYnpY2GrawoRfxARQ7L337cuSM2PWZrc1bq4ZVK0UEPsHszskhto7-L7CWoY1BOOZiqs-4M_s0ObG3l=s2048)
