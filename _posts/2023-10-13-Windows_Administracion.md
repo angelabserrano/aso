@@ -239,15 +239,46 @@ Get-Service
 
 **Ejemplo: Muestra los servicios que están arrancados**
 
+```powershell
+Get-Service | Where-Object {$_Status -eq "Running"}
+```
+
 
 
 ![img](https://lh7-us.googleusercontent.com/huJh_7lUiWvqk7omqhs5hZhvvq6ow6y9dJACQ1QnbqgVwqHXMjGeLzUEFMsG2r_l4mB8G2geT7GzGNo-JrWgPdEODBN-4a-vJKYkGFvRVYybO7IYam0dxH_TF4a6TpLys2GyN4nKYeshPH8AcVlDTe0N=s2048)
 
 ![img](https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048)
 
-![img](https://lh7-us.googleusercontent.com/zMgxAwgMZqDAL0Abj40uqhsx39ee5XRTcSUWMubParyK0d9xDTkvSJEFwwoM-pVKWtO5j9UjMUbU69xrI5M1u4ryTtgCgT0YVtGyOx0JmqJsvlV2v0pTRvNxnZIkaoOPymDm7SJ-wkESPOXu-cTx73Va=s2048)
+### 6.5 Detener un servicio
 
-![img](https://lh7-us.googleusercontent.com/Tv5K5LlecVdeq1UA1HtvqkBtz4psnXZe4RhfQ7AZn4Q0oDlfQlTkeLlRa36xwa7TPMuNuZB4_3YtDHaA_1dO9B6oOjJav5zjcCwkbFHL9pJe2wvDrA2ZtC8IPyi6FRmJOoFely4o2aVEWuspCxNrHIO7=s2048)
+El cmdlet **Stop-Service** se utiliza para detener un servicio.
+
+**Ejemplo: Detener el servicio de la cola de impresión**
+
+Debemos ejecutar el siguiente comando como **administrador**
+
+```powershell
+Stop-Service -Name spooler
+```
+
+**Ejemplo: Detener el servicio Windows Update**
+
+```powershell
+Stop-Service -Name wuauserv
+#En caso de no detener el servicio utilizamos la opción -force
+Stop-Service -Name wuauserv -Force
+```
+
+### 6.6 Iniciar un servicio
+
+El cmdlet **Start-Service** se utiliza para iniciar un servicio.
+
+```powershell
+#Iniciar el servicio de cola de impresión.
+Start-Service -Name Spooler
+#Iniciar el servicio de Windows Update
+Start-Service -Name wuauserv
+```
 
 ![img](https://lh7-us.googleusercontent.com/_5DHuS4EXB1Rpg8pg5Ziw26XDxmqdG8P2PhzQnWfD8jhuslzwPlVI_UfH7q4r1QETtglqz6JRTCkdIYYx3YYTiR-8R7mn_ID9R-mW9bF2iP6Lk-JCxS8PgHCmZuL2qYN8y8TRjNcy8rdNq2yx7U7kBda=s2048)
 
