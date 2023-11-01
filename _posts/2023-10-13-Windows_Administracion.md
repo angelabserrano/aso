@@ -147,7 +147,7 @@ Get-Process | sort cpu -Descending | Select-Object -First 10
 
 
 
-**Ejemplo: Obtener información sobre un proceso: notepad **
+**Ejemplo: Obtener información sobre un proceso: notepad**
 
 Ejecutamos el programa Notepad (Bloc de notas) 
 
@@ -168,7 +168,7 @@ Get-Process -Name Notepad  | fl *
 
 El cmdlet **Stop-Process** nos permite detener uno o más procesos en ejecución
 
-Ejemplo: Detener el proceso notepad
+**Ejemplo: Detener el proceso notepad**
 
 ```powershell
 #Localizamos el proceso notepad
@@ -183,28 +183,63 @@ Stop-Process -Id 4388
 
 El cmdlet **Start-Process** nos permite iniciar procesos.
 
+### **Ejemplo: Iniciar un proceso especificando la ruta**
+
 ```powershell
-# Iniciar un proceso especificando la ruta 
 Start-Process -FilePath "C:\Windows\notepad.exe"
 Start-Process -FilePath "C:\ProgramFiles(x86)\Google\Chrome\Application\chrome.exe"
-#Iniciar un proceso indicando el nombre.
-Start-Process notepad
-Start-Process chrome
-#También funciona indicando el nombre porque la ruta se encuentra en la variable de entorno PAHT
-echo $env:path
 ```
 
+**Ejemplo: Iniciar un proceso especificando solo el nombre**
 
+También se puede iniciar un proceso especificando solo el nombre, ya que la ruta la encuentra el sistema porque se encuentra en la variable de entorno $PATH
 
-![img](https://lh7-us.googleusercontent.com/zC7aXVK1II2Pts5Ye7hhsw7TpmUdlu6oaCVx_2E-kRooX7E-pixC_N0z7CrdpiBx1DHtxLob_Wtn3lc_6IbIAurlCl8-lhwzu8mB-Wn7cx_KScM7M675Hte_Z30Atw0Qo2d_jnpwLC7xKOdkBwCYEIN_=s2048)
+```powershell
+Start-Process notepad
+Start-Process chrome
+```
+
+**Ejemplo: Iniciar un proceso pasándole un argumento**
+
+Abrimos Chrome y la página web de google.es
+
+```powershell
+Start-Process chrome -ArgumentList google.es
+```
 
 **Iniciar una APP de Windows** 
 
-![img](https://lh7-us.googleusercontent.com/y_Jur6pCRPCVOcV_B3QXM_k3BCMxcpUmbO_3sr1ITVLxRUCZL3D6EY1tXTUOZs2TgM_n8_NblF3Rbl1Eb_ULsEhswgZZYdpfjJfvtCFhI2HODfCJXII3Jaec3JF905Djm5RZZ3Qfu3uHSsVu5uHIoOHo=s2048)
+Aunque las apps de Windows tienen un archivo exe asociado que se encuentra en C:\Windows\SystemApps, no se pueden ejecutar desde el archivo.exe. Hay que utilizar el **protocolo asociado**.
 
-![img](https://lh7-us.googleusercontent.com/R4J_s594SmgSsEujwVO7mibw3TssXPX7F6-od_JyYPqx4Juk1WBoJHkq_EzbHmgfNbrNiNKLk71xYBFBB_V60X8XVm_RTxLjLYX17ZJI5X5-H5CSgMOpgp7BN8QVMJOKaFJn8hJhR9Wy_4RhaNbrjbYk=s2048)
+**Edge**: Start-Process Microsoft-Edge://
 
-![img](https://lh7-us.googleusercontent.com/Fy4-WxamL9wWQCVUA6djv8r6nOLGgd62GQIWp0wsnPpiNNF5dPdwywI6cixcgAfmpDaSeab9o0i6Rc23tyx1YhTEhLN3SABSOkrsdVrhFud78XGHBNvb_z0ZeIJApE7sxWfmA-MIkI4jVQr8VxTHElmB=s2048)
+**Edge:** Start-Process Microsoft-Edge:https://google.es
+
+**Windows Store**: Start-Process Ms-Windows-Store://
+
+**Alarmas y reloj**: Start-Process Ms-clock://
+
+**Mapas**:Start-Process BingMaps://
+
+### 6.4 Consultar información de los servicios
+
+El cmdlet **Get-Service** nos proporciona información de los servicios.
+
+```powershell
+Get-Service
+```
+
+**Columnas por defecto**
+
+**Status**: Estado del servicio (Stopped, running, etc)
+
+**Name**: Nombre del servicio.
+
+**DisplayName**: Nombre para mostrar.
+
+**Ejemplo: Muestra los servicios que están arrancados**
+
+
 
 ![img](https://lh7-us.googleusercontent.com/huJh_7lUiWvqk7omqhs5hZhvvq6ow6y9dJACQ1QnbqgVwqHXMjGeLzUEFMsG2r_l4mB8G2geT7GzGNo-JrWgPdEODBN-4a-vJKYkGFvRVYybO7IYam0dxH_TF4a6TpLys2GyN4nKYeshPH8AcVlDTe0N=s2048)
 
