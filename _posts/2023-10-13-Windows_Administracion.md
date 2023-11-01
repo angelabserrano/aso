@@ -89,18 +89,31 @@ Podemos distinguir:
 
 **Ventajas de los hilos frente a los procesos** 
 
-- Los hilos son mucho más ligeros. En la creación de un proceso se necesita un tiempo para la adjudicación de recursos, cosa innecesaria en el cambio entre hilos.
+- Los hilos son mucho más ligeros. En la creación de un procso se necesita un tiempo para la adjudicación de recursos, cosa innecesaria en el cambio entre hilos.
 - En caso de procesadores multinúcleo o sistemas multiprocesador, la eficiencia de los procesos que utilizan hilos es evidente, al poder realizar varias tareas en paralelo
 
 
 
 ## 6. Gestión de los procesos y servicios en Windows
 
-**Administrador de tareas**
+### 6.1 Administrador de tareas
 
-Podemos acceder al administrador de tareas pulsando las teclas **Ctrl+Alt+Supr** o ejecutando **taskmgr** desde la línea de comandos.
+El **Administrador de tareas de Windows** proporciona información de los procesos que el ordenador está ejecutando, la actividad de red, los usuarios y los servicios del sistema.
 
-![image-20231031112346989](/aso/assets/img/windows_server/image-20231031112346989.png)
+**Iniciar el Administrador de Tareas**
+
+Para iniciar el administrador de tareas podemos utilizar cualquiera de los siguientes métodos:
+
+1. Mediante el menú contextual en la barra de tareas y seleccionando "Administrador de tareas".
+2. Pulsando las teclas **Ctrl+Mayus+Esc**
+3. Pulsando las teclas **Ctrl+Alt+Supr** y seleccionar **Administrador de Tareas**.
+4. Desde la línea de comandos ejecutando **taskmgr**.
+
+![image-20231101203513655](/aso/assets/img/windows_server/image-20231101203513655.png)
+
+**Pestañas del Administrador de Tareas**
+
+En la pestaña **Procesos** podemos observar las aplicaciones en funcionamiento, así como los procesos en segundo plano que están ejecutándose. Las columnas siguientes indican los porcentajes de recurso que utilizan: **Procesador(CPU), Memoria, Disco y Red.**
 
 
 
