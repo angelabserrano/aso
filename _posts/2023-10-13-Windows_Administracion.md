@@ -131,6 +131,26 @@ En la pestaña **Historial de Aplicaciones** mostrará el uso de CPU y red de de
 
 ![image-20231101204717670](/aso/assets/img/windows_server/image-20231101204717670.png)
 
+#### Pestaña Inicio
+
+En esta pestaña nos muestra una lista de aplicaciones que pueden habilitarse al inicio. Si hacemos clic en cualquiera de ellas podemos habilitar/deshabilitar pulsando en el botón inferior derecho. 
+
+![image-20231101205339461](/aso/assets/img/windows_server/image-20231101205339461.png)
+
+#### Pestaña Usuarios
+
+En esta pestaña se muestran los usuarios que tienen la sesión abierta en el equipo y su estado.
+
+#### Pestaña Detalles
+
+Muestra información detallada de los procesos y aplicación en ejecución, así como una descripción de cada uno de ellos.
+
+#### Pestaña Servicios
+
+Muestra información acerca de los servicios disponibles en el sistema. Desde esta pantalla el usuario podrá iniciar, detener o reiniciar cualquier servicio.
+
+![image-20231101210133930](/aso/assets/img/windows_server/image-20231101210133930.png)
+
 ## 7. Administrar los procesos y servicios utilizando PowerShell
 
 ### 7.1 Consultar la información de procesos
