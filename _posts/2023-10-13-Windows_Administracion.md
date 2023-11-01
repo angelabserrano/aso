@@ -243,9 +243,20 @@ Get-Service
 Get-Service | Where-Object {$_Status -eq "Running"}
 ```
 
+**Mostrar información detallada de un servicio.**
 
+Cola de impresión (Spooler): Este servicio pone en cola los trabajos de impresión y administra la interacción con la impresora. Si lo desactiva, no podrá imprimir ni ver las impresoras.
 
-![img](https://lh7-us.googleusercontent.com/huJh_7lUiWvqk7omqhs5hZhvvq6ow6y9dJACQ1QnbqgVwqHXMjGeLzUEFMsG2r_l4mB8G2geT7GzGNo-JrWgPdEODBN-4a-vJKYkGFvRVYybO7IYam0dxH_TF4a6TpLys2GyN4nKYeshPH8AcVlDTe0N=s2048)
+**Ejemplo: Buscar el servicio spooler**
+
+```powershell
+#Buscamos el servicio Name
+Get-Service -Name "Spoo*"
+#Buscamos el servicio por DisplayName
+Get-Service -DisplayName "cola*"
+#Obtenemos más información del servicio:
+Get-Service -Name spooler | fl *
+```
 
 ![img](https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048)
 
@@ -280,8 +291,28 @@ Start-Service -Name Spooler
 Start-Service -Name wuauserv
 ```
 
-![img](https://lh7-us.googleusercontent.com/_5DHuS4EXB1Rpg8pg5Ziw26XDxmqdG8P2PhzQnWfD8jhuslzwPlVI_UfH7q4r1QETtglqz6JRTCkdIYYx3YYTiR-8R7mn_ID9R-mW9bF2iP6Lk-JCxS8PgHCmZuL2qYN8y8TRjNcy8rdNq2yx7U7kBda=s2048)
 
-![img](https://lh7-us.googleusercontent.com/Haf_LLhskrUjr-3mLfC2kXUK9dorvC95EmS6W_RX7wnn7RVHanmzMRkFtDTgAG5HeSyMMGQcZR6tpQV3OQjW6QWzddTJORqS9I-rodxSgduxJwSpkqpWx6ZCn2-RbRjFFXZsTt1uXhlu_2uxAi_WZFcR=s2048)
+
+### 6.7 Modificar propiedades de los servicios
+
+El cmdlet **Set-Service** nos permite modificar algún parámetro de un servicio.
+
+Podemos modificar:
+
+- Description: Descripción del servicio.
+- DisplayName: Nombre para mostrar
+- Tipo de inicio: StartupType
+- Estado del servicio: Status
+
+**Ejemplo: Modificar una propiedad - Tipo de inicio**
+
+Los modos de arranque de un servicio son los siguientes:
+
+- **Manual**: Lo arranca Windows cuando es necesario.
+- **Automático**: Se arranca automáticamente con el inicio de Windows .
+- **Automático (Inicio retrasado)**: Se arranca automáticamente, pero con cierto retraso respecto al inicio de Windows.
+- **Deshabilitado**: El servicio no arrancará en ningún caso.
+
+
 
 ![img](https://lh7-us.googleusercontent.com/sLU3kIa_QwwU2TwZ7xl6zPb1KjIz81Kg1MZHyhrcd8lT6z4zElAkL8VXpyqOeZD8XyQ3dElfuNYnpY2GrawoRfxARQ7L337cuSM2PWZrc1bq4ZVK0UEPsHszskhto7-L7CWoY1BOOZiqs-4M_s0ObG3l=s2048)
