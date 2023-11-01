@@ -92,6 +92,10 @@ Podemos distinguir:
 - Los hilos son mucho más ligeros. En la creación de un proceso se necesita un tiempo para la adjudicación de recursos, cosa innecesaria en el cambio entre hilos.
 - En caso de procesadores multinúcleo o sistemas multiprocesador, la eficiencia de los procesos que utilizan hilos es evidente, al poder realizar varias tareas en paralelo
 
+
+
+## 6. Gestión de los procesos y servicios en Windows
+
 **Administrador de tareas**
 
 Podemos acceder al administrador de tareas pulsando las teclas **Ctrl+Alt+Supr** o ejecutando **taskmgr** desde la línea de comandos.
@@ -100,9 +104,9 @@ Podemos acceder al administrador de tareas pulsando las teclas **Ctrl+Alt+Supr**
 
 
 
-## 6. Comandos en PowerShell para administrar los procesos y servicios
+## 7. Administrar los procesos y servicios utilizando PowerShell
 
-### 6.1 Consultar la información de procesos
+### 7.1 Consultar la información de procesos
 
 El cmdlet **Get-Process (ps)** nos permite mostrar la información de un proceso
 
@@ -164,7 +168,7 @@ Get-Process -Name Notepad  | fl *
 
 ```
 
-### 6.2 Detener procesos
+### 7.2 Detener procesos
 
 El cmdlet **Stop-Process** nos permite detener uno o más procesos en ejecución
 
@@ -179,7 +183,7 @@ Stop-Process -Name Notepad
 Stop-Process -Id 4388
 ```
 
-### 6.3 Iniciar procesos
+### 7.3 Iniciar procesos
 
 El cmdlet **Start-Process** nos permite iniciar procesos.
 
@@ -221,7 +225,7 @@ Aunque las apps de Windows tienen un archivo exe asociado que se encuentra en C:
 
 **Mapas**:Start-Process BingMaps://
 
-### 6.4 Consultar información de los servicios
+### 7.4 Consultar información de los servicios
 
 El cmdlet **Get-Service** nos proporciona información de los servicios.
 
@@ -260,7 +264,7 @@ Get-Service -Name spooler | fl *
 
 ![img](https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048)
 
-### 6.5 Detener un servicio
+### 7.5 Detener un servicio
 
 El cmdlet **Stop-Service** se utiliza para detener un servicio.
 
@@ -280,7 +284,7 @@ Stop-Service -Name wuauserv
 Stop-Service -Name wuauserv -Force
 ```
 
-### 6.6 Iniciar un servicio
+### 7.6 Iniciar un servicio
 
 El cmdlet **Start-Service** se utiliza para iniciar un servicio.
 
@@ -293,7 +297,7 @@ Start-Service -Name wuauserv
 
 
 
-### 6.7 Modificar propiedades de los servicios
+### 7.7 Modificar propiedades de los servicios
 
 El cmdlet **Set-Service** nos permite modificar algún parámetro de un servicio.
 
