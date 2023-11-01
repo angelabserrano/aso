@@ -111,11 +111,25 @@ Para iniciar el administrador de tareas podemos utilizar cualquiera de los sigui
 
 ![image-20231101203513655](/aso/assets/img/windows_server/image-20231101203513655.png)
 
-**Pestañas del Administrador de Tareas**
+### **Pestañas del Administrador de Tareas**
+
+#### Pestaña Procesos
 
 En la pestaña **Procesos** podemos observar las aplicaciones en funcionamiento, así como los procesos en segundo plano que están ejecutándose. Las columnas siguientes indican los porcentajes de recurso que utilizan: **Procesador(CPU), Memoria, Disco y Red.**
 
+En la parte inferior disponemos del botón **Finalizar Tarea** que cierra la tarea seleccionada.
 
+#### Pestaña Rendimiento
+
+En esta pestaña podemos observar toda la información referente al rendimiento del equipo. 
+
+![image-20231101204306144](/aso/assets/img/windows_server/image-20231101204306144.png)
+
+#### Pestaña Historial de Aplicaciones
+
+En la pestaña **Historial de Aplicaciones** mostrará el uso de CPU y red de determinadas aplicaciones desde una determinada fecha.
+
+![image-20231101204717670](/aso/assets/img/windows_server/image-20231101204717670.png)
 
 ## 7. Administrar los procesos y servicios utilizando PowerShell
 
