@@ -137,6 +137,8 @@ En esta pestaña nos muestra una lista de aplicaciones que pueden habilitarse al
 
 ![image-20231101205339461](/aso/assets/img/windows_server/image-20231101205339461.png)
 
+> -alert- Muchas aplicaciones habilitadas al inicio pueden hacer que el equipo arranque más lento
+
 #### Pestaña Usuarios
 
 En esta pestaña se muestran los usuarios que tienen la sesión abierta en el equipo y su estado.
@@ -147,7 +149,7 @@ Muestra información detallada de los procesos y aplicación en ejecución, así
 
 #### Pestaña Servicios
 
-Muestra información acerca de los servicios disponibles en el sistema. Desde esta pantalla el usuario podrá iniciar, detener o reiniciar cualquier servicio.
+Muestra información acerca de los servicios disponibles en el sistema. Desde esta pantalla, pulsando clic derecho sobre cada servicio, el usuario podrá iniciar, detener o reiniciar cualquier servicio.
 
 ![image-20231101210133930](/aso/assets/img/windows_server/image-20231101210133930.png)
 
