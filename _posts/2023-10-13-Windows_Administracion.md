@@ -183,7 +183,7 @@ Stop-Process -Id 4388
 
 El cmdlet **Start-Process** nos permite iniciar procesos.
 
-### **Ejemplo: Iniciar un proceso especificando la ruta**
+**Ejemplo: Iniciar un proceso especificando la ruta**
 
 ```powershell
 Start-Process -FilePath "C:\Windows\notepad.exe"
