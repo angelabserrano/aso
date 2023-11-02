@@ -305,7 +305,16 @@ Aunque las apps de Windows tienen un archivo exe asociado que se encuentra en C:
 
 ### 7.4 Consultar información de los servicios
 
-El cmdlet **Get-Service** nos proporciona información de los servicios.
+El cmdlet **Get-Service** nos proporciona información de los servicios. A continuación se muestran algunos parámetros utilizados por este cmdlet:
+
+| Parámetro          | descripción                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| -Name              | Especifica los nombres de los servicios que hay que obtener  |
+| -DisplayName       | Especifica los nombres mostrador de los servicios que hay que obtener. |
+| -DependentServices | Obtiene únicamente los servicios que dependen del servicio especificado. |
+| -RequiredServices  | Obtiene únicamente los servicios que este servicio requiere  |
+
+
 
 ```powershell
 Get-Service
@@ -342,9 +351,25 @@ Get-Service -Name spooler | fl *
 
 ![img](https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048)
 
+**Ejemplo: Mostrar los servicios necesarios para iniciar el servicio spooler**
+
+```powershell
+Get-Service -Name spooler -RequiredServices
+```
+
+![image-20231102103757525](/aso/assets/img/windows_server/image-20231102103757525.png)
+
 ### 7.5 Detener un servicio
 
 El cmdlet **Stop-Service** se utiliza para detener un servicio.
+
+| Parámetro    | Descripción                                                  |
+| ------------ | ------------------------------------------------------------ |
+| -Name        | Especifica los nombres de los servicios que hay que detener. |
+| -DisplayName | Especifica los nombres para mostrar de los servicios que hay que detener. |
+| -Force       | Permite detener un servicio incluso aunque tenga servicios dependientes. |
+
+
 
 **Ejemplo: Detener el servicio de la cola de impresión**
 
