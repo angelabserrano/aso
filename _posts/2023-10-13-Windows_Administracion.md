@@ -153,11 +153,24 @@ Muestra información acerca de los servicios disponibles en el sistema. Desde es
 
 ![image-20231101210133930](/aso/assets/img/windows_server/image-20231101210133930.png)
 
+### 6.2 Servicios
+
+Los **servicios** son procesos del sistema que están ejecutándose en segundo plano. Desde el administrador de tareas podemos iniciar o detener un servicio, pero si queremos definir los servicios que se arrancan al inicio debemos realizarlo a través del **Administrador del Servidor -> Servicios**.
+
+
+
 ## 7. Administrar los procesos y servicios utilizando PowerShell
 
 ### 7.1 Consultar la información de procesos
 
-El cmdlet **Get-Process (ps)** nos permite mostrar la información de un proceso
+El cmdlet **Get-Process (ps)** nos permite mostrar la información de un proceso. A continuación se muestran algunos parámetros que pueden utilizarse con este cmdlet.
+
+| Parámetro | Descripción                                                  |
+| --------- | ------------------------------------------------------------ |
+| -Id       | Especifica uno o varios procesos por su número de identificador de proceso (PID). |
+| -Name     | Especifica uno o varios procesos por su nombre               |
+
+
 
 **Ejemplo: Mostrar los procesos activos**
 
@@ -219,7 +232,15 @@ Get-Process -Name Notepad  | fl *
 
 ### 7.2 Detener procesos
 
-El cmdlet **Stop-Process** nos permite detener uno o más procesos en ejecución
+El cmdlet **Stop-Process** nos permite detener uno o más procesos en ejecución.
+
+| Parámetro | Descripción                                                  |
+| --------- | ------------------------------------------------------------ |
+| -Id       | Especifica uno o varios procesos por su número identificador del proceso (PID). |
+| -Name     | Especifica uno o varios procesos por su nombre               |
+| -Force    | Detiene el proceso identificado sin pedir una confirmación de la operación |
+
+
 
 **Ejemplo: Detener el proceso notepad**
 
@@ -235,6 +256,14 @@ Stop-Process -Id 4388
 ### 7.3 Iniciar procesos
 
 El cmdlet **Start-Process** nos permite iniciar procesos.
+
+| Parámetro     | Descripción                                                  |
+| --------------- | ---------------------------------------------------------- |
+| -FilePath     | Especifica la ruta de acceso al archivo que se va a ejecutar. |
+| -ArgumentList | Especifica los parámetros o los valores de parámetros que se van a utilizar durante el arranque del proceso. |
+| -Wait | Espera a que finalice la ejecución del proceso especificado antes de aceptar una nueva entrada. |
+
+
 
 **Ejemplo: Iniciar un proceso especificando la ruta**
 
@@ -293,7 +322,7 @@ Get-Service
 **Ejemplo: Muestra los servicios que están arrancados**
 
 ```powershell
-Get-Service | Where-Object {$_Status -eq "Running"}
+Get-Service | Where-Object {$_.Status -eq "Running"}
 ```
 
 **Mostrar información detallada de un servicio.**
