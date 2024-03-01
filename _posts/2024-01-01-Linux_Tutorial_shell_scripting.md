@@ -340,10 +340,6 @@ A continuación veremos las expresiones condicionales más utilizadas.
 
 ### 9.1 Expresiones de archivos
 
-+ Devuelve verdadero si el archivo existe
-```bash
-[[ -a  $archivo ]]
-```
 + Devuelve verdadero si el archivo existe y se trata de un archivo especial de bloque
 ```bash
 [[ -b $archivo ]]
