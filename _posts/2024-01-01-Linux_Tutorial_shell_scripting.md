@@ -202,13 +202,13 @@ Todos los parámetros: azul amarillo azul
 
 
 ### Resumen de las variables utilizadas con los parámetros
-| Variable | Significado |
-| -------- | ----------- |
-| $0 | Nombre del script | 
-| $1 ... $9 |  Parámetros pasados al script |
-| $# | Número de parámetros pasados al script |
-| $* | Parámetros pasados al script |
-| $@ | Parámetros pasados al script |
+| Variable | Significado 
+| -------- | ----------- 
+| $0 | Nombre del script  
+| $1 ... $9 |  Parámetros pasados al script 
+| $# | Número de parámetros pasados al script 
+| $* | Parámetros pasados al script 
+| $@ | Parámetros pasados al script 
 
 
 <div id="id7" />
