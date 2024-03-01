@@ -483,7 +483,9 @@ En la sección anterior estudiamos las expresiones condicionales más populares.
 
 Esta estructura permite controlar qué serie de instrucciones se ejecutarán, de acuerdo a si se cumplen las condiciones o no.
 
-![picture 1](images/condicional.png)  
+![image-20240301114643538](/aso/assets/img/linux/image-20240301114643538.png)
+
+ 
 
 El formato de una declaración `if` es de la siguiente forma:
 
