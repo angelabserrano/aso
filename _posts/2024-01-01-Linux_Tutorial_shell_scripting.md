@@ -275,7 +275,7 @@ num2=3
 resultado=$((num1 + num2))
 echo $resultado
 ```
-### 8.2 Expr 
+### 8.2 Expr (No recomendado)
 Esta herramienta se utiliza para realizar operaciones aritméticas básicas utilizando la línea de comandos de Bash. Expr no permite la asignación de valores a variables ni la realización de operaciones avanzadas, pero es útil para operaciones sencillas. Por ejemplo:
 ```bash
 num1=5
@@ -285,7 +285,7 @@ echo $resultado
 
 ```
 
-### 8.3 Let
+### 8.3 Let (No recomendado)
  Esta sintaxis también se utiliza para realizar operaciones aritméticas básicas utilizando la línea de comandos de Bash. Let es similar a los doble paréntesis, pero no permite la comparación ni la asignación de valores en la misma línea de código. Por ejemplo:
 ```bash
 num1=5
@@ -293,8 +293,6 @@ num2=3
 let resultado=$num1+$num2
 echo $resultado
 ```
-En general, se recomienda utilizar los `doble paréntesis (( )) `cuando se necesite realizar operaciones avanzadas y/o comparaciones numéricas o lógicas. Si se desea realizar operaciones aritméticas básicas, se puede utilizar `expr o let` según las preferencias del usuario.
-
 Ejemplo:
 ```bash
 num1=5
@@ -311,6 +309,8 @@ resultado=$(($num1 * $temp))
 echo $resultado
 ```
 En este caso, es más fácil y legible utilizar los doble paréntesis para realizar la operación en una sola línea de código.
+
+En las guías de estilo, **se recomienda utilizar los `doble paréntesis (( )) `** en lugar de expr o let. 
 
 ### 8.4 Matemáticas en bash con bc
 Todas las operaciones matemáticas realizadas hasta el momento solo implican números enteros. Sin embargo, cuando quieres realizar operaciones con numeros reales, necesitarás recurrir a una herramienta como es `bc`.
@@ -603,8 +603,7 @@ Un bucle es una secuencia de instrucciones de código que se ejecuta repetidas v
 ### 11.1 Bucles con for
 Esta es la estructura de un bucle for:
 ```bash
-for var in lista
-do
+for var in lista ; do
     comandos
 done
 ```
@@ -615,8 +614,7 @@ Ejemplos:
 
 users="Maria Juan Pepe"
 
-for user in $users
-do
+for user in $users ; do
     echo "$user"
 done
 ```
@@ -627,7 +625,7 @@ Juan
 Pepe
 ```
 ```bash
-for i in `ls` ; do
+for i in `ls`; do
     echo "El fichero es $i"
 done
 ```
@@ -643,15 +641,13 @@ El fichero es Vídeos
 El bucle for tiene también otra sintaxis posible mucho más parecida a la de los lenguajes de programación convencionales (Java,C,C++,etc.)
 
 ```bash
-for ((inicialización; condición; incremento))
-do
+for ((inicialización; condición; incremento)); do
     comandos
 done
 ```
 Ejemplo: Imprime los números del 1 al 10
 ```bash
-for (( i=1; i<=10; i++ ))
-do
+for (( i=1; i<=10; i++ )); do
     echo "$i"
 done
 ```
@@ -661,8 +657,7 @@ done
 El bucle while repite una serie de comandos mientras una condición sea cierta.
 
 ```bash
-while [[ condicion ]]
-do
+while [[ condicion ]];do
     comandos
 done
 ```
@@ -671,8 +666,7 @@ Ejemplo: Imprime los numeros del 1 al 10
 #!/bin/bash
 
 contador=1
-while [[ $contador -le 10 ]]
-do
+while [[ $contador -le 10 ]];do
     echo $contador
     ((contador++))
 done
@@ -683,8 +677,7 @@ Ejemplo: Solicita un nombre al usuario. Se repite una y otra vez, hasta que el u
 
 read -p "¿Cómo te llamas? " name
 
-while [[ -z $name ]]
-do
+while [[ -z $name ]];do
     echo "Tu nombre no puede estar en blanco, porfavor introduzca un nombre válido!
     read -p "Introduce tu nombre de nuevo. " name
 done
@@ -698,8 +691,7 @@ echo "Hola $name"
 El bucle until se repite hasta que la condición sea cierta
 
 ```bash
-until [[ condicion ]] 
-do
+until [[ condicion ]]; do
     comandos
 done
 ```
@@ -709,8 +701,7 @@ Ejemplo: Imprime los números del 1 al 10
 #!/bin/bash
 
 count=1
-until [ $count -gt 10 ]
-do
+until [ $count -gt 10 ] ; do
     echo $count
     ((count++))
 done
