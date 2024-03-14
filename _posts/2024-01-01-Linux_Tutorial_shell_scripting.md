@@ -768,6 +768,26 @@ bash -x ./script.sh
 
 También puedes añadir `set -x` antes de la línea que quieres depurar, `set -x` habilita un modo en el que todos los comandos ejecutados son impresos por pantalla.
 
-Otra forma de testear nuestros scripts es usar esta herramienta
-[ShellCheck](https://www.shellcheck.net/)
+Otra forma de testear nuestros scripts es usar esta herramienta [ShellCheck](https://www.shellcheck.net/)
 
+
+
+## 14. Buenas prácticas y recomendaciones
+
+Durante la creación de nuestros scripts, es importante seguir unas buenas prácticas para prevenir errores comunes, mejorar la legibilidad del código y asegurar la compatibilidad entre diferentes entornos.
+
+**Estilo de Codificación**
+
+- **Indentación y Espaciado:** Mantén una consistencia en la indentación y usa espacios (o tabs) de forma coherente para mejorar la legibilidad.
+- **Nomenclatura de Variables:** Usa nombres descriptivos y sigue un estilo consistente 
+- **Agrupación de Código:** Organiza tu código en secciones lógicas y usa comentarios para describir bloques de código importantes.
+
+**Manejo de Errores**
+
+- **Comprobación de Errores:** Verifica el estado de salida de los comandos importantes y maneja los errores de forma adecuada.
+- **Uso del Comando `exit`:** Utiliza valores de salida específicos para indicar diferentes tipos de errores o éxito.
+
+**Herramientas y recursos para mejorar la calidad del código**
+
+- **Linters y Analizadores de Código:** Usa herramientas como `shellcheck` para detectar problemas y posibles mejoras en tus scripts.
+- **Guías de Estilo:** Refiérete a guías de estilo como [Google's Shell Style Guide](https://google.github.io/styleguide/shellguide.html) para mantener un código coherente y bien organizado. 
