@@ -750,7 +750,109 @@ Hola Pepe
 
 <div id="id13" />
 
-## 13. Depuración y testeo
+## 13. Utilidades y herramientas comunes
+
+#### Introducción
+
+Los scripts de shell se vuelven realmente poderosos cuando se combinan con una variedad de utilidades y herramientas de Unix/Linux. Estas herramientas pueden realizar desde tareas simples de manipulación de texto hasta complejas operaciones de análisis de datos. Este apartado cubre algunas de las utilidades más comunes y cómo pueden ser empleadas para mejorar tus scripts de shell.
+
+#### grep
+
+- **Descripción:** `grep` es una herramienta de búsqueda de texto que utiliza expresiones regulares. Es ampliamente utilizado para buscar patrones específicos dentro de archivos o salidas de comandos.
+- Uso Común: Buscar todos los archivos que contienen una palabra específica.
+
+```bash
+grep 'palabra' archivo.txt
+```
+
+#### awk
+
+- **Descripción:** `awk` es un lenguaje de programación diseñado para procesar y analizar archivos de texto. Es excepcionalmente bueno en el procesamiento de datos tabulares.
+- Uso Común:  Imprimir la tercera columna de un archivo separado por comas. 
+
+```bash
+awk -F, '{print $3}' archivo.csv
+```
+
+#### sed
+
+- **Descripción:** `sed` (stream editor) se utiliza para realizar transformaciones básicas de texto en un flujo de entrada (un archivo o entrada desde otro comando).
+- Uso Común: Reemplazar todas las instancias de 'texto1' por 'texto2' en un archivo.
+
+```bash
+sed 's/texto1/texto2/g' archivo.txt
+```
+
+#### cut
+
+- **Descripción:** `cut` se usa para extraer secciones de cada línea de un archivo. Puede ser utilizado para cortar por caracteres, bytes o campos.
+- Uso Común:  Extraer la primera columna de un archivo delimitado por tabulaciones.
+
+```bash
+cut -f1 archivo.txt
+```
+
+#### sort
+
+- **Descripción:** `sort` ordena las líneas de texto en un archivo.
+- Uso Común: Ordenar un archivo en orden alfabético.
+
+```bash
+sort archivo.txt
+```
+
+#### uniq
+
+- **Descripción:** `uniq` se utiliza para reportar o filtrar líneas repetidas en un archivo. Generalmente, se usa después de `sort`.
+- Uso Común:  Contar el número de ocurrencias únicas de cada línea en un archivo.
+
+```bash
+sort archivo.txt | uniq -c
+```
+
+#### tr
+
+- **Descripción:** `tr` se utiliza para reemplazar o eliminar caracteres específicos.
+
+- Uso Común:
+
+   Convertir todas las letras minúsculas a mayúsculas.
+
+```bash
+echo 'texto' | tr '[:lower:]' '[:upper:]'
+```
+
+#### find
+
+- **Descripción:** `find` busca archivos en un directorio que cumplan con una expresión dada.
+
+- Uso Común:
+
+   Encontrar todos los archivos  .txt  en un directorio.
+
+```bash
+find /ruta/al/directorio -type f -name "*.txt"
+```
+
+#### xargs
+
+- **Descripción:** `xargs` construye y ejecuta comandos a partir de la entrada estándar. Es útil para convertir la salida de un comando en argumentos de otro.
+
+- Uso Común:
+
+   Eliminar todos los archivos  .txt encontrados en un directorio.
+
+```bash
+find /ruta/al/directorio -type f -name "*.txt" | xargs rm
+```
+
+#### Conclusión
+
+La combinación de estas utilidades en tus scripts de shell puede amplificar significativamente su potencial. Cada herramienta tiene su propósito específico y, cuando se usa correctamente, puede realizar tareas complejas con pocas líneas de código. La clave para convertirse en un experto en shell scripting es entender bien estas herramientas y aprender a combinarlas de manera efectiva.
+
+
+
+## 14. Depuración y testeo
 
 Para depurar nuestros scripts, podemos usar `-x` al ejecutar el script
 ```bash
@@ -763,7 +865,7 @@ Otra forma de testear nuestros scripts es usar esta herramienta [ShellCheck](htt
 
 
 
-## 14. Buenas prácticas y recomendaciones
+## 15. Buenas prácticas y recomendaciones
 
 Durante la creación de nuestros scripts, es importante seguir unas buenas prácticas para prevenir errores comunes, mejorar la legibilidad del código y asegurar la compatibilidad entre diferentes entornos.
 
