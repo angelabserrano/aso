@@ -756,7 +756,7 @@ Hola Pepe
 
 Los scripts de shell se vuelven realmente poderosos cuando se combinan con una variedad de utilidades y herramientas de Unix/Linux. Estas herramientas pueden realizar desde tareas simples de manipulación de texto hasta complejas operaciones de análisis de datos. Este apartado cubre algunas de las utilidades más comunes y cómo pueden ser empleadas para mejorar tus scripts de shell.
 
-#### grep
+**grep**
 
 - **Descripción:** `grep` es una herramienta de búsqueda de texto que utiliza expresiones regulares. Es ampliamente utilizado para buscar patrones específicos dentro de archivos o salidas de comandos.
 - Uso Común: Buscar todos los archivos que contienen una palabra específica.
@@ -765,7 +765,7 @@ Los scripts de shell se vuelven realmente poderosos cuando se combinan con una v
 grep 'palabra' archivo.txt
 ```
 
-#### awk
+**awk**
 
 - **Descripción:** `awk` es un lenguaje de programación diseñado para procesar y analizar archivos de texto. Es excepcionalmente bueno en el procesamiento de datos tabulares.
 - Uso Común:  Imprimir la tercera columna de un archivo separado por comas. 
@@ -774,7 +774,7 @@ grep 'palabra' archivo.txt
 awk -F, '{print $3}' archivo.csv
 ```
 
-#### sed
+**sed**
 
 - **Descripción:** `sed` (stream editor) se utiliza para realizar transformaciones básicas de texto en un flujo de entrada (un archivo o entrada desde otro comando).
 - Uso Común: Reemplazar todas las instancias de 'texto1' por 'texto2' en un archivo.
@@ -783,7 +783,7 @@ awk -F, '{print $3}' archivo.csv
 sed 's/texto1/texto2/g' archivo.txt
 ```
 
-#### cut
+**cut**
 
 - **Descripción:** `cut` se usa para extraer secciones de cada línea de un archivo. Puede ser utilizado para cortar por caracteres, bytes o campos.
 - Uso Común:  Extraer la primera columna de un archivo delimitado por tabulaciones.
@@ -792,7 +792,7 @@ sed 's/texto1/texto2/g' archivo.txt
 cut -f1 archivo.txt
 ```
 
-#### sort
+**sort**
 
 - **Descripción:** `sort` ordena las líneas de texto en un archivo.
 - Uso Común: Ordenar un archivo en orden alfabético.
@@ -801,7 +801,7 @@ cut -f1 archivo.txt
 sort archivo.txt
 ```
 
-#### uniq
+**uniq**
 
 - **Descripción:** `uniq` se utiliza para reportar o filtrar líneas repetidas en un archivo. Generalmente, se usa después de `sort`.
 - Uso Común:  Contar el número de ocurrencias únicas de cada línea en un archivo.
@@ -810,7 +810,7 @@ sort archivo.txt
 sort archivo.txt | uniq -c
 ```
 
-#### tr
+**tr**
 
 - **Descripción:** `tr` se utiliza para reemplazar o eliminar caracteres específicos.
 
@@ -822,7 +822,7 @@ sort archivo.txt | uniq -c
 echo 'texto' | tr '[:lower:]' '[:upper:]'
 ```
 
-#### find
+**find**
 
 - **Descripción:** `find` busca archivos en un directorio que cumplan con una expresión dada.
 
@@ -834,7 +834,7 @@ echo 'texto' | tr '[:lower:]' '[:upper:]'
 find /ruta/al/directorio -type f -name "*.txt"
 ```
 
-#### xargs
+**xargs**
 
 - **Descripción:** `xargs` construye y ejecuta comandos a partir de la entrada estándar. Es útil para convertir la salida de un comando en argumentos de otro.
 
@@ -846,7 +846,7 @@ find /ruta/al/directorio -type f -name "*.txt"
 find /ruta/al/directorio -type f -name "*.txt" | xargs rm
 ```
 
-#### Conclusión
+**Conclusión**
 
 La combinación de estas utilidades en tus scripts de shell puede amplificar significativamente su potencial. Cada herramienta tiene su propósito específico y, cuando se usa correctamente, puede realizar tareas complejas con pocas líneas de código. La clave para convertirse en un experto en shell scripting es entender bien estas herramientas y aprender a combinarlas de manera efectiva.
 
