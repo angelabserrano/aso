@@ -3,8 +3,11 @@ layout: default
 title: Apuntes ASO
 ---
 <h1>Administración de Sistemas Operativos </h1>
+![Logo](/assets/img/logoASO.png)
+
 <ol class='portada'> 
   {% for post in site.posts reversed %}
       <li><h4><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></h4></li>
 {% endfor %}
 </ol>
+
