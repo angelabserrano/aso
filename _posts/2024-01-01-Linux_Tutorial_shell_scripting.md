@@ -752,7 +752,7 @@ Hola Pepe
 
 ## 13. Utilidades y herramientas comunes
 
-#### Introducción
+**Introducción**
 
 Los scripts de shell se vuelven realmente poderosos cuando se combinan con una variedad de utilidades y herramientas de Unix/Linux. Estas herramientas pueden realizar desde tareas simples de manipulación de texto hasta complejas operaciones de análisis de datos. Este apartado cubre algunas de las utilidades más comunes y cómo pueden ser empleadas para mejorar tus scripts de shell.
 
