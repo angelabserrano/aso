@@ -327,7 +327,38 @@ z=$(echo '4.1*5.2' | bc);echo $z #devuelve 21.3
 ```
 <div id="id9" />
 
+Otro ejemplo del uso de bc:
+
+```bash
+#!/bin/bash
+
+# Definir variables
+numero1=3.14
+numero2=2.71
+
+# Suma . scale=4 indica precisión de 4 decimales
+suma=$(echo "scale=4; $numero1 + $numero2" | bc)
+
+# Resta
+resta=$(echo "scale=4; $numero1 - $numero2" | bc)
+
+# Multiplicación
+multiplicacion=$(echo "scale=4; $numero1 * $numero2" | bc)
+
+# División
+division=$(echo "scale=4; $numero1 / $numero2" | bc)
+
+# Mostrar resultados
+echo "Suma: $suma"
+echo "Resta: $resta"
+echo "Multiplicación: $multiplicacion"
+echo "División: $division"
+```
+
+
+
 ## 9. Evaluación de expresiones
+
 En informática, las evaluación de expresiones condicionales son características de un lenguaje de programación, que realizan diferentes cálculos o acciones dependiendo de si una condición booleana especificada por el programador se evalúa como verdadera o falsa.
 
 Para evaluar expresiones utilizaremos el comando `test expresion` o su equivalente `[ expresion ]`. También podemos utilizar los dobles corchetes `[[ expresion ]]` que representa una mejora respecto a los simples.
