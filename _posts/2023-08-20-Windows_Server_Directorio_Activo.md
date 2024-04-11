@@ -12,33 +12,51 @@ permalink: wserver-directorio-activo
 
 El **Directorio Activo** (también conocido como **Active Directory** en inglés) es un servicio de directorio de red desarrollado por Microsoft. Su objetivo principal radica en proporcionar un servicio centralizado para la gestión y organización de recursos de red, como usuarios, grupos, impresoras y otros dispositivos, facilitando así la administración, autenticación y autorización en entornos empresariales de manera eficiente y segura.
 
-Existe una serie de conceptos que se deben tener claros para comprender el funcionamiento del directorio activo:
+El Directorio Activo incluye componentes **lógicos y físicos**.
 
-- **Dominio (Domain)** : Colección de objetos: usuarios, grupos, equipos, etc. Se representa por un nombre de dominio DNS. Ejemplo: empresa.local
+![image-20240411133253794](/aso/assets/img/windows_server/image-20240411133253794.png)
 
-- **Controlador de dominio (Domain Controller):** Es el servidor con el directorio activo instalado, que contiene la base de datos de objetos del directorio para un determinado dominio. 
+### 1.1 Componentes lógicos del Directorio Activo
 
-- **Árbol de dominios (Tree) :** Los árboles están compuestos por uno o varios dominios. Estos dominios están dentro del mismo espacio de nombres.
+La **estructura lógica** se centra en la administración de los recursos de  la red organizativa, independientemente de la ubicación física de dichos recursos, y de la topología de las redes subyacentes.  
+
+Los componentes de la estructura lógica del Directorio Activo son:
+
+- **Objetos**: Son los componentes básicos de la estructura lógica representan a  usuarios y recursos como equipos e impresoras. Las clases de objetos son esquemas o plantillas de los tipos de objetos que pueden crear en  el directorio activo.
+
+- **Unidades organizativas**: Es un contenedor para organizar los objetos en un dominio, a la que se pueden asignar valores de configuración de directivas de grupo.
+
+- **Dominios (Domain)**:  Colección de objetos: usuarios, grupos, equipos, etc. Se representa por un nombre de dominio DNS. Ejemplo: empresa.local
+
+- **Árboles de dominios (Tree)**: Los árboles están compuestos por uno o varios dominios. Estos dominios están dentro del mismo espacio de nombres.
 
   ![image-20230910113519819](/aso/assets/img/windows_server/image-20230910113519819.png)
 
-- **Bosque (Forest) :** Colección de árboles. Los dominios dentro de un bosque establecen relaciones de confianza, y esto les permite compartir recursos. Los dominios dentro del bosque no comparten el mismo espacio de nombres.
+- **Bosque (Forest)**: Colección de árboles. Los dominios dentro de un bosque establecen relaciones de confianza, y esto les permite compartir recursos. Los dominios dentro del bosque no comparten el mismo espacio de nombres.
 
   ![image-20230910115708152](/aso/assets/img/windows_server/image-20230910115708152.png)
 
-- **Confianza** : Es la relación existente entre dos dominios, dos árboles o dos bosques. 
+### 1.2 Componentes físicos del Directorio Activo
 
-- **Unidad organizativa** : Es un contenedor para organizar los objetos en un dominio, a la que se pueden asignar valores de configuración de directivas de grupo.
+Los elementos de la estructura física son los siguientes:
 
-- **Catálogo Global (Global Catalog):** incluye una copia parcial de solo lectura que contiene información de los atributos más utilizados de los objetos del bosque.
+- **Sitios**: En una red física, un sitio representa un conjunto de equipos conectados mediante una línea de alta velocidad, como una red de área local. En AD, los sitios representan la estructura física, o topología de red. Es importante distinguir entre sitios y dominios. Lo sitios representan la estructura física de red, mientras que los dominios representan la estructura lógica de la organización.
+- **Controlador de dominio (Domain Controller):** Es el servidor ejecutando Windows Server  con el directorio activo instalado, que contiene la base de datos de objetos del directorio para un determinado dominio. 
+
+Cada **controlador de dominio** contiene varias particiones del Directorio Activo:
+
+1. **Particiones del dominio:** contienen las réplicas de todos los objetos en ese dominio. Esta partición se replica solamente a otros Controladores de Dominio del mismo dominio. 
+2. **Particiones de configuración**: contienen la topología del bosque. La topología que es el esquema de conexión de los sitios, registra todas las conexiones de los controladores de dominio en el mismo bosque.
+3. **Particiones del esquema**: contiene el esquema del bosque. Cada bosque tiene un esquema para que la definición de cada clase del objeto sea única. Las particiones de configuración y esquema se replican en cada Controlador de Dominio del bosque.
+4. **Particiones de aplicaciones**: contienen los objetos relacionados a la seguridad y se utilizan en las aplicaciones. Se replican en Controladores de Dominio especificados en el bosque. 
+
+![img](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja0uuhQ2tw0530Vsgcmc5pmB7lrZ9creC3LMTbK-moDTslUv22VDfvsYZ8-U9L2GyEUfqp-Nd2mpXms9V3jRiCo2buvA0unWV9baOAfQUfS842ZOOZmH7vqMKyMAVRU40tTsaJZE9ysEDV/s1600/7.png)
+
+- **Catálogo Global (Global Catalog):**   Es un servidor que almacena una copia completa de todos los objetos del directorio para su dominio host y una copia parcial de solo lectura de todos los objetos del resto de dominios del bosque. 
 
   ![image-20230910115844695](/aso/assets/img/windows_server/image-20230910115844695.png)
 
-- **DNS :** El objetivo principal es traducir un nombre de dominio a una IP
 
-​	[www.microsoft.com](http://www.microsoft.com) => 2.21.180.244
-
-- **Sitios**: En una red física, un sitio representa un conjunto de equipos conectados mediante una línea de alta velocidad, como una red de área local. En AD, los sitios representan la estructura física, o topología de red. Es importante distinguir entre sitios y dominios. Lo sitios representan la estructura física de red, mientras que los dominios representan la estructura lógica de la organización.
 
 ## 2. Instalación de Active Directory
 
