@@ -8,6 +8,42 @@ conToc: true
 permalink: powershell
 ---
 
+## Programación de Aula
+
+### Resultados de Aprendizaje
+
+Esta unidad cubre el **Resultado de aprendizaje 7 (RA7)** según el **Real Decreto 1629/2009, de 30 de octubre**, el cual es:
+
+1. Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.
+
+Los criterios de evaluación asociados son:
+
+​	a. Se han utilizado y combinado las estructuras del lenguaje para crear guiones.
+
+​	b. Se han utilizado herramientas para depurar errores sintácticos y de ejecución.
+
+​	c. Se han implantado guiones en sistemas libres y propietario.
+
+​	d. Se han realizado cambios y adaptaciones de guiones del sistema.
+
+​	e. Se han implantado guiones en sistemas libres y propietarios
+
+​	f. Se han consultado y utilizado librerías de funciones.
+
+​	g. Se han documentado los guiones creados.
+
+
+
+### Planificación Temporal
+
+| Sesión | Contenido                                                    | Recurso Didáctico |
+| ------ | ------------------------------------------------------------ | ----------------- |
+| 1      | Introducción PowerShell, Creación Primer Script, Comentarios y depuración. |                   |
+| 2      |                                                              |                   |
+| 3      |                                                              |                   |
+| 4      |                                                              |                   |
+
+
 
 ## 1. Introducción
 
@@ -119,7 +155,46 @@ Por razones de seguridad, PowerShell está configurado de forma predeterminada p
 Set-ExecutionPolicy RemoteSigned
 ```
 
-### 1.5 Ejercicios
+## 1.5 Creación de mi Primer Script 
+
+Vamos a crear nuestro primer script, y como en todos los lenguajes de  programación el primero programa siempre es un "Hola mundo", pues ese  será también nuestro primer script.
+
+Para comenzar a crear nuestros script utilizaremos el IDE llamado **PowerShell ISE**
+
+<iframe id="aswift_8" name="aswift_8" style="left: 0px; top: 0px; border: 0px; width: 892px; height: 0px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="892" height="0" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?npa=1&amp;gdpr=1&amp;gdpr_consent=CQBsaMAQBsaMAEsACBESA9EoAP_gAEPgABi4INJB7C7FbSFCwH5zaLsAMAhHRsAAQoQAAASBAmABQAKQIAQCgkAQFASgBAACAAAAICZBIQIECAAACUAAQAAAAAAEAAAAAAAIIAAAgAEAAAAIAAACAAAAEAAIAAAAEAAAmAgAAIIACAAAhAAAAAAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAQOhSD2F2K2kKFkPCmwXYAYBCujYAAhQgAAAkCBMACgAUgQAgFJIAgCIFAAAAAAAAAQEiCQAAQABAAAIACgAAAAAAIAAAAAAAQQAABAAIAAAAAAAAEAAAAIAAQAAAAIAABEhCAAQQAEAAAAAAAQAAAAAAAAAAABAAA&amp;addtl_consent=2~70.89.93.108.122.149.196.236.259.311.313.323.358.415.449.486.494.495.540.574.609.827.864.981.1029.1048.1051.1095.1097.1126.1205.1276.1301.1365.1415.1423.1449.1514.1570.1577.1598.1651.1716.1735.1753.1765.1870.1878.1889.1958.2072.2253.2299.2357.2373.2415.2506.2526.2568.2571.2575.2624.2677~dv.&amp;client=ca-pub-2309336300368049&amp;output=html&amp;h=280&amp;adk=4117628194&amp;adf=3198517752&amp;pi=t.aa~a.1261311059~i.51~rp.4&amp;w=892&amp;abgtt=6&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1718754728&amp;num_ads=1&amp;rafmt=1&amp;armr=3&amp;sem=mc&amp;pwprc=6208560315&amp;ad_type=text_image&amp;format=892x280&amp;url=https%3A%2F%2Fwww.respuestasit.com.mx%2F2021%2F02%2Fprimer-script-powershell.html&amp;host=ca-host-pub-1556223355139109&amp;fwr=0&amp;pra=3&amp;rh=200&amp;rw=892&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=27&amp;dt=1720868866528&amp;bpp=1&amp;bdt=6186&amp;idt=1&amp;shv=r20240709&amp;mjsv=m202407110101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3Dc921c266f382e703%3AT%3D1720868865%3ART%3D1720868865%3AS%3DALNI_MYFk732uBxTEsgkl5sxBWT0g1DAaQ&amp;gpic=UID%3D00000e87fc7edd10%3AT%3D1720868865%3ART%3D1720868865%3AS%3DALNI_MZzzYdfnTktkbRcuGmBN_GcMX9sRw&amp;eo_id_str=ID%3D3f6753cbc647a9d5%3AT%3D1720868865%3ART%3D1720868865%3AS%3DAA-AfjZtc4aIfTGj8kC_ZcMEGcrO&amp;prev_fmts=0x0%2C1044x280%2C120x600%2C200x200%2C120x600%2C120x600%2C120x600%2C120x600&amp;nras=2&amp;correlator=5734655040389&amp;frm=20&amp;pv=1&amp;ga_vid=1434918925.1720868861&amp;ga_sid=1720868865&amp;ga_hid=385865076&amp;ga_fc=1&amp;u_tz=120&amp;u_his=1&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1048&amp;u_aw=1854&amp;u_cd=24&amp;u_sd=1&amp;adx=391&amp;ady=4768&amp;biw=1854&amp;bih=963&amp;scr_x=0&amp;scr_y=2287&amp;eid=44759875%2C44759926%2C44759837%2C31085138%2C31085211%2C95331689%2C95334508%2C95334529%2C95334828%2C31085242%2C31084184%2C95331954&amp;oid=2&amp;pvsid=2301904729429406&amp;tmod=1375128532&amp;uas=3&amp;nvt=1&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;fc=1408&amp;brdim=66%2C32%2C66%2C32%2C1854%2C32%2C1854%2C1048%2C1854%2C963&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=128&amp;bc=31&amp;bz=1&amp;ifi=9&amp;uci=a!9&amp;btvi=6&amp;fsb=1&amp;dtd=12" data-google-container-id="a!9" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true" data-google-query-id="CJWM_Yvwo4cDFflRpAQdkq0AsA"></iframe>
+
+Cuando entremos al ISE daremos clic en el botón de Nuevo, que se encuentra en la esquina superior izquierda.
+
+![img](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJ1KQ2ehgir96N1_9IQ_twRpAyFSdAzfKxpcsmKEuzdJKmOmY1YQxlsR9YblVzT8s6qHcQvqA-472WPKgYgvbdMAnMHtbSQsoM-HbTjGcSFzOpNauxIqu4CiQ-HC65x-lCOtYCBMy_Axpi/w640-h274/Captura.PNG)
+
+En la parte de la derecha, encontramos una lista de comandos  disponibles y un poco de ayuda con ellos, una vez abierto el documento  para el script procedemos a mostrar en pantalla nuestro "Hola Mundo"
+
+Write-Host "Hola Mundo" 
+
+![img](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwt60KwyENbAHNSIPCq5NF-yy_Em51aNAxSgBr1Nfjj2PfYVejcibIa5dr7QMsKszIQgpucQYK0-E2IVmH40urbmmqOufBfUyqq5VhD7lYM1R5yCSfs27n-hIzYqMdm1fFuP1dUhnieclU/w640-h274/Captura.PNG)
+
+### 1.6 Comentarios
+
+Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadilla** (#).
+
+▸ **Comentar una línea.**
+
+```powershell
+ #Este es un comentario.
+```
+
+▸ **Comentar un bloque**
+
+```powershell
+<#
+Esto es un comentario
+de varias líneas
+#>
+```
+
+
+
+### 1.7 Ejercicios
 
 #### Práctica 1
 
@@ -304,26 +379,7 @@ Test-Path $elem -PathType container
 
 
 
-## 3. Comentarios, variables y tipos de datos
-
-
-
-Los comentarios en PowerShell se escriben utilizando el símbolo de **almohadilla** (#).
-
-▸ **Comentar una línea.**
-
-```powershell
- #Este es un comentario.
-```
-
-▸ **Comentar un bloque**
-
-```powershell
-<#
-Esto es un comentario
-de varias líneas
-#>
-```
+## 3. Variables y tipos de datos
 
 > -info- Una **variable** es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo. 
 
