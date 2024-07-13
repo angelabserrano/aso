@@ -34,14 +34,16 @@ Los criterios de evaluación asociados son:
 
 
 
-### Planificación Temporal
+### Planificación Temporal (6 sesiones / 12 horas)
 
-| Sesión | Contenido                                                    | Recurso Didáctico |
-| ------ | ------------------------------------------------------------ | ----------------- |
-| 1      | Introducción PowerShell, Creación Primer Script, Comentarios y depuración. |                   |
-| 2      |                                                              |                   |
-| 3      |                                                              |                   |
-| 4      |                                                              |                   |
+| Sesión | Contenido                                                    |
+| ------ | ------------------------------------------------------------ |
+| 1      | Introducción PowerShell, Creación Primer Script, Comentarios y depuración. |
+| 2      | Comandos básicos, Variables, Tipos de Datos y Operaciones Básicas |
+| 3      | Estructuras condicionales                                    |
+| 4      | Estructuras repetitivas                                      |
+| 5      | Importación de datos y funciones                             |
+| 6      | Refuerzo y Ampliación                                        |
 
 
 
@@ -192,9 +194,13 @@ de varias líneas
 #>
 ```
 
+### 1.7 Depuración
+
+PowerShell es un potente lenguaje de scripting que puede  automatizar tareas y administrar sistemas. Sin embargo, escribir y  ejecutar scripts de PowerShell también puede introducir errores y  errores que deben corregirse. La depuración es el proceso de buscar y  resolver estos problemas en el código. En este artículo, aprenderá a  depurar scripts de PowerShell mediante algunas herramientas y técnicas  básicas.
 
 
-### 1.7 Ejercicios
+
+### 1.8 Ejercicios
 
 #### Práctica 1
 
