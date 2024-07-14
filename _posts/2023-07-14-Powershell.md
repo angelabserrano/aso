@@ -157,7 +157,7 @@ Por razones de seguridad, PowerShell está configurado de forma predeterminada p
 Set-ExecutionPolicy RemoteSigned
 ```
 
-## 1.5 Creación de mi Primer Script 
+### 1.5 Creación de mi Primer Script 
 
 Vamos a crear nuestro primer script, y como en todos los lenguajes de  programación el primero programa siempre es un "Hola mundo", pues ese  será también nuestro primer script.
 
@@ -241,6 +241,70 @@ Set-PSBreakpoint -Script sample.ps1 -Variable Server
 - #### Quitar un punto de interrupción.
 
   Al quitar un punto de interrupción, este se elimina. Haga clic con el botón derecho en la línea donde desee quitar un punto de interrupción y después haga clic en **ToggleBreakpoint**. O bien, haga clic en la línea donde desee quitar un punto de interrupción y, en el menú **Depurar**, haga clic en **Alternar punto de interrupción**.
+
+  
+
+- #### Quitar todos los puntos de interrupción
+
+  Para quitar todos los puntos de interrupción definidos en la sesión actual, en el menú **Depurar**, haga clic en **Quitar todos los puntos de interrupción**.
+  
+  El script siguiente es un ejemplo de cómo quitar todos los puntos de interrupción del panel de consola mediante el cmdlet [Remove-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Remove-PSBreakpoint).
+  
+  ```powershell
+  # This command deletes all of the breakpoints in the current session.
+  Get-PSBreakpoint | Remove-PSBreakpoint
+  ```
+
+- #### Deshabilitar todos los puntos de interrupción
+  Al deshabilitar un punto de interrupción, este no se quita; permanece desactivado hasta que se vuelve a habilitar. Para deshabilitar todos los puntos de interrupción de la sesión actual, en el menú **Depurar**, haga clic en **Deshabilitar todos los puntos de interrupción**.  El script siguiente es un ejemplo de cómo deshabilitar todos los  puntos de interrupción desde el panel de consola mediante el cmdlet [Disable-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Disable-PSBreakpoint).
+
+  ```powershell
+  # This command disables all breakpoints in the current session.
+  # You can abbreviate this command as: "gbp | dbp".
+  Get-PSBreakpoint | Disable-PSBreakpoint
+  ```
+
+- #### Habilitar un punto de interrupción
+
+  Para habilitar un punto de interrupción específico, haga clic con el  botón derecho en la línea donde desee habilitar un punto de interrupción y después haga clic en **Habilitar punto de interrupción**. O bien, haga clic en la línea donde desee habilitar un punto de interrupción y presione F9 o, en el menú **Depurar**, haga clic en **Habilitar punto de interrupción**. El script siguiente es un ejemplo de cómo habilitar puntos de interrupción desde el panel de consola mediante el cmdlet [Enable-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Enable-PSBreakpoint).
+
+  ```powershell
+  # This command enables breakpoints with breakpoint IDs 0, 1, and 5.
+  Enable-PSBreakpoint -Id 0, 1, 5
+  ```
+
+- #### Habilitar todos los puntos de interrupción
+
+  Para habilitar todos los puntos de interrupción definidos en la sesión actual, en el menú **Depurar**, haga clic en **Habilitar todos los puntos de interrupción**. El script siguiente es un ejemplo de cómo habilitar todos los puntos de interrupción desde el panel de consola mediante el cmdlet [Enable-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Enable-PSBreakpoint).
+
+  ```powershell
+  # This command enables all breakpoints in the current session.
+  # You can abbreviate the command by using their aliases: "gbp | ebp".
+  Get-PSBreakpoint | Enable-PSBreakpoint
+  ```
+
+- #### ¿Cómo administrar una sesión de depuración?
+
+  Antes de iniciar la depuración, debe establecer uno o varios puntos de  interrupción. No se puede establecer un punto de interrupción si no se  guarda el script que desea depurar. Después de iniciar la depuración, no se puede editar un script hasta  que la depuración se detenga. Un script con uno o más puntos de  interrupción establecidos se guarda automáticamente antes de ejecutarse.
+
+  - **Iniciar la depuración**
+
+    Presione F5 o haga clic en el icono **Ejecutar script** en la barra de herramientas, o bien, en el menú **Depurar**, haga clic en **Ejecutar o continuar**. El script se ejecuta hasta que encuentra el primer punto de  interrupción. Detiene la operación en este punto y resalta la línea en  la que se produce la pausa.
+
+  - **Continuar la depuración**
+
+    Presione F5 o haga clic en el icono **Ejecutar Script** en la barra de herramientas, o bien, en el menú **Depurar**, haga clic en **Ejecutar o continuar**. También puede escribir `C` en el panel de consola y presionar ENTRAR. Esto hace que el script se siga ejecutando hasta el punto de  interrupción siguiente o hasta el final si no se encuentran más puntos  de interrupción.	
+
+  - **Ver la pila de llamadas**    
+
+    La pila de llamadas muestra la ubicación de ejecución actual en el  script. Si el script se ejecuta en una función que llamó una función  diferente, se representa mediante filas adicionales en la salida. La  última fila muestra el script original y la línea en la que se llamó a  una función. La siguiente línea muestra esa función y la línea en la que se podría haber llamado a otra función. La primera fila muestra el  contexto actual de la línea actual en la que se estableció el punto de  interrupción.
+
+    Mientras está en pausa, para ver la pila de llamadas actual, presione CTRL+MAYÚS+D o, en el menú **Depurar**, haga clic en **Mostrar pila de llamadas**. También puede escribir `K` en el panel de consola y presionar ENTRAR.
+
+  - **Detener la depuración** 
+
+
+​		Presione MAYÚS+F5 o, en el menú **Depurar**, haga clic en **Detener el depurador**. También puede escribir `Q` en el panel de consola y presionar 		ENTRAR.
 
 ### 1.8 Ejercicios
 
