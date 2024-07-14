@@ -196,9 +196,51 @@ de varias líneas
 
 ### 1.7 Depuración
 
-PowerShell es un potente lenguaje de scripting que puede  automatizar tareas y administrar sistemas. Sin embargo, escribir y  ejecutar scripts de PowerShell también puede introducir errores y  errores que deben corregirse. La depuración es el proceso de buscar y  resolver estos problemas en el código. En este artículo, aprenderá a  depurar scripts de PowerShell mediante algunas herramientas y técnicas  básicas.
+PowerShell es un potente lenguaje de scripting que puede  automatizar tareas y administrar sistemas. Sin embargo, escribir y  ejecutar scripts de PowerShell también puede introducir errores y  errores que deben corregirse. La depuración es el proceso de buscar y  resolver estos problemas en el código. A continuación se describe como depurar scripts en un equipo local mediante Windows PowerShell ISE.
 
+- ####  Tipos de puntos de interrupción (breakpoint)
 
+  Un punto de interrupción es una zona designada en un script que desee  que la operación entre en pausa para poder examinar el estado actual de  las variables y el entorno en que se ejecuta el script.
+
+  Puede establecer tres tipos de puntos de interrupción en el entorno de depuración de Windows PowerShell:
+
+  1. **Punto de interrupción de línea**. El script se pausa cuando se alcanza la línea designada durante la operación del script.
+
+  2. **Variable breakpoint.** El script se pausa cuando cambia el valor de la variable designada.
+
+  3. **Command breakpoint.** El script se pausa cada vez  que el comando designado está a punto de ejecutarse durante la operación del script. Puede incluir parámetros para filtrar aún más el punto de  interrupción solo para operación deseada. El comando también puede ser  una función que ha creado.
+
+     
+
+     En el entorno de depuración Windows PowerShell ISE, solo se pueden  establecer puntos de interrupción de línea usando el menú o los métodos  abreviados de teclado. Los otros dos tipos de puntos de interrupción se  pueden establecer, pero debe hacerse desde el panel de consola mediante  el cmdlet [Set-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Set-PSBreakpoint).
+
+     
+
+- #### Establecer un punto de interrupción.
+
+Solo se puede establecer un punto de interrupción en un script después  de guardarlo. Haga clic con el botón derecho en la línea donde desee  establecer un punto de interrupción y después haga clic en **Alternar punto de interrupción**. O bien, haga clic en la línea donde desee establecer un punto de interrupción y presione F9 o, en el menú **Depurar**, haga clic en **Alternar punto de interrupción**.
+
+El script siguiente es un ejemplo de cómo establecer un punto de  interrupción de variable desde el panel de consola mediante el cmdlet [Set-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Set-PSBreakpoint).
+
+```powershell
+# This command sets a breakpoint on the Server variable in the Sample.ps1 script.
+Set-PSBreakpoint -Script sample.ps1 -Variable Server
+```
+
+- #### Enumerar todos los puntos de interrupción
+
+  Muestra todos los puntos de interrupción de la sesión actual de Windows PowerShell.
+
+  En el menú **Depurar**, haga clic en **Mostrar puntos de interrupción**. El script siguiente es un ejemplo de cómo enumerar todos los puntos de  interrupción desde el panel de consola mediante el cmdlet [Get-PSBreakpoint](https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Get-PSBreakpoint).
+
+  ```powershell
+  # This command lists all breakpoints in the current session.
+  Get-PSBreakpoint
+  ```
+
+- #### Quitar un punto de interrupción.
+
+  Al quitar un punto de interrupción, este se elimina. Haga clic con el botón derecho en la línea donde desee quitar un punto de interrupción y después haga clic en **ToggleBreakpoint**. O bien, haga clic en la línea donde desee quitar un punto de interrupción y, en el menú **Depurar**, haga clic en **Alternar punto de interrupción**.
 
 ### 1.8 Ejercicios
 
