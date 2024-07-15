@@ -5,7 +5,7 @@ layout: post
 title: Linux - Samba
 categories: linux
 conToc: true
-permalink: linux-servicio-directorio
+permalink: linux-samba
 ---
 
 ## 1. Introducción
