@@ -31,7 +31,36 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    - **Ramas y fusión**: Facilita la creación de ramas para el desarrollo de nuevas características o corrección de errores, las cuales se pueden fusionar al proyecto principal una vez finalizadas.
    - **Recuperación**: Permite revertir a versiones anteriores del proyecto si se introducen errores.
 
-   ### Comandos básicos de Git
+   Instalación de Git en diferentes sistemas operativos
+
+   #### Windows
+
+   1. Descargar el instalador desde el [sitio oficial de Git](https://git-scm.com/).
+   2. Ejecutar el instalador y seguir las instrucciones en pantalla, seleccionando las opciones deseadas.
+
+   #### Linux
+
+   - Para distribuciones basadas en Debian/Ubuntu:
+
+     ```shell
+     sudo apt update
+     sudo apt install git
+     ```
+
+     
+
+   #### Configuración inicial de Git
+
+   Después de instalar Git, es importante configurarlo con tu nombre de usuario y correo electrónico, ya que esta información se usará en los commits.
+
+   ```shell
+   git config --global user.name "Tu Nombre"
+   git config --global user.email "tuemail@ejemplo.com"
+   ```
+
+   
+
+   #### Comandos básicos de Git
 
    #### `git init`
 
@@ -70,8 +99,32 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Envía los commits realizados en la rama local al repositorio remoto.
 
-   ```
+   ```shell
    git push origin master
+   ```
+
+   #### `git pull`
+
+   Actualiza tu repositorio local con los cambios del repositorio remoto.
+
+   ```shell
+   git pull origin master
+   ```
+
+   #### `git status`
+
+   Muestra el estado de los archivos en el directorio de trabajo y el área de preparación.
+
+   ```shell
+   git status
+   ```
+
+   #### `git log`
+
+   Muestra el historial de commits del repositorio.
+
+   ```shell
+   git log
    ```
 
    
