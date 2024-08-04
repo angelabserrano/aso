@@ -10,13 +10,13 @@ permalink: git
 
 Antes de comenzar con los contenidos específicos de administración de sistemas operativos , es fundamental que los estudiantes se familiaricen con las herramientas de control de versiones y colaboración en desarrollo de software. Git y GitHub son herramientas esenciales en el entorno profesional que permitirán a los estudiantes almacenar, gestionar y compartir su trabajo de manera eficiente.
 
-## Objetivo:
+## Objetivos
 
 - Comprender los conceptos básicos de Git y GitHub.
 - Configurar un repositorio público en GitHub.
 - Almacenar scripts y documentación de la asignatura en el repositorio.
 
-## Contenido:
+## Contenidos
 
 1. ### **Conceptos Básicos de Git**
 
@@ -31,14 +31,14 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    - **Ramas y fusión**: Facilita la creación de ramas para el desarrollo de nuevas características o corrección de errores, las cuales se pueden fusionar al proyecto principal una vez finalizadas.
    - **Recuperación**: Permite revertir a versiones anteriores del proyecto si se introducen errores.
 
-   Instalación de Git en diferentes sistemas operativos
+   #### Instalación de Git en diferentes sistemas operativos
 
-   #### Windows
+   **Windows**
 
    1. Descargar el instalador desde el [sitio oficial de Git](https://git-scm.com/).
    2. Ejecutar el instalador y seguir las instrucciones en pantalla, seleccionando las opciones deseadas.
 
-   #### Linux
+   **Linux**
 
    - Para distribuciones basadas en Debian/Ubuntu:
 
@@ -62,7 +62,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    #### Comandos básicos de Git
 
-   #### `git init`
+   `git init`
 
    Inicializa un nuevo repositorio de Git en el directorio actual.
 
@@ -70,7 +70,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git init
    ```
 
-   #### `git clone`
+   `git clone`
 
    Clona un repositorio existente desde una URL a tu máquina local.
 
@@ -78,7 +78,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git clone https://github.com/usuario/repo.git
    ```
 
-   #### `git add`
+   `git add`
 
    Agrega archivos al área de preparación (staging area), preparándolos para el commit.
 
@@ -87,7 +87,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git add .
    ```
 
-   #### `git commit`
+   `git commit`
 
    Guarda los cambios añadidos al área de preparación en el historial del repositorio.
 
@@ -95,7 +95,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git commit -m "Mensaje del commit"
    ```
 
-   #### `git push`
+   `git push`
 
    Envía los commits realizados en la rama local al repositorio remoto.
 
@@ -103,7 +103,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git push origin master
    ```
 
-   #### `git pull`
+   `git pull`
 
    Actualiza tu repositorio local con los cambios del repositorio remoto.
 
@@ -111,7 +111,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git pull origin master
    ```
 
-   #### `git status`
+   `git status`
 
    Muestra el estado de los archivos en el directorio de trabajo y el área de preparación.
 
@@ -119,7 +119,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git status
    ```
 
-   #### `git log`
+   `git log`
 
    Muestra el historial de commits del repositorio.
 
