@@ -201,7 +201,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    
 ### Práctica 0
--reto- ** Ejercicio 1 ** Crea una cuenta en Github con las credenciales proporcionadas por el instituto. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura de ssh para autentificación segura. 
+> -reto- **Ejercicio 1** Crea una cuenta en Github con las credenciales proporcionadas por el instituto. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura de ssh para autentificación segura. 
 
 3. **Flujo de Trabajo con Git y GitHub**
    - Creación y clonación de repositorios.
