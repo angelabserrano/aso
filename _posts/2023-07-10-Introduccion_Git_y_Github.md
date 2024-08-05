@@ -129,14 +129,77 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    
 
-2. **Conceptos Básicos de GitHub**
+2. ### **Conceptos Básicos de GitHub**
 
-   - ¿Qué es GitHub?
-     - Plataforma para alojar repositorios Git.
-     - Colaboración y control de versiones en la nube.
-   - Creación de una cuenta en GitHub.
-   - Creación de un repositorio público en GitHub.
-   - Configuración de SSH para autenticación segura.
+   #### ¿Qué es GitHub? 
+
+   GitHub es una plataforma en línea que permite a los desarrolladores alojar y gestionar sus proyectos utilizando Git. Proporciona un entorno colaborativo donde los desarrolladores pueden compartir sus proyectos, trabajar juntos en el código, y gestionar el historial de versiones de manera eficiente.
+
+   ##### Plataforma para alojar repositorios Git
+
+   - **Alojamiento de Repositorios**: GitHub ofrece almacenamiento para repositorios Git, permitiendo a los desarrolladores guardar y compartir su código con facilidad.
+   - **Interfaz Web**: Proporciona una interfaz web intuitiva para interactuar con los repositorios, revisar el historial de commits, gestionar problemas (issues) y realizar solicitudes de extracción (pull requests).
+
+   ##### Colaboración y control de versiones en la nube
+
+   - **Colaboración**: Permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente. Las características como los pull requests y las revisiones de código facilitan la colaboración y revisión de cambios.
+
+   - **Control de Versiones**: Utilizando Git como backend, GitHub proporciona control de versiones robusto, permitiendo a los desarrolladores rastrear y revertir cambios en el código.
+
+     
+
+   #### Creación de una cuenta en GitHub
+
+   1. **Registro**: Ve a la [página de registro de GitHub](https://github.com/join).
+   2. **Formulario de Registro**: Completa el formulario de registro con tu nombre de usuario, correo electrónico y contraseña.
+   3. **Verificación**: Sigue las instrucciones para verificar tu cuenta a través del correo electrónico.
+   4. **Configuración Inicial**: Opcionalmente, puedes configurar algunas preferencias iniciales como temas y notificaciones.
+
+   #### Creación de un repositorio público en GitHub
+
+   1. **Iniciar Sesión**: Inicia sesión en tu cuenta de GitHub.
+   2. **Nuevo Repositorio**: Haz clic en el botón "+" en la esquina superior derecha y selecciona "New repository".
+   3. Detalles del Repositorio
+      - **Nombre del Repositorio**: Proporciona un nombre único para tu repositorio.
+      - **Descripción**: Opcionalmente, añade una descripción para tu repositorio.
+      - **Visibilidad**: Selecciona "Public" para hacer que el repositorio sea accesible para todos.
+   4. Opciones Iniciales
+      - Puedes inicializar el repositorio con un archivo README, un archivo .gitignore y una licencia.
+   5. **Crear Repositorio**: Haz clic en el botón "Create repository" para finalizar.
+
+   #### Configuración de SSH para autenticación segura
+
+   La autenticación SSH proporciona un método seguro para interactuar con GitHub sin tener que ingresar tu nombre de usuario y contraseña cada vez.
+
+   1. **Generar una clave SSH**:
+
+      - Abre una terminal y ejecuta el siguiente comando (reemplaza  youremail@example.com  con tu correo electrónico):
+
+      ```
+      ssh-keygen -t rsa -b 4096 -C "TU_EMAIL" "youremail@example.com"
+      
+      ```
+   2. **Agregar la clave SSH a tu cuenta de GitHub**:
+
+   ```bash
+   cat ~/.ssh/id_rsa.pub
+   ```
+
+   - Ve a [Configuración de SSH en GitHub](https://github.com/settings/keys) y haz clic en "New SSH key".
+
+   - Pega la clave pública en el campo "Key" y proporciona un título descriptivo.
+
+   - Haz clic en "Add SSH key".
+
+     
+
+   3. **Probar la conexión**
+
+      ```bash
+      ssh -T git@github.com
+      ```
+
+   4. 
 
 3. **Flujo de Trabajo con Git y GitHub**
    - Creación y clonación de repositorios.
