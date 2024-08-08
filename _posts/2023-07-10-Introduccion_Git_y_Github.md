@@ -203,19 +203,3 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 ### Práctica 0
 > -reto- **Ejercicio 1** Crea una cuenta en Github con las credenciales proporcionadas por el instituto. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura  ssh para autentificación segura en GitHub. . 
 
-3. **Flujo de Trabajo con Git y GitHub**
-   - Creación y clonación de repositorios.
-   - Estructura de un repositorio Git.
-   - Ramas (branches) y fusiones (merges).
-   - Trabajo colaborativo con GitHub: pull requests y revisiones de código.
-   - Uso de GitHub Issues para seguimiento de tareas y problemas.
-
-4. **Integración de Git y GitHub en la Asignatura**
-   - Configuración del repositorio para la asignatura.
-     - Creación de carpetas para scripts y documentación.
-   - Ejemplo práctico: Almacenamiento del primer script.
-     - Creación de un script básico en PowerShell.
-     - Adición y commit del script al repositorio local.
-     - Push del commit al repositorio remoto en GitHub.
-   - Documentación de scripts y prácticas.
-     - Uso de Markdown para documentación en GitHub.
