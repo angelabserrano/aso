@@ -37,3 +37,18 @@ Un servicio de directorio es un sistema especializado que almacena,  organiza y 
   - Permite la integración de servidores Linux/Unix en redes dominadas por Windows.
   - Proporciona compatibilidad con Active Directory y servicios de directorio de Windows.
 
+
+
+## 3.  LDAP 
+
+   LDAP, que significa **Lightweight Directory Access Protocol** (Protocolo Ligero de Acceso a Directorios), es un protocolo de red utilizado para acceder y administrar servicios de directorio a través de una red IP. Los servicios de directorio son bases de datos especializadas que almacenan información sobre recursos en una red, como usuarios, grupos, dispositivos y otros objetos.
+
+   Algunas características clave de LDAP son:
+
+   1. **Protocolo Ligero**: LDAP es una versión simplificada del protocolo DAP (Directory Access Protocol) que facilita su implementación y uso.
+   2. **Acceso y Consulta**: Permite a los clientes consultar, buscar y modificar información en un directorio de forma eficiente.
+   3. **Estructura Jerárquica**: Los datos en un directorio LDAP se organizan en una estructura jerárquica similar a un árbol, lo que facilita la administración y búsqueda de información.
+   4. **Interoperabilidad**: LDAP es ampliamente utilizado y soportado por muchos sistemas y aplicaciones, lo que facilita la integración y compatibilidad entre diferentes plataformas.
+   5. **Autenticación y Autorización**: LDAP se usa comúnmente para gestionar la autenticación de usuarios y controlar el acceso a recursos en una red, especialmente en entornos empresariales y académicos.
+
+   Un ejemplo común de uso de LDAP es en la administración de directorios de usuarios en empresas, donde LDAP se utiliza para gestionar credenciales de acceso y permisos a diversos servicios y aplicaciones.
