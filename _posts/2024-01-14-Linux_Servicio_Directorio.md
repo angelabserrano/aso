@@ -52,3 +52,25 @@ Un servicio de directorio es un sistema especializado que almacena,  organiza y 
    5. **Autenticación y Autorización**: LDAP se usa comúnmente para gestionar la autenticación de usuarios y controlar el acceso a recursos en una red, especialmente en entornos empresariales y académicos.
 
    Un ejemplo común de uso de LDAP es en la administración de directorios de usuarios en empresas, donde LDAP se utiliza para gestionar credenciales de acceso y permisos a diversos servicios y aplicaciones.
+
+### 3.1 **Estructura y Funcionamiento del Protocolo LDAP**
+
+LDAP sigue una estructura jerárquica en la que los datos se organizan en un árbol llamado **DIT (Directory Information Tree)**. Cada nodo del árbol representa una entrada (entry), que es una colección de atributos. Cada atributo tiene un nombre y uno o más valores asociados. Por ejemplo, un usuario puede tener atributos como `cn` (Common Name), `uid` (User ID), `mail` (dirección de correo electrónico), y `userPassword` (contraseña).
+
+- **Distinguished Name (DN):** Cada entrada en un directorio LDAP tiene un identificador único llamado DN. Este nombre distingue de manera única cada entrada dentro del directorio. Un DN se construye concatenando los nombres de los elementos desde la entrada hasta la raíz del árbol. Por ejemplo, un DN podría ser `uid=jdoe,ou=users,dc=example,dc=com`, donde:
+  - `uid=jdoe`: indica el usuario con ID "jdoe".
+  - `ou=users`: indica que esta entrada está dentro de la unidad organizativa "users".
+  - `dc=example,dc=com`: indica que el dominio es `example.com`.
+- **Relative Distinguished Name (RDN):** El RDN es la parte del DN que identifica una entrada en particular dentro de su nivel jerárquico. En el ejemplo anterior, `uid=jdoe` es el RDN para el usuario "jdoe".
+
+### 3.2 Tipos de Directorios LDAP: DIT, DN, y más
+
+- **DIT (Directory Information Tree):** Es la estructura jerárquica en la que se organizan las entradas LDAP. El DIT se construye como un árbol invertido, con la raíz en la parte superior y las ramas extendiéndose hacia abajo. Las ramas representan las distintas divisiones de la organización, como departamentos o ubicaciones, y las hojas del árbol representan los objetos, como usuarios o dispositivos.
+
+  ![dit](/aso/assets/img/linux/dit.png)
+
+- **DN (Distinguished Name):** Como se mencionó anteriormente, el DN es la ruta completa a una entrada en el DIT. Es un identificador único para cada entrada en el directorio.
+
+- **Atributos y Objetos:** Las entradas en LDAP se componen de atributos, que son pares nombre-valor, y de clases de objeto, que definen qué atributos puede o debe tener una entrada. Por ejemplo, una clase de objeto `inetOrgPerson` puede tener atributos como `cn`, `sn` (surname o apellido), y `mail`.
+
+- **Esquemas LDAP:** El esquema define las reglas sobre qué clases de objeto y atributos pueden existir en el directorio. Establece la estructura de los datos permitidos en el directorio, definiendo qué tipos de objetos (como usuarios, grupos, etc.) pueden almacenarse y qué atributos puede tener cada uno. Los esquemas son cruciales para garantizar la coherencia de los datos dentro del DIT.
