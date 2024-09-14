@@ -967,7 +967,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > Ejercicio. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
 >
-> ** Estructuras condicionales ** 
+> **Estructuras condicionales** 
 >
 > Ejercicio. Crea un script donde se pida al usuario dos números y diga cúal es mayor.
 >
@@ -975,4 +975,4 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > Ejercicio. Realiza un script que, dado un número pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
 >
-> Ejercicio . Crea un script que contenga una función que se le pase por paráetro el nombre d eun fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
+> Ejercicio . Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
