@@ -975,9 +975,9 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > Ejercicio 5. Crea un script donde se pida al usuario dos números y muestre la media aritmética.
 >
-> Ejercicio. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
+> Ejercicio 6. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
 >
-> Ejercicio. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
+> Ejercicio 7. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
 >
 > **Estructuras condicionales** 
 >
@@ -1011,6 +1011,8 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > **Bucles**
 >
 > Ejercicio. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
+>
+> Ejercicio. Crea un shell script que sume los números del 1 al 1000 mediante una estructura `for`, `while` y `until`.
 >
 > Ejercicio. Haz un script que vaya dando la suma de todos los números que se
 > introduzca por teclado hasta que se introduzca un 0, en cuyo caso se
@@ -1054,3 +1056,8 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > **Funciones**
 >
 > Ejercicio . Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
+>
+> Ejercicio. Realiza un script utilizando funciones que permita crear un informe de las **IP libres** en la red en la que se encuentra el equipo. Debe contener las siguientes opciones:
+>
+> 1. El informe contendrá un **listado de todas las IP de la red** a la que pertenece el equipo indicando si está libe o no (usa el comando ping).
+> 2. En el informe debe aparecer el **tipo de red** (rango CIDR) en el que está inmerso el ordenador con el **nombre de la red**, su **broadcast** y su **máscara de subred**. 
