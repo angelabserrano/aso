@@ -39,6 +39,47 @@ Material elaborado por Ángela Bañuls Serrano
 
 
 
+## Programación de Aula
+
+### Resultados de Aprendizaje
+
+Esta unidad cubre el **Resultado de aprendizaje 7 (RA7)** según el **Real Decreto 1629/2009, de 30 de octubre**, el cual es:
+
+1. Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.
+
+Los criterios de evaluación asociados son:
+
+​	a. Se han utilizado y combinado las estructuras del lenguaje para crear guiones.
+
+​	b. Se han utilizado herramientas para depurar errores sintácticos y de ejecución.
+
+​	c. Se han implantado guiones en sistemas libres y propietario.
+
+​	d. Se han realizado cambios y adaptaciones de guiones del sistema.
+
+​	e. Se han implantado guiones en sistemas libres y propietarios
+
+​	f. Se han consultado y utilizado librerías de funciones.
+
+​	g. Se han documentado los guiones creados.
+
+
+
+### Planificación Temporal (6 sesiones / 12 horas)
+
+| Sesión | Contenido                                                    |
+| ------ | ------------------------------------------------------------ |
+| 1      | Introducción, comentarios, variables,  tipos de datos, parámetros y operaciones básicas |
+| 2      | Estructuras condicionales                                    |
+| 3      | Estructuras repetitivas                                      |
+| 4      | Expresiones regulares                                        |
+| 5      | Importación de datos y funciones                             |
+| 6      | Refuerzo y Ampliación                                        |
+
+
+
+
+
 <div id="id1" />
 
 ## 1. Introducción 
@@ -357,6 +398,7 @@ echo "División: $division"
 
 
 
+
 ## 9. Evaluación de expresiones
 
 En informática, las evaluación de expresiones condicionales son características de un lenguaje de programación, que realizan diferentes cálculos o acciones dependiendo de si una condición booleana especificada por el programador se evalúa como verdadera o falsa.
@@ -625,7 +667,8 @@ case $caracter in
 esac
 ```
 
-<div id="id11" />
+
+
 
 ## 11. Bucles
 Un bucle es una secuencia de instrucciones de código que se ejecuta repetidas veces, hasta que la condición asignada a dicho bucle deja de cumplirse.
@@ -915,3 +958,21 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 - **Linters y Analizadores de Código:** Usa herramientas como `shellcheck` para detectar problemas y posibles mejoras en tus scripts.
 - **Guías de Estilo:** Refiérete a guías de estilo como [Google's Shell Style Guide](https://google.github.io/styleguide/shellguide.html) para mantener un código coherente y bien organizado. 
+
+
+
+### 16.Actividades
+
+> -reto- Ejercicio. Crea un script donde se pida al usuario dos números y muestre la media aritmética.
+>
+> Ejercicio. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
+>
+> ** Estructuras condicionales ** 
+>
+> Ejercicio. Crea un script donde se pida al usuario dos números y diga cúal es mayor.
+>
+> Ejercicio. Realiza un script que contenga un menú, de forma que muestre las cuatro operaciones matemáticas básicas: sumar, restar, multiplicar y dividir. Solicita dos números al usuario y  muestra el resultado en función de la opción seleccionada.
+>
+> Ejercicio. Realiza un script que, dado un número pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
+>
+> Ejercicio . Crea un script que contenga una función que se le pase por paráetro el nombre d eun fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
