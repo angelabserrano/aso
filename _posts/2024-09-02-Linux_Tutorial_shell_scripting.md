@@ -1008,6 +1008,22 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > - **Ordenar** (ordenar los registros alfabéticamente).
 > - **Borrar** (borrar el archivo).
 >
+> Ejercicio. Realizar un script **gestionusuarios.sh** que permita dar de alta y de baja a
+> usuario del sistema GNU/Linux indicados como argumento:
+> ./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]
+>
+> - En el caso de que se le pase la opción alta:
+> El script asignará al usuario un identificativo para el sistema con el
+> formato aluXXYYZ donde XX son las dos primeras letras del apellido1,
+> YY son las dos primeras letras del apellido2 y Z es la inicial del nombre.
+> En caso de no indicar el grupo al que pertenece, se creará un nuevo
+> grupo con el mismo identificativo que el usuario.
+> - En el caso de que se le pase la opción baja:
+> El programa debe calcular la identificación del usuario, igual que se
+> indica en el menú anterior, y proceder a dar de baja la cuenta.
+> - En otro caso. Indicar “Error. La sintaxis correcta es
+> ./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]”
+>
 > **Bucles**
 >
 > Ejercicio. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
@@ -1052,6 +1068,16 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > muestre las estadísticas de cuantos ficheros y cuantos subdirectorios
 > contiene. Debes comprobar que existe el directorio que se pasa como
 > parámetro y que efectivamente es un directorio.
+>
+> **Expresiones regulares**
+>
+> Ejercicio. Realiza un script que muestre la lista de los últimos usuarios que iniciaron
+> sesión, incluidas las direcciones IP Origen. (Solo debes mostrar las líneas en
+> las que aparece una IP). Debes hacer uso del comando last y egrep.
+>
+> Ejercicio. Realiza un script que busque cualquier fichero que pueda ser modificado por
+> cualquier usuario (--- --- rwx) y guarde la lista de ficheros con la ruta exacta en
+> el archivo archivos_peligrosos.txt 
 >
 > **Funciones**
 >
