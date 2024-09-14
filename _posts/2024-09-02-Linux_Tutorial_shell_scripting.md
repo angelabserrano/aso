@@ -961,11 +961,13 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 
 
-### 16.Actividades
+### 16. Actividades
 
 > -reto- Ejercicio. Crea un script donde se pida al usuario dos números y muestre la media aritmética.
 >
 > Ejercicio. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
+>
+> Ejercicio. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
 >
 > **Estructuras condicionales** 
 >
@@ -973,6 +975,10 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > Ejercicio. Realiza un script que contenga un menú, de forma que muestre las cuatro operaciones matemáticas básicas: sumar, restar, multiplicar y dividir. Solicita dos números al usuario y  muestra el resultado en función de la opción seleccionada.
 >
-> Ejercicio. Realiza un script que, dado un número pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
+> **Bucles**
+>
+> Ejercicio. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
+>
+> **Funciones**
 >
 > Ejercicio . Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
