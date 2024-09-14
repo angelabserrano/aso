@@ -961,7 +961,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 
 
-### 16. Actividades
+### Ejercicios prácticos
 
 > -reto- Ejercicio. Crea un script donde se pida al usuario dos números y muestre la media aritmética.
 >
@@ -975,9 +975,61 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > Ejercicio. Realiza un script que contenga un menú, de forma que muestre las cuatro operaciones matemáticas básicas: sumar, restar, multiplicar y dividir. Solicita dos números al usuario y  muestra el resultado en función de la opción seleccionada.
 >
+> Ejercicio. Crea un script parimpar.sh que solicite un número y diga si es par o
+> impar. 
+>
+> Ejercicio. Realizar un shell script que copie el fichero indicado como primer
+> parámetro posicional de manera que la copia tenga el nombre indicado en
+> el segundo parámetro posicional. Hay que controlar:
+> a) Que se indiquen dos parámetros.
+> b) Que exista y sea archivo ordinario el primer parámetro.
+> c) Que no exista un identificador (fichero ordinario, directorio, etc..) con
+> el mismo nombre que el indicado en el segundo parámetro.
+> Si se produce alguna de las situaciones anteriores se visualizará un
+> mensaje de error indicativo.
+>
 > **Bucles**
 >
 > Ejercicio. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
+>
+> Ejercicio. Haz un script que vaya dando la suma de todos los números que se
+> introduzca por teclado hasta que se introduzca un 0, en cuyo caso se
+> mostrará el último resultado y terminará el script.
+>
+> Ejercicio. Realizar un script utilizando el bucle for que muestre el siguiente patrón:
+>
+> ![image-20240914191157883](/aso/assets/img/linux/image-20240914191157883.png)
+>
+> Ejercicio: Realizar un script utilizando la estructura el bucle for que muestre el
+> siguiente patrón:
+>
+> ![image-20240914191301584](/aso/assets/img/linux/image-20240914191301584.png)
+>
+> Ejercicio. Crea un script primo.sh que verifique si el número pasado por parámetro es
+> primo o no.
+>
+> Ejercicio. Crea un script juego.sh que consista en un juego de adivinar un número del
+> 1 al 100. El número a adivinar se pondrá fijo al principio del script. Se le
+> irán preguntando números al usuario y se dirá si el número es mayor o
+> menor que el que hay que adivinar. El juego termina si el usuario averigua
+> el número (Mensaje de Enhorabuena) o introduce un 0 (Se rinde) 
+>
+> Ejercicio. Realizar un script que reciba como único parámetro el nombre de un
+> directorio, especificado mediante su nombre de ruta completo. El programa
+> debe mostrar un listado no recursivo de todas las entradas contenidas en
+> ese directorio, indicando para cada una de ellas si se trata de un fichero o
+> de un directorio. Al final, debe mostrarse un mensaje indicando el número
+> total de entradas procesadas.
+>
+> Ejercicio. Modifica el script anterior para que indique si se trata de un fichero, de un
+> directorio, de un enlace simbólico, un archivo especial de bloque, archivo
+> especial de caracter. Debes pasarle el directorio /dev y verificar que funciona
+> bien.
+>
+> Ejercicio. Escribir un script que, dado el nombre de un directorio como parámetro,
+> muestre las estadísticas de cuantos ficheros y cuantos subdirectorios
+> contiene. Debes comprobar que existe el directorio que se pasa como
+> parámetro y que efectivamente es un directorio.
 >
 > **Funciones**
 >
