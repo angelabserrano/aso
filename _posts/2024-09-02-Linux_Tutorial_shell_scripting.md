@@ -243,13 +243,13 @@ Todos los parámetros: azul amarillo azul
 
 
 ### Resumen de las variables utilizadas con los parámetros
-| Variable | Significado 
-| -------- | ----------- 
-| $0 | Nombre del script  
-| $1 ... $9 |  Parámetros pasados al script 
-| $# | Número de parámetros pasados al script 
-| $* | Parámetros pasados al script 
-| $@ | Parámetros pasados al script 
+| Variable | Significado |
+| -------- | ----------- |
+| $0 | Nombre del script  |
+| $1 ... $9 |  Parámetros pasados al script |
+| $# | Número de parámetros pasados al script |
+| $* | Parámetros pasados al script separados por IFS (Internal Field Separator), que por defecto es el espacio. |
+| $@ | Parámetros pasados al script, pero cada argumento se mantiene como una entidad separada. |
 
 
 <div id="id7" />
@@ -540,7 +540,7 @@ Así, las principales diferencias entre usar corchete simple o doble corchete so
 
 2. Con [[ puedes utilizar los operadores || y &&, así como < y >` para las comparaciones de cadena.
 
-3.  Puedes utilizar el operador `=~` para expresiones regulares, como por ejemplo 
+3.  Puedes utilizar el operador `=~` para **expresiones regulares**, como por ejemplo 
 ```bash 
 [[ $respuesta =~ ^s(i)?$ ]]
 ```
@@ -548,6 +548,33 @@ Así, las principales diferencias entre usar corchete simple o doble corchete so
 ```bash
 [[ abc = a\* ]]
 ```
+
+
+
+### 9.5 Expresiones regulares
+
+Una expresión regular (ER) está formada por caracteres combinados con operadores:
+
+| Expresión                       | Descripción                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| ^                               | Principio de línea                                           |
+| $                               | Final de línea                                               |
+| \\\<                            | Principio de palabra                                         |
+| \\>                             | Final de palabra                                             |
+| .                               | Cualquier carácter excepto salto de línea                    |
+| [ ]                             | Conjunto de caracteres                                       |
+| [^]                             | Cualquier carácter no contenido                              |
+| [-]                             | Rango                                                        |
+| *                               | Cero o más ocurrencias del elemento que lo precede           |
+| +                               | Una o más ocurrencias del elemento que lo precede            |
+| ?                               | El elemento precedente es opcional                           |
+| ( )                             | Agrupación                                                   |
+| \|                              | O uno u otro                                                 |
+| {n}                             | El elemento precedente se repite al menos n veces            |
+| {n,m}                           | El elemento precedente se repite al menos n y no más de m veces |
+| \ escape {\t, \n, \., \*, ... } | Se usa para tratar de forma normal un carácter especial      |
+
+
 
 <div id="id10" />
 
@@ -698,6 +725,7 @@ Maria
 Juan
 Pepe
 ```
+Otro ejemplo: 
 ```bash
 for i in `ls`; do
     echo "El fichero es $i"
