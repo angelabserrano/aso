@@ -160,7 +160,7 @@ Hola Pepe
 
 ### 3.1 Variables de entorno 
 
-Contienen información respecto al entorno de ejecución. Por ejemplo:
+Una **variable de entorno** es un valor almacenado en el sistema operativo que puede ser utilizado por aplicaciones, scripts y procesos para obtener información sobre el entorno en el que se están ejecutando.
 
 | Variable de Entorno | Descripción                                                 |
 | ------------------- | ----------------------------------------------------------- |
