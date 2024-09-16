@@ -158,7 +158,49 @@ Hola Pepe
 ```
 <div id="id4" />
 
+### 3.1 Variables de entorno 
+
+Contienen información respecto al entorno de ejecución. Por ejemplo:
+
+| Variable de Entorno | Descripción                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| `PATH`              | Define la secuencia de directorios para buscar ejecutables. |
+| `HOME`              | Indica el directorio principal del usuario.                 |
+| `USER`              | Muestra el nombre del usuario actual.                       |
+| `SHELL`             | Especifica la shell por defecto para el usuario.            |
+| `PWD`               | Representa el directorio de trabajo actual.                 |
+| `LANG`              | Establece el idioma preferido para mensajes.                |
+| `TERM`              | Especifica el tipo de terminal en uso.                      |
+| `DISPLAY`           | Indica la pantalla para mostrar aplicaciones gráficas.      |
+| `TZ`                | Define la zona horaria del sistema.                         |
+| `LD_LIBRARY_PATH`   | Lista de directorios para buscar bibliotecas compartidas.   |
+| `PS1`               | Formato del indicador de comandos en la línea de comandos.  |
+| `LOGNAME`           | Nombre de inicio de sesión del usuario.                     |
+| `MAIL`              | Ruta al buzón de correo del usuario.                        |
+| `UID`               | Identificación numérica del usuario.                        |
+| `GID`               | Identificación numérica del grupo.                          |
+| `EDITOR`            | Editor predeterminado para editar archivos.                 |
+| `HOSTNAME`          | Nombre del host de la máquina.                              |
+| `OSTYPE`            | Tipo de sistema operativo.                                  |
+| `MANPATH`           | Ruta para buscar las páginas del manual.                    |
+| `PS2`               | Segundo prompt de comandos.                                 |
+| `IFS`               | Separador de campos internos para expansión de palabras.    |
+| `COLUMNS`           | Número de columnas en la ventana de la terminal.            |
+| `LINES`             | Número de líneas en la ventana de la terminal.              |
+| `EUID`              | Identificación efectiva del usuario.                        |
+| `PPID`              | Identificación del proceso padre.                           |
+| `HISTSIZE`          | Número máximo de líneas de historial a recordar.            |
+| `HOSTTYPE`          | Tipo de máquina en la que se está ejecutando el sistema.    |
+| `MACHTYPE`          | Tipo de máquina.                                            |
+| `PS3`               | Prompt utilizado por el comando `select` en un script.      |
+| `PS4`               | Prefijo utilizado en la salida del script con traza.        |
+| `MAILCHECK`         | Intervalo de tiempo entre comprobaciones de nuevo correo.   |
+| `TMP` o `TEMP`      | Directorio para archivos temporales.                        |
+| `USERAGENT`         | Agente de usuario para aplicaciones web.                    |
+| `XDG_CONFIG_HOME`   | Directorio base para archivos de configuración del usuario. |
+
 ## 4. Entrada de datos por el usuario
+
 Para leer datos del usuario y almacenarlo en una variable utilizaremos el comando `read`.
 ```bash
 #!/bin/bash
