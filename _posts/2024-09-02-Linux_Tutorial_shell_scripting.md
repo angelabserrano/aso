@@ -283,15 +283,16 @@ Obtenemos la siguiente salida:
 Todos los parámetros: azul amarillo azul
 ```
 
-
 ### Resumen de las variables utilizadas con los parámetros
+
 | Variable | Significado |
 | -------- | ----------- |
-| $0 | Nombre del script  |
-| $1 ... $9 |  Parámetros pasados al script |
-| $# | Número de parámetros pasados al script |
-| $* | Parámetros pasados al script separados por IFS (Internal Field Separator), que por defecto es el espacio. |
-| $@ | Parámetros pasados al script, pero cada argumento se mantiene como una entidad separada. |
+| `$0`     | Nombre del script  |
+| `$1` ... `$9` | Parámetros pasados al script |
+| `$#`     | Número de parámetros pasados al script |
+| `$*`     | Parámetros pasados al script separados por IFS (Internal Field Separator), que por defecto es el espacio. |
+| `$@`     | Parámetros pasados al script, pero cada argumento se mantiene como una entidad separada. |
+
 
 
 <div id="id7" />
