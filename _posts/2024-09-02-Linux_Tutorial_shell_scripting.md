@@ -1034,7 +1034,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 ### Ejercicios prácticos
 
-> -reto- **Básicos**
+> -reto- **BASICOS**
 >
 > **Ejercicio 1**. Crea un shell script que muestre por pantalla el mensaje “**¡Hola Mundo!**”.
 >
@@ -1050,7 +1050,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > **Ejercicio 7**. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
 >
-> **Estructuras condicionales** 
+> **ESTRUCTURAS CONDICIONALES** 
 >
 > **Ejercicio 8**. Crea un script donde se pida al usuario dos números y diga cúal es mayor.
 >
@@ -1095,7 +1095,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > - En otro caso. Indicar “Error. La sintaxis correcta es
 > ./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]”
 >
-> **Bucles**
+> **BUCLES**
 >
 > **Ejercicio 15**. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
 >
@@ -1140,7 +1140,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 > contiene. Debes comprobar que existe el directorio que se pasa como
 > parámetro y que efectivamente es un directorio.
 >
-> **Expresiones regulares**
+> **EXPRESIONES REGULARES**
 >
 > **Ejercicio 25**. Realiza un script que muestre la lista de los últimos usuarios que iniciaron
 > sesión, incluidas las direcciones IP Origen. (Solo debes mostrar las líneas en
@@ -1154,7 +1154,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 find . -type f -exec ls -l {} \;
 ```
 >
-> **Funciones**
+> **FUNCIONES**
 >
 > **Ejercicio 27**. Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
 >
