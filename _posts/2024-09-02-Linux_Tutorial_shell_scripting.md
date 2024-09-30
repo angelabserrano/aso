@@ -1148,7 +1148,11 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 >
 > **Ejercicio 26**. Realiza un script que busque cualquier fichero que pueda ser modificado por
 > cualquier usuario (--- --- rwx) y guarde la lista de ficheros con la ruta exacta en
-> el archivo archivos_peligrosos.txt 
+> el archivo archivos_peligrosos.txt
+> Tip: 
+```bash
+find . -type f -exec ls -l {} \;
+```
 >
 > **Funciones**
 >
