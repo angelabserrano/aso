@@ -1003,6 +1003,10 @@ Para depurar nuestros scripts, podemos usar `-x` al ejecutar el script
 ```bash
 bash -x ./script.sh
 ```
+Otra opción es utilizar `-v`al ejecutar el script
+```bash
+bash -v ./script.sh
+```
 
 También puedes añadir `set -x` antes de la línea que quieres depurar, `set -x` habilita un modo en el que todos los comandos ejecutados son impresos por pantalla.
 
