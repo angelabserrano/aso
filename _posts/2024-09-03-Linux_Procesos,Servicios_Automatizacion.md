@@ -68,7 +68,7 @@ En esta unidad trabajaremos la administración de procesos, servicios del sistem
 
 
 
- ## 2. Administración de procesos
+## 2. Administración de procesos
 
 ### 2.1 Definición de proceso
 
@@ -91,7 +91,7 @@ Un **proceso** es una instancia de un programa en ejecución. Cada vez que ejecu
 
 Un proceso puede estar en diferentes estados como:
 
-![img](/aso_github/assets/img/linux/process-states.svg)
+![](/aso_github/assets/img/linux/process-states.jpg)
 
 
 
@@ -117,7 +117,7 @@ Cada vez que invocamos un comando, se inician uno o más procesos. Un  administr
 
 #### 2.3.1 Control de trabajos
 
-Los trabajos (jobs) son procesos que se han iniciado de forma interactiva a través de un terminal, enviados a un segundo plano y aún no han finalizado la ejecución. El comando que nos permite conocer los trabajos activos (y su estado) es el siguiente:
+Los **trabajos (jobs)** son procesos que se han iniciado de forma interactiva a través de un terminal, enviados a un segundo plano y aún no han finalizado la ejecución. El comando que nos permite conocer los trabajos activos (y su estado) es el siguiente:
 
 ```bash
 jobs
