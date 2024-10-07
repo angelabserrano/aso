@@ -123,6 +123,18 @@ Los **trabajos (jobs)** son procesos que se han iniciado de forma interactiva a 
 jobs
 ```
 
+Puedes ejecutar un proceso en segundo plano añadiendo **&** al final del comando. Por ejemplo:
+
+```bash
+sleep 100 &
+```
+
+Esto crea un proceso que esperará 100 segundos, pero sin bloquear la terminal.
+
+Si ahora ejecutamos jobs podemos observar que existe un trabajo para la sesión de la shell.
+
+![image-20241007103056488](/aso_github/assets/img/linux/image-20241007103056488.png)
+
 
 
 3. Administración de los servicios del sistema
