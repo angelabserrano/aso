@@ -9,13 +9,6 @@ permalink: linux-administracion
 ---
 # Administración de procesos, servicios y automatización de tareas
 
-**Índice**
-
-1. [Introducción](#id1)
-2. 
-
-
-
 ## Programación de Aula
 
 ### Resultados de Aprendizaje
@@ -91,7 +84,7 @@ Un **proceso** es una instancia de un programa en ejecución. Cada vez que ejecu
 
 Un proceso puede estar en diferentes estados como:
 
-![process-states](/aso_github/assets/img/linux/process-states.png)
+![process-states](/aso/assets/img/linux/process-states.png)
 
 
 
