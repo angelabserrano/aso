@@ -91,7 +91,7 @@ Un **proceso** es una instancia de un programa en ejecución. Cada vez que ejecu
 
 Un proceso puede estar en diferentes estados como:
 
-![](/aso_github/assets/img/linux/process-states.jpg)
+![process-states](/aso_github/assets/img/linux/process-states.png)
 
 
 
