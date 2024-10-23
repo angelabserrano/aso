@@ -45,12 +45,12 @@ Los criterios de evaluación asociados son:
 
 ### Planificación Temporal (6 sesiones / 12 horas)
 
-| Sesión | Contenido                                        |
-| ------ | ------------------------------------------------ |
-| 1      | Administración de procesos: definición, estados, |
-|        |                                                  |
-|        |                                                  |
-|        |                                                  |
+| Sesión | Contenido                                                    |
+| ------ | ------------------------------------------------------------ |
+| 1      | Administración de procesos: definición, estados, crear, supervisar y matar procesos |
+| 2      | Prioridad de los procesos                                    |
+| 3      | Control de servicios y daemons                               |
+| 4      |                                                              |
 
 
 
@@ -126,7 +126,7 @@ Esto crea un proceso que esperará 100 segundos, pero sin bloquear la terminal.
 
 Si ahora ejecutamos jobs podemos observar que existe un trabajo para la sesión de la shell.
 
-![image-20241007103056488](/aso_github/assets/img/linux/image-20241007103056488.png)
+![image-20241007103056488](/aso/assets/img/linux/image-20241007103056488.png)
 
 
 
