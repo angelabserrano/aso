@@ -133,7 +133,7 @@ A continuación se muestra una tabla resumen de comandos para la gestión de pro
 
 El comando **ps** proporciona información sobre los procesos que se están ejecutando en el sistema.  Si  escribimos  en  el  terminal  `ps`,  obtendremos  como  salida  un  listado  de  los procesos lanzados con el usuario actual que aún se están ejecutando.
 
-​    ![img](/aso/assets/img/linux/comando_ps.png)
+​    <img src="/aso/assets/img/linux/comando_ps.png" alt="img" style="zoom:75%;" />
 
 Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
@@ -142,7 +142,7 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 - La tercera columna indica el tiempo total que ha estado ejecutándose el proceso.
 - La cuarta columna es el nombre del proceso.
 
-#### Parámetros/modificadores ps[¶](https://fjavier-hernandez.github.io/aso/03_Procesos/033_GestionProcesosShell.html#parametrosmodificadores-ps)
+#### Parámetros/modificadores ps
 
 - **-e** devuelve un listado de todos los procesos que se están ejecutando. 
 - **-f** devuelve un listado extendido. En este último caso veremos en pantalla el **PPID** del proceso (identificador del proceso padre) y la hora en la que se ejecutó el proceso (STIME).
