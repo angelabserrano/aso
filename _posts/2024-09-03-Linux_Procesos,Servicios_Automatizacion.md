@@ -133,7 +133,7 @@ A continuación se muestra una tabla resumen de comandos para la gestión de pro
 
 El comando **ps** proporciona información sobre los procesos que se están ejecutando en el sistema.  Si  escribimos  en  el  terminal  `ps`,  obtendremos  como  salida  un  listado  de  los procesos lanzados con el usuario actual que aún se están ejecutando.
 
-​    ![img](/aso_github/assets/img/linux/comando_ps.png)
+​    ![img](/aso/assets/img/linux/comando_ps.png)
 
 Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
@@ -147,7 +147,7 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 - **-e** devuelve un listado de todos los procesos que se están ejecutando. 
 - **-f** devuelve un listado extendido. En este último caso veremos en pantalla el **PPID** del proceso (identificador del proceso padre) y la hora en la que se ejecutó el proceso (STIME).
 
-​    ![img](/aso_github/assets/img/linux/comando_ps2.png)    Resultado comando ps -f
+​    ![img](/aso/assets/img/linux/comando_ps2.png)    Resultado comando ps -f
 
 - **-ef** obtendríamos un listado extendido de todos los procesos que se están ejecutando en el sistema.
 - **-u**  informa  de  los  procesos  lanzado  por  un  determinado  usuario.  De  tal  forma  que  si escribimos “**ps -u alumno**”, aparecerá un listado de los procesos que está ejecutando el usuario alumno. 
@@ -156,7 +156,7 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
 El comando **pstree** visualiza, en forma de árbol, todos  los procesos del sistema, de esta forma se puede ver las relaciones que  existen entre los procesos.
 
-![img](/aso_github/assets/img/linux/004.png)
+![img](/aso/assets/img/linux/004.png)
 
 
 
@@ -171,7 +171,7 @@ En la parte superior se muestra la siguiente información adicional:
 - El número total de tareas o procesos que se están ejecutando.
 - El número de usuarios o el porcentaje de uso del procesador.
 
-![img](/aso_github/assets/img/linux/005.png)
+![img](/aso/assets/img/linux/005.png)
 
 
 
@@ -191,7 +191,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Para ver que trabajos se están ejecutando en segundo plano, se usa el comando **jobs**.
 
-  ![img](/aso_github/assets/img/linux/007.png)
+  ![img](/aso/assets/img/linux/007.png)
 
   
 
@@ -199,7 +199,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Para pasar procesos en segundo plano a primer plano, se utiliza el comando **fg**, seguido de **%n**, donde n es el número de proceso que queremos pasar a primer plano.
 
-  ![img](/aso_github/assets/img/linux/008.png)
+  ![img](/aso/assets/img/linux/008.png)
 
   **Pasar procesos en primer plano a segundo plano**
 
@@ -209,7 +209,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Con **bg %n** pasaremos el proceso a segundo plano.
 
-  ![img](/aso_github/assets/img/linux/009.png)
+  ![img](/aso/assets/img/linux/009.png)
 
   
 
