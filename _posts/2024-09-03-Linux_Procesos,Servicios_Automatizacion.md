@@ -211,7 +211,33 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   <img src="/aso/assets/img/linux/009.png" alt="img" style="zoom:75%;" />
 
-  
+2.3.5 El comando kill para finalizar procesos
+
+Para finalizar un proceso se utiliza el comando **kill**, que tiene la siguiente sintaxis: 
+
+```bash
+kill [parámetro] PID 
+```
+
+Si, por ejemplo, queremos eliminar un proceso con **PID 17122**, tendríamos que escribir: **kill 17122**.
+
+Puede  que  en  ocasiones  el  proceso  no  finalice  al  emplear  el  comando  kill  sin parámetros. Para matar un proceso asegurándonos de  que no ignorará la petición de finalizar su ejecución se emplea el  parámetro -9.
+
+```bash
+kill -9 17122 
+```
+
+Hay un total de 32 señales que se pueden enviar a los procesos. Las más utilizadas son las siguientes:
+
+```bash
+ kill -1 (Sighup). Reinicia el proceso. 
+ kill -9 (SigKill). Mata el proceso. 
+ kill -15 (SigTerm). Termina el proceso. 
+```
+
+Por otra parte, el comando  **killall  nombre_programa** finaliza todos los procesos que estén ejecutando el programa.
+
+
 
 3. Administración de los servicios del sistema
 
