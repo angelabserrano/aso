@@ -104,31 +104,114 @@ Un proceso puede estar en diferentes estados como:
 - **Dead (X):**
   - Un estado transitorio, en el que el proceso ha terminado de ejecutarse y está en proceso de ser elminado del sistema.
 
-### 2.3 Crear, supervisar y matar procesos
+### 2.3 Comandos en Linux para la gestión de procesos
 
 Cada vez que invocamos un comando, se inician uno o más procesos. Un  administrador de sistemas no solo necesita crear  procesos, sino también poder realizar un seguimiento de ellos y  enviarles diferentes tipos de señales si es necesario. En este apartado veremos el control del trabajo y cómo monitorear los procesos.
 
-#### 2.3.1 Control de trabajos
+A continuación se muestra una tabla resumen de comandos para la gestión de procesos:
 
-Los **trabajos (jobs)** son procesos que se han iniciado de forma interactiva a través de un terminal, enviados a un segundo plano y aún no han finalizado la ejecución. El comando que nos permite conocer los trabajos activos (y su estado) es el siguiente:
+| Comando | Descripción                                                  |
+| ------- | ------------------------------------------------------------ |
+| jobs    | Lista los procesos en segundo plano y suspendidos en la terminal actual. |
+| bg      | Envía un proceso suspendido al segundo plano para que continúe ejecutándose. |
+| fg      | Trae un proceso en segundo plano al primer plano.            |
+| &       | Operador para ejecutar un comando en segundo plano, permitiendo continuar usando la terminal. |
+| ps      | Muestra una lista de procesos en ejecución en el sistema.    |
+| pstree  | Muestra los procesos en forma de árbol, mostrando la relación de padre-hijo entre procesos. |
+| top     | Muestra los procesos en tiempo real, ordenados por consumo de recursos como CPU y memoria. |
+| htop    | Similar a `top`, pero con una interfaz interactiva y colorida (requiere instalación previa). |
+| kill    | Envía una señal a un proceso para detenerlo o finalizarlo, usando su PID. |
+| killall | Finaliza todos los procesos que coincidan con un nombre específico. |
+| nice    | Inicia un proceso con una prioridad específica (valor de "niceness" ajustado). |
+| renice  | Cambia la prioridad de un proceso que ya está en ejecución.  |
+| nohup   | Ejecuta un comando ignorando la señal de cierre de sesión, útil para tareas de larga duración. |
+| lsof    | Lista los archivos abiertos por los procesos, útil para ver qué archivos están en uso. |
 
-```bash
-jobs
-```
-
-Puedes ejecutar un proceso en segundo plano añadiendo **&** al final del comando. Por ejemplo:
-
-```bash
-sleep 100 &
-```
-
-Esto crea un proceso que esperará 100 segundos, pero sin bloquear la terminal.
-
-Si ahora ejecutamos jobs podemos observar que existe un trabajo para la sesión de la shell.
-
-![image-20241007103056488](/aso/assets/img/linux/image-20241007103056488.png)
 
 
+#### 2.3.1 El comando ps
+
+El comando **ps** proporciona información sobre los procesos que se están ejecutando en el sistema.  Si  escribimos  en  el  terminal  `ps`,  obtendremos  como  salida  un  listado  de  los procesos lanzados con el usuario actual que aún se están ejecutando.
+
+​    ![img](/aso_github/assets/img/linux/comando_ps.png)
+
+Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
+
+- La primera columna es el **PID** o identificador de  proceso. Cada proceso tiene un asociado identificador que es único, es  decir que no puede haber dos procesos con el mismo identificador.
+- La  segunda  columna  nos  informa  del  terminal  en  el  que  se   está  ejecutando  el proceso.  Si  aparece  una  interrogación  (?),  el  proceso  no  tiene  asociada  ninguna terminal.
+- La tercera columna indica el tiempo total que ha estado ejecutándose el proceso.
+- La cuarta columna es el nombre del proceso.
+
+#### Parámetros/modificadores ps[¶](https://fjavier-hernandez.github.io/aso/03_Procesos/033_GestionProcesosShell.html#parametrosmodificadores-ps)
+
+- **-e** devuelve un listado de todos los procesos que se están ejecutando. 
+- **-f** devuelve un listado extendido. En este último caso veremos en pantalla el **PPID** del proceso (identificador del proceso padre) y la hora en la que se ejecutó el proceso (STIME).
+
+​    ![img](/aso_github/assets/img/linux/comando_ps2.png)    Resultado comando ps -f
+
+- **-ef** obtendríamos un listado extendido de todos los procesos que se están ejecutando en el sistema.
+- **-u**  informa  de  los  procesos  lanzado  por  un  determinado  usuario.  De  tal  forma  que  si escribimos “**ps -u alumno**”, aparecerá un listado de los procesos que está ejecutando el usuario alumno. 
+
+#### 2.3.2 El comando pstree
+
+El comando **pstree** visualiza, en forma de árbol, todos  los procesos del sistema, de esta forma se puede ver las relaciones que  existen entre los procesos.
+
+![img](/aso_github/assets/img/linux/004.png)
+
+
+
+#### 2.3.3 El comando top
+
+El comando top devuelve un listado de los procesos de forma parecida a como lo hace ps, con la diferencia que la **información mostrada se va actualizando periódicamente** lo que nos permite ver la evolución del estado de los procesos.
+
+En la parte superior se muestra la siguiente información adicional:
+
+- El espacio en memoria ocupado por los procesos.
+- El espacio ocupado por la memoria de intercambio o swap.
+- El número total de tareas o procesos que se están ejecutando.
+- El número de usuarios o el porcentaje de uso del procesador.
+
+![img](/aso_github/assets/img/linux/005.png)
+
+
+
+#### 2.3.4 Procesos en primer plano y segundo plano
+
+Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plano** (Background). 
+
+- El proceso que está en **primer plano** es aquel con el que se interactúa. Si ejecutamos, por ejemplo, el comando `ls -l`, se  mostrará  por  pantalla  el  resultado,  y  hasta  que  no  acabe   de  mostrarse  el  listado  no podremos ejecutar ningún otro comando.
+
+- Un proceso en **segundo plano** añadiendo el símbolo ampersand (**&**) al final del comando. Cuando se ejecuta un proceso en segundo plano, se permite al usuario iniciar y trabajar con otros procesos.
+
+  Ejemplo:
+
+  ```bash
+  sleep 100 &
+  ```
+
+  Para ver que trabajos se están ejecutando en segundo plano, se usa el comando **jobs**.
+
+  ![img](/aso_github/assets/img/linux/007.png)
+
+  
+
+  **Pasar procesos en segundo plano a primer plano**
+
+  Para pasar procesos en segundo plano a primer plano, se utiliza el comando **fg**, seguido de **%n**, donde n es el número de proceso que queremos pasar a primer plano.
+
+  ![img](/aso_github/assets/img/linux/008.png)
+
+  **Pasar procesos en primer plano a segundo plano**
+
+  El comando **bg** permite pasar procesos desde primer plano a segundo plano. 
+
+  - Para pasar un proceso que se encuentra en primer plano a segundo  plano, debemos suspenderlo primero utilizando la combinación de teclas  Ctrl+Z. Cuando se pulsa esa combinación de teclas, el proceso en  ejecución se para y no vuelve a ejecutarse hasta que se pasa a primer o  segundo plano. 
+
+  Con **bg %n** pasaremos el proceso a segundo plano.
+
+  ![img](/aso_github/assets/img/linux/009.png)
+
+  
 
 3. Administración de los servicios del sistema
 
