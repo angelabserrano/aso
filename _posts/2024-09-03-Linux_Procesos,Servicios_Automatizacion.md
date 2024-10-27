@@ -211,7 +211,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   <img src="/aso/assets/img/linux/009.png" alt="img" style="zoom:75%;" />
 
-2.3.5 El comando kill para finalizar procesos
+#### 2.3.5 El comando kill para finalizar procesos
 
 Para finalizar un proceso se utiliza el comando **kill**, que tiene la siguiente sintaxis: 
 
