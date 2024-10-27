@@ -191,7 +191,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Para ver que trabajos se están ejecutando en segundo plano, se usa el comando **jobs**.
 
-  ![img](/aso/assets/img/linux/007.png)
+  <img src="/aso/assets/img/linux/007.png" alt="img" style="zoom:75%;" />
 
   
 
@@ -199,7 +199,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Para pasar procesos en segundo plano a primer plano, se utiliza el comando **fg**, seguido de **%n**, donde n es el número de proceso que queremos pasar a primer plano.
 
-  ![img](/aso/assets/img/linux/008.png)
+  <img src="/aso/assets/img/linux/008.png" alt="img" style="zoom:75%;" />
 
   **Pasar procesos en primer plano a segundo plano**
 
@@ -209,7 +209,7 @@ Los procesos pueden ejecutarse en **primer plano** (Foreground) o **segundo plan
 
   Con **bg %n** pasaremos el proceso a segundo plano.
 
-  ![img](/aso/assets/img/linux/009.png)
+  <img src="/aso/assets/img/linux/009.png" alt="img" style="zoom:75%;" />
 
   
 
