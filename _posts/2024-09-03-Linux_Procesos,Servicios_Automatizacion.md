@@ -43,14 +43,15 @@ Los criterios de evaluación asociados son:
 
 
 
-### Planificación Temporal (6 sesiones / 12 horas)
+### Planificación Temporal (5 sesiones / 1 0horas)
 
 | Sesión | Contenido                                                    |
 | ------ | ------------------------------------------------------------ |
-| 1      | Administración de procesos: definición, estados, crear, supervisar y matar procesos |
-| 2      | Prioridad de los procesos                                    |
+| 1      | Administración de procesos: definición, estados y principales comandos |
+| 2      | Comandos para la gestión de procesos                         |
 | 3      | Control de servicios y daemons                               |
-| 4      |                                                              |
+| 4      | Automatización de tareas                                     |
+| 5      | Ampliación y refuerzo                                        |
 
 
 
