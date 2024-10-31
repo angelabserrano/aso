@@ -39,11 +39,7 @@ Los criterios de evaluación asociados son:
 
 
 
-
-
-
-
-### Planificación Temporal (5 sesiones / 1 0horas)
+### Planificación Temporal (5 sesiones / 10 horas)
 
 | Sesión | Contenido                                                    |
 | ------ | ------------------------------------------------------------ |
@@ -237,6 +233,34 @@ Hay un total de 32 señales que se pueden enviar a los procesos. Las más utiliz
 ```
 
 Por otra parte, el comando  **killall  nombre_programa** finaliza todos los procesos que estén ejecutando el programa.
+
+#### 2.3.6 El comando nice
+
+Ejecuta un comando con una prioridad distinta a la de por defecto.
+
+Solo los usuarios root pueden establecer prioridades urgentes (negativos).
+
+Sintaxis:
+
+```bash
+$ nice -n NUMERO_PRIORIDAD COMANDO
+```
+
+#### 2.3.7 El comando renice
+
+El comando renice nos permite modificar la prioridad una vez que el proceso ya está en ejecución
+
+```bash
+renice [-n] <niceness> [-p|-g|-u] <identificadores>
+```
+
+donde `identificadores` se corresponde con:
+
+- un conjunto de ids de proceso (pid) si no se especifica parámetro o se precede por -p
+- un conjunto de id de grupo de proceso si se precede por -g
+- un conjunto de usuarios si se precede por -u.
+
+Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus procesos, es decir, aumentar su niceness (en el rango  de 0 a 19). El **superusuario** (root) puede ajustar la prioridad de cualquier proceso usando un valor nice del rango completo (-20 a 19).
 
 
 
