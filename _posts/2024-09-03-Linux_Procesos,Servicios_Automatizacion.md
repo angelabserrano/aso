@@ -62,7 +62,9 @@ En esta unidad trabajaremos la administración de procesos, servicios del sistem
 
 ### 2.1 Definición de proceso
 
-Un **proceso** es una instancia de un programa en ejecución. Cada vez que ejecutas un comando o abres una aplicación, el sistema operativo crea un proceso correspondiente para llevar a cabo la tarea. El sistema dispondrá de una ***Tabla de procesos***, conocida como el **Bloque de Control de Procesos** (BCP o Process Control Block en inglés) donde guarda la información relevante de cada proceso. En Linux encontraremos la siguiente información:
+> -info- Un **proceso** es una instancia de un programa en ejecución. Cada vez que ejecutas un comando o abres una aplicación, el sistema operativo crea un proceso correspondiente para llevar a cabo la tarea. 
+
+El sistema dispondrá de una ***Tabla de procesos***, conocida como el **Bloque de Control de Procesos** (BCP o Process Control Block en inglés) donde guarda la información relevante de cada proceso. En Linux encontraremos la siguiente información:
 
 | Campo                                 | Descripción                                                  |
 | ------------------------------------- | ------------------------------------------------------------ |
