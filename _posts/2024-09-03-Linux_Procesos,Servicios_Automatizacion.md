@@ -7,6 +7,12 @@ categories: linux
 conToc: true
 permalink: linux-administracion
 ---
+|      |
+| ---- |
+|      |
+|      |
+|      |
+
 # Administración de procesos, servicios y automatización de tareas
 
 ## Programación de Aula
@@ -462,3 +468,35 @@ Si desea borrar una tarea de `at`, puede usar el comando `atrm` seguido del ID d
 ```
 $ atrm 14
 ```
+
+
+
+### Ejercicios de automatización de tareas
+
+> -reto- 
+>
+> **Ejercicio1.** Conceptos teóricos básicos
+>
+> Responde a las siguientes cuestiones acerca de la automatización de tareas en Linux:
+> ● ¿Cuál es la principal diferencia entre cron y at?
+> ● ¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?
+> ● Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
+> ● Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
+> ● ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
+> ● Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
+>
+> 15 14 * * 1-5
+> 00 09-18 * * *
+> */30 * * * *
+> 0,20,40 14 * * fri
+>
+> **Ejercicio 2**
+> Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
+> **Ejercicio 3**
+> Crea una tarea programada todos los viernes a las 14:00, que ejecute un comando para obtener el espacio en disco utilizado y envíe por correo
+> electrónico la información indicada.
+> **Ejercicio 4**
+> Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.
+>
+> **Ejercicio 5 (Opcional: Avanzado)**
+> Realiza el ejercicio anterior, pero utilizando las unidades Timers de Systemd
