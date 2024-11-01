@@ -495,13 +495,13 @@ $ atrm 14
 >
 > 0,20,40 14 * * fri
 >
-> 
->
 > **Ejercicio 2**
 > Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
+>
 > **Ejercicio 3**
 > Crea una tarea programada todos los viernes a las 14:00, que ejecute un comando para obtener el espacio en disco utilizado y envíe por correo
 > electrónico la información indicada.
+>
 > **Ejercicio 4**
 > Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.
 >
