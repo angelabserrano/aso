@@ -311,6 +311,8 @@ sudo systemctl list-units --type=service
 
 
 
+
+
 ## 4. Automatización de tareas.
 
 Automatizar tareas regulares en el sistema mediante la programación de trabajos (o Jobs) es una práctica esencial para un buen administrador. Esto permite configurar y ejecutar automáticamente trabajos importantes, como copias de seguridad, actualizaciones del sistema, y otras actividades rutinarias. Para ello, se puede utilizar la función cron, que es especialmente útil para gestionar y programar la ejecución periódica de tareas de forma eficiente.
@@ -410,4 +412,53 @@ Si queremos  ejecutar el script `espacio.sh` ubicado en el directorio `/root` to
 
 ```bash
 30 01 * * * root /root/espacio.sh 
+```
+
+
+
+### 4.2 Programar trabajos con at
+
+El comando `at` se utiliza para la programación de tareas una única vez y sólo requiere que se especifique cuándo se deba ejecutar  una tarea en el futuro. Después de introducir `at` en la línea de comandos, seguido de la especificación de tiempo, entrará en la línea de comandos `at` donde puede definir los comandos a ejecutar. Puede salir del prompt con la secuencia de teclas Ctrl+D.
+
+```bash
+$ at now +5 minutes
+warning: commands will be executed using /bin/sh
+at> date
+at> Ctrl+D
+job 12 at Sat Sep 14 09:15:00 2019
+```
+
+El ejemplo anterior simplemente ejecuta el comando `date` después de cinco minutos.
+
+#### Listar tareas programadas con `atq`
+
+Ahora programemos dos tareas más: la primera ejecuta el script `foo.sh` a las 09:30 am, mientras que la segunda ejecuta el script `bar.sh` después de una hora.
+
+```bash
+$ at 09:30 AM
+warning: commands will be executed using /bin/sh
+at> ./foo.sh
+at> Ctrl+D
+job 13 at Sat Sep 14 09:30:00 2024
+$ at now +2 hours
+warning: commands will be executed using /bin/sh
+at> ./bar.sh
+at> Ctrl+D
+job 14 at Sat Sep 14 11:10:00 2024
+```
+
+Para listar sus tareas pendientes, puede usar el comando `atq` que muestra la siguiente información para cada tarea: ID, fecha de ejecución, tiempo de ejecución, cola y nombre de usuario.
+
+```
+$ atq
+14      Sat Sep  14 11:10:00 2024 a alumno
+13      Sat Sep  14 09:30:00 2024 a alumno
+```
+
+#### Borrar tareas con `atrm`
+
+Si desea borrar una tarea de `at`, puede usar el comando `atrm` seguido del ID de la tarea. Por ejemplo, para borrar el trabajo con ID 14, puede ejecutar lo siguiente:
+
+```
+$ atrm 14
 ```
