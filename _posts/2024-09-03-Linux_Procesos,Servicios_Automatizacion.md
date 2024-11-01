@@ -274,7 +274,9 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 ### 3.1. Concepto de Servicios en Linux
 
-Un **servicio** en Linux es un proceso que se ejecuta en segundo plano, sin interacción directa del usuario, y que proporciona funciones o funcionalidades esenciales al sistema o a los usuarios. Algunos ejemplos comunes incluyen servidores web (como Apache o Nginx), servicios de base de datos (MySQL, PostgreSQL), y servicios de red (SSH, FTP).
+> -info-Un **servicio** en Linux es un proceso que se ejecuta en segundo plano, sin interacción directa del usuario, y que proporciona funciones o funcionalidades esenciales al sistema o a los usuarios. 
+
+Algunos ejemplos comunes incluyen servidores web (como Apache o Nginx), servicios de base de datos (MySQL, PostgreSQL), y servicios de red (SSH, FTP).
 
 ### 3.2. Sistema de Inicio y Administración de Servicios
 
