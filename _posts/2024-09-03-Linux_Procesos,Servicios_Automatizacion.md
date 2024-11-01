@@ -7,12 +7,6 @@ categories: linux
 conToc: true
 permalink: linux-administracion
 ---
-|      |
-| ---- |
-|      |
-|      |
-|      |
-
 # Administración de procesos, servicios y automatización de tareas
 
 ## Programación de Aula
