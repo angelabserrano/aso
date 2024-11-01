@@ -475,20 +475,26 @@ $ atrm 14
 
 > -reto- 
 >
-> **Ejercicio1.** Conceptos teóricos básicos
+> **Ejercicio1.** **Conceptos teóricos básicos**
 >
 > Responde a las siguientes cuestiones acerca de la automatización de tareas en Linux:
-> ● ¿Cuál es la principal diferencia entre cron y at?
-> ● ¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?
-> ● Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
-> ● Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
-> ● ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
-> ● Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
+>
+> - ¿Cuál es la principal diferencia entre cron y at?
+> - ¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?
+> - Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
+> - Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
+> - ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
+> - Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
 >
 > 15 14 * * 1-5
+>
 > 00 09-18 * * *
+>
 > */30 * * * *
+>
 > 0,20,40 14 * * fri
+>
+> 
 >
 > **Ejercicio 2**
 > Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
