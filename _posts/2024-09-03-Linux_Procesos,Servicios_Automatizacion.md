@@ -422,7 +422,9 @@ Si queremos  ejecutar el script `espacio.sh` ubicado en el directorio `/root` to
 
 ### 4.2 Programar trabajos con at
 
-El comando `at` se utiliza para la programación de tareas una única vez y sólo requiere que se especifique cuándo se deba ejecutar  una tarea en el futuro. Después de introducir `at` en la línea de comandos, seguido de la especificación de tiempo, entrará en la línea de comandos `at` donde puede definir los comandos a ejecutar. Puede salir del prompt con la secuencia de teclas Ctrl+D.
+> -info-El comando `at` se utiliza para la programación de tareas una única vez y sólo requiere que se especifique cuándo se deba ejecutar  una tarea en el futuro.
+
+ Después de introducir `at` en la línea de comandos, seguido de la especificación de tiempo, entrará en la línea de comandos `at` donde puede definir los comandos a ejecutar. Puede salir del prompt con la secuencia de teclas Ctrl+D.
 
 ```bash
 $ at now +5 minutes
