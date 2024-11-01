@@ -487,13 +487,20 @@ $ atrm 14
 >
 > Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
 >
-> 15 14 * * 1-5
+> | Archivo crontab    | Significado |
+> | ------------------ | ----------- |
+> | 15 14 * * 1-5      |             |
+> | 00 09-18 * * *     |             |
+> | */30 * * * *       |             |
+> | 0,20,40 14 * * fri |             |
 >
-> 00 09-18 * * *
+> 
 >
-> */30 * * * *
+> 
 >
-> 0,20,40 14 * * fri
+> 
+>
+> 
 >
 > **Ejercicio 2**
 > Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
