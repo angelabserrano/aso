@@ -494,14 +494,6 @@ $ atrm 14
 > | */30 * * * *       |             |
 > | 0,20,40 14 * * fri |             |
 >
-> 
->
-> 
->
-> 
->
-> 
->
 > **Ejercicio 2**
 > Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
 >
