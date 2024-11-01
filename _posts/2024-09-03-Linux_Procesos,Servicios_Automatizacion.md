@@ -264,11 +264,93 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 
 
-3. Administración de los servicios del sistema
+## 3. Administración de los servicios del sistema
 
-   [En construcción]
+### 3.1. Concepto de Servicios en Linux
 
-4. Automatización de tareas.
+Un **servicio** en Linux es un proceso que se ejecuta en segundo plano, sin interacción directa del usuario, y que proporciona funciones o funcionalidades esenciales al sistema o a los usuarios. Algunos ejemplos comunes incluyen servidores web (como Apache o Nginx), servicios de base de datos (MySQL, PostgreSQL), y servicios de red (SSH, FTP).
+
+### 3.2. Sistema de Inicio y Administración de Servicios
+
+Linux tiene varios sistemas de inicio (init systems) que administran los servicios y procesos de arranque. Algunos de los sistemas de inicio más comunes incluyen:
+
+- **SysVinit**: Uno de los sistemas de inicio más antiguos, basado en scripts de shell que se ejecutan en secuencia para iniciar servicios.
+- **Upstart**: Un sistema de inicio más avanzado que reemplazó a SysVinit en algunas distribuciones, diseñado para trabajar con eventos.
+- **Systemd**: Actualmente el sistema de inicio más utilizado en distribuciones modernas, que gestiona servicios mediante unidades y soporta arranque paralelo, lo que lo hace más eficiente y rápido que SysVinit y Upstart.
+
+Cada uno de estos sistemas tiene comandos y prácticas distintas para gestionar servicios. Hoy en día, **systemd** es el sistema más común, por lo cual es el que estudiaremos a continuación.
+
+### 3.3 Administración de Servicios con Systemd
+
+Systemd es un sistema de administración de servicios que organiza los servicios mediante archivos de configuración llamados **unidades (units)**, que se encuentran en la ruta `/etc/systemd/system` o `/lib/systemd/system`. Cada unidad representa un servicio, un dispositivo o una tarea de administración.
+
+#### Principales Comandos de Systemd
+
+`systemctl` es el comando principal para gestionar servicios en systemd. Algunos comandos básicos son:
+
+- **Iniciar un servicio**:
+
+  ```bash
+  sudo systemctl start nombre_servicio
+  ```
+
+Este comando permite iniciar un servicio de forma manual.
+
+  - **Detener un servicio**:
+
+    ```bash
+    sudo systemctl stop nombre_servicio
+    ```
+
+Detiene el servicio en ejecución.
+
+- **Reiniciar un servicio**:
+
+  ```bash
+  sudo systemctl restart nombre_servicio
+  ```
+
+  Detiene e inicia nuevamente el servicio, útil para aplicar cambios en la configuración.
+
+- **Recargar un servicio**:
+
+  ```bash
+  sudo systemctl reload nombre_servicio
+  ```
+
+  Recarga la configuración del servicio sin detenerlo.
+
+- **Habilitar un servicio**: 
+
+  sudo systemctl enable nombre_servicio
+
+  Activa el servicio para que se inicie automáticamente al arrancar el sistema.
+
+- **Deshabilitar un servicio**:
+
+  ```bash
+  sudo systemctl disable nombre_servicio
+  ```
+
+​	Desactiva el inicio automático del servicio en el arranque.
+
+- **Estado de un servicio**:
+
+```bash
+sudo systemctl status nombre_servicio
+```
+
+Muestra el estado actual del servicio, incluyendo información de logs y errores recientes.
+
+#### Comprobación del Estado de Todos los Servicios
+
+Para verificar el estado de todos los servicios, se puede usar:
+
+```bash
+sudo systemctl list-units --type=service
+```
+
+3. Automatización de tareas.
 
 ​	[En construcción]
 
