@@ -484,7 +484,8 @@ $ atrm 14
 > - Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
 > - Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
 > - ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
-> - Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
+>
+> Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
 >
 > 15 14 * * 1-5
 >
