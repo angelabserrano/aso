@@ -327,7 +327,9 @@ Automatizar tareas regulares en el sistema mediante la programación de trabajos
 
 ### 4.1 Programar trabajos con Cron
 
-En sistemas Linux, *cron* es un demonio que se ejecuta de forma continua y se activa cada minuto para revisar un conjunto de tablas en busca de tareas programadas. Estas tablas, conocidas como *crontabs*, contienen los llamados *cron jobs*. *Cron* es ideal para servidores y sistemas que permanecen encendidos constantemente, ya que cada tarea programada solo se ejecuta si el sistema está operativo en el momento especificado. Tanto los usuarios normales como el usuario root pueden utilizar cron, y cada usuario dispone de su propio crontab, mientras que root gestiona los crontabs a nivel del sistema.
+>  -info- En sistemas Linux, *cron* es un demonio que se ejecuta de forma continua y se activa cada minuto para revisar un conjunto de tablas en busca de tareas programadas. Estas tablas, conocidas como *crontabs*, contienen los llamados *cron jobs*. 
+
+*Cron* es ideal para servidores y sistemas que permanecen encendidos constantemente, ya que cada tarea programada solo se ejecuta si el sistema está operativo en el momento especificado. Tanto los usuarios normales como el usuario root pueden utilizar cron, y cada usuario dispone de su propio crontab, mientras que root gestiona los crontabs a nivel del sistema.
 
 #### Crontabs de usuario
 
