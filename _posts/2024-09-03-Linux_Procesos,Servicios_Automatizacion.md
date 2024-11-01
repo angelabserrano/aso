@@ -282,65 +282,23 @@ Cada uno de estos sistemas tiene comandos y prácticas distintas para gestionar 
 
 ### 3.3 Administración de Servicios con Systemd
 
-Systemd es un sistema de administración de servicios que organiza los servicios mediante archivos de configuración llamados **unidades (units)**, que se encuentran en la ruta `/etc/systemd/system` o `/lib/systemd/system`. Cada unidad representa un servicio, un dispositivo o una tarea de administración.
+**Systemd** es un sistema de administración de servicios que organiza los servicios mediante archivos de configuración llamados **unidades (units)**, que se encuentran en la ruta `/etc/systemd/system` o `/lib/systemd/system`. Cada unidad representa un servicio, un dispositivo o una tarea de administración.
 
 #### Principales Comandos de Systemd
 
 `systemctl` es el comando principal para gestionar servicios en systemd. Algunos comandos básicos son:
 
-- **Iniciar un servicio**:
-
-  ```bash
-  sudo systemctl start nombre_servicio
-  ```
-
-Este comando permite iniciar un servicio de forma manual.
-
-  - **Detener un servicio**:
-
-    ```bash
-    sudo systemctl stop nombre_servicio
-    ```
-
-Detiene el servicio en ejecución.
-
-- **Reiniciar un servicio**:
-
-  ```bash
-  sudo systemctl restart nombre_servicio
-  ```
-
-  Detiene e inicia nuevamente el servicio, útil para aplicar cambios en la configuración.
-
-- **Recargar un servicio**:
-
-  ```bash
-  sudo systemctl reload nombre_servicio
-  ```
-
-  Recarga la configuración del servicio sin detenerlo.
-
-- **Habilitar un servicio**: 
-
-  sudo systemctl enable nombre_servicio
-
-  Activa el servicio para que se inicie automáticamente al arrancar el sistema.
-
-- **Deshabilitar un servicio**:
-
-  ```bash
-  sudo systemctl disable nombre_servicio
-  ```
-
-​	Desactiva el inicio automático del servicio en el arranque.
-
-- **Estado de un servicio**:
-
-```bash
-sudo systemctl status nombre_servicio
-```
-
-Muestra el estado actual del servicio, incluyendo información de logs y errores recientes.
+| Comando                               | Tarea                                                        |
+| ------------------------------------- | :----------------------------------------------------------- |
+| systemctl **status** nombre_servicio  | Ver información detallada sobre el estado de una unidad.     |
+| systemctl **stop** nombre_servicio    | Detener un servicio en un sistema en funcionamiento.         |
+| systemctl **start** nombre_servicio   | Iniciar un servicio en un sistema en funcionamiento.         |
+| systemctl **restart** nombre_servicio | Reiniciar un servicio en un sistema en funcionamiento.       |
+| systemctl **reload** nombre_servicio  | Volver a cargar el archivo de configuración de un servicio en ejecución. |
+| systemctl **mask** nombre_servicio    | Deshabilitar el inicio (tanto manual como durante el proceso de arranque) de un servicio. |
+| systemctl **unmask** nombre_servicio  | Poner un servicio enmascarado a disposición.                 |
+| systemctl **enable** nombre_servicio  | Configurar un servicio para que se inicie durante el proceso de arranque. Use la opción `--now` para iniciar también el servicio. |
+| systemctl **disable** nombre_servicio | Deshabilitar el inicio de un servicio durante el proceso de arranque. Use la opción `--now` para detener también el servicio. |
 
 #### Comprobación del Estado de Todos los Servicios
 
@@ -348,9 +306,108 @@ Para verificar el estado de todos los servicios, se puede usar:
 
 ```bash
 sudo systemctl list-units --type=service
+
 ```
 
-3. Automatización de tareas.
 
-​	[En construcción]
 
+## 4. Automatización de tareas.
+
+Automatizar tareas regulares en el sistema mediante la programación de trabajos (o Jobs) es una práctica esencial para un buen administrador. Esto permite configurar y ejecutar automáticamente trabajos importantes, como copias de seguridad, actualizaciones del sistema, y otras actividades rutinarias. Para ello, se puede utilizar la función cron, que es especialmente útil para gestionar y programar la ejecución periódica de tareas de forma eficiente.
+
+
+
+### 4.1 Programar trabajos con Cron
+
+En sistemas Linux, *cron* es un demonio que se ejecuta de forma continua y se activa cada minuto para revisar un conjunto de tablas en busca de tareas programadas. Estas tablas, conocidas como *crontabs*, contienen los llamados *cron jobs*. *Cron* es ideal para servidores y sistemas que permanecen encendidos constantemente, ya que cada tarea programada solo se ejecuta si el sistema está operativo en el momento especificado. Tanto los usuarios normales como el usuario root pueden utilizar cron, y cada usuario dispone de su propio crontab, mientras que root gestiona los crontabs a nivel del sistema.
+
+#### Crontabs de usuario
+
+Los *crontabs* de usuario son archivos de texto que administran la programación de los trabajos cron definidos por cada usuario. Estos archivos llevan el nombre de la cuenta del usuario que los creó, aunque su ubicación exacta varía según la distribución (generalmente en un subdirectorio de `/var/spool/cron`).
+
+Cada línea en un crontab de usuario contiene seis campos, separados por espacios, que representan:
+
+- El minuto de la hora (0-59).
+- La hora del día (0-23).
+- El día del mes (1-31).
+- El mes del año (1-12).
+- El día de la semana (0-7, donde 0 o 7 representan el domingo).
+- El comando a ejecutar.
+
+Para el mes y el día de la semana, también se puede utilizar una abreviatura de tres letras en lugar del número correspondiente.
+
+Los primeros cinco campos definen cuándo se ejecutará el comando especificado en el sexto campo, y pueden aceptar uno o varios valores. Para definir estos valores en *cron*, se pueden utilizar los siguientes operadores:
+
+- `*` (asterisco): Acepta cualquier valor en el rango del campo.
+- `,` (coma): Permite enumerar varios valores específicos.
+- `-` (guión): Define un rango de valores consecutivos.
+- `/` (slash): Establece intervalos en el rango (escalonados).
+
+
+
+**Creación de de un crontab de usuario**
+
+El comando `crontab -e` se utiliza para editar su propio archivo crontab o para crear uno si aún no existe.
+
+```bash
+$ crontab -e
+no crontab for frank - using an empty one
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/ed
+  2. /bin/nano        < ‑‑‑‑ easiest
+  3. /usr/bin/emacs24
+  4. /usr/bin/vim.tiny
+
+Choose 1-4 [2]:
+```
+
+Si quiere ejecutar el script `espacio.sh` ubicado en su directorio principal todos los días a las 10:00 am, puede agregar la siguiente línea a su archivo crontab:
+
+```bash
+0 10 * * * /home/alumno/espacio.sh
+```
+
+Además de la opción `-e` mencionada anteriormente, el comando `crontab` tiene otras opciones útiles:
+
+- `-l`
+
+  Muestra el crontab actual en la salida estándar.
+
+- `-r`
+
+  Quita el crontab actual.
+
+- `-u`
+
+  Especifica el nombre del usuario cuyo crontab necesita ser  modificado. Esta opción requiere privilegios de root y permite que el  usuario root edite los archivos crontab de otro usuario.
+
+#### Crontabs de sistema
+
+Los *crontabs* del sistema son archivos de texto que gestionan la programación de los trabajos de cron a nivel de sistema y solo pueden ser editados por el usuario root. El archivo `/etc/crontab` y todos los archivos dentro del directorio `/etc/cron.d` son considerados crontabs del sistema.
+
+Además, la mayoría de las distribuciones incluyen los directorios `/etc/cron.hourly`, `/etc/cron.daily`, `/etc/cron.weekly` y `/etc/cron.monthly`, que contienen scripts que se ejecutan con la frecuencia correspondiente. Por ejemplo, para ejecutar un script diariamente, basta con colocarlo en `/etc/cron.daily`.
+
+Muchas distribuciones incluyen el archivo `/etc/crontab`, que puede utilizarse como referencia para la estructura de un archivo cron. A continuación, se muestra un ejemplo de `/etc/crontab` de una instalación Debian:
+
+```bash
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+```
+
+**Ejemplo de un crontab de sistema**
+
+Si queremos  ejecutar el script `espacio.sh` ubicado en el directorio `/root` todos los días a la 01:30 am, puede abrir `/etc/crontab` con su editor preferido y agregar la siguiente línea:
+
+```bash
+30 01 * * * root /root/espacio.sh 
+```
