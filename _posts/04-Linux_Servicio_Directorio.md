@@ -74,3 +74,8 @@ LDAP sigue una estructura jerárquica en la que los datos se organizan en un ár
 - **Atributos y Objetos:** Las entradas en LDAP se componen de atributos, que son pares nombre-valor, y de clases de objeto, que definen qué atributos puede o debe tener una entrada. Por ejemplo, una clase de objeto `inetOrgPerson` puede tener atributos como `cn`, `sn` (surname o apellido), y `mail`.
 
 - **Esquemas LDAP:** El esquema define las reglas sobre qué clases de objeto y atributos pueden existir en el directorio. Establece la estructura de los datos permitidos en el directorio, definiendo qué tipos de objetos (como usuarios, grupos, etc.) pueden almacenarse y qué atributos puede tener cada uno. Los esquemas son cruciales para garantizar la coherencia de los datos dentro del DIT.
+
+### Actividades LDAP
+
+Práctica 1: Instalación y configuración básica del servidor Open LDAP. 
+
