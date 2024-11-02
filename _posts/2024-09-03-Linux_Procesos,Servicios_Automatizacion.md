@@ -290,6 +290,8 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 > 7. Mata el proceso del script que está ejecutando el usuario 1.
 >
 > 8. Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.
+> 9. Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.
+> 10. Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.
 
 
 
