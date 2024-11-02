@@ -266,6 +266,33 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 
 
+### Ejercicios de procesos
+
+> -reto- 
+>
+> 1. Lista los procesos que se están ejecutando en el shell actual.
+>
+> 2. Lista los procesos que se están ejecutando en el sistema.
+>
+> 3. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
+>    uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
+>    un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
+>    que están haciendo el resto de usuarios y el estado de los procesos del
+>    usuario1 y usuario2.
+>
+> 4. Haciendo uso del comando grep y ps, lista todos los procesos que se
+>    están ejecutando en el sistema y terminan en .sh
+>
+> 5. Visualiza los procesos utilizando el comando pstree.
+>
+> 6. Comprueba qué proceso está consumiendo más recursos utilizando top.
+>
+> 7. Mata el proceso del script que está ejecutando el usuario 1.
+>
+> 8. Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.
+
+
+
 ## 3. Administración de los servicios del sistema
 
 ### 3.1. Concepto de Servicios en Linux
