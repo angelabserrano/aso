@@ -79,5 +79,5 @@ LDAP sigue una estructura jerárquica en la que los datos se organizan en un ár
 
 Práctica 1: Instalación y configuración básica del servidor Open LDAP. 
 
-[Práctica]: /aso/pdf/UT4_Practica1.pdf
+[Práctica]: /aso/pdf/UT4_Practica1.pdf	""Instalación y configuración del servidor Open LDAP""
 
