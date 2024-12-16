@@ -313,7 +313,7 @@ Set-PSBreakpoint -Script sample.ps1 -Variable Server
 > -reto- **Ejercicio 1** . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
 > -reto- **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.  
->
+> https://learn.microsoft.com/ca-es/powershell/scripting/install/install-ubuntu?view=powershell-7.4 
 > Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. Tip: [Docker cheat sheet](/aso/assets/img/docker/dockercheatsheet.png)
 
 ## 2. Comandos básicos
