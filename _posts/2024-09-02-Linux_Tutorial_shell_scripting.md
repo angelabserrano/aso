@@ -6,6 +6,7 @@ title: Linux - Bash
 categories: linux
 conToc: true
 permalink: linux-bash
+order: 2
 ---
 **CFGS Administración de Sistemas Informáticos y Redes**
 

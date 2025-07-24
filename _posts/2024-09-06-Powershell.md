@@ -6,6 +6,7 @@ title: Scripting en Windows. PowerShell
 categories: scripts
 conToc: true
 permalink: powershell
+order: 7
 ---
 
 ## Programación de Aula

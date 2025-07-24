@@ -6,6 +6,7 @@ title: Linux - Administración de Procesos, Servicios y automatización de tarea
 categories: linux
 conToc: true
 permalink: linux-administracion
+order: 3
 ---
 # Administración de procesos, servicios y automatización de tareas
 

@@ -6,6 +6,7 @@ title: Introducción a Git y Github
 categories: git
 conToc: true
 permalink: git
+order: 1
 ---
 
 Antes de comenzar con los contenidos específicos de administración de sistemas operativos , es fundamental que los estudiantes se familiaricen con las herramientas de control de versiones y colaboración en desarrollo de software. Git y GitHub son herramientas esenciales en el entorno profesional que permitirán a los estudiantes almacenar, gestionar y compartir su trabajo de manera eficiente.

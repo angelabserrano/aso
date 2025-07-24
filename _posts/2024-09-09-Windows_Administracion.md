@@ -6,6 +6,7 @@ title: Windows - Administración de procesos y servicios
 categories: wserver
 conToc: true
 permalink: wserver-administracion
+order: 10
 ---
 
 ## 1. Definición de un proceso

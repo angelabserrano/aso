@@ -6,6 +6,8 @@ title: Linux - Administración del servicio de directorio en Linux
 categories: linux
 conToc: true
 permalink: linux-servicio-directorio
+order: 4
+
 ---
 
 ## 1. Introducción
