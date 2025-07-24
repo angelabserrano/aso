@@ -6,6 +6,7 @@ title: Linux - Samba PRACTICA 1
 categories: linux
 conToc: false
 permalink: linux-samba-practica1
+order: 2
 ---
 
 ## PRÁCTICA 1

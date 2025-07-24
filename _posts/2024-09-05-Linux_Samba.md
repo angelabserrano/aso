@@ -6,6 +6,7 @@ title: Linux - Samba
 categories: linux
 conToc: true
 permalink: linux-samba
+order: 1
 ---
 
 ## 1. Introducción

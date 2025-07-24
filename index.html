@@ -7,7 +7,8 @@ title: Apuntes ASO
 
 
 <ol class='portada'> 
-  {% for post in site.posts reversed %}
+  {% assign posts_ordenados = site.posts | sort: 'order' %}
+  {% for post in post_ordenados reversed %}
       <li><h4><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></h4></li>
 {% endfor %}
 </ol>
