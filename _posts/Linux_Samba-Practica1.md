@@ -16,7 +16,7 @@ permalink: linux-samba-practica1
 
 - Implementar un servidor Ubuntu Server 22.04 LTS como controlador de dominio Samba (AD DC).
 - Integrar un equipo con Windows 10 en el dominio gestionado por Samba.
-- Gestionar usuarios y grupos dentro del dominio Samba desde el servidor.ç
+- Gestionar usuarios y grupos dentro del dominio Samba desde el servidor.
 
 ## 1. Preparación del servidor Ubuntu Server
 
