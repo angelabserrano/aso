@@ -29,9 +29,8 @@ Una vez que tengamos una máquina con ubuntu Server 22.04 instalado realizamos l
 
 #### 1. Cambiar el nombre del servidor
 
-```
+```bash
 sudo hostnamectl set-hostname dcNombreApellidos
-
 ```
 
 **Explicación:**
@@ -55,7 +54,6 @@ Añadir la línea correspondiente, por ejemplo:
 #### 3. Verificar el FQDN
 
 ```
-
 hostname -f
 Debe mostrar:
 dcNombreApellidos.ieselcaminas.local
@@ -65,8 +63,7 @@ dcNombreApellidos.ieselcaminas.local
 
 #### 4. Verificar si el FQDN resuelve la dirección IP
 
-```
-
+```bash
 ping -c2 dcNombreApellidos.ieselcaminas.local
 ```
 
@@ -82,8 +79,7 @@ ping -c2 dcNombreApellidos.ieselcaminas.local
 
 #### 5. Desactivar el servicio systemd-resolved
 
-```
-
+```bash
 sudo systemctl disable --now systemd-resolved
 ```
 
@@ -94,13 +90,9 @@ sudo systemctl disable --now systemd-resolved
 
 
 
-```
-
-```
-
 #### 6. Eliminar el enlace simbólico al archivo /etc/resolv.conf
 
-```
+```bash
 sudo unlink /etc/resolv.conf
 ```
 
@@ -114,11 +106,9 @@ sudo unlink /etc/resolv.conf
 
 #### 7. Crear el archivo /etc/resolv.conf
 
-```
+```bash
 sudo nano /etc/resolv.conf
 ```
-
-
 
 ```
 Contenido recomendado:
@@ -141,7 +131,6 @@ search ieselcaminas.local
 #### 8. Agregar las siguientes líneas al archivo /etc/resolv.conf
 
 ```
-
 nameserver 192.168.1.2
 nameserver 8.8.8.8
 search ieselcaminas.local
@@ -155,13 +144,11 @@ search ieselcaminas.local
 - Se añade un **servidor DNS externo** (Google, `8.8.8.8`) como respaldo para resolver dominios externos a `ieselcaminas.local`.
 - Se define el **dominio de búsqueda** como `ieselcaminas.local`, lo que permite usar nombres cortos en las consultas DNS.
 
-```
 
-```
 
 #### 9. Hacer inmutable el archivo /etc/resolv.conf
 
-```
+```bash
 sudo chattr +i /etc/resolv.conf
 ```
 
@@ -171,7 +158,7 @@ sudo chattr +i /etc/resolv.conf
 - Esto impide que otros servicios (como resolvconf o systemd) lo sobrescriban o modifiquen accidentalmente.
 - Si más adelante necesitas editar el archivo, puedes hacerlo con:
 
-```
+```bash
 sudo chattr -i /etc/resolv.conf
 ```
 
