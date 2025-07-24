@@ -12,7 +12,7 @@ permalink: linux-samba-practica1
 
 ##  Implementación de un servidor Samba como Controlador de Dominio (AD DC) en Ubuntu Server 22.04 LTS y unión de un cliente Windows 10 al dominio
 
-### 
+
 
 ## Objetivos:
 
