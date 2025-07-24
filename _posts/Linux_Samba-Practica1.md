@@ -107,8 +107,6 @@ nameserver 127.0.0.1
 search ieselcaminas.local
 ```
 
-
-
 **Explicación:**
 
 Creamos un nuevo archivo manual para que la resolución de nombres se realice a través del **propio servidor Samba**, que actuará como DNS interno.
@@ -133,9 +131,6 @@ search ieselcaminas.local
 - Se añade un **servidor DNS externo** (Google, `8.8.8.8`) como respaldo para resolver dominios externos a `ieselcaminas.local`.
 - Se define el **dominio de búsqueda** como `ieselcaminas.local`, lo que permite usar nombres cortos en las consultas DNS.
 
-```
-
-```
 
 #### 9. Hacer inmutable el archivo /etc/resolv.conf
 
