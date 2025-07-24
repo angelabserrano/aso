@@ -29,7 +29,6 @@ Una vez que tengamos una máquina con ubuntu Server 22.04 instalado realizamos l
 ```
 sudo hostnamectl set-hostname dcNombreApellidos
 
-
 ```
 
 **Explicación:**
