@@ -4,7 +4,7 @@ typora-root-url: ../../
 layout: post
 title: Linux - Samba PRACTICA 1
 categories: linux
-conToc: true
+conToc: false
 permalink: linux-samba-practica1
 ---
 
