@@ -78,13 +78,13 @@ El servidor DNS utiliza una base de datos distribuida y jerárquica que almacena
 
 Network Time Protocol (NTP) es un protocolo de Internet que se utiliza para sincronizar los relojes del sistema del ordenador a una fuente de tiempo de referencia. En Debian, el demonio ntpd maneja la sincronización. Los parámetros de NTP se configuran en el archivo **/etc/ntp.conf**. 
 
-> #### -reto- ACTIVIDAD GRUPAL Análisis y Presentación de Protocolos en Samba como Controlador de Dominio
+> -reto- **ACTIVIDAD GRUPAL Análisis y Presentación de Protocolos en Samba como Controlador de Dominio **
 >
-> #### **Objetivo General:**
+> **Objetivo General:**
 >
 > Analizar y presentar el funcionamiento de los protocolos fundamentales para Samba en su rol de controlador de dominio (DC), explorando su configuración y su importancia en la administración y seguridad de redes.
 >
-> #### **Descripción de la Actividad:**
+>  **Descripción de la Actividad:**
 >
 > En esta práctica, cada grupo estudiará los protocolos **Kerberos**, **NTP**, **LDAP** y **DNS** en el contexto de Samba como controlador de dominio. Su objetivo es entender en profundidad el papel de cada protocolo, cómo se configuran en un entorno Linux con Samba y de qué manera estos protocolos colaboran para garantizar un entorno de dominio seguro y eficiente.
 >
