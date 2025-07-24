@@ -33,10 +33,10 @@ Una vez que tengamos una máquina con ubuntu Server 22.04 instalado realizamos l
 sudo hostnamectl set-hostname dcNombreApellidos
 ```
 
-> -info-
-> Se cambia el nombre del host al formato `dcNombreApellidos`, que identifica de forma > única al servidor del alumno.
+**Explicación:**
 
-Sustituir `NombreApellidos` por el nombre real del alumno sin espacios.
+- Se cambia el nombre del host al formato `dcNombreApellidos`, que identifica de forma única al servidor del alumno.
+- Sustituir `NombreApellidos` por el nombre real del alumno sin espacios.
 
 #### 2. Modificar el archivo `/etc/hosts`
 
