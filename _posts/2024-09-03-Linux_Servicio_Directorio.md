@@ -69,7 +69,17 @@ LDAP sigue una estructura jerárquica en la que los datos se organizan en un ár
 
   ![dit](/aso/assets/img/linux/dit.png)
 
-- **DN (Distinguished Name):** Como se mencionó anteriormente, el DN es la ruta completa a una entrada en el DIT. Es un identificador único para cada entrada en el directorio.
+- **DN (Distinguished Name):** Como se mencionó anteriormente, el DN es la ruta completa a una entrada en el DIT. Es un identificador único para cada entrada en el directorio. Se construye concatenando los nombres de los nodos desde la entrada hasta la raíz, utilizando una estructura jerárquica.
+
+  ```
+  Ejemplo de un DN:
+  
+  uid=jperez,ou=clientes,dc=Empresa,dc=com
+  ```
+
+  - **uid=jperez**: Identificador único del cliente "jperez".
+  - **ou=clientes**: Unidad organizativa "clientes".
+  - **dc=Empresa,dc=com**: Dominio principal "Empresa.com".
 
 - **Atributos y Objetos:** Las entradas en LDAP se componen de atributos, que son pares nombre-valor, y de clases de objeto, que definen qué atributos puede o debe tener una entrada. Por ejemplo, una clase de objeto `inetOrgPerson` puede tener atributos como `cn`, `sn` (surname o apellido), y `mail`.
 
