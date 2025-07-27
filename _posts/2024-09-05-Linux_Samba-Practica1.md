@@ -38,7 +38,25 @@ sudo hostnamectl set-hostname dcNombreApellidos
 - Se cambia el nombre del host al formato `dcNombreApellidos`, que identifica de forma única al servidor del alumno.
 - Sustituir `NombreApellidos` por el nombre real del alumno sin espacios.
 
-#### 2. Modificar el archivo `/etc/hosts`
+#### 2. Configurar IP estática en el servidor
+
+Abrimos el archivo de configuración de la red  00-installer-config.yaml o 50-cloud-init.yaml depende la instalación que hayas realizado.
+
+```bash
+sudo nano /etc/netplan/00-installer-config.yaml
+```
+
+![image-20250727124701364](/aso/assets/img/linux/redServerSamba.png)
+
+Para aplicar los cambios ejecuta el siguiente comando
+
+```bash
+sudo netplan apply
+```
+
+
+
+#### 3. Modificar el archivo `/etc/hosts`
 
 ```
 sudo nano /etc/hosts
@@ -51,7 +69,7 @@ Añadir la línea correspondiente, por ejemplo:
 - Esta línea asocia el FQDN del servidor y su alias corto con la IP fija `192.168.1.2`.
 - Cada alumno deberá personalizarla con su propio nombre de host.
 
-#### 3. Verificar el FQDN
+#### 4. Verificar el FQDN
 
 ```
 hostname -f
@@ -61,7 +79,7 @@ dcNombreApellidos.ieselcaminas.local
 
 
 
-#### 4. Verificar si el FQDN resuelve la dirección IP
+#### 5. Verificar si el FQDN resuelve la dirección IP
 
 ```bash
 ping -c2 dcNombreApellidos.ieselcaminas.local
@@ -77,7 +95,7 @@ ping -c2 dcNombreApellidos.ieselcaminas.local
    `"Respuesta desde dcNombreApellidos.ieselcaminas.local"`,
    significa que el FQDN se ha resuelto correctamente a la IP asignada.
 
-#### 5. Desactivar el servicio systemd-resolved
+#### 6. Desactivar el servicio systemd-resolved
 
 ```bash
 sudo systemctl disable --now systemd-resolved
@@ -90,7 +108,7 @@ sudo systemctl disable --now systemd-resolved
 
 
 
-#### 6. Eliminar el enlace simbólico al archivo /etc/resolv.conf
+#### 7. Eliminar el enlace simbólico al archivo /etc/resolv.conf
 
 ```bash
 sudo unlink /etc/resolv.conf
@@ -104,7 +122,7 @@ sudo unlink /etc/resolv.conf
 - En Ubuntu, este archivo suele ser un **enlace simbólico** gestionado por `systemd-resolved`.
    Para que Samba tenga control completo del DNS, eliminamos ese enlace y gestionamos el archivo de forma manual.
 
-#### 7. Crear el archivo /etc/resolv.conf
+#### 8. Crear el archivo /etc/resolv.conf
 
 ```bash
 sudo nano /etc/resolv.conf
@@ -128,7 +146,7 @@ search ieselcaminas.local
 
   
 
-#### 8. Agregar las siguientes líneas al archivo /etc/resolv.conf
+#### 9. Agregar las siguientes líneas al archivo /etc/resolv.conf
 
 ```
 nameserver 192.168.1.2
@@ -146,7 +164,7 @@ search ieselcaminas.local
 
 
 
-#### 9. Hacer inmutable el archivo /etc/resolv.conf
+#### 10. Hacer inmutable el archivo /etc/resolv.conf
 
 ```bash
 sudo chattr +i /etc/resolv.conf
