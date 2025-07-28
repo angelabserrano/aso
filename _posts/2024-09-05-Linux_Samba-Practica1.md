@@ -184,6 +184,32 @@ sudo chattr -i /etc/resolv.conf
 
 ##  2. Instalación de Samba
 
+#### 1. Actualiza el índice de paquetes disponibles en los repositorios configurados
 
+```bash
+sudo apt update
+```
 
-> 
+#### 2. Instalar el paquete samba y las dependencias necesarias
+
+```bash
+sudo apt install -y acl attr samba samba-dsdb-modules samba-vfs-modules smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user dnsutils chrony net-tools
+```
+
+| **Paquete**          | **Función**                                                  | **¿Es imprescindible para un AD DC?** |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------- |
+| `acl`                | Permite configurar listas de control de acceso (ACL) en archivos y carpetas. | Recomendado                           |
+| `attr`               | Añade soporte para atributos extendidos en archivos, útil en entornos avanzados. | Recomendado                           |
+| `samba`              | Instala el servicio principal Samba, que permite que el servidor funcione como un Controlador de Dominio (AD DC). | **Sí, imprescindible**                |
+| `samba-dsdb-modules` | Añade módulos internos necesarios para la base de datos del dominio Samba. | **Sí, imprescindible**                |
+| `samba-vfs-modules`  | Extiende las capacidades de Samba para usar funciones como auditorías o cuotas de disco. | Recomendado                           |
+| `smbclient`          | Cliente de línea de comandos para conectarse a recursos compartidos SMB. Útil para pruebas. | Opcional pero útil                    |
+| `winbind`            | Permite al servidor resolver usuarios y grupos del dominio. También se usa para integrar equipos Linux como clientes del dominio. | Recomendado                           |
+| `libpam-winbind`     | Permite iniciar sesión en el sistema Linux con usuarios del dominio, usando PAM. | Opcional                              |
+| `libnss-winbind`     | Hace que los usuarios y grupos del dominio aparezcan como usuarios locales para el sistema. | Opcional                              |
+| `libpam-krb5`        | Añade autenticación Kerberos al sistema mediante PAM.        | Opcional                              |
+| `krb5-config`        | Archivos de configuración para el sistema de autenticación Kerberos. | **Sí, imprescindible**                |
+| `krb5-user`          | Herramienta para autenticarse como usuario mediante Kerberos desde consola. | Recomendado                           |
+| `dnsutils`           | Incluye herramientas como `dig` para probar y depurar el DNS del dominio. | Recomendado                           |
+| `chrony`             | Sincroniza la hora del sistema, lo cual es esencial para que funcione Kerberos correctamente. | **Sí, imprescindible** (o `ntp`)      |
+| `net-tools`          | Herramientas clásicas como `ifconfig` o `netstat`, útiles para diagnóstico de red. | Opcional                              |
