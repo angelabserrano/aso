@@ -226,3 +226,17 @@ sudo systemctl disable --now smbd nmbd winbind
 
 -  **smbd** y **nmbd** son servicios clásicos de Samba que no se utilizan cuando el servidor actúa como **Controlador de Dominio (AD DC)**.
 - En un **Controlador de Dominio Samba**, `winbind` no debe estar activo. Solo se instala y se usa en los **clientes Linux del dominio**.
+
+#### 4. Habilitación del servicio Samba como Controlador de Dominio (AD DC)
+
+Para que el servicio Samba funcione como **Controlador de Dominio Active Directory**, es necesario **desbloquearlo** y **habilitar su arranque automático**:
+
+```bash
+sudo systemctl unmask samba-ad-dc
+sudo systemctl enable samba-ad-dc
+
+```
+
+- **sudo systemctl unmask samba-ad-dc**: Elimina la "máscara" del servicio, permitiendo que pueda activarse y gestionarse. Algunos servicios vienen bloqueados por defecto.
+- **sudo systemctl enable samba-ad-dc**:
+  Activa el inicio automático del servicio al arrancar el sistema, dejándolo listo para funcionar como AD DC.
