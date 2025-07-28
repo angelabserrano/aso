@@ -190,11 +190,13 @@ sudo chattr -i /etc/resolv.conf
 sudo apt update
 ```
 
+
 #### 2. Instalar el paquete samba y las dependencias necesarias
 
 ```bash
 sudo apt install -y acl attr samba samba-dsdb-modules samba-vfs-modules smbclient winbind libpam-winbind libnss-winbind libpam-krb5 krb5-config krb5-user dnsutils chrony net-tools
 ```
+
 
 | **Paquete**          | **Función**                                                  | **¿Es imprescindible para un AD DC?** |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------- |
@@ -213,3 +215,14 @@ sudo apt install -y acl attr samba samba-dsdb-modules samba-vfs-modules smbclien
 | `dnsutils`           | Incluye herramientas como `dig` para probar y depurar el DNS del dominio. | Recomendado                           |
 | `chrony`             | Sincroniza la hora del sistema, lo cual es esencial para que funcione Kerberos correctamente. | **Sí, imprescindible** (o `ntp`)      |
 | `net-tools`          | Herramientas clásicas como `ifconfig` o `netstat`, útiles para diagnóstico de red. | Opcional                              |
+
+### 3. Detener y deshabilitar servicios innecesarios
+
+Para evitar conflictos con el controlador de dominio Samba, detenemos y deshabilitamos algunos servicios que no deben estar activos en este modo:
+
+```bash
+sudo systemctl disable --now smbd nmbd winbind
+```
+
+-  **smbd** y **nmbd** son servicios clásicos de Samba que no se utilizan cuando el servidor actúa como **Controlador de Dominio (AD DC)**.
+- En un **Controlador de Dominio Samba**, `winbind` no debe estar activo. Solo se instala y se usa en los **clientes Linux del dominio**.
