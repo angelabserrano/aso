@@ -216,7 +216,7 @@ sudo apt install -y acl attr samba samba-dsdb-modules samba-vfs-modules smbclien
 | `chrony`             | Sincroniza la hora del sistema, lo cual es esencial para que funcione Kerberos correctamente. | **Sí, imprescindible** (o `ntp`)      |
 | `net-tools`          | Herramientas clásicas como `ifconfig` o `netstat`, útiles para diagnóstico de red. | Opcional                              |
 
-### 3. Detener y deshabilitar servicios innecesarios
+#### 3. Detener y deshabilitar servicios innecesarios
 
 Para evitar conflictos con el controlador de dominio Samba, detenemos y deshabilitamos algunos servicios que no deben estar activos en este modo:
 
@@ -234,7 +234,6 @@ Para que el servicio Samba funcione como **Controlador de Dominio Active Directo
 ```bash
 sudo systemctl unmask samba-ad-dc
 sudo systemctl enable samba-ad-dc
-
 ```
 
 - **sudo systemctl unmask samba-ad-dc**: Elimina la "máscara" del servicio, permitiendo que pueda activarse y gestionarse. Algunos servicios vienen bloqueados por defecto.
