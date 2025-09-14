@@ -96,7 +96,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Guarda los cambios añadidos al área de preparación en el historial del repositorio.
 
-   ```shell
+   ```
    git commit -m "Mensaje del commit"
    ```
 
@@ -104,7 +104,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Envía los commits realizados en la rama local al repositorio remoto (rama principal).
 
-   ```shell
+   ```
    git push origin main
    ```
 
