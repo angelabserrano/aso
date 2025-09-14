@@ -59,6 +59,12 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git config --global user.email "tuemail@ejemplo.com"
    ```
 
+   Para comprobar la ejecución ejecutamos:
+
+   ```bash
+   git config --list
+   ```
+
    
 
    #### Comandos básicos de Git
@@ -75,8 +81,8 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Clona un repositorio existente desde una URL a tu máquina local.
 
-   ```shell
-   git clone https://github.com/usuario/repo.git
+   ```bash
+   git clone git@github.com:usuario/repositorio.git
    ```
 
    `git add`
@@ -130,6 +136,38 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    
 
+   #### Flujo de trabajo en Git
+
+   A continuación se muestra un esquema visual del **ciclo de vida de los cambios en Git**:
+
+   ![Desarrollo completo con GitHub](/aso/assets/img/git/image10_1a4384e5fa.avif)
+
+   En este diagrama se distinguen las partes principales:
+
+   - **Working Directory (directorio de trabajo):** donde editas archivos en tu PC.
+
+   - **Staging Area (área de preparación):** donde seleccionas qué cambios quieres guardar. (`git add`)
+
+   - **Local Repo (repositorio local):** base de datos con tus commits en tu máquina. (`git commit`)
+
+   - **Remote Repo (GitHub):** copia del repositorio accesible online para colaborar. (`git push` / `git pull`)
+
+     
+
+   Y los comandos clave:
+
+   - `git add` → mover cambios al **Staging Area**.
+
+   - `git commit` → guardar en el **repositorio local**.
+
+   - `git push` → enviar al **repositorio remoto (GitHub)**.
+
+   - `git pull` → traer cambios del remoto a tu local.
+
+   - `git checkout` / `git merge` → cambiar de rama o fusionar.
+
+     
+
 2. ### **Conceptos Básicos de GitHub**
 
    #### ¿Qué es GitHub? 
@@ -177,7 +215,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
       - Abre una terminal y ejecuta el siguiente comando (reemplaza  youremail@example.com  con tu correo electrónico):
 
       ```
-      ssh-keygen -t rsa -b 4096 -C "TU_EMAIL" "youremail@example.com"
+      ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
       
       ```
    2. **Agregar la clave SSH a tu cuenta de GitHub**:
@@ -202,5 +240,5 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    
 ### Práctica 0
-> -reto- **Ejercicio 1** Crea una cuenta en Github con las credenciales proporcionadas por el instituto. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura  ssh para autentificación segura en GitHub. . 
+> -reto- **Ejercicio 1** Crea una cuenta en Github. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura  ssh para autentificación segura en GitHub. 
 
