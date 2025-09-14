@@ -104,10 +104,10 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    `git push`
 
-   Envía los commits realizados en la rama local al repositorio remoto.
+   Envía los commits realizados en la rama local al repositorio remoto (rama principal).
 
    ```shell
-   git push origin master
+   git push origin main
    ```
 
    `git pull`
@@ -115,7 +115,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    Actualiza tu repositorio local con los cambios del repositorio remoto.
 
    ```shell
-   git pull origin master
+   git pull origin main
    ```
 
    `git status`
