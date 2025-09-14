@@ -43,7 +43,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    - Para distribuciones basadas en Debian/Ubuntu:
 
-     ```shell
+     ```
      sudo apt update
      sudo apt install git
      ```
@@ -71,7 +71,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Inicializa un nuevo repositorio de Git en el directorio actual.
 
-   ```shell
+   ```
    git init
    ```
 
@@ -79,7 +79,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Clona un repositorio existente desde una URL a tu máquina local.
 
-   ```bash
+   ```
    git clone git@github.com:usuario/repositorio.git
    ```
 
@@ -87,7 +87,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Agrega archivos al área de preparación (staging area), preparándolos para el commit.
 
-   ```shell
+   ```
    git add archivo.txt
    git add .
    ```
@@ -112,7 +112,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Actualiza tu repositorio local con los cambios del repositorio remoto.
 
-   ```shell
+   ```
    git pull origin main
    ```
 
@@ -120,7 +120,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Muestra el estado de los archivos en el directorio de trabajo y el área de preparación.
 
-   ```shell
+   ```
    git status
    ```
 
@@ -128,7 +128,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Muestra el historial de commits del repositorio.
 
-   ```shell
+   ```
    git log
    ```
 
@@ -240,7 +240,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    3. **Probar la conexión**
 
-      ```bash
+      ```
       ssh -T git@github.com
       ```
 
