@@ -19,7 +19,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
 ## Contenidos
 
-1. ### **Conceptos Básicos de Git**
+ ### 1 Conceptos Básicos de Git
 
    #### 1.1 ¿Qué es Git?
 
@@ -48,7 +48,6 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
      sudo apt install git
      ```
 
-     
 
    #### 1.4 Configuración inicial de Git
 
@@ -65,7 +64,6 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    git config --list
    ```
 
-   
 
    #### 1.5 Comandos básicos de Git
 
@@ -171,12 +169,13 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    #### 📚 Resumen de comandos Git
 
      Aquí tienes una ficha de referencia rápida con los comandos más útiles de Git que puedes descargar:
-
+    
      [Descargar PDF — Git Cheat Sheet (GitHub Education)](https://education.github.com/git-cheat-sheet-education.pdf?utm_source=chatgpt.com)
 
-     
 
-2. ### **Conceptos Básicos de GitHub**
+​     
+
+ ### 2 Conceptos Básicos de GitHub
 
    #### 2.1 ¿Qué es GitHub? 
 
@@ -246,7 +245,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
       ssh -T git@github.com
       ```
 
-   
+
 ### Práctica 0
 > -reto- **Ejercicio 1** Crea una cuenta en Github. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura  ssh para autentificación segura en GitHub. 
 
