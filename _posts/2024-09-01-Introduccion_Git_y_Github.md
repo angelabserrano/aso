@@ -53,14 +53,14 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    Después de instalar Git, es importante configurarlo con tu nombre de usuario y correo electrónico, ya que esta información se usará en los commits.
 
-   ```shell
+   ```
    git config --global user.name "Tu Nombre"
    git config --global user.email "tuemail@ejemplo.com"
    ```
 
    Para comprobar la ejecución ejecutamos:
 
-   ```bash
+   ```
    git config --list
    ```
 
@@ -223,11 +223,10 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
       ```
       ssh-keygen -t rsa -b 4096 -C "youremail@example.com"
-      
       ```
    2. **Agregar la clave SSH a tu cuenta de GitHub**:
 
-      ```bash
+      ```
       cat ~/.ssh/id_rsa.pub
       ```
 
