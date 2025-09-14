@@ -19,7 +19,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
 ## Contenidos
 
- ### 1 Conceptos Básicos de Git
+### 1 Conceptos Básicos de Git
 
 #### 1.1 ¿Qué es Git?
 
