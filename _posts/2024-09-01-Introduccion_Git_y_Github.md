@@ -49,7 +49,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
      ```
 
 
-   #### 1.4 Configuración inicial de Git
+#### 1.4 Configuración inicial de Git
 
    Después de instalar Git, es importante configurarlo con tu nombre de usuario y correo electrónico, ya que esta información se usará en los commits.
 
@@ -65,7 +65,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    ```
 
 
-   #### 1.5 Comandos básicos de Git
+#### 1.5 Comandos básicos de Git
 
    `git init`
 
