@@ -168,6 +168,14 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
      
 
+     ## 📚 Resumen de comandos Git
+
+     Aquí tienes una ficha de referencia rápida con los comandos más útiles de Git que puedes descargar:
+
+     [Descargar PDF — Git Cheat Sheet (GitHub Education)](https://education.github.com/git-cheat-sheet-education.pdf?utm_source=chatgpt.com)
+
+     
+
 2. ### **Conceptos Básicos de GitHub**
 
    #### ¿Qué es GitHub? 
