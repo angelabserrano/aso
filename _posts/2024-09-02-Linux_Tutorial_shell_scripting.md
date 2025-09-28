@@ -894,7 +894,47 @@ Imprimirá por pantalla
 Hola Pepe
 ```
 
-<div id="id13" />
+
+
+### Declaración antes de la llamada
+
+> -alert- En un script de **Bash**, la función debe estar **definida antes de poder usarse**.
+>  Si intentas llamar a una función antes de su declaración, el intérprete no la reconocerá y mostrará un error como `command not found`.
+
+**Ejemplo incorrecto**
+
+```
+saluda Pepe
+
+saluda() {
+  echo "Hola $1"
+}
+
+```
+
+**Salida:**
+
+```
+./script.sh: línea 1: saluda: orden no encontrada
+```
+
+**Ejemplo correcto**
+
+```
+saluda() {
+  echo "Hola $1"
+}
+
+saluda Pepe
+```
+
+**Salida:**
+
+```
+Hola Pepe
+```
+
+
 
 ## 13. Utilidades y herramientas comunes
 
