@@ -863,11 +863,21 @@ done
 
 ## 12. Funciones
 
-Las funciones nos van a permitir reutilizar el código, y no tener que repetir una y otra vez el mismo código.
+Las funciones nos van a permitir **reutilizar el código**, y no tener que repetir una y otra vez el mismo código.
+
+**Sintaxis básica**
+
 ```bash
-function nombre_funcion() {
-    comandos
+# Forma A (recomendada por portabilidad)
+nombre_funcion() {
+  comandos
 }
+
+# Forma B (válida en Bash)
+function nombre_funcion() {
+  comandos
+}
+
 ```
 Ejemplo:
 ```bash
@@ -880,23 +890,30 @@ saluda
 ```
 >Nota: Debes tener en cuenta que cuando llamas a la función no pones los paréntesis.
 
-Podemos pasar argumentos a una función, de la misma forma que lo hacemos con los scripts.
-```bash
-#!/bin/bash
-function saluda(){
-    echo "Hola $1"
+### 12.1 Concepto y sintaxis
+
+- Una función es un bloque con un **nombre** que se puede invocar varias veces.
+
+- Dos sintaxis válidas en Bash (ver arriba).
+
+- Convención recomendada: **nombre_funcion() { … }** (más portable entre shells).
+
+  
+
+**Ejemplo mínimo:**
+
+  ```
+mostrar_fecha() {
+  date "+%F %T"
 }
+  
+mostrar_fecha
+  
+  ```
 
-saluda Pepe
-```
-Imprimirá por pantalla
-```bash
-Hola Pepe
-```
+  
 
-
-
-### Declaración antes de la llamada
+### 12.2 Declaración antes de la llamada
 
 > -alert- En un script de **Bash**, la función debe estar **definida antes de poder usarse**.
 >  Si intentas llamar a una función antes de su declaración, el intérprete no la reconocerá y mostrará un error como `command not found`.
@@ -934,7 +951,25 @@ saluda Pepe
 Hola Pepe
 ```
 
-### Archivos de funciones (Source Filenames)
+
+
+### 12.3 Paso de parámetros
+
+Los argumentos se reciben como en cualquier script: `$1`, `$2`, …
+
+```bash
+info_usuario() {
+  echo "Usuario: $1"
+  echo "UID: $(id -u "$1" 2>/dev/null || echo 'desconocido')"
+}
+
+info_usuario alumno
+
+```
+
+
+
+### 12.4 Archivos de funciones (Source Filenames)
 
 Cuando el script empieza a crecer, es útil **organizar las funciones en un archivo separado** y “cargarlo” en el script principal.
 
@@ -971,7 +1006,7 @@ existe_usuario() {
 
 📄 **main.sh**
 
-```
+```bash
 #!/bin/bash
 
 # Cargar funciones desde archivo externo
