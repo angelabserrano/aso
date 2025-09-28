@@ -934,7 +934,87 @@ saluda Pepe
 Hola Pepe
 ```
 
+### Archivos de funciones (Source Filenames)
 
+Cuando el script empieza a crecer, es útil **organizar las funciones en un archivo separado** y “cargarlo” en el script principal.
+
+Según la *[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html?utm_source=chatgpt.com)*
+
+> *Los archivos que se van a importar con `source` deben tener extensión `.sh` y no ser ejecutables.*
+>  Esto deja claro que están pensados para ser reutilizados como librerías, no para ejecutarse directamente.
+
+### Ejemplo
+
+📂 **Estructura de archivos:**
+
+proyecto/
+ ├── main.sh
+ └── funciones.sh
+
+📄 **funciones.sh**
+
+```
+# Muestra el uso actual de disco en porcentaje
+
+mostrar_uso_disco() {
+  df -h --output=source,pcent | grep -v "Use%"
+}
+
+# Comprueba si un usuario existe en el sistema
+
+existe_usuario() {
+  if id "$1" &>/dev/null; then
+    echo "El usuario $1 existe en el sistema."
+  else
+    echo "El usuario $1 no existe."
+  fi
+}
+```
+
+📄 **main.sh**
+
+```
+#!/bin/bash
+
+# Cargar funciones desde archivo externo
+source "./funciones.sh"
+
+# Programa principal
+echo "=== Uso de disco ==="
+mostrar_uso_disco
+
+echo
+echo "=== Comprobación de usuario ==="
+existe_usuario alumno
+
+```
+
+**Ejecución:**
+
+```
+./main.sh
+
+```
+
+**Salida (ejemplo):**
+
+```
+=== Uso de disco ===
+/dev/sda1      35%
+tmpfs          2%
+
+=== Comprobación de usuario ===
+El usuario alumno existe en el sistema.
+
+```
+
+👉 Recomendaciones importantes:
+
+- Usa siempre `source "./archivo.sh"` .
+- Guarda las funciones en ficheros con **extensión `.sh`**.
+- No marques esos ficheros como ejecutables (`chmod -x funciones.sh`).
+
+De esta forma tu código queda modular, ordenado y útil en un entorno de administración de sistemas.
 
 ## 13. Utilidades y herramientas comunes
 
