@@ -947,9 +947,7 @@ Según la *[Google Shell Style Guide](https://google.github.io/styleguide/shellg
 
 📂 **Estructura de archivos:**
 
-proyecto/
- ├── main.sh
- └── funciones.sh
+![image-20250928200755720](/aso/assets/img/linux/image-20250928200755720.png)
 
 📄 **funciones.sh**
 
