@@ -902,7 +902,7 @@ saluda
 
 **Ejemplo mínimo:**
 
-  ```
+  ```bash
 mostrar_fecha() {
   date "+%F %T"
 }
@@ -920,7 +920,7 @@ mostrar_fecha
 
 **Ejemplo incorrecto**
 
-```
+```bash
 saluda Pepe
 
 saluda() {
@@ -937,7 +937,7 @@ saluda() {
 
 **Ejemplo correcto**
 
-```
+```bash
 saluda() {
   echo "Hola $1"
 }
@@ -986,7 +986,7 @@ Según la *[Google Shell Style Guide](https://google.github.io/styleguide/shellg
 
 📄 **funciones.sh**
 
-```
+```bash
 # Muestra el uso actual de disco en porcentaje
 
 mostrar_uso_disco() {
