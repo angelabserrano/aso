@@ -541,6 +541,98 @@ fi
 
 
 <div id="id83" />
+### 9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)
+
+Además de las comparaciones vistas anteriormente, Bash permite **extraer, eliminar y sustituir partes de una cadena** de texto mediante la **expansión de parámetros**.  
+Estas operaciones son muy útiles para manipular rutas, nombres de ficheros o variables sin recurrir a herramientas externas como `cut`, `awk` o `sed`.
+
+---
+
+#### 🔹 Sintaxis básica
+
+```bash
+${variable:inicio:longitud}
+```
+
+- `inicio`: posición inicial (empieza en 0).
+- `longitud`: número de caracteres a extraer.
+- Si se omite la longitud, extrae desde `inicio` hasta el final de la cadena.
+
+**Ejemplo:**
+
+```bash
+cadena="administracion"
+echo ${cadena:0:5}     # admin
+echo ${cadena:5:3}     # ist
+echo ${cadena:10}      # cion
+```
+
+#### 🔹 Subcadenas desde el final
+
+Se pueden usar índices negativos para contar desde el final de la cadena.
+
+```bash
+cadena="servidor"
+echo ${cadena: -3}   # dor
+echo ${cadena: -6:3} # rvi
+```
+
+⚠️ *Debe dejarse un espacio antes del signo menos (`: -3`).*
+
+#### 🔹 Eliminación de prefijos y sufijos
+
+La expansión de parámetros permite eliminar partes del principio o del final que coincidan con un **patrón**.
+
+##### ➕ Prefijos
+
+```
+ruta="/home/usuario/documento.txt"
+echo ${ruta#*/}    # home/usuario/documento.txt   → elimina el primer '/'
+echo ${ruta##*/}   # documento.txt                → elimina hasta el último '/'
+```
+
+➖ Sufijos
+
+```bash
+echo ${ruta%/*}    # /home/usuario                → elimina la última parte
+echo ${ruta%%/*}   #                              → elimina desde el primer '/'
+```
+
+🔹 Longitud de una cadena
+
+```bash
+cadena="sistemas"
+echo ${#cadena}   # 8
+```
+
+#### 🔹 Ejemplo práctico
+
+Extraer el nombre y la extensión de un fichero:
+
+```bash
+archivo="reporte_final.pdf"
+
+nombre=${archivo%.*}   # reporte_final
+ext=${archivo##*.}     # pdf
+
+echo "Nombre: $nombre"
+echo "Extensión: $ext"
+```
+
+#### 🧠 Resumen de operadores de subcadenas
+
+| Operación                         | Sintaxis / Ejemplo      | Resultado / Descripción           |
+| --------------------------------- | ----------------------- | --------------------------------- |
+| Subcadena desde posición          | `${var:2:4}`            | 4 caracteres desde la posición 2  |
+| Subcadena hasta el final          | `${var:5}`              | Desde la posición 5               |
+| Subcadena desde el final          | `${var: -3}`            | Últimos 3 caracteres              |
+| Quitar prefijo corto              | `${var#*/}`             | Elimina hasta el primer `/`       |
+| Quitar prefijo largo              | `${var##*/}`            | Elimina hasta el último `/`       |
+| Quitar sufijo corto               | `${var%/*}`             | Elimina desde el último `/`       |
+| Quitar sufijo largo               | `${var%%/*}`            | Elimina desde el primer `/`       |
+| Sustituir primera coincidencia    | `${var/palabra/nueva}`  | Reemplaza una sola coincidencia   |
+| Sustituir todas las coincidencias | `${var//palabra/nueva}` | Reemplaza todas las coincidencias |
+| Longitud de la cadena             | `${#var}`               | Devuelve número de caracteres     |
 
 ### 9.3 Expresiones numéricas
 
