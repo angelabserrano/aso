@@ -1141,6 +1141,43 @@ El usuario alumno existe en el sistema.
 
 De esta forma tu código queda modular, ordenado y útil en un entorno de administración de sistemas.
 
+### 12.5 Devolver datos desde funciones
+
+En Bash, las funciones **no devuelven valores como en otros lenguajes**.
+ El comando `return` **solo se utiliza para indicar un código de salida** (entre 0 y 255), que sirve para señalar si la función ha tenido éxito o no
+
+```bash
+comprobar_archivo() {
+  archivo=$1
+
+  if [[ -f "$archivo" ]]; then
+    return 0    # Éxito: el archivo existe
+  else
+    return 1    # Error: el archivo no existe
+  fi
+}
+
+comprobar_archivo /etc/passwd
+echo "Código devuelto: $?"   # 0 si existe, 1 si no
+```
+
+#### 📤 Devolver datos mediante la salida estándar
+
+Cuando una función necesita “devolver” un valor (por ejemplo, un número o una cadena de texto), **la forma correcta** en Bash es **escribir el resultado por la salida estándar** y capturarlo con sustitución de comandos `$(...)`.
+
+```bash
+sumar() {
+  a=$1
+  b=$2
+  echo $((a + b))
+}
+
+resultado=$(sumar 3 5)
+echo "El resultado es $resultado"
+```
+
+
+
 ## 13. Utilidades y herramientas comunes
 
 **Introducción**
