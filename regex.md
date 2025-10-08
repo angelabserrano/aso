@@ -3,6 +3,7 @@ layout: default
 title: Expresiones Regulares
 nav_order: 13
 parent: Linux Bash
+permalink: /regex/
 ---
 
 # Guía de Expresiones Regulares en Linux
