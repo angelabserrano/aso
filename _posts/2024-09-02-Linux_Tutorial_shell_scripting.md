@@ -1410,7 +1410,7 @@ find . -type f -exec ls -l {} \;
 >
 >**Requisitos mínimos:**
 >
->- Cada operación debe implementarse en una **función** (`añadir_contacto`, `listar_contactos`, `buscar_contacto`, `borrar_contacto`, `editar_contacto`).
+>- Cada operación debe implementarse en una **función** (`añadir_contacto`, `listar_contactos`, `buscar_contacto`, `borrar_contacto`, `editar_contacto`, `imprimir_menu`).
 >- Incluir validaciones básicas de teléfono y correo electrónico (uso de expresiones regulares).
 >- Mostrar un **menú principal** que permita elegir la acción a realizar.
 >- Guardar los cambios en el fichero al finalizar cada operación.
