@@ -1403,12 +1403,21 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 ```bash
 find . -type f -exec ls -l {} \;
 ```
+>**FUNCIONES**
 >
-> **FUNCIONES**
+>**Ejercicio 27**.Reescribe el script de **agenda** utilizando **funciones** para estructurar el código.
+> El programa debe permitir **añadir, listar, buscar, borrar y editar** contactos almacenados en un fichero `agenda.csv` con formato `Nombre;Teléfono;Email`.
 >
-> **Ejercicio 27**. Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
+>**Requisitos mínimos:**
 >
-> **Ejercicio 28**. Realiza un script utilizando funciones que permita crear un informe de las **IP libres** en la red en la que se encuentra el equipo. Debe contener las siguientes opciones:
+>- Cada operación debe implementarse en una **función** (`añadir_contacto`, `listar_contactos`, `buscar_contacto`, `borrar_contacto`, `editar_contacto`).
+>- Incluir validaciones básicas de teléfono y correo electrónico (uso de expresiones regulares).
+>- Mostrar un **menú principal** que permita elegir la acción a realizar.
+>- Guardar los cambios en el fichero al finalizar cada operación.
 >
-> 1. El informe contendrá un **listado de todas las IP de la red** a la que pertenece el equipo indicando si está libe o no (usa el comando ping).
-> 2. En el informe debe aparecer el **tipo de red** (rango CIDR) en el que está inmerso el ordenador con el **nombre de la red**, su **broadcast** y su **máscara de subred**. 
+>**Ejercicio 28**. Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
+>
+>**Ejercicio 28**. Realiza un script utilizando funciones que permita crear un informe de las **IP libres** en la red en la que se encuentra el equipo. Debe contener las siguientes opciones:
+>
+>1. El informe contendrá un **listado de todas las IP de la red** a la que pertenece el equipo indicando si está libe o no (usa el comando ping).
+>2. En el informe debe aparecer el **tipo de red** (rango CIDR) en el que está inmerso el ordenador con el **nombre de la red**, su **broadcast** y su **máscara de subred**. 
