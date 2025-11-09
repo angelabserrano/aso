@@ -92,5 +92,6 @@ LDAP sigue una estructura jerárquica en la que los datos se organizan en un ár
 > -reto- 
 >
 > [Práctica 1  Instalacion y configuración básica del servidor Open LDAP](https://angelabserrano.github.io/aso/pdf/UT4_Practica1.pdf)
+>
 > [Práctica 2  Creación de usuarios y grupos en  Open LDAP](https://angelabserrano.github.io/aso/pdf/UT4_Practica2.pdf)
 
