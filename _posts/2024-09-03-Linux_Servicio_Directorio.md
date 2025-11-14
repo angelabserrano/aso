@@ -216,6 +216,74 @@ slapadd -l base.ldif
 > **LDIF es el formato estándar de intercambio en LDAP.**  
 > Sirve para crear el DIT, añadir usuarios y grupos, modificar valores, migrar datos y automatizar la administración del servicio de directorio en Linux.
 
+### 3.4 ObjectClass en LDAP: tipos y clases más utilizadas
+
+Los **objectClass** definen el *tipo de objeto* que representa cada entrada del directorio LDAP.  
+Según el objectClass elegido, la entrada tendrá unos **atributos obligatorios (MUST)** y otros **opcionales (MAY)**.
+
+Existen tres categorías:
+
+- **Estructurales** → definen qué “es” la entrada (usuario, grupo, OU, dominio…).  
+- **Auxiliares** → añaden atributos extra a una entrada ya existente (cuenta UNIX, shadow, sudo…).  
+- **Abstractas** → clases base de las que heredan las demás (normalmente solo `top`).
+
+A continuación se muestran los objectClass más importantes y utilizados en OpenLDAP.
+
+---
+
+#### Tabla pedagógica de los objectClass más comunes
+
+| objectClass | Tipo | Esquema | ¿Para qué se utiliza? | MUST (obligatorios) | MAY (opcionales) |
+|-------------|------|---------|------------------------|----------------------|-------------------|
+| **top** | Abstracta | core | Clase base de todas las entradas | — | — |
+| **domain** | Estructural | core | Nodo raíz del dominio (dc=) | dc | associatedName |
+| **organization** | Estructural | core | Representa una empresa u organización | o | telephoneNumber, description |
+| **organizationalUnit (ou)** | Estructural | core | Estructura: contenedores del DIT | ou | description |
+| **person** | Estructural | core | Representa una persona básica | sn, cn | telephoneNumber, userPassword |
+| **organizationalPerson** | Estructural | core | Persona dentro de una organización | hereda MUST de person | title, postalAddress |
+| **inetOrgPerson** | Estructural | inetorgperson/cosine | Usuario completo (el más usado) | sn, cn | mail, uid, mobile, employeeNumber |
+| **groupOfNames** | Estructural | core | Grupo cuyos miembros son DN completos | member | description |
+| **groupOfUniqueNames** | Estructural | core | Grupo con entradas únicas | uniqueMember | description |
+| **posixAccount** | Auxiliar | nis | Usuario UNIX (UID, GID, home, shell) | cn, uid, uidNumber, gidNumber, homeDirectory | loginShell, gecos |
+| **shadowAccount** | Auxiliar | nis | Atributos de contraseñas estilo shadow | uid | shadowLastChange, shadowExpire |
+| **posixGroup** | Estructural | nis | Grupo UNIX con GID | cn, gidNumber | memberUid |
+| **ipHost** | Auxiliar | nis | Representa un host con dirección IP | cn, ipHostNumber | l, description |
+| **device** | Estructural | core | Representa un dispositivo físico | cn | serialNumber |
+| **simpleSecurityObject** | Auxiliar | core | Entradas con contraseña simple | userPassword | — |
+| **organizationalRole** | Estructural | cosine | Representa un rol dentro de la organización | cn | roleOccupant |
+| **room** | Estructural | cosine | Habitaciones o espacios físicos | cn, roomNumber | phone, description |
+| **dhcpHost** | Auxiliar | misc | Host gestionado por DHCP | dhcpHWAddress | dhcpOption |
+| **sudoRole** | Auxiliar | sudo-ldap | Permisos sudo centralizados | cn | sudoUser, sudoCommand |
+
+---
+
+#### Cómo elegir correctamente los objectClass
+
+- Para **usuarios reales** → `inetOrgPerson` (+ `posixAccount` si se usan en Linux).  
+- Para **grupos UNIX** → `posixGroup`.  
+- Para **grupos genéricos** → `groupOfNames`.  
+- Para **estructura del DIT** → `organizationalUnit` y `domain`.  
+- Para **hosts o máquinas** → `ipHost`.  
+- Para **contraseñas tipo shadow** → añadir `shadowAccount`.  
+- Para **sudo centralizado** → `sudoRole`.
+
+---
+
+#### Reglas importantes
+
+- Toda entrada LDAP debe tener **solo un objectClass estructural principal**.  
+- Puede tener **varios objectClass auxiliares**.  
+- Todos los objectClass heredan de **top**.  
+- Una mala elección de objectClass provoca errores al añadir la entrada.
+
+---
+
+#### Resumen
+
+> Los **objectClass** definen el tipo de cada entrada del directorio y determinan qué atributos puede o debe tener.  
+> Conocer los objectClass más comunes permite diseñar un DIT coherente, válido y funcional para usuarios, grupos, dispositivos y servicios.
+
+
 
 ### Actividades LDAP
 
