@@ -231,7 +231,7 @@ A continuación se muestran los objectClass más importantes y utilizados en Ope
 
 ---
 
-#### Tabla pedagógica de los objectClass más comunes
+#### Tabla de los objectClass más comunes
 
 | objectClass | Tipo | Esquema | ¿Para qué se utiliza? | MUST (obligatorios) | MAY (opcionales) |
 |-------------|------|---------|------------------------|----------------------|-------------------|
