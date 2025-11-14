@@ -124,6 +124,98 @@ gidNumber: 1001
 homeDirectory: /home/usuario1
 loginShell: /bin/bash
 userPassword: 123456
+```
+
+---
+
+#### Operaciones habituales en LDIF
+
+Además de crear entradas nuevas, LDIF permite describir operaciones:
+
+**Añadir (`add`)**
+
+```ldif
+dn: uid=maria,ou=usuarios,dc=empresa,dc=com
+changetype: add
+objectClass: inetOrgPerson
+cn: Maria López
+sn: López
+uid: maria
+mail: maria@empresa.com
+```
+
+**Modificar (`modify`)**
+
+```ldif
+dn: uid=maria,ou=usuarios,dc=empresa,dc=com
+changetype: modify
+replace: mail
+mail: maria.nueva@empresa.com
+```
+
+**Eliminar (`delete`)**
+
+```ldif
+dn: uid=usuario1,ou=People,dc=ejemplo,dc=com
+changetype: delete
+```
+
+**Renombrar o mover (`modrdn`)**
+
+```ldif
+dn: uid=usuario1,ou=People,dc=ejemplo,dc=com
+changetype: modrdn
+newrdn: uid=usuario2
+deleteoldrdn: 1
+```
+
+---
+
+#### Detalles importantes del formato LDIF
+
+- Si un valor contiene caracteres especiales, empieza por espacio o no es ASCII, se representa en **Base64** usando `::`.
+- Las líneas largas pueden **plegarse** iniciando la línea siguiente con un espacio.
+- Algunos archivos incluyen metadatos como:
+  ```
+  version: 1
+  charset: UTF-8
+  ```
+
+---
+
+#### Comandos de OpenLDAP para trabajar con LDIF
+
+**Importar entradas**
+
+```bash
+ldapadd -x -D "cn=admin,dc=empresa,dc=com" -W -f archivo.ldif
+```
+
+**Modificar entradas**
+
+```bash
+ldapmodify -x -D "cn=admin,dc=empresa,dc=com" -W -f cambios.ldif
+```
+
+**Exportar (backup del directorio)**
+
+```bash
+slapcat -v -l backup.ldif
+```
+
+**Importar una base completa (modo offline)**
+
+```bash
+slapadd -l base.ldif
+```
+
+---
+
+#### Resumen
+
+> **LDIF es el formato estándar de intercambio en LDAP.**  
+> Sirve para crear el DIT, añadir usuarios y grupos, modificar valores, migrar datos y automatizar la administración del servicio de directorio en Linux.
+
 
 ### Actividades LDAP
 
