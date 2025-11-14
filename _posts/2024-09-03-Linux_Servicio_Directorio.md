@@ -87,6 +87,44 @@ LDAP sigue una estructura jerárquica en la que los datos se organizan en un ár
 
 - **Esquemas LDAP:** El esquema define las reglas sobre qué clases de objeto y atributos pueden existir en el directorio. Establece la estructura de los datos permitidos en el directorio, definiendo qué tipos de objetos (como usuarios, grupos, etc.) pueden almacenarse y qué atributos puede tener cada uno. Los esquemas son cruciales para garantizar la coherencia de los datos dentro del DIT.
 
+### 3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)
+
+El formato **LDIF (LDAP Data Interchange Format)** es un estándar basado en **texto plano** que se utiliza para representar datos de un directorio LDAP y definir operaciones de modificación sobre dicho directorio.
+
+En OpenLDAP, LDIF es esencial para:
+
+- Construir la estructura inicial del **DIT**.
+- Añadir usuarios, grupos y unidades organizativas en bloque.
+- Modificar atributos existentes (correo, contraseña, grupo, etc.).
+- Exportar datos del directorio para copias de seguridad o migraciones.
+- Automatizar tareas de administración del directorio.
+
+---
+
+#### Sintaxis básica de una entrada LDIF
+
+Una entrada se compone de:
+
+- Una línea con el **DN (Distinguished Name)**.
+- Varias líneas con atributos en formato `atributo: valor`.
+- Una línea en blanco para separar entradas.
+
+Ejemplo:
+
+```ldif
+dn: uid=usuario1,ou=People,dc=ejemplo,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+uid: usuario1
+cn: Usuario Uno
+sn: Uno
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/usuario1
+loginShell: /bin/bash
+userPassword: 123456
+
 ### Actividades LDAP
 
 > -reto- 
