@@ -283,6 +283,171 @@ A continuación se muestran los objectClass más importantes y utilizados en Ope
 > Los **objectClass** definen el tipo de cada entrada del directorio y determinan qué atributos puede o debe tener.  
 > Conocer los objectClass más comunes permite diseñar un DIT coherente, válido y funcional para usuarios, grupos, dispositivos y servicios.
 
+### 3.5 Ejemplos prácticos de LDAP en formato LDIF
+
+En esta sección se muestran ejemplos completos y comentados de entradas LDAP en formato **LDIF**, tal y como se utilizan en OpenLDAP.  
+Los ejemplos incluyen: creación de la estructura del DIT, usuarios, grupos, modificaciones y operaciones habituales.
+
+---
+
+## 1. Crear la estructura base del directorio (DIT)
+
+Este archivo crea el dominio `dc=ies,dc=local` y dos unidades organizativas: *Usuarios* y *Grupos*.
+
+```ldif
+dn: dc=ies,dc=local
+objectClass: top
+objectClass: domain
+dc: ies
+
+dn: ou=Usuarios,dc=ies,dc=local
+objectClass: top
+objectClass: organizationalUnit
+ou: Usuarios
+
+dn: ou=Grupos,dc=ies,dc=local
+objectClass: top
+objectClass: organizationalUnit
+ou: Grupos
+```
+
+---
+
+##  2. Crear un usuario completo (inetOrgPerson + posixAccount + shadowAccount)
+
+Este es el modelo recomendado para un usuario real en OpenLDAP integrado con Linux.
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+
+uid: ana
+cn: Ana García
+sn: García
+mail: ana.garcia@ies.local
+
+uidNumber: 10001
+gidNumber: 500
+homeDirectory: /home/ana
+loginShell: /bin/bash
+
+userPassword: {SSHA}CONTRASEÑA_ENCRIPTADA
+```
+
+---
+
+##  3. Crear un grupo UNIX (posixGroup)
+
+```ldif
+dn: cn=profesores,ou=Grupos,dc=ies,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: profesores
+gidNumber: 500
+memberUid: ana
+```
+
+---
+
+##  4. Crear un grupo general LDAP (groupOfNames)
+
+```ldif
+dn: cn=EquipoDirectivo,ou=Grupos,dc=ies,dc=local
+objectClass: top
+objectClass: groupOfNames
+cn: EquipoDirectivo
+member: uid=ana,ou=Usuarios,dc=ies,dc=local
+```
+
+---
+
+##  5. Modificar el correo de un usuario
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+changetype: modify
+replace: mail
+mail: ana.nueva@ies.local
+```
+
+---
+
+##  6. Añadir un atributo nuevo a un usuario
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+changetype: modify
+add: mobile
+mobile: 600123456
+```
+
+---
+
+##  7. Eliminar un atributo de una entrada
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+changetype: modify
+delete: telephoneNumber
+```
+
+---
+
+##  8. Cambiar el RDN (renombrar) de una entrada
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+changetype: modrdn
+newrdn: uid=ana.garcia
+deleteoldrdn: 1
+```
+
+---
+
+##  9. Eliminar una entrada completa
+
+```ldif
+dn: uid=ana,ou=Usuarios,dc=ies,dc=local
+changetype: delete
+```
+
+---
+
+##  10. Exportar el directorio a LDIF (backup)
+
+Desde terminal:
+
+```bash
+slapcat -v -l backup.ldif
+```
+
+---
+
+##  11. Importar las entradas en el servidor LDAP
+
+Alta de nuevas entradas:
+
+```bash
+ldapadd -x -D "cn=admin,dc=ies,dc=local" -W -f archivo.ldif
+```
+
+Modificaciones:
+
+```bash
+ldapmodify -x -D "cn=admin,dc=ies,dc=local" -W -f cambios.ldif
+```
+
+---
+
+### Resumen
+
+> Estos ejemplos muestran cómo se crean usuarios, grupos, unidades organizativas y cómo se gestionan modificaciones en un directorio LDAP mediante LDIF.  
+> Saber construir manualmente estos archivos es clave para administrar OpenLDAP de forma profesional y automatizada.
 
 
 ### Actividades LDAP
