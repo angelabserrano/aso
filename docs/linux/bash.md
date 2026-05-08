@@ -1313,7 +1313,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 ### Ejercicios prácticos
 
-!!! example "Reto"
+!!! example "Tarea"
     **BASICOS**
 
     **Ejercicio 1**. Crea un shell script que muestre por pantalla el mensaje “**¡Hola Mundo!**”.

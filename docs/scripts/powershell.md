@@ -302,11 +302,11 @@ Set-PSBreakpoint -Script sample.ps1 -Variable Server
 
 #### Práctica 1
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 1** . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 2.** Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
     [Instalacion Powershell Linux] (https://learn.microsoft.com/ca-es/powershell/scripting/install/install-ubuntu?view=powershell-7.4)
     Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. Tip: [Docker cheat sheet](../assets/img/docker/dockercheatsheet.png)
@@ -699,7 +699,7 @@ $nombreCompleto=$nombre+$apellidos
 
 #### Práctica 2
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 1.** Crea un script en lenguaje PowerShell que muestre al usuario los siguientes mensajes:
 
     - Hola *nombre de usuario*
@@ -708,11 +708,11 @@ $nombreCompleto=$nombre+$apellidos
     - Tu equipo se llama *Nombre_equipo.*
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio2**.  Crea un script en PowerShell que pida dos números al usuario e imprima por pantalla su suma, la resta, la multiplicación, división y resto.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio3**. Crea un script en PowerShell que pregunte al usuario por el número de horas trabajadas y el coste por hora. Después debe mostrar por pantalla el salario que debemos pagarle.
 
 
@@ -819,19 +819,19 @@ switch ($nota) {
 #### Práctica 3
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 1**. Crea un script que solicite un número al usuario. El programa debe indicar si el número es impar o par.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla si es mayor de edad o no.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 3.** Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 4**. Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 
     Ejemplo:
@@ -846,24 +846,24 @@ switch ($nota) {
     ¿Qué desea hacer?Elige una opción:
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 5**. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 6.**  Crea un script   que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 7.**  Escribir un programa que almacene la cadena de caracteres contraseña en una variable, pregunte al usuario por la contraseña e imprima por pantalla si la contraseña introducida por el usuario coincide con la guardada en la variable sin tener en cuenta mayúsculas y minúsculas.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 8.**  Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A esta formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto.
     Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 9.** Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:
 
 
@@ -877,7 +877,7 @@ switch ($nota) {
 
  Escribir un programa que pregunte al usuario su renta anual y muestre por pantalla el tipo impositivo que le corresponde.
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 10.** En una determinada empresa, sus empleados son evaluados al final de cada año. Los puntos que pueden obtener en la evaluación comienzan en 0.0 y pueden ir aumentando, traduciéndose en mejores beneficios. Los puntos que pueden conseguir los empleados pueden ser 0.0, 0.4, 0.6 o más, pero no valores intermedios entre las cifras mencionadas. A continuación se muestra una tabla con los niveles correspondientes a cada puntuación. La cantidad de dinero conseguida en cada nivel es de 2.400€ multiplicada por la puntuación del nivel.
 
 
@@ -889,11 +889,11 @@ switch ($nota) {
 
 > Escribir un programa que lea la puntuación del usuario e indique su nivel de rendimiento, así como la cantidad de dinero que recibirá el usuario.
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 11.** Escribir un programa para una empresa que tiene salas de juegos para todas las edades y quiere calcular de forma automática el precio que debe cobrar a sus clientes por entrar. El programa debe preguntar al usuario la edad del cliente y mostrar el precio de la entrada. Si el cliente es menor de 4 años puede entrar gratis, si tiene entre 4 y 18 años debe pagar 5€ y si es mayor de 18 años, 10€.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 12.** La pizzería Bella Napoli ofrece pizzas vegetarianas y no vegetarianas a sus clientes. Los ingredientes para cada tipo de pizza aparecen a continuación.
 
     - Ingredientes vegetarianos: Pimiento y tofu.
@@ -1074,47 +1074,47 @@ foreach ($archivo in Get-ChildItem $ruta) {
 
 #### Práctica 4
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio1**. Escribir un programa que pregunte el nombre del usuario en la consola y un número entero e imprima por pantalla en líneas distintas el nombre del usuario tantas veces como el número introducido.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 2**. Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su edad).
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio3**. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio4** Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla todos los números impares desde 1 hasta ese número separados por comas.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 5**. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 6.**  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 7** Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo, de altura el número introducido.
 
     ![image-20230924192557853](../assets/img/powershell/image-20230924192557853.png) 
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 8** Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo.
 
     ![image-20230926115734084](../assets/img/powershell/image-20230926115734084.png)
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 9** Escribir un programa que almacene la cadena de caracteres `contraseña` en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 10**. Crea un script  que muestre un menú con las siguientes opciones:
 
     a) Crear una carpeta 
@@ -1276,7 +1276,7 @@ TestPing  "8.8.8.8"
 
 En esta práctica vas a reescribir algunos de los scripts realizados anteriormente, pero haciendo uso de las funciones.
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 1**  Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.
 
     Ejemplo:
@@ -1298,7 +1298,7 @@ En esta práctica vas a reescribir algunos de los scripts realizados anteriormen
 
 
 
-!!! example "Reto"
+!!! example "Tarea"
     **Ejercicio 2** Haciendo uso de la estructura repetitiva foreach, debes leer todos los datos del archivo [usuarios.csv](../assets/usuarios.csv) e imprimir el nombre, apellidos y grupo del usuario
 
 

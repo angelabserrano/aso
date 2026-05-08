@@ -1,4 +1,4 @@
-site_name: ASO
+site_name: Administración de Sistemas Operativos
 site_url: https://angelabserrano.github.io/aso2026-27/
 site_description: Apuntes de Administración de Sistemas Operativos
 site_author: Angela B. Serrano
@@ -22,8 +22,6 @@ theme:
         icon: material/weather-sunny
         name: Modo claro
   features:
-    - navigation.tabs
-    - navigation.sections
     - navigation.top
     - navigation.footer
     - search.highlight
@@ -44,6 +42,9 @@ markdown_extensions:
       permalink: true
   - tables
   - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css
@@ -54,17 +55,14 @@ plugins:
 
 nav:
   - Inicio: index.md
-  - Git:
-    - Introducción a Git y Github: git/introduccion.md
-  - Linux:
-    - Bash: linux/bash.md
-    - Procesos, Servicios y Automatización: linux/procesos.md
-    - Servicio de Directorio: linux/directorio.md
-    - Samba: linux/samba.md
-    - Samba - Práctica 1: linux/samba-practica.md
-  - Scripts:
-    - PowerShell: scripts/powershell.md
-    - PowerShell - Directorio Activo: scripts/powershell-directorio.md
-  - Windows Server:
-    - Directorio Activo: wserver/directorio-activo.md
-    - Administración: wserver/administracion.md
+  - UT0. Introducción a Git y Github: git/introduccion.md
+  - UT1. Bash: linux/bash.md
+  - UT2. Procesos, Servicios y Automatización: linux/procesos.md
+  - UT3. Acceso y Administración Remota en Linux: linux/acceso-remoto.md
+  - UT4. Servicio de Directorio en Linux: linux/directorio.md
+  - UT4. Samba: linux/samba.md
+  - UT5. Ansible: linux/ansible.md
+  - UT6. PowerShell: scripts/powershell.md
+  - UT7. Directorio Activo en Windows: wserver/directorio-activo.md
+  - UT7. PowerShell - Directorio Activo: scripts/powershell-directorio.md
+  - UT8. Administración en Windows: wserver/administracion.md

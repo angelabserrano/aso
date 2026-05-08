@@ -261,7 +261,7 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 ### Ejercicios de procesos
 
-!!! example "Reto"
+!!! example "Tarea"
 
     1. Lista los procesos que se están ejecutando en el shell actual.
 
@@ -286,8 +286,26 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
     9. Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.
     10. Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.
 
+!!! example "Tarea"
 
+    **Ejercicios de procesos — Red Hat Academy**
 
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 8 — Monitoreo y gestión de procesos en Linux** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.3*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Estados del proceso y ciclo de vida | Lectura + Cuestionario | 20 min |
+    | Control de trabajos | Lectura + Ejercicio guiado | 25 min |
+    | Finalización de procesos | Lectura + Ejercicio guiado | 30 min |
+
+    **Duración total estimada: 78 minutos.**
+
+    Elabora una memoria con todos los comandos aprendidos y el resultado del laboratorio de prácticas.
 
 
 
@@ -337,11 +355,26 @@ Para verificar el estado de todos los servicios, se puede usar:
 
 ```bash
 sudo systemctl list-units --type=service
-
 ```
 
+!!! example "Tarea"
 
+    **Ejercicios de control de servicios y daemons — Red Hat Academy**
 
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 9 — Control de servicios y daemons** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.0*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Identificación de procesos del sistema iniciados en forma automática | Lectura + Ejercicio guiado | 25 min |
+    | Control de servicios del sistema | Lectura + Ejercicio guiado | 25 min |
+    | Control de servicios y demonios | Laboratorio | 15 min |
+
+    **Duración total estimada: 70 minutos.**
 
 
 ## 4. Automatización de tareas.
@@ -506,7 +539,7 @@ $ atrm 14
 
 ### Ejercicios de automatización de tareas
 
-!!! example "Reto"
+!!! example "Tarea"
 
     **Ejercicio1.** **Conceptos teóricos básicos**
 
@@ -537,6 +570,84 @@ $ atrm 14
     **Ejercicio 4**
     Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.
 
-    **Ejercicio 5 (Opcional: Avanzado)**
+!!! tip "Reto"
+
+    **Ejercicio 5 (Avanzado)**
     Realiza el ejercicio anterior, pero utilizando las unidades Timers de Systemd
+
+!!! example "Tarea"
+
+    **Ejercicios de automatización de tareas — Red Hat Academy**
+
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 2 — Programación de tareas futuras** de *Red Hat Academy: Administración de sistemas en Red Hat II (RH134) 9.0*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Programación de un trabajo de usuario diferido | Lectura + Ejercicio guiado | 25 min |
+    | Programación de un trabajo de usuario recurrente | Lectura + Ejercicio guiado | 25 min |
+    | Programación de trabajos del sistema recurrente | Lectura + Ejercicio guiado | 30 min |
+    | Gestión de archivos temporales | Lectura + Ejercicio guiado | 30 min |
+    | Programación de tareas futuras | Cuestionario | 5 min |
+
+    **Duración total estimada: 120 minutos.**
+
+---
+
+## 5. Práctica grupal
+
+!!! example "Tarea"
+
+    **PG1 — Evolución de los sistemas de inicio en Linux: de SysVinit a Systemd**
+
+    **Objetivo:** Comprender la evolución de los sistemas de inicio en Linux, desde los métodos tradicionales basados en scripts hasta los modernos sistemas paralelos y centralizados. El grupo debe ser capaz de comparar SysVinit, Upstart y Systemd, y explicar cómo cambió la forma de gestionar servicios en GNU/Linux.
+
+    El trabajo debe incluir entre **9 y 13 diapositivas** con diseño limpio, visual y profesional, cubriendo los siguientes apartados:
+
+    **1. Introducción**
+
+    - Qué es un sistema de inicio (*init system*).
+    - Función principal: iniciar, detener y monitorizar servicios.
+    - Por qué Linux necesitó evolucionar en este aspecto.
+
+    **2. SysVinit**
+
+    - Cómo funciona: scripts en `/etc/init.d/` y *runlevels*.
+    - Principales comandos (`service`, `chkconfig`, `telinit`).
+    - Ventajas e inconvenientes.
+
+    **3. Upstart (sistema de transición)**
+
+    - Qué fue Upstart y quién lo desarrolló (Ubuntu, 2006).
+    - Enfoque basado en eventos del sistema (*event-driven init*).
+    - Ventajas respecto a SysVinit y razones por las que fue sustituido.
+    - Distribuciones que lo usaron y hasta qué año (Ubuntu 9.10–14.10).
+
+    **4. Systemd**
+
+    - Filosofía de diseño: unidades (*units*), *targets*, dependencias.
+    - Ventajas clave (arranque paralelo, control unificado, `journalctl`).
+    - Comandos fundamentales (`systemctl`, `journalctl`, `hostnamectl`, `timedatectl`).
+    - Estructura básica de un archivo `.service`.
+
+    **5. Comparativa general**
+
+    - Tabla de equivalencia de comandos (SysVinit vs Systemd).
+    - Diferencias en rendimiento, gestión y registro de eventos.
+    - Rol de Upstart como sistema intermedio.
+
+    **6. Casos prácticos**
+
+    - Ejemplo real o simulado de gestión de servicios (`systemctl start`, `enable`, `status`...).
+    - Demostración de un servicio personalizado o cambio de *target*.
+
+    **7. Conclusiones**
+
+    - Qué sistema se usa hoy en Debian, Ubuntu, Fedora, RHEL, etc.
+    - Ventajas de Systemd en la administración actual.
+    - Opinión crítica del grupo sobre su complejidad y papel en Linux moderno.
 

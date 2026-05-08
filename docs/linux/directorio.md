@@ -440,10 +440,12 @@ ldapmodify -x -D "cn=admin,dc=ies,dc=local" -W -f cambios.ldif
 
 ### Actividades LDAP
 
-!!! example "Reto"
+!!! example "Tarea"
 
-    [Práctica 1  Instalacion y configuración básica del servidor Open LDAP](https://angelabserrano.github.io/aso/pdf/UT4_Practica1.pdf)
+    [:material-file-pdf-box: Práctica 1 — Instalación y configuración básica del servidor OpenLDAP](../assets/UT4_Practica1.pdf)
 
-    [Práctica 2  Creación de usuarios y grupos en  Open LDAP](https://angelabserrano.github.io/aso/pdf/UT4_Practica2.pdf)
+    [:material-file-pdf-box: Práctica 2 — Creación de usuarios y grupos en OpenLDAP](../assets/UT4_Practica2.pdf)
+
+    [:material-file-pdf-box: Práctica 3 — OpenLDAP](../assets/UT4_Practica3.pdf)
 
 
