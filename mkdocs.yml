@@ -1,0 +1,70 @@
+site_name: ASO
+site_url: https://angelabserrano.github.io/aso/
+site_description: Apuntes de Administración de Sistemas Operativos
+site_author: Angela B. Serrano
+
+theme:
+  name: material
+  language: es
+  logo: assets/img/logoASO.png
+  favicon: assets/img/logoASO.png
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Modo oscuro
+    - scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+  - tables
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search:
+      lang: es
+
+nav:
+  - Inicio: index.md
+  - Git:
+    - Introducción a Git y Github: git/introduccion.md
+  - Linux:
+    - Bash: linux/bash.md
+    - Procesos, Servicios y Automatización: linux/procesos.md
+    - Servicio de Directorio: linux/directorio.md
+    - Samba: linux/samba.md
+    - Samba - Práctica 1: linux/samba-practica.md
+  - Scripts:
+    - PowerShell: scripts/powershell.md
+    - PowerShell - Directorio Activo: scripts/powershell-directorio.md
+  - Windows Server:
+    - Directorio Activo: wserver/directorio-activo.md
+    - Administración: wserver/administracion.md
