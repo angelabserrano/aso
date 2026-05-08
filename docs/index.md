@@ -17,3 +17,4 @@ Aquí encontrarás todos los contenidos del módulo:
 - [UT7. Directorio Activo en Windows](wserver/directorio-activo.md)
 - [UT7. PowerShell - Directorio Activo](scripts/powershell-directorio.md)
 - [UT8. Administración en Windows](wserver/administracion.md)
+- [UT9. Kubernetes](linux/kubernetes.md)
