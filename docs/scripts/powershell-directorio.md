@@ -521,3 +521,39 @@ Distinguised Name: OU=VENTAS, OU=EMPRESA, DC=IESELCAMINAS,DC=LOCAL
 ```
 Distinguised Name: CN=usuario1,OU=VENTAS, OU=EMPRESA, DC=IESELCAMINAS,DC=LOCAL
 ```
+
+## Práctica 1. Administración de usuarios y grupos
+
+!!! example "Tarea"
+
+    Siguiendo las indicaciones del tema [Directorio Activo en Windows](../wserver/directorio-activo.md), realiza la instalación del directorio activo mediante el Administrador del Servidor con el dominio **empresa.local**.
+
+    A continuación, crea la siguiente estructura mediante un **script en PowerShell** leyendo los datos de dos archivos CSV:
+
+    - **`departamentos.csv`**: 2 columnas — `departamento` y `descripción`.
+    - **`empleados.csv`**: 3 columnas — `departamento`, `nombre` y `apellido`.
+
+    La estructura a crear en el Directorio Activo es la siguiente:
+
+    ```
+    Empresa (OU)
+    ├── FINANZAS (OU)
+    ├── PERSONAL (OU)
+    ├── PRODUCCION (OU)
+    └── VENTAS (OU)
+    ```
+
+    **Instrucciones:**
+
+    1. Crear la unidad organizativa **Empresa**.
+    2. Dentro de **Empresa**, crear una OU por cada departamento definido en `departamentos.csv`.
+    3. En cada OU de departamento:
+        - Crear un **grupo de ámbito global** con el nombre del departamento.
+        - Crear los **usuarios** especificados en `empleados.csv` para ese departamento.
+        - Añadir cada usuario al grupo de su departamento.
+
+    **Formato del login:** `nombre.apellido` en minúsculas (ej: `carla.mateu`)
+
+    **Contraseña por defecto:** `aso2025.` (el usuario deberá cambiarla en el siguiente inicio de sesión)
+
+    **Entrega:** Sube el script correctamente documentado a tu repositorio de GitHub.

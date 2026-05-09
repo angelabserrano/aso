@@ -2,6 +2,9 @@
 
 Material elaborado por Ángela Bañuls Serrano
 
+!!! info "Contenido visto en 1º"
+    Esta unidad fue trabajada en el módulo **Implantación de Sistemas Operativos** de 1º. Debes **repasarla de forma autónoma** antes de continuar con los contenidos del curso.
+
 # Manual de Shell Script
 
 **Índice**
@@ -63,9 +66,8 @@ Los criterios de evaluación asociados son:
 | 1      | Introducción, comentarios, variables,  tipos de datos, parámetros y operaciones básicas |
 | 2      | Estructuras condicionales                                    |
 | 3      | Estructuras repetitivas                                      |
-| 4      | Expresiones regulares                                        |
-| 5      | Importación de datos y funciones                             |
-| 6      | Refuerzo y Ampliación                                        |
+| 4      | Importación de datos y funciones                             |
+| 5      | Refuerzo y Ampliación                                        |
 
 
 
@@ -674,31 +676,6 @@ Así, las principales diferencias entre usar corchete simple o doble corchete so
 ```bash
 [[ abc = a\* ]]
 ```
-
-
-
-### 9.5 Expresiones regulares
-
-Una expresión regular (ER) está formada por caracteres combinados con operadores:
-
-| Expresión                       | Descripción                                                  |
-| ------------------------------- | ------------------------------------------------------------ |
-| ^                               | Principio de línea                                           |
-| $                               | Final de línea                                               |
-| \\\<                            | Principio de palabra                                         |
-| \\>                             | Final de palabra                                             |
-| .                               | Cualquier carácter excepto salto de línea                    |
-| [ ]                             | Conjunto de caracteres                                       |
-| [^]                             | Cualquier carácter no contenido                              |
-| [-]                             | Rango                                                        |
-| *                               | Cero o más ocurrencias del elemento que lo precede           |
-| +                               | Una o más ocurrencias del elemento que lo precede            |
-| ?                               | El elemento precedente es opcional                           |
-| ( )                             | Agrupación                                                   |
-| \|                              | O uno u otro                                                 |
-| {n}                             | El elemento precedente se repite al menos n veces            |
-| {n,m}                           | El elemento precedente se repite al menos n y no más de m veces |
-| \ escape {\t, \n, \., \*, ... } | Se usa para tratar de forma normal un carácter especial      |
 
 
 
@@ -1420,35 +1397,3 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
     contiene. Debes comprobar que existe el directorio que se pasa como
     parámetro y que efectivamente es un directorio.
 
-    **EXPRESIONES REGULARES**
-
-    **Ejercicio 25**. Realiza un script que muestre la lista de los últimos usuarios que iniciaron
-    sesión, incluidas las direcciones IP Origen. (Solo debes mostrar las líneas en
-    las que aparece una IP). Debes hacer uso del comando last y egrep.
-
-    **Ejercicio 26**. Realiza un script que busque cualquier fichero que pueda ser modificado por
-    cualquier usuario (--- --- rwx) y guarde la lista de ficheros con la ruta exacta en
-    el archivo archivos_peligrosos.txt
-    Tip: 
-
-```bash
-find . -type f -exec ls -l {} \;
-```
->**FUNCIONES**
->
->**Ejercicio 27**.Reescribe el script de **agenda** utilizando **funciones** para estructurar el código.
-> El programa debe permitir **añadir, listar, buscar, borrar y editar** contactos almacenados en un fichero `agenda.csv` con formato `Nombre;Teléfono;Email`.
->
->**Requisitos mínimos:**
->
->- Cada operación debe implementarse en una **función** (`añadir_contacto`, `listar_contactos`, `buscar_contacto`, `borrar_contacto`, `editar_contacto`, `imprimir_menu`).
->- Incluir validaciones básicas de teléfono y correo electrónico (uso de expresiones regulares).
->- Mostrar un **menú principal** que permita elegir la acción a realizar.
->- Guardar los cambios en el fichero al finalizar cada operación.
->
->**Ejercicio 28**. Crea un script que contenga una función que se le pase por parámetro el nombre de un fichero recibido como parámetro del script. Dicha función deberá verificar su existe el fichero o no. El nombre de la función es "existe". Si el resultado es positivo, el script debe cambiar sus permisos a ejecutable para el propietario, pero no para el resto.
->
->**Ejercicio 29**. Realiza un script utilizando funciones que permita crear un informe de las **IP libres** en la red en la que se encuentra el equipo. Debe contener las siguientes opciones:
->
->1. El informe contendrá un **listado de todas las IP de la red** a la que pertenece el equipo indicando si está libe o no (usa el comando ping).
->2. En el informe debe aparecer el **tipo de red** (rango CIDR) en el que está inmerso el ordenador con el **nombre de la red**, su **broadcast** y su **máscara de subred**. 

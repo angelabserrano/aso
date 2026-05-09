@@ -231,8 +231,36 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
       ```
 
 
-### Práctica 0
+### Práctica 1
+
 !!! example "Tarea"
-    **Ejercicio 1** Crea una cuenta en Github. A continuación, crea un repositorio público con el nombre **aso** donde almacenarás todos los scripts que iremos realizando durante el curso en el módulo de **Administración de Sistemas Operativos**. Por último, configura  ssh para autentificación segura en GitHub.
 
+    **Ejercicio 1. Configuración del entorno**
 
+    1. Crea una cuenta en [GitHub](https://github.com) si no tienes una.
+    2. Configura Git con tu nombre y correo electrónico:
+        ```
+        git config --global user.name "Tu Nombre"
+        git config --global user.email "tuemail@ejemplo.com"
+        ```
+    3. Genera una clave SSH y añádela a tu cuenta de GitHub siguiendo los pasos del apartado 2.4.
+    4. Verifica que la conexión SSH funciona correctamente:
+        ```
+        ssh -T git@github.com
+        ```
+
+    **Ejercicio 2. Creación del repositorio**
+
+    1. Crea un repositorio **público** en GitHub con el nombre **aso**. Inicialízalo con un archivo `README.md` donde describas brevemente el propósito del repositorio.
+    2. Clona el repositorio en tu máquina local:
+        ```
+        git clone git@github.com:tu-usuario/aso.git
+        ```
+    3. Edita el `README.md` añadiendo tu nombre y el curso. Sube los cambios a GitHub:
+        ```
+        git add README.md
+        git commit -m "Actualizar README con información del curso"
+        git push origin main
+        ```
+
+    **Entrega:** Proporciona la URL de tu repositorio de GitHub en la tarea **UT0. Práctica 0** de Aules.

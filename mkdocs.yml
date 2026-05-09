@@ -57,6 +57,7 @@ nav:
   - Inicio: index.md
   - UT0. Introducción a Git y Github: git/introduccion.md
   - UT1. Bash: linux/bash.md
+  - UT1. Bash Avanzado: linux/bash-avanzado.md
   - UT2. Procesos, Servicios y Automatización: linux/procesos.md
   - UT3. Acceso y Administración Remota en Linux: linux/acceso-remoto.md
   - UT4. Servicio de Directorio en Linux: linux/directorio.md
