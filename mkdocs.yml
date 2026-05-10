@@ -28,6 +28,7 @@ theme:
     - search.suggest
     - content.code.copy
     - toc.follow
+    - toc.integrate
 
 markdown_extensions:
   - admonition
