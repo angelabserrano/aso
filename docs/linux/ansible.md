@@ -873,30 +873,155 @@ proyecto-ansible/
 
 ---
 
-## 13. Ejercicios prácticos
+## 13. Entorno de laboratorio
+
+### Escenario
+
+Todos los ejercicios se realizan sobre un entorno de tres máquinas virtuales Ubuntu Server levantadas con **Vagrant** y **VirtualBox**:
+
+| Máquina | Rol | IP |
+| ------- | --- | -- |
+| `control` | Control node — Ansible instalado aquí | 192.168.56.10 |
+| `web01` | Managed node — servidor web | 192.168.56.11 |
+| `db01` | Managed node — servidor de base de datos | 192.168.56.12 |
+
+### Vagrantfile
+
+Crea un directorio `laboratorio-ansible/` y guarda dentro el siguiente fichero con el nombre `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  vms = [
+    { name: "control", ip: "192.168.56.10" },
+    { name: "web01",   ip: "192.168.56.11" },
+    { name: "db01",    ip: "192.168.56.12" },
+  ]
+
+  vms.each do |vm|
+    config.vm.define vm[:name] do |node|
+      node.vm.hostname = vm[:name]
+      node.vm.network "private_network", ip: vm[:ip]
+
+      node.vm.provider "virtualbox" do |vb|
+        vb.name   = vm[:name]
+        vb.memory = 512
+        vb.cpus   = 1
+      end
+
+      # Python 3 es la única dependencia de Ansible en los managed nodes
+      node.vm.provision "shell", inline: <<~SHELL
+        apt-get update -qq
+        apt-get install -y python3
+      SHELL
+
+      # Ansible y clave SSH solo en el control node
+      if vm[:name] == "control"
+        node.vm.provision "shell", inline: <<~SHELL
+          apt-get install -y ansible
+          sudo -u vagrant ssh-keygen -t ed25519 -N "" -f /home/vagrant/.ssh/id_ed25519
+        SHELL
+      end
+    end
+  end
+end
+```
+
+### Levantar el entorno
+
+```bash
+# Levantar las tres VMs
+vagrant up
+
+# Comprobar el estado de las VMs
+vagrant status
+
+# Acceder al control node
+vagrant ssh control
+
+# Apagar las VMs al terminar la sesión
+vagrant halt
+
+# Destruir el entorno para empezar desde cero
+vagrant destroy -f
+```
+
+!!! warning "Primera ejecución"
+    `vagrant up` descarga la box `ubuntu/jammy64` (~500 MB) la primera vez. Si la conexión del aula es lenta, el profesor puede distribuirla en USB:
+    ```bash
+    vagrant box add ubuntu/jammy64 /ruta/a/jammy64.box
+    ```
+
+!!! note "Información"
+    La clave SSH del control node se genera automáticamente durante el aprovisionamiento. La distribución a los managed nodes (`ssh-copy-id`) se realiza en el **Ejercicio 1**, como parte del aprendizaje.
+
+---
+
+## 14. Ejercicios prácticos
 
 !!! example "Tarea"
 
     **Ejercicio 1. Primeros pasos**
 
-    1. Instala Ansible en tu máquina virtual de control.
-    2. Crea un fichero `inventory.ini` con al menos dos managed nodes (pueden ser máquinas virtuales del laboratorio).
-    3. Configura la autenticación SSH por clave entre el control node y los managed nodes.
-    4. Verifica la conectividad con el módulo `ping`.
-    5. Ejecuta un comando ad-hoc para ver el uptime y el espacio en disco de todos los nodos.
+    Desde el control node (`vagrant ssh control`):
+
+    1. Crea el fichero `inventory.ini` con los dos managed nodes del escenario:
+
+        ```ini
+        [webservers]
+        192.168.56.11
+
+        [dbservers]
+        192.168.56.12
+
+        [managed:children]
+        webservers
+        dbservers
+        ```
+
+    2. Distribuye la clave SSH a los managed nodes (usuario `vagrant`, contraseña `vagrant`):
+
+        ```bash
+        ssh-copy-id vagrant@192.168.56.11
+        ssh-copy-id vagrant@192.168.56.12
+        ```
+
+    3. Verifica la conectividad con el módulo `ping`:
+
+        ```bash
+        ansible all -i inventory.ini -m ping
+        ```
+
+    4. Ejecuta comandos ad-hoc para ver el uptime y el espacio en disco de todos los nodos:
+
+        ```bash
+        ansible all -i inventory.ini -m command -a "uptime"
+        ansible all -i inventory.ini -m command -a "df -h"
+        ```
 
 
 !!! example "Tarea"
 
     **Ejercicio 2. Playbook de configuración base**
 
-    Crea un playbook `configuracion_base.yml` que realice las siguientes tareas en todos los managed nodes:
+    Crea un playbook `configuracion_base.yml` que realice las siguientes tareas en `web01` (192.168.56.11) y `db01` (192.168.56.12):
 
     1. Actualizar la caché de paquetes apt.
     2. Instalar los paquetes: `vim`, `curl`, `git`, `htop`, `net-tools`.
     3. Asegurarse de que el servicio SSH está arrancado y habilitado.
     4. Crear el directorio `/opt/scripts` con permisos `755` y propietario `root`.
     5. Generar un fichero `/etc/motd` con el hostname y la fecha de configuración usando una plantilla Jinja2.
+
+    Ejecuta el playbook y verifica el resultado accediendo por SSH a cada nodo:
+
+    ```bash
+    ansible-playbook -i inventory.ini configuracion_base.yml
+    ssh vagrant@192.168.56.11
+    ssh vagrant@192.168.56.12
+    ```
 
 
 !!! example "Tarea"
@@ -918,21 +1043,25 @@ proyecto-ansible/
         shell: /bin/bash
     ```
 
-    Crea un playbook `gestion_usuarios.yml` que:
+    Crea un playbook `gestion_usuarios.yml` que se aplique a todos los managed nodes y que:
 
     1. Cree los grupos `profesores` y `alumnos` si no existen.
     2. Cree cada usuario de la lista con su grupo y shell correspondientes.
     3. Cree el directorio home de cada usuario.
     4. Asigne a cada usuario una contraseña inicial `Cambiar123!` (cifrada con `password_hash`).
 
-    Comprueba que los usuarios se han creado correctamente en los managed nodes.
+    Comprueba que los usuarios se han creado correctamente en `web01` y `db01`:
+
+    ```bash
+    ansible all -i inventory.ini -m command -a "cat /etc/passwd" | grep -E "ana|luis|marta"
+    ```
 
 
 !!! example "Tarea"
 
     **Ejercicio 4. Playbook de seguridad SSH**
 
-    Crea un playbook `hardening_ssh.yml` que aplique las siguientes medidas de seguridad en el servicio SSH de todos los managed nodes:
+    Crea un playbook `hardening_ssh.yml` que aplique las siguientes medidas de seguridad en el servicio SSH de `web01` (192.168.56.11) y `db01` (192.168.56.12):
 
     - Deshabilitar el login directo de root (`PermitRootLogin no`).
     - Limitar los intentos de autenticación a 3 (`MaxAuthTries 3`).
@@ -942,27 +1071,42 @@ proyecto-ansible/
     Usa el módulo `lineinfile` para cada cambio y un **handler** para reiniciar el servicio SSH solo cuando se haya producido algún cambio.
 
     !!! warning "Atención"
-        Antes de deshabilitar la autenticación por contraseña, asegúrate de que la autenticación por clave SSH funciona correctamente. De lo contrario, perderías el acceso al sistema.
+        Antes de deshabilitar la autenticación por contraseña, verifica que la autenticación por clave funciona correctamente (hecho en el ejercicio 1). De lo contrario, perderías el acceso a los nodos.
+
+        Tras aplicar el playbook, actualiza el inventario para indicar el nuevo puerto:
+        ```ini
+        [webservers]
+        192.168.56.11 ansible_port=2222
+
+        [dbservers]
+        192.168.56.12 ansible_port=2222
+        ```
 
 
 !!! example "Tarea"
 
     **Ejercicio 5. Automatización de tareas cron**
 
-    Crea un playbook `tareas_programadas.yml` que configure en todos los managed nodes:
+    Crea un playbook `tareas_programadas.yml` que configure en `web01` y `db01`:
 
     1. Una tarea cron que ejecute `apt update && apt upgrade -y` todos los domingos a las 03:00.
     2. Una tarea cron que limpie `/tmp` de ficheros con más de 7 días de antigüedad cada día a las 01:00.
     3. Una tarea cron que guarde el uso de disco en `/var/log/espacio_disco.log` cada hora.
+
+    Verifica que las tareas se han registrado en los nodos:
+
+    ```bash
+    ansible all -i inventory.ini -m command -a "crontab -l -u root"
+    ```
 
 
 !!! tip "Reto"
 
     **Ejercicio 6 (Avanzado). Caso integrador: despliegue de servidor web**
 
-    Crea un playbook completo `despliegue_web.yml` que:
+    Crea un playbook completo `despliegue_web.yml` que se aplique al grupo `webservers` (`web01`, 192.168.56.11) y que:
 
-    1. Instale y configure Nginx en el grupo `webservers`.
+    1. Instale y configure Nginx.
     2. Genere la configuración de Nginx desde una plantilla Jinja2 con el nombre del host y el directorio web.
     3. Cree el usuario `webmaster` con permisos sobre el directorio `/var/www/html`.
     4. Copie una página `index.html` básica al directorio web con el nombre del servidor en el título.
@@ -970,4 +1114,8 @@ proyecto-ansible/
     6. Programe una tarea cron para renovar certificados SSL cada 90 días (comando: `certbot renew`).
     7. Proteja las variables sensibles (si las hay) con **Ansible Vault**.
 
-    Verifica que el servidor web responde correctamente desde el cliente.
+    Verifica que el servidor web responde correctamente desde el control node:
+
+    ```bash
+    curl http://192.168.56.11
+    ```
