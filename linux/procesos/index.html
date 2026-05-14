@@ -1,0 +1,2345 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/procesos/">
+      
+      
+        <link rel="prev" href="../bash-avanzado/">
+      
+      
+        <link rel="next" href="../acceso-remoto/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT2. Procesos, Servicios y Automatización - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#administracion-de-procesos-servicios-y-automatizacion-de-tareas" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT2. Procesos, Servicios y Automatización
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-5-sesiones-10-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (5 sesiones / 10 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-administracion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Administración de procesos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Administración de procesos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicion-de-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Definición de proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-descripcion-de-los-estados-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Descripción de los estados del proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comandos-en-linux-para-la-gestion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Comandos en Linux para la gestión de procesos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Comandos en Linux para la gestión de procesos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-el-comando-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 El comando ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametrosmodificadores-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parámetros/modificadores ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-el-comando-pstree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 El comando pstree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-el-comando-top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 El comando top
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-procesos-en-primer-plano-y-segundo-plano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.4 Procesos en primer plano y segundo plano
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-el-comando-kill-para-finalizar-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.5 El comando kill para finalizar procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#236-el-comando-nice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.6 El comando nice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#237-el-comando-renice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.7 El comando renice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-administracion-de-los-servicios-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Administración de los servicios del sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Administración de los servicios del sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-concepto-de-servicios-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Concepto de Servicios en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-sistema-de-inicio-y-administracion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Sistema de Inicio y Administración de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-administracion-de-servicios-con-systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Administración de Servicios con Systemd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Administración de Servicios con Systemd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principales-comandos-de-systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principales Comandos de Systemd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-del-estado-de-todos-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación del Estado de Todos los Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-automatizacion-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatización de tareas.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Automatización de tareas.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-programar-trabajos-con-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Programar trabajos con Cron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Programar trabajos con Cron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crontabs-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crontabs de usuario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crontabs-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crontabs de sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-programar-trabajos-con-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Programar trabajos con at
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Programar trabajos con at">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-tareas-programadas-con-atq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listar tareas programadas con atq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-tareas-con-atrm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Borrar tareas con atrm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-automatizacion-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de automatización de tareas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-practica-grupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Práctica grupal
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-5-sesiones-10-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (5 sesiones / 10 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-administracion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Administración de procesos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Administración de procesos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicion-de-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Definición de proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-descripcion-de-los-estados-del-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Descripción de los estados del proceso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comandos-en-linux-para-la-gestion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Comandos en Linux para la gestión de procesos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Comandos en Linux para la gestión de procesos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-el-comando-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 El comando ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametrosmodificadores-ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parámetros/modificadores ps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-el-comando-pstree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 El comando pstree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-el-comando-top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 El comando top
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-procesos-en-primer-plano-y-segundo-plano" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.4 Procesos en primer plano y segundo plano
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-el-comando-kill-para-finalizar-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.5 El comando kill para finalizar procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#236-el-comando-nice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.6 El comando nice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#237-el-comando-renice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.7 El comando renice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-administracion-de-los-servicios-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Administración de los servicios del sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Administración de los servicios del sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-concepto-de-servicios-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Concepto de Servicios en Linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-sistema-de-inicio-y-administracion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Sistema de Inicio y Administración de Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-administracion-de-servicios-con-systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Administración de Servicios con Systemd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Administración de Servicios con Systemd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principales-comandos-de-systemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principales Comandos de Systemd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-del-estado-de-todos-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación del Estado de Todos los Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-automatizacion-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatización de tareas.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Automatización de tareas.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-programar-trabajos-con-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Programar trabajos con Cron
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Programar trabajos con Cron">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crontabs-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crontabs de usuario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crontabs-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crontabs de sistema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-programar-trabajos-con-at" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Programar trabajos con at
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Programar trabajos con at">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listar-tareas-programadas-con-atq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listar tareas programadas con atq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-tareas-con-atrm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Borrar tareas con atrm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-automatizacion-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de automatización de tareas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-practica-grupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Práctica grupal
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="administracion-de-procesos-servicios-y-automatizacion-de-tareas">Administración de procesos, servicios y automatización de tareas<a class="headerlink" href="#administracion-de-procesos-servicios-y-automatizacion-de-tareas" title="Permanent link">&para;</a></h1>
+<h2 id="programacion-de-aula">Programación de Aula<a class="headerlink" href="#programacion-de-aula" title="Permanent link">&para;</a></h2>
+<h3 id="resultados-de-aprendizaje">Resultados de Aprendizaje<a class="headerlink" href="#resultados-de-aprendizaje" title="Permanent link">&para;</a></h3>
+<p>Esta unidad cubre el <strong>Resultado de aprendizaje 2 (RA2)</strong> según el <strong>Real Decreto 1629/2009, de 30 de octubre</strong>, el cual es:</p>
+<ol>
+<li>Administra procesos del sistema describiéndolos y aplicando criterios de
+   seguridad y eficiencia.</li>
+</ol>
+<p>Los criterios de evaluación asociados son:</p>
+<ul>
+<li>Se han descrito el concepto de proceso del sistema, tipos, estados y ciclo de
+  vida.</li>
+<li>Se han utilizado interrupciones y excepciones para describir los eventos internos
+  del procesador.</li>
+<li>Se ha diferenciado entre proceso, hilo y trabajo.</li>
+<li>Se han realizado tareas de creación, manipulación y terminación de procesos.</li>
+<li>Se ha utilizado el sistema de archivos como medio lógico para el registro e
+  identificación de los procesos del sistema.</li>
+<li>Se han utilizado herramientas gráficas y comandos para el control y seguimiento
+  de los procesos del sistema.</li>
+<li>Se ha comprobado la secuencia de arranque del sistema, los procesos
+  implicados y la relación entre ellos.</li>
+<li>Se han tomado medidas de seguridad ante la aparición de procesos no
+  identificados.</li>
+<li>Se han documentado los procesos habituales del sistema, su función y relación
+  entre ellos.</li>
+</ul>
+<h3 id="planificacion-temporal-5-sesiones-10-horas">Planificación Temporal (5 sesiones / 10 horas)<a class="headerlink" href="#planificacion-temporal-5-sesiones-10-horas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Administración de procesos: definición, estados y principales comandos</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Comandos para la gestión de procesos</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Control de servicios y daemons</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Automatización de tareas</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ampliación y refuerzo</td>
+</tr>
+</tbody>
+</table>
+<div id="id1" />
+
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<p>En esta unidad trabajaremos la administración de procesos, servicios del sistema y la automatización de tareas. </p>
+<h2 id="2-administracion-de-procesos">2. Administración de procesos<a class="headerlink" href="#2-administracion-de-procesos" title="Permanent link">&para;</a></h2>
+<h3 id="21-definicion-de-proceso">2.1 Definición de proceso<a class="headerlink" href="#21-definicion-de-proceso" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Un <strong>proceso</strong> es una instancia de un programa en ejecución. Cada vez que ejecutas un comando o abres una aplicación, el sistema operativo crea un proceso correspondiente para llevar a cabo la tarea.</p>
+</div>
+<p>El sistema dispondrá de una <strong><em>Tabla de procesos</em></strong>, conocida como el <strong>Bloque de Control de Procesos</strong> (BCP o Process Control Block en inglés) donde guarda la información relevante de cada proceso. En Linux encontraremos la siguiente información:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PID (Process ID)</strong></td>
+<td>Identificador único del proceso.</td>
+</tr>
+<tr>
+<td><strong>PPID (Parent PID)</strong></td>
+<td>Identificador del proceso padre.</td>
+</tr>
+<tr>
+<td><strong>Estado del proceso</strong></td>
+<td>El estado actual del proceso (ejecutándose, dormido, zombie, etc.).</td>
+</tr>
+<tr>
+<td><strong>Contador de programa</strong></td>
+<td>Dirección de la siguiente instrucción a ejecutar (PC, Program Counter).</td>
+</tr>
+<tr>
+<td><strong>Registros del CPU</strong></td>
+<td>Estado de los registros del procesador (acumulador, índice, puntero, etc.).</td>
+</tr>
+<tr>
+<td><strong>Prioridad</strong></td>
+<td>Valor que determina la prioridad del proceso para su ejecución.</td>
+</tr>
+<tr>
+<td><strong>Memoria asignada</strong></td>
+<td>Información sobre la memoria asignada al proceso (segmentos de código, datos, y pila).</td>
+</tr>
+<tr>
+<td><strong>Tabla de descriptores de archivos</strong></td>
+<td>Lista de archivos abiertos por el proceso y sus descriptores.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-descripcion-de-los-estados-del-proceso">2.2 Descripción de los estados del proceso<a class="headerlink" href="#22-descripcion-de-los-estados-del-proceso" title="Permanent link">&para;</a></h3>
+<p>Un proceso puede estar en diferentes estados como:</p>
+<p><img alt="process-states" src="../../assets/img/linux/process-states.png" /></p>
+<ul>
+<li><strong>Running (R):</strong></li>
+<li>El proceso se está ejecutando en ese momento o está listo para ejecutarse.</li>
+<li><strong>Sleeping (S):</strong></li>
+<li>El proceso está inactivo, esperando la finalización de una operación o un evento (por ejemplo, espera de entrada/salida).</li>
+<li>Se clasifica en dos tipos:<ul>
+<li><strong>Interrumpible (S)</strong>: Puede ser despertado por señales externas o eventos. Aparece como S</li>
+<li><strong>No interrumpible (D):</strong> No puede ser interrumpido hasta que complete lo que está esperando (generalmente se usa para operaciones de E/S  en dispositivos). Se muestra como D</li>
+</ul>
+</li>
+<li><strong>Stopped (T):</strong></li>
+<li>El proceso está detenido, normalmente por una señal como SIGSTOP o mientras se está depurando con un debugger. Aparece como T</li>
+<li><strong>Zombie (Z):</strong></li>
+<li>El proceso ha terminado su ejecución, pero su entrada en la tabla de procesos no ha sido limpiada del todo y sigue teniendo la identidad del proceso (PID). Aparece como Z.</li>
+<li><strong>Traced o suspendido (T):</strong></li>
+<li>Similar al estado detenido, pero ocurre cuando un proceso está siendo depurado. se muestra también como T en algunas versiones del Kernel.</li>
+<li><strong>Dead (X):</strong></li>
+<li>Un estado transitorio, en el que el proceso ha terminado de ejecutarse y está en proceso de ser elminado del sistema.</li>
+</ul>
+<h3 id="23-comandos-en-linux-para-la-gestion-de-procesos">2.3 Comandos en Linux para la gestión de procesos<a class="headerlink" href="#23-comandos-en-linux-para-la-gestion-de-procesos" title="Permanent link">&para;</a></h3>
+<p>Cada vez que invocamos un comando, se inician uno o más procesos. Un  administrador de sistemas no solo necesita crear  procesos, sino también poder realizar un seguimiento de ellos y  enviarles diferentes tipos de señales si es necesario. En este apartado veremos el control del trabajo y cómo monitorear los procesos.</p>
+<p>A continuación se muestra una tabla resumen de comandos para la gestión de procesos:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jobs</td>
+<td>Lista los procesos en segundo plano y suspendidos en la terminal actual.</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>Envía un proceso suspendido al segundo plano para que continúe ejecutándose.</td>
+</tr>
+<tr>
+<td>fg</td>
+<td>Trae un proceso en segundo plano al primer plano.</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>Operador para ejecutar un comando en segundo plano, permitiendo continuar usando la terminal.</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>Muestra una lista de procesos en ejecución en el sistema.</td>
+</tr>
+<tr>
+<td>pstree</td>
+<td>Muestra los procesos en forma de árbol, mostrando la relación de padre-hijo entre procesos.</td>
+</tr>
+<tr>
+<td>top</td>
+<td>Muestra los procesos en tiempo real, ordenados por consumo de recursos como CPU y memoria.</td>
+</tr>
+<tr>
+<td>htop</td>
+<td>Similar a <code>top</code>, pero con una interfaz interactiva y colorida (requiere instalación previa).</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>Envía una señal a un proceso para detenerlo o finalizarlo, usando su PID.</td>
+</tr>
+<tr>
+<td>killall</td>
+<td>Finaliza todos los procesos que coincidan con un nombre específico.</td>
+</tr>
+<tr>
+<td>nice</td>
+<td>Inicia un proceso con una prioridad específica (valor de "niceness" ajustado).</td>
+</tr>
+<tr>
+<td>renice</td>
+<td>Cambia la prioridad de un proceso que ya está en ejecución.</td>
+</tr>
+<tr>
+<td>nohup</td>
+<td>Ejecuta un comando ignorando la señal de cierre de sesión, útil para tareas de larga duración.</td>
+</tr>
+<tr>
+<td>lsof</td>
+<td>Lista los archivos abiertos por los procesos, útil para ver qué archivos están en uso.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="231-el-comando-ps">2.3.1 El comando ps<a class="headerlink" href="#231-el-comando-ps" title="Permanent link">&para;</a></h4>
+<p>El comando <strong>ps</strong> proporciona información sobre los procesos que se están ejecutando en el sistema.  Si  escribimos  en  el  terminal  <code>ps</code>,  obtendremos  como  salida  un  listado  de  los procesos lanzados con el usuario actual que aún se están ejecutando.</p>
+<p>​    <img src="../assets/img/linux/comando_ps.png" alt="img" style="zoom:75%;" /></p>
+<p>Las columnas que se muestran cuando ejecutamos el comando <strong>ps</strong> significan:</p>
+<ul>
+<li>La primera columna es el <strong>PID</strong> o identificador de  proceso. Cada proceso tiene un asociado identificador que es único, es  decir que no puede haber dos procesos con el mismo identificador.</li>
+<li>La  segunda  columna  nos  informa  del  terminal  en  el  que  se   está  ejecutando  el proceso.  Si  aparece  una  interrogación  (?),  el  proceso  no  tiene  asociada  ninguna terminal.</li>
+<li>La tercera columna indica el tiempo total que ha estado ejecutándose el proceso.</li>
+<li>La cuarta columna es el nombre del proceso.</li>
+</ul>
+<h4 id="parametrosmodificadores-ps">Parámetros/modificadores ps<a class="headerlink" href="#parametrosmodificadores-ps" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>-e</strong> devuelve un listado de todos los procesos que se están ejecutando. </li>
+<li><strong>-f</strong> devuelve un listado extendido. En este último caso veremos en pantalla el <strong>PPID</strong> del proceso (identificador del proceso padre) y la hora en la que se ejecutó el proceso (STIME).</li>
+</ul>
+<p>​    <img alt="img" src="../../assets/img/linux/comando_ps2.png" />    Resultado comando ps -f</p>
+<ul>
+<li><strong>-ef</strong> obtendríamos un listado extendido de todos los procesos que se están ejecutando en el sistema.</li>
+<li><strong>-u</strong>  informa  de  los  procesos  lanzado  por  un  determinado  usuario.  De  tal  forma  que  si escribimos “<strong>ps -u alumno</strong>”, aparecerá un listado de los procesos que está ejecutando el usuario alumno. </li>
+</ul>
+<h4 id="232-el-comando-pstree">2.3.2 El comando pstree<a class="headerlink" href="#232-el-comando-pstree" title="Permanent link">&para;</a></h4>
+<p>El comando <strong>pstree</strong> visualiza, en forma de árbol, todos  los procesos del sistema, de esta forma se puede ver las relaciones que  existen entre los procesos.</p>
+<p><img alt="img" src="../../assets/img/linux/004.png" /></p>
+<h4 id="233-el-comando-top">2.3.3 El comando top<a class="headerlink" href="#233-el-comando-top" title="Permanent link">&para;</a></h4>
+<p>El comando top devuelve un listado de los procesos de forma parecida a como lo hace ps, con la diferencia que la <strong>información mostrada se va actualizando periódicamente</strong> lo que nos permite ver la evolución del estado de los procesos.</p>
+<p>En la parte superior se muestra la siguiente información adicional:</p>
+<ul>
+<li>El espacio en memoria ocupado por los procesos.</li>
+<li>El espacio ocupado por la memoria de intercambio o swap.</li>
+<li>El número total de tareas o procesos que se están ejecutando.</li>
+<li>El número de usuarios o el porcentaje de uso del procesador.</li>
+</ul>
+<p><img alt="img" src="../../assets/img/linux/005.png" /></p>
+<h4 id="234-procesos-en-primer-plano-y-segundo-plano">2.3.4 Procesos en primer plano y segundo plano<a class="headerlink" href="#234-procesos-en-primer-plano-y-segundo-plano" title="Permanent link">&para;</a></h4>
+<p>Los procesos pueden ejecutarse en <strong>primer plano</strong> (Foreground) o <strong>segundo plano</strong> (Background). </p>
+<ul>
+<li>
+<p>El proceso que está en <strong>primer plano</strong> es aquel con el que se interactúa. Si ejecutamos, por ejemplo, el comando <code>ls -l</code>, se  mostrará  por  pantalla  el  resultado,  y  hasta  que  no  acabe   de  mostrarse  el  listado  no podremos ejecutar ningún otro comando.</p>
+</li>
+<li>
+<p>Un proceso en <strong>segundo plano</strong> añadiendo el símbolo ampersand (<strong>&amp;</strong>) al final del comando. Cuando se ejecuta un proceso en segundo plano, se permite al usuario iniciar y trabajar con otros procesos.</p>
+</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sleep<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div>
+<p>Para ver que trabajos se están ejecutando en segundo plano, se usa el comando <strong>jobs</strong>.</p>
+<p><img src="../assets/img/linux/007.png" alt="img" style="zoom:75%;" /></p>
+<p><strong>Pasar procesos en segundo plano a primer plano</strong></p>
+<p>Para pasar procesos en segundo plano a primer plano, se utiliza el comando <strong>fg</strong>, seguido de <strong>%n</strong>, donde n es el número de proceso que queremos pasar a primer plano.</p>
+<p><img src="../assets/img/linux/008.png" alt="img" style="zoom:75%;" /></p>
+<p><strong>Pasar procesos en primer plano a segundo plano</strong></p>
+<p>El comando <strong>bg</strong> permite pasar procesos desde primer plano a segundo plano. </p>
+<ul>
+<li>Para pasar un proceso que se encuentra en primer plano a segundo  plano, debemos suspenderlo primero utilizando la combinación de teclas  Ctrl+Z. Cuando se pulsa esa combinación de teclas, el proceso en  ejecución se para y no vuelve a ejecutarse hasta que se pasa a primer o  segundo plano. </li>
+</ul>
+<p>Con <strong>bg %n</strong> pasaremos el proceso a segundo plano.</p>
+<p><img src="../assets/img/linux/009.png" alt="img" style="zoom:75%;" /></p>
+<h4 id="235-el-comando-kill-para-finalizar-procesos">2.3.5 El comando kill para finalizar procesos<a class="headerlink" href="#235-el-comando-kill-para-finalizar-procesos" title="Permanent link">&para;</a></h4>
+<p>Para finalizar un proceso se utiliza el comando <strong>kill</strong>, que tiene la siguiente sintaxis: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">kill</span><span class="w"> </span><span class="o">[</span>parámetro<span class="o">]</span><span class="w"> </span>PID<span class="w"> </span>
+</code></pre></div>
+<p>Si, por ejemplo, queremos eliminar un proceso con <strong>PID 17122</strong>, tendríamos que escribir: <strong>kill 17122</strong>.</p>
+<p>Puede  que  en  ocasiones  el  proceso  no  finalice  al  emplear  el  comando  kill  sin parámetros. Para matar un proceso asegurándonos de  que no ignorará la petición de finalizar su ejecución se emplea el  parámetro -9.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="m">17122</span><span class="w"> </span>
+</code></pre></div>
+<p>Hay un total de 32 señales que se pueden enviar a los procesos. Las más utilizadas son las siguientes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-1<span class="w"> </span><span class="o">(</span>Sighup<span class="o">)</span>.<span class="w"> </span>Reinicia<span class="w"> </span>el<span class="w"> </span>proceso.<span class="w"> </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="o">(</span>SigKill<span class="o">)</span>.<span class="w"> </span>Mata<span class="w"> </span>el<span class="w"> </span>proceso.<span class="w"> </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-15<span class="w"> </span><span class="o">(</span>SigTerm<span class="o">)</span>.<span class="w"> </span>Termina<span class="w"> </span>el<span class="w"> </span>proceso.<span class="w"> </span>
+</code></pre></div>
+<p>Por otra parte, el comando  <strong>killall  nombre_programa</strong> finaliza todos los procesos que estén ejecutando el programa.</p>
+<h4 id="236-el-comando-nice">2.3.6 El comando nice<a class="headerlink" href="#236-el-comando-nice" title="Permanent link">&para;</a></h4>
+<p>Ejecuta un comando con una prioridad distinta a la de por defecto.</p>
+<p>Solo los usuarios root pueden establecer prioridades urgentes (negativos).</p>
+<p>Sintaxis:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>nice<span class="w"> </span>-n<span class="w"> </span>NUMERO_PRIORIDAD<span class="w"> </span>COMANDO
+</code></pre></div>
+<h4 id="237-el-comando-renice">2.3.7 El comando renice<a class="headerlink" href="#237-el-comando-renice" title="Permanent link">&para;</a></h4>
+<p>El comando renice nos permite modificar la prioridad una vez que el proceso ya está en ejecución</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>renice<span class="w"> </span><span class="o">[</span>-n<span class="o">]</span><span class="w"> </span>&lt;niceness&gt;<span class="w"> </span><span class="o">[</span>-p<span class="p">|</span>-g<span class="p">|</span>-u<span class="o">]</span><span class="w"> </span>&lt;identificadores&gt;
+</code></pre></div>
+<p>donde <code>identificadores</code> se corresponde con:</p>
+<ul>
+<li>un conjunto de ids de proceso (pid) si no se especifica parámetro o se precede por -p</li>
+<li>un conjunto de id de grupo de proceso si se precede por -g</li>
+<li>un conjunto de usuarios si se precede por -u.</li>
+</ul>
+<p>Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus procesos, es decir, aumentar su niceness (en el rango  de 0 a 19). El <strong>superusuario</strong> (root) puede ajustar la prioridad de cualquier proceso usando un valor nice del rango completo (-20 a 19).</p>
+<h3 id="ejercicios-de-procesos">Ejercicios de procesos<a class="headerlink" href="#ejercicios-de-procesos" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<ol>
+<li>
+<p>Lista los procesos que se están ejecutando en el shell actual.</p>
+</li>
+<li>
+<p>Lista los procesos que se están ejecutando en el sistema.</p>
+</li>
+<li>
+<p>Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
+   uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
+   un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
+   que están haciendo el resto de usuarios y el estado de los procesos del
+   usuario1 y usuario2.</p>
+</li>
+<li>
+<p>Haciendo uso del comando grep y ps, lista todos los procesos que se
+   están ejecutando en el sistema y terminan en .sh</p>
+</li>
+<li>
+<p>Visualiza los procesos utilizando el comando pstree.</p>
+</li>
+<li>
+<p>Comprueba qué proceso está consumiendo más recursos utilizando top.</p>
+</li>
+<li>
+<p>Mata el proceso del script que está ejecutando el usuario 1.</p>
+</li>
+<li>
+<p>Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.</p>
+</li>
+<li>Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.</li>
+<li>Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicios de procesos — Red Hat Academy</strong></p>
+<p><img alt="Red Hat Academy" src="../../assets/img/rha-logo.png" width="300" /></p>
+<p>Para esta práctica trabajarás con el material del <strong>Capítulo 8 — Monitoreo y gestión de procesos en Linux</strong> de <em>Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.3</em>.</p>
+<p>Accede al portal de <a href="https://www.redhat.com/es/services/training/red-hat-academy">Red Hat Academy</a> e inicia el entorno de laboratorio. Completa las siguientes secciones:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Tipo</th>
+<th>Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introducción</td>
+<td>Lectura</td>
+<td>3 min</td>
+</tr>
+<tr>
+<td>Estados del proceso y ciclo de vida</td>
+<td>Lectura + Cuestionario</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td>Control de trabajos</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Finalización de procesos</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Duración total estimada: 78 minutos.</strong></p>
+<p>Elabora una memoria con todos los comandos aprendidos y el resultado del laboratorio de prácticas.</p>
+</div>
+<h2 id="3-administracion-de-los-servicios-del-sistema">3. Administración de los servicios del sistema<a class="headerlink" href="#3-administracion-de-los-servicios-del-sistema" title="Permanent link">&para;</a></h2>
+<h3 id="31-concepto-de-servicios-en-linux">3.1. Concepto de Servicios en Linux<a class="headerlink" href="#31-concepto-de-servicios-en-linux" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Un <strong>servicio</strong> en Linux es un proceso que se ejecuta en segundo plano, sin interacción directa del usuario, y que proporciona funciones o funcionalidades esenciales al sistema o a los usuarios.</p>
+</div>
+<p>Algunos ejemplos comunes incluyen servidores web (como Apache o Nginx), servicios de base de datos (MySQL, PostgreSQL), y servicios de red (SSH, FTP).</p>
+<h3 id="32-sistema-de-inicio-y-administracion-de-servicios">3.2. Sistema de Inicio y Administración de Servicios<a class="headerlink" href="#32-sistema-de-inicio-y-administracion-de-servicios" title="Permanent link">&para;</a></h3>
+<p>Linux tiene varios sistemas de inicio (init systems) que administran los servicios y procesos de arranque. Algunos de los sistemas de inicio más comunes incluyen:</p>
+<ul>
+<li><strong>SysVinit</strong>: Uno de los sistemas de inicio más antiguos, basado en scripts de shell que se ejecutan en secuencia para iniciar servicios.</li>
+<li><strong>Upstart</strong>: Un sistema de inicio más avanzado que reemplazó a SysVinit en algunas distribuciones, diseñado para trabajar con eventos.</li>
+<li><strong>Systemd</strong>: Actualmente el sistema de inicio más utilizado en distribuciones modernas, que gestiona servicios mediante unidades y soporta arranque paralelo, lo que lo hace más eficiente y rápido que SysVinit y Upstart.</li>
+</ul>
+<p>Cada uno de estos sistemas tiene comandos y prácticas distintas para gestionar servicios. Hoy en día, <strong>systemd</strong> es el sistema más común, por lo cual es el que estudiaremos a continuación.</p>
+<h3 id="33-administracion-de-servicios-con-systemd">3.3 Administración de Servicios con Systemd<a class="headerlink" href="#33-administracion-de-servicios-con-systemd" title="Permanent link">&para;</a></h3>
+<p><strong>Systemd</strong> es un sistema de administración de servicios que organiza los servicios mediante archivos de configuración llamados <strong>unidades (units)</strong>, que se encuentran en la ruta <code>/etc/systemd/system</code> o <code>/lib/systemd/system</code>. Cada unidad representa un servicio, un dispositivo o una tarea de administración.</p>
+<h4 id="principales-comandos-de-systemd">Principales Comandos de Systemd<a class="headerlink" href="#principales-comandos-de-systemd" title="Permanent link">&para;</a></h4>
+<p><code>systemctl</code> es el comando principal para gestionar servicios en systemd. Algunos comandos básicos son:</p>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th style="text-align: left;">Tarea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>systemctl <strong>status</strong> nombre_servicio</td>
+<td style="text-align: left;">Ver información detallada sobre el estado de una unidad.</td>
+</tr>
+<tr>
+<td>systemctl <strong>stop</strong> nombre_servicio</td>
+<td style="text-align: left;">Detener un servicio en un sistema en funcionamiento.</td>
+</tr>
+<tr>
+<td>systemctl <strong>start</strong> nombre_servicio</td>
+<td style="text-align: left;">Iniciar un servicio en un sistema en funcionamiento.</td>
+</tr>
+<tr>
+<td>systemctl <strong>restart</strong> nombre_servicio</td>
+<td style="text-align: left;">Reiniciar un servicio en un sistema en funcionamiento.</td>
+</tr>
+<tr>
+<td>systemctl <strong>reload</strong> nombre_servicio</td>
+<td style="text-align: left;">Volver a cargar el archivo de configuración de un servicio en ejecución.</td>
+</tr>
+<tr>
+<td>systemctl <strong>mask</strong> nombre_servicio</td>
+<td style="text-align: left;">Deshabilitar el inicio (tanto manual como durante el proceso de arranque) de un servicio.</td>
+</tr>
+<tr>
+<td>systemctl <strong>unmask</strong> nombre_servicio</td>
+<td style="text-align: left;">Poner un servicio enmascarado a disposición.</td>
+</tr>
+<tr>
+<td>systemctl <strong>enable</strong> nombre_servicio</td>
+<td style="text-align: left;">Configurar un servicio para que se inicie durante el proceso de arranque. Use la opción <code>--now</code> para iniciar también el servicio.</td>
+</tr>
+<tr>
+<td>systemctl <strong>disable</strong> nombre_servicio</td>
+<td style="text-align: left;">Deshabilitar el inicio de un servicio durante el proceso de arranque. Use la opción <code>--now</code> para detener también el servicio.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comprobacion-del-estado-de-todos-los-servicios">Comprobación del Estado de Todos los Servicios<a class="headerlink" href="#comprobacion-del-estado-de-todos-los-servicios" title="Permanent link">&para;</a></h4>
+<p>Para verificar el estado de todos los servicios, se puede usar:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>list-units<span class="w"> </span>--type<span class="o">=</span>service
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicios de control de servicios y daemons — Red Hat Academy</strong></p>
+<p><img alt="Red Hat Academy" src="../../assets/img/rha-logo.png" width="300" /></p>
+<p>Para esta práctica trabajarás con el material del <strong>Capítulo 9 — Control de servicios y daemons</strong> de <em>Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.0</em>.</p>
+<p>Accede al portal de <a href="https://www.redhat.com/es/services/training/red-hat-academy">Red Hat Academy</a> e inicia el entorno de laboratorio. Completa las siguientes secciones:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Tipo</th>
+<th>Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introducción</td>
+<td>Lectura</td>
+<td>3 min</td>
+</tr>
+<tr>
+<td>Identificación de procesos del sistema iniciados en forma automática</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Control de servicios del sistema</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Control de servicios y demonios</td>
+<td>Laboratorio</td>
+<td>15 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Duración total estimada: 70 minutos.</strong></p>
+</div>
+<h2 id="4-automatizacion-de-tareas">4. Automatización de tareas.<a class="headerlink" href="#4-automatizacion-de-tareas" title="Permanent link">&para;</a></h2>
+<p>Automatizar tareas regulares en el sistema mediante la programación de trabajos (o Jobs) es una práctica esencial para un buen administrador. Esto permite configurar y ejecutar automáticamente trabajos importantes, como copias de seguridad, actualizaciones del sistema, y otras actividades rutinarias. Para ello, se puede utilizar la función cron, que es especialmente útil para gestionar y programar la ejecución periódica de tareas de forma eficiente.</p>
+<h3 id="41-programar-trabajos-con-cron">4.1 Programar trabajos con Cron<a class="headerlink" href="#41-programar-trabajos-con-cron" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>En sistemas Linux, <em>cron</em> es un demonio que se ejecuta de forma continua y se activa cada minuto para revisar un conjunto de tablas en busca de tareas programadas. Estas tablas, conocidas como <em>crontabs</em>, contienen los llamados <em>cron jobs</em>.</p>
+</div>
+<p><em>Cron</em> es ideal para servidores y sistemas que permanecen encendidos constantemente, ya que cada tarea programada solo se ejecuta si el sistema está operativo en el momento especificado. Tanto los usuarios normales como el usuario root pueden utilizar cron, y cada usuario dispone de su propio crontab, mientras que root gestiona los crontabs a nivel del sistema.</p>
+<h4 id="crontabs-de-usuario">Crontabs de usuario<a class="headerlink" href="#crontabs-de-usuario" title="Permanent link">&para;</a></h4>
+<p>Los <em>crontabs</em> de usuario son archivos de texto que administran la programación de los trabajos cron definidos por cada usuario. Estos archivos llevan el nombre de la cuenta del usuario que los creó, aunque su ubicación exacta varía según la distribución (generalmente en un subdirectorio de <code>/var/spool/cron</code>).</p>
+<p>Cada línea en un crontab de usuario contiene seis campos, separados por espacios, que representan:</p>
+<ul>
+<li>El minuto de la hora (0-59).</li>
+<li>La hora del día (0-23).</li>
+<li>El día del mes (1-31).</li>
+<li>El mes del año (1-12).</li>
+<li>El día de la semana (0-7, donde 0 o 7 representan el domingo).</li>
+<li>El comando a ejecutar.</li>
+</ul>
+<p>Para el mes y el día de la semana, también se puede utilizar una abreviatura de tres letras en lugar del número correspondiente.</p>
+<p>Los primeros cinco campos definen cuándo se ejecutará el comando especificado en el sexto campo, y pueden aceptar uno o varios valores. Para definir estos valores en <em>cron</em>, se pueden utilizar los siguientes operadores:</p>
+<ul>
+<li><code>*</code> (asterisco): Acepta cualquier valor en el rango del campo.</li>
+<li><code>,</code> (coma): Permite enumerar varios valores específicos.</li>
+<li><code>-</code> (guión): Define un rango de valores consecutivos.</li>
+<li><code>/</code> (slash): Establece intervalos en el rango (escalonados).</li>
+</ul>
+<p><strong>Creación de de un crontab de usuario</strong></p>
+<p>El comando <code>crontab -e</code> se utiliza para editar su propio archivo crontab o para crear uno si aún no existe.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>crontab<span class="w"> </span>-e
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>no<span class="w"> </span>crontab<span class="w"> </span><span class="k">for</span><span class="w"> </span>frank<span class="w"> </span>-<span class="w"> </span>using<span class="w"> </span>an<span class="w"> </span>empty<span class="w"> </span>one
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Select<span class="w"> </span>an<span class="w"> </span>editor.<span class="w">  </span>To<span class="w"> </span>change<span class="w"> </span>later,<span class="w"> </span>run<span class="w"> </span><span class="s1">&#39;select-editor&#39;</span>.
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="m">1</span>.<span class="w"> </span>/bin/ed
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="m">2</span>.<span class="w"> </span>/bin/nano<span class="w">        </span>&lt;<span class="w"> </span>‑‑‑‑<span class="w"> </span>easiest
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="m">3</span>.<span class="w"> </span>/usr/bin/emacs24
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="m">4</span>.<span class="w"> </span>/usr/bin/vim.tiny
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Choose<span class="w"> </span><span class="m">1</span>-4<span class="w"> </span><span class="o">[</span><span class="m">2</span><span class="o">]</span>:
+</code></pre></div>
+<p>Si quiere ejecutar el script <code>espacio.sh</code> ubicado en su directorio principal todos los días a las 10:00 am, puede agregar la siguiente línea a su archivo crontab:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="m">0</span><span class="w"> </span><span class="m">10</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/home/alumno/espacio.sh
+</code></pre></div>
+<p>Además de la opción <code>-e</code> mencionada anteriormente, el comando <code>crontab</code> tiene otras opciones útiles:</p>
+<ul>
+<li><code>-l</code></li>
+</ul>
+<p>Muestra el crontab actual en la salida estándar.</p>
+<ul>
+<li><code>-r</code></li>
+</ul>
+<p>Quita el crontab actual.</p>
+<ul>
+<li><code>-u</code></li>
+</ul>
+<p>Especifica el nombre del usuario cuyo crontab necesita ser  modificado. Esta opción requiere privilegios de root y permite que el  usuario root edite los archivos crontab de otro usuario.</p>
+<h4 id="crontabs-de-sistema">Crontabs de sistema<a class="headerlink" href="#crontabs-de-sistema" title="Permanent link">&para;</a></h4>
+<p>Los <em>crontabs</em> del sistema son archivos de texto que gestionan la programación de los trabajos de cron a nivel de sistema y solo pueden ser editados por el usuario root. El archivo <code>/etc/crontab</code> y todos los archivos dentro del directorio <code>/etc/cron.d</code> son considerados crontabs del sistema.</p>
+<p>Además, la mayoría de las distribuciones incluyen los directorios <code>/etc/cron.hourly</code>, <code>/etc/cron.daily</code>, <code>/etc/cron.weekly</code> y <code>/etc/cron.monthly</code>, que contienen scripts que se ejecutan con la frecuencia correspondiente. Por ejemplo, para ejecutar un script diariamente, basta con colocarlo en <code>/etc/cron.daily</code>.</p>
+<p>Muchas distribuciones incluyen el archivo <code>/etc/crontab</code>, que puede utilizarse como referencia para la estructura de un archivo cron. A continuación, se muestra un ejemplo de <code>/etc/crontab</code> de una instalación Debian:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">SHELL</span><span class="o">=</span>/bin/sh
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Example of job definition:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># .---------------- minute (0 - 59)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># |  .------------- hour (0 - 23)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># |  |  .---------- day of month (1 - 31)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># |  |  |  |  |</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># *  *  *  *  * user-name command to be executed</span>
+</code></pre></div>
+<p><strong>Ejemplo de un crontab de sistema</strong></p>
+<p>Si queremos  ejecutar el script <code>espacio.sh</code> ubicado en el directorio <code>/root</code> todos los días a la 01:30 am, puede abrir <code>/etc/crontab</code> con su editor preferido y agregar la siguiente línea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="m">30</span><span class="w"> </span><span class="m">01</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>root<span class="w"> </span>/root/espacio.sh<span class="w"> </span>
+</code></pre></div>
+<h3 id="42-programar-trabajos-con-at">4.2 Programar trabajos con at<a class="headerlink" href="#42-programar-trabajos-con-at" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>El comando <code>at</code> se utiliza para la programación de tareas una única vez y sólo requiere que se especifique cuándo se deba ejecutar  una tarea en el futuro.</p>
+</div>
+<p>Después de introducir <code>at</code> en la línea de comandos, seguido de la especificación de tiempo, entrará en la línea de comandos <code>at</code> donde puede definir los comandos a ejecutar. Puede salir del prompt con la secuencia de teclas Ctrl+D.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>at<span class="w"> </span>now<span class="w"> </span>+5<span class="w"> </span>minutes
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>warning:<span class="w"> </span>commands<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>executed<span class="w"> </span>using<span class="w"> </span>/bin/sh
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>at&gt;<span class="w"> </span>date
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>at&gt;<span class="w"> </span>Ctrl+D
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>job<span class="w"> </span><span class="m">12</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Sep<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">09</span>:15:00<span class="w"> </span><span class="m">2019</span>
+</code></pre></div>
+<p>El ejemplo anterior simplemente ejecuta el comando <code>date</code> después de cinco minutos.</p>
+<h4 id="listar-tareas-programadas-con-atq">Listar tareas programadas con <code>atq</code><a class="headerlink" href="#listar-tareas-programadas-con-atq" title="Permanent link">&para;</a></h4>
+<p>Ahora programemos dos tareas más: la primera ejecuta el script <code>foo.sh</code> a las 09:30 am, mientras que la segunda ejecuta el script <code>bar.sh</code> después de una hora.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>at<span class="w"> </span><span class="m">09</span>:30<span class="w"> </span>AM
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>warning:<span class="w"> </span>commands<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>executed<span class="w"> </span>using<span class="w"> </span>/bin/sh
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>at&gt;<span class="w"> </span>./foo.sh
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>at&gt;<span class="w"> </span>Ctrl+D
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>job<span class="w"> </span><span class="m">13</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Sep<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">09</span>:30:00<span class="w"> </span><span class="m">2024</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>$<span class="w"> </span>at<span class="w"> </span>now<span class="w"> </span>+2<span class="w"> </span>hours
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>warning:<span class="w"> </span>commands<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>executed<span class="w"> </span>using<span class="w"> </span>/bin/sh
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>at&gt;<span class="w"> </span>./bar.sh
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>at&gt;<span class="w"> </span>Ctrl+D
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>job<span class="w"> </span><span class="m">14</span><span class="w"> </span>at<span class="w"> </span>Sat<span class="w"> </span>Sep<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">11</span>:10:00<span class="w"> </span><span class="m">2024</span>
+</code></pre></div>
+<p>Para listar sus tareas pendientes, puede usar el comando <code>atq</code> que muestra la siguiente información para cada tarea: ID, fecha de ejecución, tiempo de ejecución, cola y nombre de usuario.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$ atq
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>14      Sat Sep  14 11:10:00 2024 a alumno
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>13      Sat Sep  14 09:30:00 2024 a alumno
+</code></pre></div>
+<h4 id="borrar-tareas-con-atrm">Borrar tareas con <code>atrm</code><a class="headerlink" href="#borrar-tareas-con-atrm" title="Permanent link">&para;</a></h4>
+<p>Si desea borrar una tarea de <code>at</code>, puede usar el comando <code>atrm</code> seguido del ID de la tarea. Por ejemplo, para borrar el trabajo con ID 14, puede ejecutar lo siguiente:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ atrm 14
+</code></pre></div>
+<h3 id="ejercicios-de-automatizacion-de-tareas">Ejercicios de automatización de tareas<a class="headerlink" href="#ejercicios-de-automatizacion-de-tareas" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio1.</strong> <strong>Conceptos teóricos básicos</strong></p>
+<p>Responde a las siguientes cuestiones acerca de la automatización de tareas en Linux:</p>
+<ul>
+<li>¿Cuál es la principal diferencia entre cron y at?</li>
+<li>¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?</li>
+<li>Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?</li>
+<li>Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?</li>
+<li>¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?</li>
+</ul>
+<p>Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:</p>
+<table>
+<thead>
+<tr>
+<th>Archivo crontab</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15 14 * * 1-5</td>
+<td></td>
+</tr>
+<tr>
+<td>00 09-18 * * *</td>
+<td></td>
+</tr>
+<tr>
+<td>*/30 * * * *</td>
+<td></td>
+</tr>
+<tr>
+<td>0,20,40 14 * * fri</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejercicio 2</strong>
+Crea una tarea programada para que el ordenador se apague todos los días a las 14:15</p>
+<p><strong>Ejercicio 3</strong>
+Crea una tarea programada todos los viernes a las 14:00, que ejecute un comando para obtener el espacio en disco utilizado y envíe por correo
+electrónico la información indicada.</p>
+<p><strong>Ejercicio 4</strong>
+Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Reto</p>
+<p><strong>Ejercicio 5 (Avanzado)</strong>
+Realiza el ejercicio anterior, pero utilizando las unidades Timers de Systemd</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicios de automatización de tareas — Red Hat Academy</strong></p>
+<p><img alt="Red Hat Academy" src="../../assets/img/rha-logo.png" width="300" /></p>
+<p>Para esta práctica trabajarás con el material del <strong>Capítulo 2 — Programación de tareas futuras</strong> de <em>Red Hat Academy: Administración de sistemas en Red Hat II (RH134) 9.0</em>.</p>
+<p>Accede al portal de <a href="https://www.redhat.com/es/services/training/red-hat-academy">Red Hat Academy</a> e inicia el entorno de laboratorio. Completa las siguientes secciones:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Tipo</th>
+<th>Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introducción</td>
+<td>Lectura</td>
+<td>3 min</td>
+</tr>
+<tr>
+<td>Programación de un trabajo de usuario diferido</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Programación de un trabajo de usuario recurrente</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td>Programación de trabajos del sistema recurrente</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Gestión de archivos temporales</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Programación de tareas futuras</td>
+<td>Cuestionario</td>
+<td>5 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Duración total estimada: 120 minutos.</strong></p>
+</div>
+<hr />
+<h2 id="5-practica-grupal">5. Práctica grupal<a class="headerlink" href="#5-practica-grupal" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>PG1 — Evolución de los sistemas de inicio en Linux: de SysVinit a Systemd</strong></p>
+<p><strong>Objetivo:</strong> Comprender la evolución de los sistemas de inicio en Linux, desde los métodos tradicionales basados en scripts hasta los modernos sistemas paralelos y centralizados. El grupo debe ser capaz de comparar SysVinit, Upstart y Systemd, y explicar cómo cambió la forma de gestionar servicios en GNU/Linux.</p>
+<p>El trabajo debe incluir entre <strong>9 y 13 diapositivas</strong> con diseño limpio, visual y profesional, cubriendo los siguientes apartados:</p>
+<p><strong>1. Introducción</strong></p>
+<ul>
+<li>Qué es un sistema de inicio (<em>init system</em>).</li>
+<li>Función principal: iniciar, detener y monitorizar servicios.</li>
+<li>Por qué Linux necesitó evolucionar en este aspecto.</li>
+</ul>
+<p><strong>2. SysVinit</strong></p>
+<ul>
+<li>Cómo funciona: scripts en <code>/etc/init.d/</code> y <em>runlevels</em>.</li>
+<li>Principales comandos (<code>service</code>, <code>chkconfig</code>, <code>telinit</code>).</li>
+<li>Ventajas e inconvenientes.</li>
+</ul>
+<p><strong>3. Upstart (sistema de transición)</strong></p>
+<ul>
+<li>Qué fue Upstart y quién lo desarrolló (Ubuntu, 2006).</li>
+<li>Enfoque basado en eventos del sistema (<em>event-driven init</em>).</li>
+<li>Ventajas respecto a SysVinit y razones por las que fue sustituido.</li>
+<li>Distribuciones que lo usaron y hasta qué año (Ubuntu 9.10–14.10).</li>
+</ul>
+<p><strong>4. Systemd</strong></p>
+<ul>
+<li>Filosofía de diseño: unidades (<em>units</em>), <em>targets</em>, dependencias.</li>
+<li>Ventajas clave (arranque paralelo, control unificado, <code>journalctl</code>).</li>
+<li>Comandos fundamentales (<code>systemctl</code>, <code>journalctl</code>, <code>hostnamectl</code>, <code>timedatectl</code>).</li>
+<li>Estructura básica de un archivo <code>.service</code>.</li>
+</ul>
+<p><strong>5. Comparativa general</strong></p>
+<ul>
+<li>Tabla de equivalencia de comandos (SysVinit vs Systemd).</li>
+<li>Diferencias en rendimiento, gestión y registro de eventos.</li>
+<li>Rol de Upstart como sistema intermedio.</li>
+</ul>
+<p><strong>6. Casos prácticos</strong></p>
+<ul>
+<li>Ejemplo real o simulado de gestión de servicios (<code>systemctl start</code>, <code>enable</code>, <code>status</code>...).</li>
+<li>Demostración de un servicio personalizado o cambio de <em>target</em>.</li>
+</ul>
+<p><strong>7. Conclusiones</strong></p>
+<ul>
+<li>Qué sistema se usa hoy en Debian, Ubuntu, Fedora, RHEL, etc.</li>
+<li>Ventajas de Systemd en la administración actual.</li>
+<li>Opinión crítica del grupo sobre su complejidad y papel en Linux moderno.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../bash-avanzado/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT1. Bash Avanzado">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT1. Bash Avanzado
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../acceso-remoto/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT3. Acceso y Administración Remota en Linux">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT3. Acceso y Administración Remota en Linux
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

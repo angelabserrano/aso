@@ -1,0 +1,3164 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/ansible/">
+      
+      
+        <link rel="prev" href="../samba/">
+      
+      
+        <link rel="next" href="../../scripts/powershell/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT5. Ansible - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ansible-automatizacion-de-infraestructura" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT5. Ansible
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-4-sesiones-8-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (4 sesiones / 8 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es Ansible?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-por-que-ansible-frente-a-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 ¿Por qué Ansible frente a scripts?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-casos-de-uso-habituales-en-administracion-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Casos de uso habituales en administración de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de Ansible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Instalación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion-del-control-node-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación del Control Node (Ubuntu/Debian)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-preparar-los-managed-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Preparar los Managed Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Inventario
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Inventario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-formato-del-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Formato del inventario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-variables-de-conexion-mas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Variables de conexión más utilizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-comprobar-el-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Comprobar el inventario
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comandos-ad-hoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comandos Ad-hoc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comandos Ad-hoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-modulo-ping-comprobar-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Módulo ping — Comprobar conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-modulo-command-ejecutar-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Módulo command — Ejecutar comandos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modulo-shell-ejecutar-comandos-con-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Módulo shell — Ejecutar comandos con shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-modulo-apt-gestionar-paquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Módulo apt — Gestionar paquetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-modulo-service-gestionar-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Módulo service — Gestionar servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Playbooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Playbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estructura-basica-de-un-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Estructura básica de un playbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-primer-playbook-instalar-y-arrancar-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Primer playbook: instalar y arrancar Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-modulos-esenciales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Módulos esenciales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Módulos esenciales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-modulo-apt-gestion-de-paquetes-debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Módulo apt — Gestión de paquetes (Debian/Ubuntu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-modulo-user-gestion-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Módulo user — Gestión de usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-modulo-group-gestion-de-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Módulo group — Gestión de grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-modulo-copy-copiar-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Módulo copy — Copiar ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-modulo-file-gestionar-ficheros-y-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Módulo file — Gestionar ficheros y directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-modulo-service-gestion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Módulo service — Gestión de servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-modulo-cron-gestion-de-tareas-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 Módulo cron — Gestión de tareas cron
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-modulo-lineinfile-modificar-lineas-en-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8 Módulo lineinfile — Modificar líneas en ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-definir-variables-en-el-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Definir variables en el playbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-ficheros-de-variables-vars_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Ficheros de variables (vars_files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-variables-de-host-y-grupo-host_vars-group_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Variables de host y grupo (host_vars / group_vars)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-iterar-con-bucles-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Iterar con bucles (loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-condicionales-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Condicionales (when)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Handlers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-plantillas-jinja2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Plantillas Jinja2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ansible-vault-proteger-datos-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Ansible Vault — Proteger datos sensibles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-estructura-de-un-proyecto-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Estructura de un proyecto Ansible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-entorno-de-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Entorno de laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Entorno de laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vagrantfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vagrantfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levantar-el-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levantar el entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-ejercicios-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Ejercicios prácticos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-4-sesiones-8-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (4 sesiones / 8 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es Ansible?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-por-que-ansible-frente-a-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 ¿Por qué Ansible frente a scripts?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-casos-de-uso-habituales-en-administracion-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Casos de uso habituales en administración de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de Ansible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Instalación
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion-del-control-node-ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación del Control Node (Ubuntu/Debian)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-preparar-los-managed-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Preparar los Managed Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Inventario
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Inventario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-formato-del-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Formato del inventario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-variables-de-conexion-mas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Variables de conexión más utilizadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-comprobar-el-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Comprobar el inventario
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comandos-ad-hoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comandos Ad-hoc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Comandos Ad-hoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-modulo-ping-comprobar-conectividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Módulo ping — Comprobar conectividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-modulo-command-ejecutar-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Módulo command — Ejecutar comandos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modulo-shell-ejecutar-comandos-con-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Módulo shell — Ejecutar comandos con shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-modulo-apt-gestionar-paquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Módulo apt — Gestionar paquetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-modulo-service-gestionar-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Módulo service — Gestionar servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Playbooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Playbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-estructura-basica-de-un-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Estructura básica de un playbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-primer-playbook-instalar-y-arrancar-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Primer playbook: instalar y arrancar Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-modulos-esenciales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Módulos esenciales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Módulos esenciales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-modulo-apt-gestion-de-paquetes-debianubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Módulo apt — Gestión de paquetes (Debian/Ubuntu)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-modulo-user-gestion-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Módulo user — Gestión de usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-modulo-group-gestion-de-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Módulo group — Gestión de grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-modulo-copy-copiar-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Módulo copy — Copiar ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-modulo-file-gestionar-ficheros-y-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Módulo file — Gestionar ficheros y directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-modulo-service-gestion-de-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Módulo service — Gestión de servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-modulo-cron-gestion-de-tareas-cron" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 Módulo cron — Gestión de tareas cron
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-modulo-lineinfile-modificar-lineas-en-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8 Módulo lineinfile — Modificar líneas en ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-definir-variables-en-el-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Definir variables en el playbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-ficheros-de-variables-vars_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Ficheros de variables (vars_files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-variables-de-host-y-grupo-host_vars-group_vars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Variables de host y grupo (host_vars / group_vars)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-iterar-con-bucles-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Iterar con bucles (loop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-condicionales-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Condicionales (when)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Handlers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-plantillas-jinja2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Plantillas Jinja2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ansible-vault-proteger-datos-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Ansible Vault — Proteger datos sensibles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-estructura-de-un-proyecto-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Estructura de un proyecto Ansible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-entorno-de-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Entorno de laboratorio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Entorno de laboratorio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vagrantfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vagrantfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levantar-el-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levantar el entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-ejercicios-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Ejercicios prácticos
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ansible-automatizacion-de-infraestructura">Ansible: Automatización de Infraestructura<a class="headerlink" href="#ansible-automatizacion-de-infraestructura" title="Permanent link">&para;</a></h1>
+<h2 id="programacion-de-aula">Programación de Aula<a class="headerlink" href="#programacion-de-aula" title="Permanent link">&para;</a></h2>
+<h3 id="resultados-de-aprendizaje">Resultados de Aprendizaje<a class="headerlink" href="#resultados-de-aprendizaje" title="Permanent link">&para;</a></h3>
+<p>Esta unidad cubre principalmente el <strong>Resultado de aprendizaje 3 (RA3)</strong> según el <strong>Real Decreto 1629/2009, de 30 de octubre</strong>, ampliando la automatización de tareas más allá de cron/at hacia la gestión de infraestructura:</p>
+<ol>
+<li>Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.</li>
+</ol>
+<p>Los criterios de evaluación que se trabajan son:</p>
+<ul>
+<li>Se han descrito las ventajas de la automatización de las tareas repetitivas en el sistema.</li>
+<li>Se han utilizado los comandos del sistema para la planificación de tareas.</li>
+<li>Se han realizado planificaciones de tareas repetitivas o puntuales relacionadas con la administración del sistema.</li>
+<li>Se ha automatizado la administración de cuentas.</li>
+<li>Se han documentado los procesos programados como tareas automáticas.</li>
+</ul>
+<p>También contribuye al <strong>RA6</strong> (integración de sistemas libres y propietarios) al gestionar entornos heterogéneos Linux/Windows desde un único punto de control.</p>
+<h3 id="planificacion-temporal-4-sesiones-8-horas">Planificación Temporal (4 sesiones / 8 horas)<a class="headerlink" href="#planificacion-temporal-4-sesiones-8-horas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Introducción a Ansible. Arquitectura. Instalación. Inventario. Comandos ad-hoc</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Playbooks: estructura, tareas y módulos esenciales</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Variables, handlers y plantillas</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Caso práctico integrador: gestión de usuarios y configuración de servicios</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<h3 id="11-que-es-ansible">1.1 ¿Qué es Ansible?<a class="headerlink" href="#11-que-es-ansible" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p><strong>Ansible</strong> es una herramienta de automatización de infraestructura de código abierto desarrollada por Red Hat. Permite gestionar la configuración, el despliegue de aplicaciones y la orquestación de tareas en múltiples servidores simultáneamente, desde un único punto de control.</p>
+</div>
+<p>Ansible forma parte del paradigma de <strong>Infraestructura como Código (IaC, Infrastructure as Code)</strong>, que consiste en gestionar y aprovisionar la infraestructura mediante archivos de configuración legibles, versionables y reutilizables, en lugar de procesos manuales.</p>
+<h3 id="12-por-que-ansible-frente-a-scripts">1.2 ¿Por qué Ansible frente a scripts?<a class="headerlink" href="#12-por-que-ansible-frente-a-scripts" title="Permanent link">&para;</a></h3>
+<p>Hasta ahora hemos visto cómo automatizar tareas con scripts Bash y cron. Ansible no los reemplaza, sino que los complementa para un nivel superior de automatización:</p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Scripts Bash + cron</th>
+<th>Ansible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ejecución en múltiples servidores</td>
+<td>Requiere bucles y SSH manual</td>
+<td>Nativo, en paralelo</td>
+</tr>
+<tr>
+<td>Idempotencia</td>
+<td>Hay que programarla explícitamente</td>
+<td>Incorporada en los módulos</td>
+</tr>
+<tr>
+<td>Legibilidad</td>
+<td>Depende del programador</td>
+<td>YAML declarativo y autodocumentado</td>
+</tr>
+<tr>
+<td>Gestión de errores</td>
+<td>Manual</td>
+<td>Gestionada automáticamente</td>
+</tr>
+<tr>
+<td>Sistemas heterogéneos (Linux + Windows)</td>
+<td>Complejo</td>
+<td>Soporte nativo</td>
+</tr>
+<tr>
+<td>Curva de aprendizaje</td>
+<td>Baja (si sabes bash)</td>
+<td>Baja (YAML sin agente)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p><strong>Idempotencia</strong>: Una operación es idempotente cuando ejecutarla varias veces produce el mismo resultado que ejecutarla una sola vez. Por ejemplo, el módulo <code>user</code> de Ansible crea el usuario si no existe, pero no hace nada si ya existe. Un script sin idempotencia podría dar error al intentar crear un usuario que ya existe.</p>
+</div>
+<h3 id="13-casos-de-uso-habituales-en-administracion-de-sistemas">1.3 Casos de uso habituales en administración de sistemas<a class="headerlink" href="#13-casos-de-uso-habituales-en-administracion-de-sistemas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Aprovisionar nuevos servidores con la configuración base (usuarios, paquetes, seguridad).</li>
+<li>Desplegar y actualizar configuraciones en toda la infraestructura de forma simultánea.</li>
+<li>Crear y gestionar usuarios en masa desde un fichero CSV.</li>
+<li>Instalar, configurar y arrancar servicios (Apache, SSH, NTP, etc.).</li>
+<li>Programar tareas cron en múltiples equipos.</li>
+<li>Gestionar entornos mixtos Linux/Windows.</li>
+</ul>
+<hr />
+<h2 id="2-arquitectura-de-ansible">2. Arquitectura de Ansible<a class="headerlink" href="#2-arquitectura-de-ansible" title="Permanent link">&para;</a></h2>
+<p>Ansible sigue una arquitectura <strong>agentless</strong> (sin agente): no es necesario instalar ningún software en los equipos gestionados. La comunicación se realiza a través de <strong>SSH</strong> en Linux/Unix y <strong>WinRM</strong> en Windows.</p>
+<p>Los componentes principales son:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│             CONTROL NODE                    │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  (equipo donde se instala Ansible)          │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                             │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │Inventario│  │Playbooks │  │  Módulos │  │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  └──────────┘  └──────────┘  └──────────┘  │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└──────────────────────┬──────────────────────┘
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                       │ SSH / WinRM
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>          ┌────────────┼────────────┐
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>          │            │            │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   ┌──────▼──┐  ┌──────▼──┐  ┌─────▼───┐
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>   │ Nodo 1  │  │ Nodo 2  │  │ Nodo 3  │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>   │ (Linux) │  │ (Linux) │  │(Windows)│
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>   └─────────┘  └─────────┘  └─────────┘
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        MANAGED NODES
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control Node</strong></td>
+<td>Equipo donde se instala Ansible y desde donde se lanzan las automatizaciones. Debe ser Linux/macOS.</td>
+</tr>
+<tr>
+<td><strong>Managed Nodes</strong></td>
+<td>Equipos gestionados. No requieren instalación de Ansible. Solo necesitan Python (Linux) o PowerShell/WinRM (Windows).</td>
+</tr>
+<tr>
+<td><strong>Inventario</strong></td>
+<td>Fichero que lista los managed nodes, agrupados según su función.</td>
+</tr>
+<tr>
+<td><strong>Playbook</strong></td>
+<td>Fichero YAML que describe las tareas a ejecutar en los managed nodes.</td>
+</tr>
+<tr>
+<td><strong>Módulo</strong></td>
+<td>Unidad de trabajo de Ansible (instalar paquete, crear usuario, copiar fichero...). Cada tarea usa un módulo.</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>Acción individual dentro de un playbook que invoca un módulo.</td>
+</tr>
+<tr>
+<td><strong>Play</strong></td>
+<td>Conjunto de tasks que se aplican a un grupo de hosts.</td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td>Forma de organizar playbooks, variables y ficheros en una estructura reutilizable.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-instalacion">3. Instalación<a class="headerlink" href="#3-instalacion" title="Permanent link">&para;</a></h2>
+<h3 id="31-instalacion-del-control-node-ubuntudebian">3.1 Instalación del Control Node (Ubuntu/Debian)<a class="headerlink" href="#31-instalacion-del-control-node-ubuntudebian" title="Permanent link">&para;</a></h3>
+<p>Ansible solo se instala en el <strong>control node</strong>. Los managed nodes no necesitan ninguna instalación especial.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Actualizar repositorios</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Instalar Ansible</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ansible
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Verificar la instalación</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>ansible<span class="w"> </span>--version
+</code></pre></div>
+<h3 id="32-preparar-los-managed-nodes">3.2 Preparar los Managed Nodes<a class="headerlink" href="#32-preparar-los-managed-nodes" title="Permanent link">&para;</a></h3>
+<p>Los managed nodes Linux necesitan:</p>
+<ol>
+<li><strong>Python 3</strong> instalado (en la mayoría de distribuciones ya viene instalado).</li>
+<li><strong>Acceso SSH</strong> desde el control node.</li>
+<li>Preferiblemente, <strong>autenticación por clave SSH</strong> sin contraseña.</li>
+</ol>
+<p><strong>Configurar autenticación SSH por clave desde el control node:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Generar par de claves SSH en el control node (si no existe ya)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;ansible&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Copiar la clave pública a cada managed node</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ssh-copy-id<span class="w"> </span>usuario@192.168.1.10
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>ssh-copy-id<span class="w"> </span>usuario@192.168.1.11
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Verificar que funciona sin contraseña</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>ssh<span class="w"> </span>usuario@192.168.1.10
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Si el managed node requiere <code>sudo</code> para tareas de administración, el usuario debe tener permisos <code>sudo</code> sin contraseña, o deberás usar el parámetro <code>--ask-become-pass</code> al ejecutar Ansible.</p>
+</div>
+<hr />
+<h2 id="4-inventario">4. Inventario<a class="headerlink" href="#4-inventario" title="Permanent link">&para;</a></h2>
+<p>El <strong>inventario</strong> es el fichero donde se definen los equipos que Ansible va a gestionar. Por defecto se encuentra en <code>/etc/ansible/hosts</code>, aunque es una buena práctica crear un inventario propio por proyecto.</p>
+<h3 id="41-formato-del-inventario">4.1 Formato del inventario<a class="headerlink" href="#41-formato-del-inventario" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Inventario en formato INI</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Hosts individuales</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="na">192.168.1.10</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="na">servidor-web.empresa.local</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Grupos de hosts</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">[webservers]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="na">192.168.1.10</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="na">192.168.1.11</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">[dbservers]</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="na">192.168.1.20</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="na">192.168.1.21</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">[produccion:children]</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="na">webservers</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="na">dbservers</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="c1"># Variables por host</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="k">[webservers]</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="na">192.168.1.10 ansible_user</span><span class="o">=</span><span class="s">ubuntu ansible_port=22</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="na">192.168.1.11 ansible_user</span><span class="o">=</span><span class="s">admin</span>
+</code></pre></div>
+<p>También puede usarse formato <strong>YAML</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># inventory.yml</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">all</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">children</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">webservers</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">192.168.1.10</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">192.168.1.11</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">dbservers</span><span class="p">:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="nt">192.168.1.20</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">          </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</code></pre></div>
+<h3 id="42-variables-de-conexion-mas-utilizadas">4.2 Variables de conexión más utilizadas<a class="headerlink" href="#42-variables-de-conexion-mas-utilizadas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ansible_host</code></td>
+<td>IP o hostname del nodo</td>
+<td><code>ansible_host=192.168.1.10</code></td>
+</tr>
+<tr>
+<td><code>ansible_user</code></td>
+<td>Usuario SSH</td>
+<td><code>ansible_user=ubuntu</code></td>
+</tr>
+<tr>
+<td><code>ansible_port</code></td>
+<td>Puerto SSH</td>
+<td><code>ansible_port=2222</code></td>
+</tr>
+<tr>
+<td><code>ansible_ssh_private_key_file</code></td>
+<td>Ruta a la clave privada SSH</td>
+<td><code>ansible_ssh_private_key_file=~/.ssh/id_ed25519</code></td>
+</tr>
+<tr>
+<td><code>ansible_become</code></td>
+<td>Activar escalada de privilegios</td>
+<td><code>ansible_become=true</code></td>
+</tr>
+<tr>
+<td><code>ansible_become_user</code></td>
+<td>Usuario al que escalar</td>
+<td><code>ansible_become_user=root</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-comprobar-el-inventario">4.3 Comprobar el inventario<a class="headerlink" href="#43-comprobar-el-inventario" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Listar todos los hosts del inventario</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ansible<span class="w"> </span>all<span class="w"> </span>--list-hosts<span class="w"> </span>-i<span class="w"> </span>inventory.ini
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Listar los hosts de un grupo concreto</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>--list-hosts<span class="w"> </span>-i<span class="w"> </span>inventory.ini
+</code></pre></div>
+<hr />
+<h2 id="5-comandos-ad-hoc">5. Comandos Ad-hoc<a class="headerlink" href="#5-comandos-ad-hoc" title="Permanent link">&para;</a></h2>
+<p>Los <strong>comandos ad-hoc</strong> permiten ejecutar una tarea puntual en los managed nodes sin necesidad de escribir un playbook. Son útiles para tareas rápidas o para comprobar el estado de los sistemas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ansible<span class="w"> </span>&lt;hosts&gt;<span class="w"> </span>-i<span class="w"> </span>&lt;inventario&gt;<span class="w"> </span>-m<span class="w"> </span>&lt;módulo&gt;<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;&lt;argumentos&gt;&quot;</span><span class="w"> </span><span class="o">[</span>opciones<span class="o">]</span>
+</code></pre></div>
+<h3 id="51-modulo-ping-comprobar-conectividad">5.1 Módulo ping — Comprobar conectividad<a class="headerlink" href="#51-modulo-ping-comprobar-conectividad" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Comprobar conectividad con todos los hosts</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>ping
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Comprobar solo un grupo</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>ping
+</code></pre></div>
+<p>Salida esperada:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>192.168.1.10 | SUCCESS =&gt; {
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    &quot;changed&quot;: false,
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    &quot;ping&quot;: &quot;pong&quot;
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>}
+</code></pre></div></p>
+<h3 id="52-modulo-command-ejecutar-comandos">5.2 Módulo command — Ejecutar comandos<a class="headerlink" href="#52-modulo-command-ejecutar-comandos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Ver el uptime de todos los servidores</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Ver el espacio en disco</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;df -h&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Ver los usuarios del sistema</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;cat /etc/passwd&quot;</span>
+</code></pre></div>
+<h3 id="53-modulo-shell-ejecutar-comandos-con-shell">5.3 Módulo shell — Ejecutar comandos con shell<a class="headerlink" href="#53-modulo-shell-ejecutar-comandos-con-shell" title="Permanent link">&para;</a></h3>
+<p>A diferencia de <code>command</code>, el módulo <code>shell</code> permite usar tuberías (<code>|</code>), redirecciones y variables de entorno:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Usar pipe (no funciona con command)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>shell<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;df -h | grep /dev/sda&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Redirigir salida</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>shell<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;ls /etc &gt; /tmp/etc_list.txt&quot;</span>
+</code></pre></div>
+<h3 id="54-modulo-apt-gestionar-paquetes">5.4 Módulo apt — Gestionar paquetes<a class="headerlink" href="#54-modulo-apt-gestionar-paquetes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Instalar un paquete</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=present&quot;</span><span class="w"> </span>--become
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Desinstalar un paquete</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=absent&quot;</span><span class="w"> </span>--become
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Actualizar todos los paquetes</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>apt<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;upgrade=dist update_cache=yes&quot;</span><span class="w"> </span>--become
+</code></pre></div>
+<h3 id="55-modulo-service-gestionar-servicios">5.5 Módulo service — Gestionar servicios<a class="headerlink" href="#55-modulo-service-gestionar-servicios" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Iniciar un servicio</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=started&quot;</span><span class="w"> </span>--become
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Reiniciar un servicio</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx state=restarted&quot;</span><span class="w"> </span>--become
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Habilitar inicio automático</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>ansible<span class="w"> </span>webservers<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=nginx enabled=yes&quot;</span><span class="w"> </span>--become
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>El parámetro <code>--become</code> indica a Ansible que ejecute la tarea con privilegios elevados (<code>sudo</code>). Es equivalente a poner <code>become: true</code> en un playbook.</p>
+</div>
+<hr />
+<h2 id="6-playbooks">6. Playbooks<a class="headerlink" href="#6-playbooks" title="Permanent link">&para;</a></h2>
+<p>Un <strong>playbook</strong> es un fichero YAML que describe, de forma declarativa, el estado deseado de los sistemas. Contiene una o más <strong>plays</strong>, y cada play contiene una lista de <strong>tasks</strong>.</p>
+<h3 id="61-estructura-basica-de-un-playbook">6.1 Estructura básica de un playbook<a class="headerlink" href="#61-estructura-basica-de-un-playbook" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nn">---</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nombre descriptivo del play</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webservers</span><span class="w">          </span><span class="c1"># A qué hosts se aplica</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">               </span><span class="c1"># Usar sudo en todas las tasks</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Descripción de la tarea</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="nt">nombre_modulo</span><span class="p">:</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">        </span><span class="nt">parametro1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">valor1</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="nt">parametro2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">valor2</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Segunda tarea</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">otro_modulo</span><span class="p">:</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">        </span><span class="nt">parametro</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">valor</span>
+</code></pre></div>
+<h3 id="62-primer-playbook-instalar-y-arrancar-nginx">6.2 Primer playbook: instalar y arrancar Nginx<a class="headerlink" href="#62-primer-playbook-instalar-y-arrancar-nginx" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nn">---</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar y configurar servidor web Nginx</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webservers</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Actualizar caché de paquetes</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">        </span><span class="nt">update_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar Nginx</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Arrancar y habilitar Nginx</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">started</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<p><strong>Ejecutar el playbook:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>nginx.yml
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>PLAY [Instalar y configurar servidor web Nginx] ****************************
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>TASK [Actualizar caché de paquetes] ****************************************
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>ok: [192.168.1.10]
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>TASK [Instalar Nginx] ******************************************************
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>changed: [192.168.1.10]
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>TASK [Arrancar y habilitar Nginx] ******************************************
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>changed: [192.168.1.10]
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>PLAY RECAP *****************************************************************
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>192.168.1.10  : ok=3  changed=2  unreachable=0  failed=0
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>En la salida de Ansible, cada tarea puede tener uno de estos estados:</p>
+<ul>
+<li><strong>ok</strong>: La tarea se ejecutó y el sistema ya estaba en el estado deseado (no se hizo ningún cambio).</li>
+<li><strong>changed</strong>: La tarea se ejecutó y realizó un cambio en el sistema.</li>
+<li><strong>failed</strong>: La tarea falló.</li>
+<li><strong>skipped</strong>: La tarea fue omitida (por una condición <code>when</code>).</li>
+</ul>
+</div>
+<hr />
+<h2 id="7-modulos-esenciales">7. Módulos esenciales<a class="headerlink" href="#7-modulos-esenciales" title="Permanent link">&para;</a></h2>
+<h3 id="71-modulo-apt-gestion-de-paquetes-debianubuntu">7.1 Módulo <code>apt</code> — Gestión de paquetes (Debian/Ubuntu)<a class="headerlink" href="#71-modulo-apt-gestion-de-paquetes-debianubuntu" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar varios paquetes</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vim</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nt">update_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Desinstalar un paquete y sus dependencias</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="nt">purge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nombre del paquete (o lista de paquetes)</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>present</code> (instalar), <code>absent</code> (desinstalar), <code>latest</code> (actualizar)</td>
+</tr>
+<tr>
+<td><code>update_cache</code></td>
+<td>Actualizar la caché apt antes de instalar</td>
+</tr>
+<tr>
+<td><code>purge</code></td>
+<td>Eliminar también los ficheros de configuración</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-modulo-user-gestion-de-usuarios">7.2 Módulo <code>user</code> — Gestión de usuarios<a class="headerlink" href="#72-modulo-user-gestion-de-usuarios" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear usuario alumno</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Usuario</span><span class="nv"> </span><span class="s">alumno</span><span class="nv"> </span><span class="s">del</span><span class="nv"> </span><span class="s">sistema&quot;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="nt">append</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;MiContraseña123&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">password_hash(&#39;sha512&#39;)</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="nt">create_home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Eliminar usuario</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="nt">remove</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>Nombre del usuario</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>present</code> (crear) o <code>absent</code> (eliminar)</td>
+</tr>
+<tr>
+<td><code>groups</code></td>
+<td>Grupos a los que pertenece</td>
+</tr>
+<tr>
+<td><code>append</code></td>
+<td>Si es <code>yes</code>, añade los grupos sin eliminar los existentes</td>
+</tr>
+<tr>
+<td><code>shell</code></td>
+<td>Shell por defecto</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>Contraseña encriptada</td>
+</tr>
+<tr>
+<td><code>remove</code></td>
+<td>Si es <code>yes</code>, elimina también el directorio home al borrar</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-modulo-group-gestion-de-grupos">7.3 Módulo <code>group</code> — Gestión de grupos<a class="headerlink" href="#73-modulo-group-gestion-de-grupos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear grupo profesores</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profesores</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="nt">gid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Eliminar grupo</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">group</span><span class="p">:</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profesores</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+</code></pre></div>
+<h3 id="74-modulo-copy-copiar-ficheros">7.4 Módulo <code>copy</code> — Copiar ficheros<a class="headerlink" href="#74-modulo-copy-copiar-ficheros" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Copiar fichero de configuración</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nt">copy</span><span class="p">:</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ficheros/sshd_config</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0600&#39;</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="nt">backup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td>Ruta del fichero en el control node</td>
+</tr>
+<tr>
+<td><code>dest</code></td>
+<td>Ruta de destino en el managed node</td>
+</tr>
+<tr>
+<td><code>owner</code> / <code>group</code></td>
+<td>Propietario y grupo del fichero</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td>Permisos (en octal o simbólico)</td>
+</tr>
+<tr>
+<td><code>backup</code></td>
+<td>Crea copia de seguridad antes de sobreescribir</td>
+</tr>
+</tbody>
+</table>
+<h3 id="75-modulo-file-gestionar-ficheros-y-directorios">7.5 Módulo <code>file</code> — Gestionar ficheros y directorios<a class="headerlink" href="#75-modulo-file-gestionar-ficheros-y-directorios" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear directorio</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nt">file</span><span class="p">:</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/miapp</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">directory</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">www-data</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0755&#39;</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear enlace simbólico</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">  </span><span class="nt">file</span><span class="p">:</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-available/miapp</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-enabled/miapp</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">link</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Eliminar fichero</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">  </span><span class="nt">file</span><span class="p">:</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/fichero_temporal.txt</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><code>state</code></th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file</code></td>
+<td>Asegura que el fichero existe</td>
+</tr>
+<tr>
+<td><code>directory</code></td>
+<td>Asegura que el directorio existe</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>Crea un enlace simbólico</td>
+</tr>
+<tr>
+<td><code>absent</code></td>
+<td>Elimina el fichero o directorio</td>
+</tr>
+<tr>
+<td><code>touch</code></td>
+<td>Crea el fichero si no existe o actualiza su fecha</td>
+</tr>
+</tbody>
+</table>
+<h3 id="76-modulo-service-gestion-de-servicios">7.6 Módulo <code>service</code> — Gestión de servicios<a class="headerlink" href="#76-modulo-service-gestion-de-servicios" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gestionar servicio SSH</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">service</span><span class="p">:</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssh</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">started</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><code>state</code></th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>started</code></td>
+<td>Arranca el servicio si está parado</td>
+</tr>
+<tr>
+<td><code>stopped</code></td>
+<td>Para el servicio si está en ejecución</td>
+</tr>
+<tr>
+<td><code>restarted</code></td>
+<td>Reinicia el servicio siempre</td>
+</tr>
+<tr>
+<td><code>reloaded</code></td>
+<td>Recarga la configuración sin parar el servicio</td>
+</tr>
+</tbody>
+</table>
+<h3 id="77-modulo-cron-gestion-de-tareas-cron">7.7 Módulo <code>cron</code> — Gestión de tareas cron<a class="headerlink" href="#77-modulo-cron-gestion-de-tareas-cron" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Programar copia de seguridad diaria</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="nt">cron</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Backup</span><span class="nv"> </span><span class="s">diario&quot;</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="nt">day</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="nt">month</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="nt">weekday</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="nt">job</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/usr/local/bin/backup.sh&quot;</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Eliminar tarea cron</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="w">  </span><span class="nt">cron</span><span class="p">:</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Backup</span><span class="nv"> </span><span class="s">diario&quot;</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+</code></pre></div>
+<h3 id="78-modulo-lineinfile-modificar-lineas-en-ficheros">7.8 Módulo <code>lineinfile</code> — Modificar líneas en ficheros<a class="headerlink" href="#78-modulo-lineinfile-modificar-lineas-en-ficheros" title="Permanent link">&para;</a></h3>
+<p>Permite asegurar que una línea concreta existe (o no existe) en un fichero de configuración, sin necesidad de copiar el fichero entero.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deshabilitar login de root por SSH</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">lineinfile</span><span class="p">:</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;^PermitRootLogin&#39;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;PermitRootLogin</span><span class="nv"> </span><span class="s">no&#39;</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">    </span><span class="nt">backup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Establecer número máximo de intentos de autenticación</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">  </span><span class="nt">lineinfile</span><span class="p">:</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;^MaxAuthTries&#39;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">    </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;MaxAuthTries</span><span class="nv"> </span><span class="s">3&#39;</span>
+</code></pre></div>
+<hr />
+<h2 id="8-variables">8. Variables<a class="headerlink" href="#8-variables" title="Permanent link">&para;</a></h2>
+<p>Las variables en Ansible permiten reutilizar playbooks para diferentes entornos o configuraciones.</p>
+<h3 id="81-definir-variables-en-el-playbook">8.1 Definir variables en el playbook<a class="headerlink" href="#81-definir-variables-en-el-playbook" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nn">---</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar servidor web con variables</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">webservers</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="nt">paquete_web</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="nt">puerto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">    </span><span class="nt">directorio_web</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/www/html</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar {{ paquete_web }}</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">paquete_web</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear directorio web</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">      </span><span class="nt">file</span><span class="p">:</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">directorio_web</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">directory</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0755&#39;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Cuando el valor de un parámetro empieza directamente por <code>{{</code>, debe ir entre comillas:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w">   </span><span class="c1"># Correcto</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">variable</span><span class="w"> </span><span class="p p-Indicator">}}</span><span class="w">     </span><span class="c1"># Error de sintaxis YAML</span>
+</code></pre></div></p>
+</div>
+<h3 id="82-ficheros-de-variables-vars_files">8.2 Ficheros de variables (<code>vars_files</code>)<a class="headerlink" href="#82-ficheros-de-variables-vars_files" title="Permanent link">&para;</a></h3>
+<p>Para mantener los playbooks limpios, las variables pueden guardarse en ficheros separados:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># variables.yml</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nt">paquete_web</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nt">puerto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nt">usuarios</span><span class="p">:</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno1</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno2</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># playbook.yml</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nn">---</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Playbook con variables externas</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="nt">vars_files</span><span class="p">:</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variables.yml</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar {{ paquete_web }}</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">paquete_web</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+</code></pre></div>
+<h3 id="83-variables-de-host-y-grupo-host_vars-group_vars">8.3 Variables de host y grupo (<code>host_vars</code> / <code>group_vars</code>)<a class="headerlink" href="#83-variables-de-host-y-grupo-host_vars-group_vars" title="Permanent link">&para;</a></h3>
+<p>Ansible carga automáticamente variables desde directorios con nombres especiales:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>proyecto/
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>├── inventory.ini
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>├── playbook.yml
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>├── group_vars/
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>│   ├── all.yml          # Variables para todos los hosts
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>│   └── webservers.yml   # Variables solo para el grupo webservers
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>└── host_vars/
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    └── 192.168.1.10.yml # Variables solo para ese host
+</code></pre></div>
+<h3 id="84-iterar-con-bucles-loop">8.4 Iterar con bucles (<code>loop</code>)<a class="headerlink" href="#84-iterar-con-bucles-loop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear varios usuarios</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">item.nombre</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">item.shell</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="nt">loop</span><span class="p">:</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> nombre</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;alumno1&quot;</span><span class="p p-Indicator">,</span><span class="nt"> shell</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/bin/bash&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> nombre</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;alumno2&quot;</span><span class="p p-Indicator">,</span><span class="nt"> shell</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/bin/bash&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> nombre</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;alumno3&quot;</span><span class="p p-Indicator">,</span><span class="nt"> shell</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/bin/sh&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>También se puede iterar sobre una lista definida en variables:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nt">vars</span><span class="p">:</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nt">usuarios</span><span class="p">:</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno1</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno2</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumno3</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Crear usuarios</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">    </span><span class="nt">user</span><span class="p">:</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="w">    </span><span class="nt">loop</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">usuarios</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</code></pre></div>
+<h3 id="85-condicionales-when">8.5 Condicionales (<code>when</code>)<a class="headerlink" href="#85-condicionales-when" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar Apache solo en servidores web</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span><span class="nt">apt</span><span class="p">:</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&#39;webservers&#39;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">group_names&quot;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reiniciar servicio solo si el SO es Ubuntu</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w">  </span><span class="nt">service</span><span class="p">:</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restarted</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &quot;Ubuntu&quot;</span>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tarea solo si el fichero existe</span>
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cat /etc/configuracion.txt</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="w">  </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fichero_config.stat.exists</span>
+</code></pre></div>
+<p>Algunas variables del sistema (<code>facts</code>) muy útiles en condicionales:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ansible_distribution</code></td>
+<td>Distribución (Ubuntu, Debian, CentOS...)</td>
+</tr>
+<tr>
+<td><code>ansible_distribution_version</code></td>
+<td>Versión de la distribución</td>
+</tr>
+<tr>
+<td><code>ansible_os_family</code></td>
+<td>Familia del SO (Debian, RedHat...)</td>
+</tr>
+<tr>
+<td><code>ansible_hostname</code></td>
+<td>Nombre del host</td>
+</tr>
+<tr>
+<td><code>ansible_default_ipv4.address</code></td>
+<td>Dirección IP principal</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-handlers">9. Handlers<a class="headerlink" href="#9-handlers" title="Permanent link">&para;</a></h2>
+<p>Los <strong>handlers</strong> son tasks especiales que solo se ejecutan cuando son notificados por otra task que ha producido un cambio (<code>changed</code>). Se usan habitualmente para reiniciar servicios tras modificar su configuración.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nn">---</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configurar SSH de forma segura</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deshabilitar login de root</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">      </span><span class="nt">lineinfile</span><span class="p">:</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">        </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;^PermitRootLogin&#39;</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">        </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;PermitRootLogin</span><span class="nv"> </span><span class="s">no&#39;</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reiniciar SSH</span>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Limitar intentos de autenticación</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="w">      </span><span class="nt">lineinfile</span><span class="p">:</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="w">        </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;^MaxAuthTries&#39;</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="w">        </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;MaxAuthTries</span><span class="nv"> </span><span class="s">3&#39;</span>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reiniciar SSH</span>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a>
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="w">  </span><span class="nt">handlers</span><span class="p">:</span>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reiniciar SSH</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span>
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssh</span>
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Aunque la task "Deshabilitar login de root" y "Limitar intentos" notifiquen al mismo handler, <strong>el handler solo se ejecuta una vez</strong> al final del play, independientemente de cuántas veces se haya notificado. Esto evita reinicios innecesarios.</p>
+</div>
+<hr />
+<h2 id="10-plantillas-jinja2">10. Plantillas Jinja2<a class="headerlink" href="#10-plantillas-jinja2" title="Permanent link">&para;</a></h2>
+<p>El módulo <code>template</code> permite generar ficheros de configuración dinámicos a partir de plantillas <strong>Jinja2</strong>, sustituyendo variables de Ansible en el contenido del fichero.</p>
+<p>Las plantillas tienen extensión <code>.j2</code> y se guardan en el directorio <code>templates/</code> del proyecto.</p>
+<p><strong>Ejemplo: plantilla de mensaje de bienvenida</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a># templates/motd.j2
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Bienvenido a {{ ansible_hostname }}
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>Sistema operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Administrado por Ansible
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>Fecha de configuración: {{ ansible_date_time.date }}
+</code></pre></div>
+<p><strong>Playbook que usa la plantilla:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configurar mensaje de bienvenida</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">templates/motd.j2</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/motd</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0644&#39;</span>
+</code></pre></div>
+<p><strong>Ejemplo: plantilla de configuración de Nginx con variables</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1"># templates/nginx.conf.j2</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">puerto</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">ansible_hostname</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">    </span><span class="kn">root</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">directorio_web</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">    </span><span class="kn">access_log</span><span class="w"> </span><span class="s">/var/log/nginx/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">ansible_hostname</span><span class="w"> </span><span class="err">}}</span><span class="s">_access.log</span><span class="p">;</span>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">    </span><span class="kn">error_log</span><span class="w">  </span><span class="s">/var/log/nginx/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">ansible_hostname</span><span class="w"> </span><span class="err">}}</span><span class="s">_error.log</span><span class="p">;</span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="11-ansible-vault-proteger-datos-sensibles">11. Ansible Vault — Proteger datos sensibles<a class="headerlink" href="#11-ansible-vault-proteger-datos-sensibles" title="Permanent link">&para;</a></h2>
+<p><strong>Ansible Vault</strong> permite cifrar variables o ficheros enteros que contienen datos sensibles (contraseñas, claves API, tokens), de forma que puedan incluirse con seguridad en el control de versiones.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Cifrar un fichero de variables</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>ansible-vault<span class="w"> </span>encrypt<span class="w"> </span>variables_secretas.yml
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># Editar un fichero cifrado</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>ansible-vault<span class="w"> </span>edit<span class="w"> </span>variables_secretas.yml
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="c1"># Ver el contenido de un fichero cifrado</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>ansible-vault<span class="w"> </span>view<span class="w"> </span>variables_secretas.yml
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="c1"># Descifrar un fichero</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>ansible-vault<span class="w"> </span>decrypt<span class="w"> </span>variables_secretas.yml
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="c1"># Ejecutar un playbook que usa ficheros cifrados</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>playbook.yml<span class="w"> </span>--ask-vault-pass
+</code></pre></div>
+<p><strong>Ejemplo de uso:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># variables_secretas.yml (cifrado con vault)</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nt">db_password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MiContraseñaSegura123&quot;</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nt">api_token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;abc123xyz&quot;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># playbook.yml</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="nn">---</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configurar base de datos</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dbservers</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">  </span><span class="nt">vars_files</span><span class="p">:</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variables_secretas.yml</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configurar contraseña de BD</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="w">      </span><span class="nt">lineinfile</span><span class="p">:</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/myapp/config.ini</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="w">        </span><span class="nt">regexp</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;^db_password&#39;</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="w">        </span><span class="nt">line</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db_password={{</span><span class="nv"> </span><span class="s">db_password</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="12-estructura-de-un-proyecto-ansible">12. Estructura de un proyecto Ansible<a class="headerlink" href="#12-estructura-de-un-proyecto-ansible" title="Permanent link">&para;</a></h2>
+<p>A medida que los proyectos crecen, es recomendable organizar los ficheros siguiendo esta estructura:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>proyecto-ansible/
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>├── inventory.ini           # Inventario de hosts
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>├── playbook_principal.yml  # Playbook principal
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>├── group_vars/
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>│   ├── all.yml             # Variables para todos los hosts
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>│   └── webservers.yml      # Variables para el grupo webservers
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>├── host_vars/
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>│   └── servidor1.yml       # Variables para un host específico
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>├── templates/
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>│   ├── nginx.conf.j2       # Plantilla Nginx
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>│   └── motd.j2             # Plantilla MOTD
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>├── files/
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>│   └── sshd_config         # Ficheros estáticos para copiar
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>└── roles/
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a>    └── webserver/          # Rol para servidores web
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a>        ├── tasks/
+<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a>        │   └── main.yml
+<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a>        ├── handlers/
+<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a>        │   └── main.yml
+<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a>        ├── templates/
+<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a>        └── vars/
+<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a>            └── main.yml
+</code></pre></div>
+<hr />
+<h2 id="13-entorno-de-laboratorio">13. Entorno de laboratorio<a class="headerlink" href="#13-entorno-de-laboratorio" title="Permanent link">&para;</a></h2>
+<h3 id="escenario">Escenario<a class="headerlink" href="#escenario" title="Permanent link">&para;</a></h3>
+<p>Todos los ejercicios se realizan sobre un entorno de tres máquinas virtuales Ubuntu Server levantadas con <strong>Vagrant</strong> y <strong>VirtualBox</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Máquina</th>
+<th>Rol</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>control</code></td>
+<td>Control node — Ansible instalado aquí</td>
+<td>192.168.56.10</td>
+</tr>
+<tr>
+<td><code>web01</code></td>
+<td>Managed node — servidor web</td>
+<td>192.168.56.11</td>
+</tr>
+<tr>
+<td><code>db01</code></td>
+<td>Managed node — servidor de base de datos</td>
+<td>192.168.56.12</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vagrantfile">Vagrantfile<a class="headerlink" href="#vagrantfile" title="Permanent link">&para;</a></h3>
+<p>Crea un directorio <code>laboratorio-ansible/</code> y guarda dentro el siguiente fichero con el nombre <code>Vagrantfile</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ubuntu/jammy64&quot;</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span><span class="w"> </span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">disabled</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">  </span><span class="n">vms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;control&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.10&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;web01&quot;</span><span class="p">,</span><span class="w">   </span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.11&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;db01&quot;</span><span class="p">,</span><span class="w">    </span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.12&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="w">  </span><span class="o">]</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a>
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="w">  </span><span class="n">vms</span><span class="o">.</span><span class="n">each</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">vm</span><span class="o">|</span>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="w">    </span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span><span class="w"> </span><span class="n">vm</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">node</span><span class="o">|</span>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="w">      </span><span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vm</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="w">      </span><span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span><span class="w"> </span><span class="s2">&quot;private_network&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">ip</span><span class="p">:</span><span class="w"> </span><span class="n">vm</span><span class="o">[</span><span class="ss">:ip</span><span class="o">]</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="w">      </span><span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span><span class="w"> </span><span class="s2">&quot;virtualbox&quot;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="w">        </span><span class="n">vb</span><span class="o">.</span><span class="n">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">vm</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
+<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="w">        </span><span class="n">vb</span><span class="o">.</span><span class="n">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span>
+<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a><span class="w">        </span><span class="n">vb</span><span class="o">.</span><span class="n">cpus</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="w">      </span><span class="k">end</span>
+<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a>
+<a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a><span class="w">      </span><span class="c1"># Python 3 es la única dependencia de Ansible en los managed nodes</span>
+<a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a><span class="w">      </span><span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">inline</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;&lt;~</span><span class="dl">SHELL</span>
+<a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a><span class="sh">        apt-get update -qq</span>
+<a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a><span class="sh">        apt-get install -y python3</span>
+<a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a><span class="dl">      SHELL</span>
+<a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a>
+<a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a><span class="w">      </span><span class="c1"># Ansible y clave SSH solo en el control node</span>
+<a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="n">vm</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;control&quot;</span>
+<a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a><span class="w">        </span><span class="n">node</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">inline</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;&lt;~</span><span class="dl">SHELL</span>
+<a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a><span class="sh">          apt-get install -y ansible</span>
+<a id="__codelineno-41-33" name="__codelineno-41-33" href="#__codelineno-41-33"></a><span class="sh">          sudo -u vagrant ssh-keygen -t ed25519 -N &quot;&quot; -f /home/vagrant/.ssh/id_ed25519</span>
+<a id="__codelineno-41-34" name="__codelineno-41-34" href="#__codelineno-41-34"></a><span class="dl">        SHELL</span>
+<a id="__codelineno-41-35" name="__codelineno-41-35" href="#__codelineno-41-35"></a><span class="w">      </span><span class="k">end</span>
+<a id="__codelineno-41-36" name="__codelineno-41-36" href="#__codelineno-41-36"></a><span class="w">    </span><span class="k">end</span>
+<a id="__codelineno-41-37" name="__codelineno-41-37" href="#__codelineno-41-37"></a><span class="w">  </span><span class="k">end</span>
+<a id="__codelineno-41-38" name="__codelineno-41-38" href="#__codelineno-41-38"></a><span class="k">end</span>
+</code></pre></div>
+<h3 id="levantar-el-entorno">Levantar el entorno<a class="headerlink" href="#levantar-el-entorno" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># Levantar las tres VMs</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>vagrant<span class="w"> </span>up
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="c1"># Comprobar el estado de las VMs</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>vagrant<span class="w"> </span>status
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="c1"># Acceder al control node</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>vagrant<span class="w"> </span>ssh<span class="w"> </span>control
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="c1"># Apagar las VMs al terminar la sesión</span>
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a>vagrant<span class="w"> </span>halt
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="c1"># Destruir el entorno para empezar desde cero</span>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>vagrant<span class="w"> </span>destroy<span class="w"> </span>-f
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Primera ejecución</p>
+<p><code>vagrant up</code> descarga la box <code>ubuntu/jammy64</code> (~500 MB) la primera vez. Si la conexión del aula es lenta, el profesor puede distribuirla en USB:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>vagrant<span class="w"> </span>box<span class="w"> </span>add<span class="w"> </span>ubuntu/jammy64<span class="w"> </span>/ruta/a/jammy64.box
+</code></pre></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>La clave SSH del control node se genera automáticamente durante el aprovisionamiento. La distribución a los managed nodes (<code>ssh-copy-id</code>) se realiza en el <strong>Ejercicio 1</strong>, como parte del aprendizaje.</p>
+</div>
+<hr />
+<h2 id="14-ejercicios-practicos">14. Ejercicios prácticos<a class="headerlink" href="#14-ejercicios-practicos" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1. Primeros pasos</strong></p>
+<p>Desde el control node (<code>vagrant ssh control</code>):</p>
+<ol>
+<li>
+<p>Crea el fichero <code>inventory.ini</code> con los dos managed nodes del escenario:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">[webservers]</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="na">192.168.56.11</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="k">[dbservers]</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="na">192.168.56.12</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="k">[managed:children]</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a><span class="na">webservers</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a><span class="na">dbservers</span>
+</code></pre></div>
+</li>
+<li>
+<p>Distribuye la clave SSH a los managed nodes (usuario <code>vagrant</code>, contraseña <code>vagrant</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>ssh-copy-id<span class="w"> </span>vagrant@192.168.56.11
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>ssh-copy-id<span class="w"> </span>vagrant@192.168.56.12
+</code></pre></div>
+</li>
+<li>
+<p>Verifica la conectividad con el módulo <code>ping</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span>ping
+</code></pre></div>
+</li>
+<li>
+<p>Ejecuta comandos ad-hoc para ver el uptime y el espacio en disco de todos los nodos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;df -h&quot;</span>
+</code></pre></div>
+</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 2. Playbook de configuración base</strong></p>
+<p>Crea un playbook <code>configuracion_base.yml</code> que realice las siguientes tareas en <code>web01</code> (192.168.56.11) y <code>db01</code> (192.168.56.12):</p>
+<ol>
+<li>Actualizar la caché de paquetes apt.</li>
+<li>Instalar los paquetes: <code>vim</code>, <code>curl</code>, <code>git</code>, <code>htop</code>, <code>net-tools</code>.</li>
+<li>Asegurarse de que el servicio SSH está arrancado y habilitado.</li>
+<li>Crear el directorio <code>/opt/scripts</code> con permisos <code>755</code> y propietario <code>root</code>.</li>
+<li>Generar un fichero <code>/etc/motd</code> con el hostname y la fecha de configuración usando una plantilla Jinja2.</li>
+</ol>
+<p>Ejecuta el playbook y verifica el resultado accediendo por SSH a cada nodo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>configuracion_base.yml
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>ssh<span class="w"> </span>vagrant@192.168.56.11
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>ssh<span class="w"> </span>vagrant@192.168.56.12
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 3. Gestión de usuarios en masa</strong></p>
+<p>Dado el fichero de variables <code>usuarios.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nt">usuarios</span><span class="p">:</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ana.garcia</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="nt">grupo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profesores</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">luis.perez</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="w">    </span><span class="nt">grupo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumnos</span>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">marta.lopez</span>
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="w">    </span><span class="nt">grupo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alumnos</span>
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="w">    </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+</code></pre></div>
+<p>Crea un playbook <code>gestion_usuarios.yml</code> que se aplique a todos los managed nodes y que:</p>
+<ol>
+<li>Cree los grupos <code>profesores</code> y <code>alumnos</code> si no existen.</li>
+<li>Cree cada usuario de la lista con su grupo y shell correspondientes.</li>
+<li>Cree el directorio home de cada usuario.</li>
+<li>Asigne a cada usuario una contraseña inicial <code>Cambiar123!</code> (cifrada con <code>password_hash</code>).</li>
+</ol>
+<p>Comprueba que los usuarios se han creado correctamente en <code>web01</code> y <code>db01</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;cat /etc/passwd&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;ana|luis|marta&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 4. Playbook de seguridad SSH</strong></p>
+<p>Crea un playbook <code>hardening_ssh.yml</code> que aplique las siguientes medidas de seguridad en el servicio SSH de <code>web01</code> (192.168.56.11) y <code>db01</code> (192.168.56.12):</p>
+<ul>
+<li>Deshabilitar el login directo de root (<code>PermitRootLogin no</code>).</li>
+<li>Limitar los intentos de autenticación a 3 (<code>MaxAuthTries 3</code>).</li>
+<li>Deshabilitar la autenticación por contraseña (<code>PasswordAuthentication no</code>).</li>
+<li>Cambiar el puerto SSH al 2222 (<code>Port 2222</code>).</li>
+</ul>
+<p>Usa el módulo <code>lineinfile</code> para cada cambio y un <strong>handler</strong> para reiniciar el servicio SSH solo cuando se haya producido algún cambio.</p>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Antes de deshabilitar la autenticación por contraseña, verifica que la autenticación por clave funciona correctamente (hecho en el ejercicio 1). De lo contrario, perderías el acceso a los nodos.</p>
+<p>Tras aplicar el playbook, actualiza el inventario para indicar el nuevo puerto:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">[webservers]</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="na">192.168.56.11 ansible_port</span><span class="o">=</span><span class="s">2222</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="k">[dbservers]</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="na">192.168.56.12 ansible_port</span><span class="o">=</span><span class="s">2222</span>
+</code></pre></div></p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 5. Automatización de tareas cron</strong></p>
+<p>Crea un playbook <code>tareas_programadas.yml</code> que configure en <code>web01</code> y <code>db01</code>:</p>
+<ol>
+<li>Una tarea cron que ejecute <code>apt update &amp;&amp; apt upgrade -y</code> todos los domingos a las 03:00.</li>
+<li>Una tarea cron que limpie <code>/tmp</code> de ficheros con más de 7 días de antigüedad cada día a las 01:00.</li>
+<li>Una tarea cron que guarde el uso de disco en <code>/var/log/espacio_disco.log</code> cada hora.</li>
+</ol>
+<p>Verifica que las tareas se han registrado en los nodos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.ini<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;crontab -l -u root&quot;</span>
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Reto</p>
+<p><strong>Ejercicio 6 (Avanzado). Caso integrador: despliegue de servidor web</strong></p>
+<p>Crea un playbook completo <code>despliegue_web.yml</code> que se aplique al grupo <code>webservers</code> (<code>web01</code>, 192.168.56.11) y que:</p>
+<ol>
+<li>Instale y configure Nginx.</li>
+<li>Genere la configuración de Nginx desde una plantilla Jinja2 con el nombre del host y el directorio web.</li>
+<li>Cree el usuario <code>webmaster</code> con permisos sobre el directorio <code>/var/www/html</code>.</li>
+<li>Copie una página <code>index.html</code> básica al directorio web con el nombre del servidor en el título.</li>
+<li>Habilite y arranque Nginx usando un handler.</li>
+<li>Programe una tarea cron para renovar certificados SSL cada 90 días (comando: <code>certbot renew</code>).</li>
+<li>Proteja las variables sensibles (si las hay) con <strong>Ansible Vault</strong>.</li>
+</ol>
+<p>Verifica que el servidor web responde correctamente desde el control node:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>curl<span class="w"> </span>http://192.168.56.11
+</code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../samba/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT4. Samba">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT4. Samba
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../scripts/powershell/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT6. PowerShell">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT6. PowerShell
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

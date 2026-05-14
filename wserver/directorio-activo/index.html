@@ -1,0 +1,1766 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/wserver/directorio-activo/">
+      
+      
+        <link rel="prev" href="../../scripts/powershell/">
+      
+      
+        <link rel="next" href="../../scripts/powershell-directorio/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT7. Directorio Activo en Windows - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-conceptos-basicos-de-active-directory" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT7. Directorio Activo en Windows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceptos-basicos-de-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Conceptos básicos de Active Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Conceptos básicos de Active Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-componentes-logicos-del-directorio-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Componentes lógicos del Directorio Activo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-componentes-fisicos-del-directorio-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Componentes físicos del Directorio Activo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-instalacion-de-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Instalación de Active Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Instalación de Active Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-instalacion-de-active-directory-mediante-el-administrador-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Instalación de Active Directory mediante el Administrador del Servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-verificacion-de-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Verificación de la instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-unir-un-cliente-windows-a-un-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Unir un cliente Windows a un dominio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-degradar-un-controlador-de-dominio-desde-la-interfaz-grafica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Degradar un controlador de dominio desde la interfaz gráfica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gestion-del-directorio-activo-a-traves-de-la-interfaz-grafica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gestión del directorio activo a través de la interfaz gráfica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gestión del directorio activo a través de la interfaz gráfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-cuentas-de-usuario-y-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Cuentas de usuario y equipo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cuentas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Cuentas de grupo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Cuentas de grupo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-tipos-de-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 Tipos de grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-ambitos-de-un-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2 Ámbitos de un grupo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-unidades-organizativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Unidades organizativas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-directivas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Directivas de grupo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Directivas de grupo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-creacion-de-una-nueva-directiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1 Creación de una nueva directiva
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-vinculacion-de-una-directiva-a-una-unidad-organizativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2 Vinculación de una directiva a una Unidad Organizativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#443-orden-de-prioridad-de-las-directivas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.3 Orden de prioridad de las directivas de grupo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Permisos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 Permisos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#451-permisos-de-recursos-compartidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.1 Permisos de recursos compartidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#452-permisos-ntfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.2 Permisos NTFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-perfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Perfiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceptos-basicos-de-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Conceptos básicos de Active Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Conceptos básicos de Active Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-componentes-logicos-del-directorio-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Componentes lógicos del Directorio Activo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-componentes-fisicos-del-directorio-activo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Componentes físicos del Directorio Activo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-instalacion-de-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Instalación de Active Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Instalación de Active Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-instalacion-de-active-directory-mediante-el-administrador-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Instalación de Active Directory mediante el Administrador del Servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-verificacion-de-la-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Verificación de la instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-unir-un-cliente-windows-a-un-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Unir un cliente Windows a un dominio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-degradar-un-controlador-de-dominio-desde-la-interfaz-grafica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Degradar un controlador de dominio desde la interfaz gráfica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gestion-del-directorio-activo-a-traves-de-la-interfaz-grafica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gestión del directorio activo a través de la interfaz gráfica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gestión del directorio activo a través de la interfaz gráfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-cuentas-de-usuario-y-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Cuentas de usuario y equipo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cuentas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Cuentas de grupo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Cuentas de grupo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-tipos-de-grupos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 Tipos de grupos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-ambitos-de-un-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2 Ámbitos de un grupo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-unidades-organizativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Unidades organizativas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-directivas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Directivas de grupo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Directivas de grupo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-creacion-de-una-nueva-directiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1 Creación de una nueva directiva
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-vinculacion-de-una-directiva-a-una-unidad-organizativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2 Vinculación de una directiva a una Unidad Organizativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#443-orden-de-prioridad-de-las-directivas-de-grupo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.3 Orden de prioridad de las directivas de grupo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-permisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Permisos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 Permisos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#451-permisos-de-recursos-compartidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.1 Permisos de recursos compartidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#452-permisos-ntfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.2 Permisos NTFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-perfiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Perfiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT7. Directorio Activo en Windows</h1>
+
+<h2 id="1-conceptos-basicos-de-active-directory">1. Conceptos básicos de Active Directory<a class="headerlink" href="#1-conceptos-basicos-de-active-directory" title="Permanent link">&para;</a></h2>
+<p>El <strong>Directorio Activo</strong> (también conocido como <strong>Active Directory</strong> en inglés) es un servicio de directorio de red desarrollado por Microsoft. Su objetivo principal radica en proporcionar un servicio centralizado para la gestión y organización de recursos de red, como usuarios, grupos, impresoras y otros dispositivos, facilitando así la administración, autenticación y autorización en entornos empresariales de manera eficiente y segura.</p>
+<p>El Directorio Activo incluye componentes <strong>lógicos y físicos</strong>.</p>
+<p><img alt="image-20240411133253794" src="../../assets/img/windows_server/image-20240411133253794.png" /></p>
+<h3 id="11-componentes-logicos-del-directorio-activo">1.1 Componentes lógicos del Directorio Activo<a class="headerlink" href="#11-componentes-logicos-del-directorio-activo" title="Permanent link">&para;</a></h3>
+<p>La <strong>estructura lógica</strong> se centra en la administración de los recursos de  la red organizativa, independientemente de la ubicación física de dichos recursos, y de la topología de las redes subyacentes.  </p>
+<p>Los componentes de la estructura lógica del Directorio Activo son:</p>
+<ul>
+<li>
+<p><strong>Objetos</strong>: Son los componentes básicos de la estructura lógica representan a  usuarios y recursos como equipos e impresoras. Las clases de objetos son esquemas o plantillas de los tipos de objetos que pueden crear en  el directorio activo.</p>
+</li>
+<li>
+<p><strong>Unidades organizativas</strong>: Es un contenedor para organizar los objetos en un dominio, a la que se pueden asignar valores de configuración de directivas de grupo.</p>
+</li>
+<li>
+<p><strong>Dominios (Domain)</strong>:  Colección de objetos: usuarios, grupos, equipos, etc. Se representa por un nombre de dominio DNS. Ejemplo: empresa.local</p>
+</li>
+<li>
+<p><strong>Árboles de dominios (Tree)</strong>: Los árboles están compuestos por uno o varios dominios. Estos dominios están dentro del mismo espacio de nombres.</p>
+</li>
+</ul>
+<p><img alt="image-20230910113519819" src="../../assets/img/windows_server/image-20230910113519819.png" /></p>
+<ul>
+<li><strong>Bosque (Forest)</strong>: Colección de árboles. Los dominios dentro de un bosque establecen relaciones de confianza, y esto les permite compartir recursos. Los dominios dentro del bosque no comparten el mismo espacio de nombres.</li>
+</ul>
+<p><img alt="image-20230910115708152" src="../../assets/img/windows_server/image-20230910115708152.png" /></p>
+<h3 id="12-componentes-fisicos-del-directorio-activo">1.2 Componentes físicos del Directorio Activo<a class="headerlink" href="#12-componentes-fisicos-del-directorio-activo" title="Permanent link">&para;</a></h3>
+<p>Los elementos de la estructura física son los siguientes:</p>
+<ul>
+<li><strong>Sitios</strong>: En una red física, un sitio representa un conjunto de equipos conectados mediante una línea de alta velocidad, como una red de área local. En AD, los sitios representan la estructura física, o topología de red. Es importante distinguir entre sitios y dominios. Lo sitios representan la estructura física de red, mientras que los dominios representan la estructura lógica de la organización.</li>
+<li><strong>Controlador de dominio (Domain Controller):</strong> Es el servidor ejecutando Windows Server  con el directorio activo instalado, que contiene la base de datos de objetos del directorio para un determinado dominio. </li>
+</ul>
+<p>Cada <strong>controlador de dominio</strong> contiene varias particiones del Directorio Activo:</p>
+<ol>
+<li><strong>Particiones del dominio:</strong> contienen las réplicas de todos los objetos en ese dominio. Esta partición se replica solamente a otros Controladores de Dominio del mismo dominio. </li>
+<li><strong>Particiones de configuración</strong>: contienen la topología del bosque. La topología que es el esquema de conexión de los sitios, registra todas las conexiones de los controladores de dominio en el mismo bosque.</li>
+<li><strong>Particiones del esquema</strong>: contiene el esquema del bosque. Cada bosque tiene un esquema para que la definición de cada clase del objeto sea única. Las particiones de configuración y esquema se replican en cada Controlador de Dominio del bosque.</li>
+<li><strong>Particiones de aplicaciones</strong>: contienen los objetos relacionados a la seguridad y se utilizan en las aplicaciones. Se replican en Controladores de Dominio especificados en el bosque. </li>
+</ol>
+<p><img alt="img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja0uuhQ2tw0530Vsgcmc5pmB7lrZ9creC3LMTbK-moDTslUv22VDfvsYZ8-U9L2GyEUfqp-Nd2mpXms9V3jRiCo2buvA0unWV9baOAfQUfS842ZOOZmH7vqMKyMAVRU40tTsaJZE9ysEDV/s1600/7.png" /></p>
+<ul>
+<li><strong>Catálogo Global (Global Catalog):</strong>   Es un servidor que almacena una copia completa de todos los objetos del directorio para su dominio host y una copia parcial de solo lectura de todos los objetos del resto de dominios del bosque. </li>
+</ul>
+<p><img alt="image-20230910115844695" src="../../assets/img/windows_server/image-20230910115844695.png" /></p>
+<h2 id="2-instalacion-de-active-directory">2. Instalación de Active Directory<a class="headerlink" href="#2-instalacion-de-active-directory" title="Permanent link">&para;</a></h2>
+<p>Existen 3 métodos de instalación:</p>
+<ul>
+<li>
+<p>Mediante PowerShell</p>
+</li>
+<li>
+<ul>
+<li>Install-WindowsFeature AD-Domain-Services</li>
+</ul>
+</li>
+<li>
+<p>Install-ADDSDomainController</p>
+</li>
+<li>
+<p>Mediante el administrador del servidor</p>
+</li>
+<li>
+<p>Mediante dcpromo /unattend:<path> </p>
+</li>
+</ul>
+<h3 id="21-instalacion-de-active-directory-mediante-el-administrador-del-servidor">2.1 Instalación de Active Directory mediante el Administrador del Servidor<a class="headerlink" href="#21-instalacion-de-active-directory-mediante-el-administrador-del-servidor" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Realizamos una instalación limpia de Windows Server 2019 con interfaz gráfica (GUI) en VirtualBox. </li>
+</ul>
+<p><img alt="image-20230910121125218" src="../../assets/img/windows_server/image-20230910121125218.png" /></p>
+<ul>
+<li>El adaptador de red en VirtualBox lo cambiamos a <strong>Red Interna.</strong></li>
+</ul>
+<p><img alt="image-20230910121215311" src="../../assets/img/windows_server/image-20230910121215311.png" /></p>
+<ul>
+<li>Instalamos VirtualBox Guest Additions </li>
+</ul>
+<p><img alt="image-20230910121259019" src="../../assets/img/windows_server/image-20230910121259019.png" /></p>
+<ul>
+<li>Renombramos el nombre del equipo a <strong>empresa-DC1</strong></li>
+</ul>
+<p><img alt="image-20231007202930334" src="../../assets/img/windows_server/image-20231007202930334.png" /></p>
+<ul>
+<li>
+<p>Abrimos el <strong>Administrador del Servidor</strong></p>
+</li>
+<li>
+<p>Seleccionamos <strong>Servidor Local</strong></p>
+<p><img alt="image-20230910121710000" src="../../assets/img/windows_server/image-20230910121710000.png" /></p>
+</li>
+<li>
+<p>Un controlador de dominio (DC) no puede tener una IP dinámica, así que la cambiamos por la siguiente estática:</p>
+</li>
+</ul>
+<p><img alt="image-20230910121803201" src="../../assets/img/windows_server/image-20230910121803201.png" /></p>
+<ul>
+<li>A continuación hacemos click en <strong>Administrar -&gt; Agregar roles y características</strong> (Parte superior derecha del Administrador del Servidor)</li>
+</ul>
+<p><img alt="image-20230910121844060" src="../../assets/img/windows_server/image-20230910121844060.png" /></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/Y5areCLP1bKHQ-iTCb89jfMnE4qnmUbBk9UplMlAMunAipnZ0f5XDhoBPhR8Rbjdxm46Po2cvAZpoxYFmfQLx9eoyPWJrMWlzi9aXRu6gPUZo-bM_NdRA9JOOy1760dU8K-wSun7_qCMY5eHXFuPe4Jk=s2048" /></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/IJLTPO1XUX0QTxemfPECs8LjP1VO5jw-TzMsxplaVnKoCbhfZDX0Rb3YJ0ZtFk4q7ZACFRY7y0hKO4r0M6rEaqMIVZUglfOn_71G1V8O4xft91O7jHxT2mpQawUAmc-BYFc-P6ZdcxD3w7NtmuHr4Ff6=s2048" /></p>
+<p><img alt="image-20230910122001429" src="../../assets/img/windows_server/image-20230910122001429.png" /></p>
+<ul>
+<li>En las siguientes pantallas hacemos clic en Siguiente y dejamos las opciones por defecto. Finalmente presionamos el botón de <strong>Instalar</strong></li>
+</ul>
+<p><img alt="img" src="https://lh6.googleusercontent.com/3lGshqsZ3s49c7fxaH2EnCNU4sLnGftoWMjcaOYS65OxnfM4ifrP4x2CS4cuWtRxeibVV8-A_sfiZI7yuPkkXuii9AhMM2G-zD7ktwjIy6pli-w7GRrT-Bw8UlTV5l50F1KCShxtp8XiSfhIXJhr6STY=s2048" /></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/eEE-jvDDhbGiABwjbpOKlVCneSW9zEl-UYF7DPOx1kPasyL_yLtav5kbt2h8PpNN9keOFFNiBEmMqR7A4xN8q6DAH6OQKVX5wyowTaZx7vSH607YIwOeKLAMQM0FHW6c0ezRiiwfSWqhk6xzs7Fn5CHk=s2048" /></p>
+<p>En esta pantalla debemos indicar el tipo de operación que queremos realizar. En este caso, como no disponemos de infraestructura previa, seleccionamos la opción de <strong>Agregar un nuevo bosque</strong>.</p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/Y-uBy35sDydQuu3RaGicxKMh7_t92npEunPy-h5FGcviszT52pfgJRakRBZBW2WIWLmWpalh7WK9yCSAGXjfcnbajOrThaMgB_lZ0FyYyR5kcPNShLvrrgeySEAOZ578ZKwptPKlMprifZAaJwzX5K0i=s2048" /></p>
+<p>En el siguiente paso (<em>Opciones del controlador de dominio</em>) indicamos el nivel de funcionalidad del controlador.</p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/B_Bew_qhCmNfTdaSTAQYMqyFXdgvjIj_zqybRNCnyu21MvPAJOu-4jVoMCuuUORDNamCo8ytBXSMZzzBDIRZeEj6h3IZhpZ6yRUP6gnrJdyCxRTWVFhhv9U4JkFX4cA7UhjnoJewLJ6zQZe3YnWBzUyn=s2048" /></p>
+<p><img alt="image-20230910135549160" src="../../assets/img/windows_server/image-20230910135549160.png" /></p>
+<p><img alt="image-20230910135626044" src="../../assets/img/windows_server/image-20230910135626044.png" /></p>
+<p><img alt="image-20230910135654515" src="../../assets/img/windows_server/image-20230910135654515.png" /></p>
+<p><img alt="image-20230910135709834" src="../../assets/img/windows_server/image-20230910135709834.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Ver script nos permite obtener un script en PowerShell para automatizar la instalación sin tener que volver a introducir de nuevo todos los datos.</p>
+</div>
+<p><img alt="image-20230910135739606" src="../../assets/img/windows_server/image-20230910135739606.png" /></p>
+<p>En la pantalla de <strong>Comprobación de requisitos</strong>, se verifica que el sistema cumple todos los requisitos para convertirse en controlador de dominio. </p>
+<p><img alt="image-20230910135904288" src="../../assets/img/windows_server/image-20230910135904288.png" /></p>
+<h3 id="22-verificacion-de-la-instalacion">2.2 Verificación de la instalación<a class="headerlink" href="#22-verificacion-de-la-instalacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Accedemos a Windows Server con la cuenta del Administrador.</li>
+</ul>
+<p><img alt="img" src="https://lh4.googleusercontent.com/_pzepUPUa9uAJgd64nLVq_Cyx4O1sOAMh-Km4dp-FKzPiFaL4SGFy1J-WwHfGYxLmNDwrphjVoO5BziKPcyut0Dtk7aIpqXw7lQcRT-epU24wjcm3e1Mbp4-uEmEhXsWUWRDOLtAJ4jxB_bE_JEVnjlx=s2048" /></p>
+<ul>
+<li>Accedemos al "Administrador del Servidor" =&gt; Herramientas =&gt; Usuarios y equipos de Active Directory.</li>
+</ul>
+<p><img alt="image-20230910140658068" src="../../assets/img/windows_server/image-20230910140658068.png" /></p>
+<ul>
+<li>Observamos como muestra el dominio EMPRESA.LOCAL que ha sido creado.</li>
+</ul>
+<p><img alt="img" src="https://lh4.googleusercontent.com/XMNFOPF6eD602OgPNsYUfxJLu99CpQQO0mcDOb4C5KWXw4UAVCVQpDnuYc57KeFziRTcAHgQgJyMm-bqZxqhnEk_FdeSgLKOeL4d0JoIevliBSqiLsLTdcmdSe_5v4AEBm8lOZ08-MQN8vYRULlqA0_F=s2048" /></p>
+<p><img alt="image-20230910140734020" src="../../assets/img/windows_server/image-20230910140734020.png" /></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/yUmDVglpYez9_IevKSIxAq85vDDmcoanZImBxXvEOVMyQlTQD1GaLa7_XylzpVjq1jiyPez5EmiloBSZG5FmBXXjScZA5GB5sk_kHDSRa8DycTl2UAFNOdcerHY0KnuqB2WyPw6VmDS-lbkUEvaCjs-8=s2048" /></p>
+<p><img alt="image-20230910140821280" src="../../assets/img/windows_server/image-20230910140821280.png" /></p>
+<h3 id="23-unir-un-cliente-windows-a-un-dominio">2.3 Unir un cliente Windows a un dominio<a class="headerlink" href="#23-unir-un-cliente-windows-a-un-dominio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Importamos en VirtualBox la máquina virtual de Windows 10 o Windows 11. No olvides marcar la opción de resetear MAC Address de las tarjetas de red.</li>
+<li>El adaptador de red en VirtualBox lo cambiamos a <strong>Red Interna</strong>.</li>
+<li>Arrancamos la máquina y accedemos a la configuración de red y cambiamos la dirección IP y la dirección de servidor DNS:</li>
+</ul>
+<p><img alt="img" src="https://lh6.googleusercontent.com/DClXtRLy_ykYb6i2GpuQoZYWRApAlmgr7Tt_96fZ21jIUIjK6au9lM6iRrn2BlNQ1WEwzapF81kw3plkN1LDWtBOc3yIy7yIB8H8aXuFfeCslvA031tfL-A6X6vyJ1PWRFoebxlyWjW1SKiDWoxgvf4D=s2048" /></p>
+<ul>
+<li>Accedemos a las propiedades del equipo para unir al dominio EMPRESA.LOCAL</li>
+</ul>
+<p><img alt="img" src="https://lh4.googleusercontent.com/epg1ZGhuuG_AX-rBv2srTRyGk_8JXYEBGx2ZkHFCPCMaZ0ue_ixhmnbLIHbF_WzFkqeLV8PogvJouGoBY863NGRwYF-Wb3LHU4r77sRIlyFVMFqpKBfOy_1rWtDXSZpwZpCbALDi8AVpeNKuKw_MpZ7O=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/EIH2MrLwMu99fpTre9bzCoTaLcGZDg1RhbGOk0tGhqwwetRDqk7T4FAkBYvc4lPqf2P9HCKApAzWE5a_kvTSBZKsnEw8kjanKexMxsUcsbVHLpKKXTYihPyukGbf8wpKKHQ_2te_q3vaZ346bhXK8odb=s2048" /><img alt="img" src="https://lh5.googleusercontent.com/KKpciExE__zrDR_dERIZfS0Po23AuAysGFu49BovLcgfSJChLK9ZGNjYa5UelqzvirfTIsbQhVNd-gycm7H2uhPV4o1LeQdV53yAIdzA-JAV51eWf18rSRgQs_KPk2w8aLcV4sPM7Dl956pXf3jDrUhl=s2048" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>En caso de error:</p>
+<ul>
+<li>Verificar la dirección IP del cliente y del servidor que se encuentren en la misma red</li>
+<li>Realizar ping del cliente a la dirección IP del servidor: <strong>ping 172.16.0.10</strong></li>
+<li>Verificar el servidor DNS</li>
+<li>Realizar <strong>ping empresa.local</strong></li>
+</ul>
+</div>
+<ul>
+<li>En caso de estar todo bien configurado nos pedirá las credenciales de Administrador del servidor para poder unir el cliente al dominio.</li>
+</ul>
+<p><img alt="img" src="https://lh6.googleusercontent.com/QD8nqguTaESykSu8ubgkESKdAYldxqxCKxWKtxlMAtYa20CgxyoFKy1eoX6S3VNDu0vDU0zRgULAL4LjO5D4We9wt69RPKnUHWB-Mo5PDY3-jrldYDGWAOYf63ThYxkX7jRrBDWWFb55tbcjX-qJg_k4=s2048" /><img alt="img" src="https://lh3.googleusercontent.com/qGEF309tmQmpKGThQWXFpOF2QFETP4OvPj6NnJRwq39vrul9yAEq4vjMq7z39cAN6Lne7677jrOfhE6Rm9aEoyqUoJlBoqy5wbZzZzSplsDZ6_gVORu2gCzHM0ZuoEgGVT1MxlHe1qhYW9ZZv-D_ayrg=s2048" /></p>
+<h2 id="3-degradar-un-controlador-de-dominio-desde-la-interfaz-grafica">3. Degradar un controlador de dominio desde la interfaz gráfica<a class="headerlink" href="#3-degradar-un-controlador-de-dominio-desde-la-interfaz-grafica" title="Permanent link">&para;</a></h2>
+<p>La degradación del controlador de dominio se divide en dos pasos:</p>
+<ul>
+<li>En primer lugar procederemos a la degradación del controlador de dominio. Al final de este paso, el servidor dejará de actuar como controlador de dominio.</li>
+<li>A continuación, desinstalaremos los roles <em>Servicios de dominio de Active Directory y DNS</em>.</li>
+</ul>
+<p>En el <strong>Administrador del servidor</strong>, desplegaremos el menú <strong>Administrar</strong> y elegiremos la opción <strong>Quitar roles y funciones</strong>.</p>
+<p><img alt="image-20231007195424356" src="../../assets/img/windows_server/image-20231007195424356.png" /></p>
+<p>A continuación elegimos la opción "<strong>Seleccionar un servidor del grupo de servidores</strong>".</p>
+<p><img alt="image-20231007203317189" src="../../assets/img/windows_server/image-20231007203317189.png" /></p>
+<p>En la página Quitar roles de servidor, buscamos en la lista la entrada Servicios de dominio de Active Directory y hacemos clic para desmarcarla.</p>
+<p><img alt="image-20231007195714453" src="../../assets/img/windows_server/image-20231007195714453.png" /></p>
+<p>Después nos aparece un diálogo que nos indica que para eliminar los Servicios de dominio, también tendremos que eliminar las características.</p>
+<p><img alt="image-20231007195908139" src="../../assets/img/windows_server/image-20231007195908139.png" /></p>
+<p>Se realiza una validación para ver si se cumplen todos los requerimientos que permitan desinstalar el rol y muestra un error. </p>
+<p><img alt="image-20231007203356399" src="../../assets/img/windows_server/image-20231007203356399.png" /></p>
+<p>Hacemos clic en <strong>disminuir el nivel del controlador de dominio</strong> para poder proceder con la desinstalación.</p>
+<p>Hacemos clic sobre <strong>Forzar la eliminación de este controlador de dominio.</strong> </p>
+<p><img alt="image-20231007203507554" src="../../assets/img/windows_server/image-20231007203507554.png" /></p>
+<p>Para continuar, debemos marcar la opción <em>Continuar con la eliminación</em>.</p>
+<p><img alt="image-20231007203609424" src="../../assets/img/windows_server/image-20231007203609424.png" /></p>
+<p>Escribimos la contraseña para la cuenta de Administrador.</p>
+<p><img alt="image-20231007203713083" src="../../assets/img/windows_server/image-20231007203713083.png" /></p>
+<p>Hacemos clic en <strong>Disminuir nivel</strong></p>
+<p><img alt="image-20231007203809019" src="../../assets/img/windows_server/image-20231007203809019.png" /></p>
+<p>Después, el sistema comenzará a reiniciarse.</p>
+<p><img alt="image-20231007204612720" src="../../assets/img/windows_server/image-20231007204612720.png" /></p>
+<p>Una vez terminado el proceso de Disminur nivel, debemos desinstalar los roles <em>Servicios de dominio de Active Directory</em> y <em>DNS</em>. </p>
+<p>En el <em>Administrador del servidor</em>, desplegaremos el menú <em>Administrar</em>. Y elegimos la opción Quitar roles y funciones.</p>
+<p><img alt="image-20231007204912200" src="../../assets/img/windows_server/image-20231007204912200.png" /></p>
+<p>Seleccionar un servidor del grupo de servidores</p>
+<p><img alt="image-20231007204947091" src="../../assets/img/windows_server/image-20231007204947091.png" /></p>
+<p>Y desmarcamos la opción de "Servicios de dominio de Active Directory"</p>
+<h2 id="4-gestion-del-directorio-activo-a-traves-de-la-interfaz-grafica">4. Gestión del directorio activo a través de la interfaz gráfica<a class="headerlink" href="#4-gestion-del-directorio-activo-a-traves-de-la-interfaz-grafica" title="Permanent link">&para;</a></h2>
+<h3 id="41-cuentas-de-usuario-y-equipo">4.1 Cuentas de usuario y equipo<a class="headerlink" href="#41-cuentas-de-usuario-y-equipo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Una <strong>cuenta de usuario</strong> es un objeto que posibilita el acceso a los recursos del dominio. No siempre representan a personas concretas, sino que también pueden ser utilizadas como mecanismos de acceso para determinados servicios o aplicaciones de la máquina local o, incluso, de un equipo remoto. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Cada cuenta de usuario dispone de un identificador de seguridad (<strong>SID</strong><strong>,</strong> <strong>Security IDentifier</strong>) que es único en el dominio.</p>
+</div>
+<ul>
+<li>Una <strong>cuenta de equipo</strong> sirve para autenticar a los diferentes equipos que se conectan al dominio, permitiendo o denegando su acceso a los diferentes recursos del dominio. Aunque una cuenta de equipo se puede crear de forma manual (como veremos más adelante), también se puede crear en el momento en el que el equipo se une al dominio.</li>
+</ul>
+<p>Para crear una cuenta de usuario acceder al menú <strong>Herramientas</strong> del <strong>Administrador del Servidor</strong></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/2AO1H1nDtDIACHLJw9H4AMT3k4L5oMe_lI6gF1mbSAaa_IlLBBY1u6bmfrw7NrwGYZFxq2Gj8SR27OfQnZcKtAGWFbgUj4AI3WUTH64dADTEW6jSJtyiIxkaEA5acyzk4fdodRUgyJvjoaS2a5xSInllVQ=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/0KARPXuboJSRtPBVECjA0A2kO7jaNfFy1PHEjNF3pGie6qaSakIcLjjT4kZdfPFDSNH2m3Zd3yChjhyvdC0tfTthk10FppSt-SCF60SZSTyS7pHF_X3-tsRrOzTjVPzNlNiTw4COWITLiJiCHgH6b2Vf4g=s2048" /></p>
+<ul>
+<li>Creación de un nuevo Usuario</li>
+</ul>
+<p><img alt="img" src="https://lh6.googleusercontent.com/7erZe9BrNMNVOq_bZ3lCuXWwhn3jQmnkSU-mVY432IlFKK5Q87eds14wTbuBZ6zhGMiKKahwTzIIt3WhSumJ5hcl-QcnmkLo_Aa_stZfdKsEdLqACvsRbL34bABl8gn6cKn_wzBfYHo_Xbz0BeYxKNjikw=s2048" /></p>
+<p>Una vez creado un usuario, podemos cambiar sus propiedades.</p>
+<p><img alt="image-20230917113354040" src="../../assets/img/windows_server/image-20230917113354040.png" /></p>
+<p><img alt="image-20230917113410413" src="../../assets/img/windows_server/image-20230917113410413.png" /></p>
+<p><strong>Pestaña: Cuenta</strong></p>
+<p><strong>Establecer horas de inicio de sesión</strong></p>
+<p><img alt="image-20230917113501840" src="../../assets/img/windows_server/image-20230917113501840.png" /></p>
+<p><strong>Pestaña: Cuenta</strong></p>
+<p><strong>Limitar los equipos desde los que un usuario puede acceder</strong></p>
+<p><img alt="image-20230917113539602" src="../../assets/img/windows_server/image-20230917113539602.png" /></p>
+<p>El <strong>perfil de un usuario</strong> consiste en la personalización del entorno. Por defecto, se crea una carpeta en el equipo en el que se inicia sesión, pero esto puede modificarse.</p>
+<ul>
+<li><strong>Perfil móvil:</strong> El usuario dispondrá de su personalización en todos los equipos del bosque en los que se autentifique.</li>
+<li><strong>Perfil obligatorio</strong>: El usuario no podrá personalizar su entorno. Podrá hacer modificaciones pero al iniciar sesión de nuevo se habrán perdido los cambios. </li>
+</ul>
+<p><strong>Pestaña: Perfil</strong> </p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/CZSjYC_lkk2J9FXSihvmVcm9WSQcWRH66MjO7Vr0jURtoO7BQCXtcLEqQHzmQncbO7xpjcdRIM8j_mgs1PZhgOX6T4fySZgX8CJflClGEkfJPz9M17FLhZJpxThPfrSF8MrugMO4ww6XQEgc7KkUhym8fw=s2048" /></p>
+<p><strong>Ruta de acceso al perfil</strong>: Indica donde se guardará el perfil. Si ponemos una ruta de red tendremos un perfil móvil.</p>
+<p><strong>Script de inicio de sesión:</strong> Se puede asociar un script para que se ejecute cada vez que el usuario inicie sesión.</p>
+<p><strong>Pestaña: Miembro de</strong></p>
+<p><strong>Agregar / quitar grupos a los que pertenece un usuario</strong></p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/VfkW3SdhutiPhQt8GvRAAwdPUpoLkk0ewPc4Qto_HAB1isPS7JhRUa1CZtpXRm5F5ruFhasZmiGfs0ycfkjLUvSE76wzURjE6Zmvb8XbKWpAZgXzWymtTo17-uSvr8Wmjxd9xwlABlBxenMeReNv_7y7Ag=s2048" /></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/fLJFYWdoDXQISQQ18L9EBRi_N_IZYWIYbhC1EmWXDZIh14Yv-QQHU-boxqcmbqT9rbMmgUV2tPjXDQOJiHYX2mg-vNqhL1KE7P1eyE__fKspYGtlZUqtYYpTti4wcbA3wS23BBWAork3KsKRbLe9oY9pbA=s2048" /></p>
+<ul>
+<li>Creación de un nuevo equipo</li>
+</ul>
+<p><img alt="img" src="https://lh3.googleusercontent.com/pDqRQFN0xQg6A30QEiSAPp_n5klyxB0W5ab45Rnu_zIfbGhqBixYM-hel02yqBuv2jyQtuzEP_Dkv3PbX7C50sIin0t4Ndq1QCezmMwLGJHNVyi8kF0pylgjhEL3pvkP6QuuAZHrnJUyEOir29vAqhCivw=s2048" /></p>
+<h3 id="42-cuentas-de-grupo">4.2 Cuentas de grupo<a class="headerlink" href="#42-cuentas-de-grupo" title="Permanent link">&para;</a></h3>
+<p>Una cuenta de grupo es una colección de cuentas de usuario que se puede utilizar para asignar un conjunto de permisos y derechos a varios usuarios al mismo tiempo. Un grupo también puede contener contactos, equipos y otros grupos.</p>
+<p>Para crear una cuenta de grupo acceder al menú <strong>Herramientas</strong> del <strong>Administrador del Servidor =&gt; Usuarios y equipos de AD</strong></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/EeaYgp_eN8g7ARDIVlQubgJ0-sOLztriJmSgl8XHv-t3GQwn355FYZM2Je7xezky6fQcvBsOMFo4IywHlcDhCHFLjcrdHrzVEEEzrk8_v2iG4ZZGFVzwfmWH8SaQtXmeC1dwHgl5Sb7oCUHhDwmSzmAOYQ=s2048" /></p>
+<h4 id="421-tipos-de-grupos">4.2.1 Tipos de grupos<a class="headerlink" href="#421-tipos-de-grupos" title="Permanent link">&para;</a></h4>
+<p>Existen dos tipos de grupos:</p>
+<ul>
+<li>
+<p><strong>Distribución</strong>: Para crear listas de distribución de correo electrónico.</p>
+</li>
+<li>
+<p><strong>Seguridad:</strong> Para asignar permisos a los recursos compartidos</p>
+</li>
+</ul>
+<h4 id="422-ambitos-de-un-grupo">4.2.2 Ámbitos de un grupo<a class="headerlink" href="#422-ambitos-de-un-grupo" title="Permanent link">&para;</a></h4>
+<p>El ámbito de un grupo establece su alcance, es decir, en qué partes de la red puede utilizarse, y el tipo de cuentas que pueden formar parte de él.</p>
+<table>
+<thead>
+<tr>
+<th>Ámbito de grupo</th>
+<th>El grupo puede incluir como miembros ...</th>
+<th>Al grupo se le pueden asignar permisos en ...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Universal</strong></td>
+<td>- Cuentas de cualquier dominio del bosque<br />- Grupos globales de cualquier dominio del bosque <br />- Grupos universales de cualquier dominio del bosque</td>
+<td>Cualquier dominio del bosque</td>
+</tr>
+<tr>
+<td><strong>Global</strong></td>
+<td>- Cuentas del mismo dominio del grupo<br />- Grupos globales del mismo dominio del grupo</td>
+<td>Cualquier dominio del bosque</td>
+</tr>
+<tr>
+<td><strong>Dominio local</strong></td>
+<td>- Cuentas de cualquier dominio <br />- Grupos globales de cualquier dominio<br />- Grupos universales de cualquier dominio<br />- Grupos locales de su dominio</td>
+<td>Su dominio</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Los grupos universales se replican en los controladores de dominio que albergan el <strong>catálogo global</strong>. Cada vez que se deben comprobar los permisos se debe consultar el catálogo global.</p>
+</div>
+<p><img alt="image-20231003113646220" src="../../assets/img/windows_server/image-20231003113646220.png" /></p>
+<h3 id="43-unidades-organizativas">4.3 Unidades organizativas<a class="headerlink" href="#43-unidades-organizativas" title="Permanent link">&para;</a></h3>
+<p>Una <strong>Unidad Organizativa</strong> es un contenedor de objetos que permite organizarlos en subconjuntos, dentro del dominio, siguiendo una jerarquía. De este modo, podremos establecer una estructura lógica que represente de forma adecuada nuestra organización y simplifique la administración. Me permiten delegar permisos y asignar políticas de seguridad para uno o varios objetos.</p>
+<p>Las unidades organizativas que vienen creadas por defecto son:</p>
+<ul>
+<li><strong>Builtin</strong>: Grupos creados por defecto del sistema.</li>
+<li><strong>Computers</strong>: Cuentas de equipo incorporadas al dominio.</li>
+<li><strong>DomainControllers</strong>: Equipos que son controladores. </li>
+<li><strong>Users:</strong> Usuarios del dominio que se crean</li>
+<li><strong>ForeignSecurityPrincipals</strong>: Contenedor para entidades principales de seguridad de dominios externos de confianza. No se debe modificar manualmente.</li>
+</ul>
+<h3 id="44-directivas-de-grupo">4.4 Directivas de grupo<a class="headerlink" href="#44-directivas-de-grupo" title="Permanent link">&para;</a></h3>
+<p>Las directivas de grupo son un <strong>conjunto de reglas</strong> que controlan el entorno de trabajo de <strong>cuentas de usuario</strong> y <strong>cuentas de equipo</strong>. Las directivas de grupo proporcionan la gestión centralizada y configuración de sistemas operativos, aplicaciones y configuración de los usuarios en un entorno de<a href="https://es.wikipedia.org/wiki/Active_Directory"> </a>Active Directory. </p>
+<p>Para gestiona las directivas de grupo:</p>
+<p><strong>Herramientas-&gt;Administración de directivas de grupo</strong></p>
+<p>Las configuraciones de las directivas de grupo se encuentran en los objetos de directiva de grupo (<strong>GPO</strong>), que se vinculan con los siguientes contenedores de servicio de directorio de Active Directory: <strong>sitios, dominios o unidades organizativas</strong>. </p>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p><strong>No pueden aplicarse a grupos.</strong> Si se desea aplicar una GPO a un grupo debemos crear una UO y dentro de esta un nuevo grupo e incorporar a este los grupos y/o usuarios a los que queremos aplicar dicha política.</p>
+</div>
+<p><img alt="img" src="https://lh5.googleusercontent.com/uqSkI1Ldm7Oq5BMkxluRynNo6-eXJ9ye4R20EwXi5eG6G3Ojruo71_FoYG_aWihZM774f-_HbqbNBP2T7qBIHE0Yyh1l_D-GJ9o5mukGS59Sp4S-2oxPKorGzXljT1UJZG6hDHT40Pc051Jss7CChdqK6Q=s2048" /></p>
+<p><strong>Default domain policy:</strong> Es la política que se aplica a todo el dominio empresa.local, es decir, a todos sus usuarios y equipos. </p>
+<h4 id="441-creacion-de-una-nueva-directiva">4.4.1 Creación de una nueva directiva<a class="headerlink" href="#441-creacion-de-una-nueva-directiva" title="Permanent link">&para;</a></h4>
+<p><img alt="img" src="https://lh6.googleusercontent.com/YtBkDGrDpDXkj7pbLxr5YB_Vo3X5138JsG6ZBey6_BsNLfl_NhICI0flLYcf_Etuh-ubxqaO5rUwL5wzpdXaV86VKz9bonIjM_wPDjGIXzjnfKoGFJyTTgIb8hrXtSDMIhyXi10JBSeSqIu5TWj2kJlHXg=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/6mft6rJXdqQE_pHz63wGu0t5BPIbexEWfIIzUZLk8JrJk1GXADSOmn5ymbiNSUmrb4Fl7PKtDLB_IiVOdQDquEFUxOhXFGEmpCtRDvMNsXsHfN1hlj8FLF8S2Cx18uqXhXFBQSWmvSRhvC-2QFPOtmz4lg=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/6lxprGWu4okDhCf5za2FxZPxkuUn-O_SCCbE1toHSr9lD0W9T3fU-ZHzeKRdwUBIVCy6wtTP0-I7Nlbkh5vMGqLiwphn--vq4FW2yMQ2oQF4U71jkl-DkiscqEeBs09wkKs2VSDH1yR55HBpmh3OSGUtCw=s2048" /></p>
+<h4 id="442-vinculacion-de-una-directiva-a-una-unidad-organizativa">4.4.2 Vinculación de una directiva a una Unidad Organizativa<a class="headerlink" href="#442-vinculacion-de-una-directiva-a-una-unidad-organizativa" title="Permanent link">&para;</a></h4>
+<p>Para ello, desde el Administrador de directivas de grupo (<strong>gpmc.msc</strong>), pulsaremos con el botón derecho sobre la unidad organizativa a la que queramos asignarle la directiva creada.</p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/6Y75mWXtl9APPigTMyhXZ5FkqjL_RvNes0TQfW6ZPXzaX1YbCsiMwYxzkSBQb-UiX3IqB8dAWYCdjXpRR6IovgKvOQRxYr8ax6fx5g2Y9bltI_vjQdOJliOpk23ZI06r6I581N0dHGEeg33-4R95Eitzig=s2048" /></p>
+<h4 id="443-orden-de-prioridad-de-las-directivas-de-grupo">4.4.3 Orden de prioridad de las directivas de grupo<a class="headerlink" href="#443-orden-de-prioridad-de-las-directivas-de-grupo" title="Permanent link">&para;</a></h4>
+<p><img alt="img" src="https://lh4.googleusercontent.com/ab2V7DtF4PJFTgYGN5_NTnjXlPlELrrYCXK5Q9NPlu745l8d7keLmQJpNPBKK7EFF3ca54uHyYj4nvxo8leuKFSvE8KMRCEa1qlxuzshifUF6EHtlJXnh-6ul_lJCPDU0eDbW2Z5tM488t96cjFgBeGQfg=s2048" /></p>
+<p>Las GPO’s de una OU prevalecen sobre las del dominio, que a su vez prevalecen sobre las de sitio, las cuales a su vez prevalecen sobre las del equipo local. </p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/vikG8tpbK-RuFvBG8ValDRiNvURmUiKtmxPtZyuZNrq2_YONbXNsk8eXauDv1O8ob2dE2O_xaV9j_y6L1PdSY3oqUiEzslE3v2hMWAHR3qiLveIH1KzI_SW4OcLb1wkO0dka_iC0sZY-OGR2Al-DyJ3QCQ=s2048" /></p>
+<h3 id="45-permisos">4.5 Permisos<a class="headerlink" href="#45-permisos" title="Permanent link">&para;</a></h3>
+<p>Los sistemas operativos de la familia Windows poseen dos niveles de permisos para los recursos compartidos:</p>
+<ul>
+<li><strong>Permisos para carpetas compartidas</strong>: se aplican cada vez que un usuario quiere acceder a un archivo o carpeta de la red.</li>
+<li>
+<p><strong>Permisos para archivos y carpetas (NTFS)</strong>: se aplican sobre dispositivos con formato NTFS para definir en mayor detalle las acciones permitidas.</p>
+</li>
+<li>
+<p>Si accedemos en modo <strong>local</strong> a los archivos o carpetas sólo intervienen los <strong>permisos NTFS</strong></p>
+</li>
+<li>
+<p>Si se accede a través de la red se aplican los <strong>dos niveles de permisos</strong>: </p>
+</li>
+<li>
+<ul>
+<li>1º Permisos de carpetas compartidas</li>
+</ul>
+</li>
+<li>
+<p>2º Permisos NTFS</p>
+</li>
+<li>
+<p><img alt="img" src="https://lh3.googleusercontent.com/L4rjQfrGZi7nrRN4T51M39YB0xZYvjciSiZY2J1i3tJhLwNbDihCSPlNRDeJ6_6J9haU90KVEH8T0bTsoaDMOR8L-9VoGwzEfMOnANVSIPuETBSX_bVUaeXGam4_RjKREgELFzRBz_oJz4-KlfkpedQBAw=s2048" /></p>
+</li>
+</ul>
+<h4 id="451-permisos-de-recursos-compartidos">4.5.1 Permisos de recursos compartidos<a class="headerlink" href="#451-permisos-de-recursos-compartidos" title="Permanent link">&para;</a></h4>
+<p><img alt="img" src="https://lh3.googleusercontent.com/aFVKj4-bLFtYL8IjjcjDTfPBr9mtTBl8Bg17vqe51dm5W3K0mjt-rIAaxgiOBEJr7oEqx_yaghgrbV20dAYTaaqYotPzZmfRUDmbr020hAbGl4vXLBJYzdQBm6IiqkfyI2A4IStjRF_vNhL_U-D7wOc0xA=s2048" /></p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/D6GQm-qnrhjZIGfYQqoh1bmPgx-a97DWQrD5LsAqDQRedCR81P6RQ3b3uRbCuKkxQ_Qj6Aug-ehul86VSbuNtJbmp7RytgBWVMus8dH5j00xQrbryxRZ1jE8DHNh60826vbKHBIaz685bnYG1GuvOUHmWQ=s2048" /></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/kc7vZEe25XJhoED6JD9sgr9RwyKZo5-lciPeybtgtP6vXbGih6TcPt2ZG_YGEnJuoTRz90jXzLTZ1sDPTGb0l0Pm5u5ziGed553S4VLE1oZe8BJiDxS2iDuQC-PTwzcBnTQ42o4EgFlUhge0M6VZwGvmsQ=s2048" /></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/WmbcvaX9faQDVYiXM3f4JWKdrh2kjTUbDIAgYCmkn90YK6LZ9nUcRthKry6-B0bVR_z98mo1GT3gv1IzDrEGgkHncktzuTybjyw8HjvxqrQMockS2KW_HDJSyCfiObsmdzN9v0p6lhYE1OVQP2So6Dyg4g=s2048" /></p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/YWA8YesWN5te_gesyJ7dnkY-4TH0AyZkOs2Q9TQJAeUpsjdhVxJxxkR9IKlHdh0oiKUHhe4Qzh6Vc77I-9v-i8vGFXxdncO1hCERMpdcPzRa6c4nvqCcbIVseFulmdB5Uuj2bFJPHqcInljQ_lKiYbempw=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/VeX1-fc9L8kmutmSs2hu_i0Zi8ZWiI73cootKGqvnnHJb9DQYh1O3hvGdm8pr2nXKp2YEM87rBcCGDwQ_gEFMhyHvmXHlrpssgyhzuPvf1A5zExM7jctLszZD7XuBQi8zZNr33B6XlWdl6OhQhp6Jt-QFg=s2048" /></p>
+<p><strong>Tipos de permisos:</strong></p>
+<p><strong>Control Total:</strong> Todas las operaciones y cambio de permisos.</p>
+<p><strong>Cambiar:</strong> permite crear, modificar y borrar carpetas y archivos,.</p>
+<p><strong>Lectura:</strong> sólo permite la lectura y ejecución de archivos.</p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/ozZtZs9FucA1-LKHJzpYumcV9hV5uONaV_L6V2VeWsbhSSPRbzkYKljhrAcmJu7GOjy3N9jy3Y3IfgD0Vs_gcwS6-cZ2Led__yn8cYcLOZ3q54FRutMtzdXc0Ycq9_X6i0_is3ZiTvGPsS2TYprxPOQiaw=s2048" /></p>
+<p><strong>Establecer permisos de recursos compartidos</strong></p>
+<p><strong>1º Compartir con usuarios específicos</strong> </p>
+<p>Seleccionar el recurso y hacer clic con el botón secundario <strong>‘Compartir con ….’ y usuarios específicos.</strong></p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/yHEOZvKq0OHmYPd6mqFD9IHs2omCoUtnwBbcQlPPdtTd_sbiFN7CQ1vtLAuSoR5-DaA8i5G8jSiZQI3xbrfKkkwf1p4fHjo2uFTE9lnTJ9hjzFjPzd_XwNcv-u4mcdE8rBR_X-eJoqZJxnAaQz9JkOhFKg=s2048" /></p>
+<p><strong>2º Compartir mediante el uso de Compartido avanzado</strong></p>
+<p><img alt="image-20231003120446770" src="../../assets/img/windows_server/image-20231003120446770.png" /></p>
+<h4 id="452-permisos-ntfs">4.5.2 Permisos NTFS<a class="headerlink" href="#452-permisos-ntfs" title="Permanent link">&para;</a></h4>
+<p><strong>Los Permisos NTFS</strong> permiten controlar qué usuarios y grupos puede tener acceso a archivos y carpetas en un volumen NTFS. </p>
+<p>Podemos asignar los siguientes permisos:</p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/gnErA5oK7nF06-K_Ot_OHrVXd9LH06GOj3Pmz4uUsBXyfEhmKzzjxfQP3Eu-rxF1y03wtInRKo1nuckYoleZSkFBln7z7q66Hdx9mj5YOoYxbxdEVb3CfTEuCDMiRiyFjvtY0yaoWO4bGIR_GYIjEAX2Pw=s2048" /></p>
+<ul>
+<li><strong>Control total.</strong> Otorga todos los permisos posibles, incluido el control total sobre los permisos NTFS y los permisos de compartir.</li>
+<li><strong>Modificar.</strong> Permite leer, escribir, modificar y eliminar archivos y subcarpetas, así como ejecutar archivos.</li>
+<li><strong>Lectura y ejecución.</strong> Permite ver el contenido de un archivo o carpeta y ejecutar archivos ejecutables, pero no permite modificarlos.</li>
+<li><strong>Mostrar el contenido de la carpeta.</strong> Permite ver el contenido de una carpeta, pero no permite acceder a los archivos dentro de ella ni ejecutarlos.</li>
+<li><strong>Lectura.</strong> Permite únicamente la lectura de archivos y carpetas, sin posibilidad de modificar o eliminar.</li>
+<li><strong>Escritura.</strong> Permite crear nuevos archivos y carpetas, así como modificar o eliminar los existentes, pero no permite ver el contenido de la carpeta. </li>
+</ul>
+<p><img alt="img" src="https://lh5.googleusercontent.com/FgYdt6u_xg4-yvztI5-9wsvSh4f0b0nTHT0kNO5Hyq_AWme1GRcl35MKzkmfb5HrOatTDxJu43CUSmRo111T93QCL1_pwSBKsF5A5HCPwi4HNGVXgq09hpBd8QE44S6-40FMQv8IET-2-TF6Ec_kKuvY3A=s2048" /></p>
+<p><strong>Permisos NTFS avanzados</strong></p>
+<p><img alt="image-20231003175922893" src="../../assets/img/windows_server/image-20231003175922893.png" /></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/73HZcMWYHi1EXY8lN6Gqgi-uqHx6Khz3MdTB3lyR2L1zEpj4cQrH60HOG2XP6uemMbcXnYQPc3dnwJGTum8MinVNNSa1gwJUtT0j6uk8-UghLmh_5phwFlMeYKy2MIN2lLfenyspRe_9F-UBn_GkvJy8rQ=s2048" /></p>
+<p><img alt="img" src="https://lh4.googleusercontent.com/W7KeYEvB286Ieo9H95XflYrWAsW57LNbflTKMw_Zk17XhdSajblambkEpTapUt3a8BCag2JGDxYDpvlbjm4lvxDyE_UQ70JUMtShes2R1SIR60yH0rKqLVY5IMpdmaF8wDI5NxJxOIcGIKkw6j5bbiDP1Q=s2048" /></p>
+<p><strong>Herencia de permisos</strong></p>
+<p>Al crear un archivo o una carpeta en un volumen NTFS, ese objeto hereda automáticamente los permisos de su carpeta padre, y a la inversa. </p>
+<p>En ocasiones, puede interesarnos eliminar esa herencia de permisos. Podemos eliminarla de tres formas:</p>
+<ul>
+<li>Eliminar la herencia a nivel de la carpeta de nivel superior. Los objetos contenidos en ella dejan de heredar los permisos.</li>
+<li>Eliminar la herencia a nivel de subcarpeta o archivo contenido dentro del recurso principal.</li>
+<li>Permitir o denegar explícitamente un permiso de manera diferente a como está definido en el recurso contenedor. </li>
+</ul>
+<p>Para <em>eliminar la herencia</em> seguimos los siguientes pasos:</p>
+<p>1 - Se selecciona el recurso con el botón derecho y se pulsa <strong>Propiedades</strong></p>
+<p>2 - A través de la pestaña <strong>Seguridad</strong> accedemos a <strong>Opciones avanzadas</strong></p>
+<p>3 - En el cuadro que aparece, en la pestaña <strong>Permisos</strong>, se pulsa el botón <strong>Deshabilitar herencia</strong>. </p>
+<p>4 - Al pulsar en <strong>Deshabilitar herencia</strong> hay dos opciones:</p>
+<ul>
+<li>Convertir los permisos heredados en permisos explícitos: mantiene los permisos de todos los archivos y subcarpetas, pero no están vinculados a los de nivel superior.</li>
+<li>Quitar todos los permisos: elimina todos los permisos heredados.</li>
+</ul>
+<p>Como norma general se marcará la primera opción, convertir los permisos en permisos explícitos.</p>
+<h3 id="46-perfiles">4.6 Perfiles<a class="headerlink" href="#46-perfiles" title="Permanent link">&para;</a></h3>
+<p>Podemos definir un perfil como aquellos aspectos de configuración del equipo y del entorno de trabajo propios del usuario y que además son exportables a otras máquinas de manera transparente al mismo. mediante los perfiles conseguimos que el usuario independientemente del equipo en el que inicie la sesión disponga de un entorno de trabajo similar.</p>
+<p>Existen tres tipos de perfiles:</p>
+<ul>
+<li><strong>Perfiles locales</strong> : se almacenan en el equipo</li>
+<li><strong>Perfiles móviles</strong>: se almacenan en el servidor</li>
+<li><strong>Perfiles obligatorios</strong>: son perfiles móviles de solo lectura. Sólo el administrador puede modificarlos.</li>
+</ul>
+<p>Hay que tener en cuenta de que cuando un usuario con perfil móvil inicia la sesión, la información del servidor se copia al cliente. Cuando cierra la sesión se realiza la operación inversa. Un alto número de usuarios con perfil móvil puede <strong>sobrecargar la red</strong> demasiado. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../scripts/powershell/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT6. PowerShell">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT6. PowerShell
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../scripts/powershell-directorio/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT7. PowerShell - Directorio Activo">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT7. PowerShell - Directorio Activo
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

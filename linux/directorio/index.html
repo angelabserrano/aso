@@ -1,0 +1,2049 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/directorio/">
+      
+      
+        <link rel="prev" href="../acceso-remoto/">
+      
+      
+        <link rel="next" href="../samba/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT4. Servicio de Directorio en Linux - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-introduccion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT4. Servicio de Directorio en Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-servicios-de-directorio-destacados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Servicios de directorio destacados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Servicios de directorio destacados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows: Active Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-openldap-y-samba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux: OpenLDAP y Samba
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-estructura-y-funcionamiento-del-protocolo-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Estructura y Funcionamiento del Protocolo LDAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tipos-de-directorios-ldap-dit-dn-y-mas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Tipos de Directorios LDAP: DIT, DN, y más
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-formato-de-intercambio-de-datos-ldif-ldap-data-interchange-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica-de-una-entrada-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis básica de una entrada LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-habituales-en-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones habituales en LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detalles-importantes-del-formato-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detalles importantes del formato LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-openldap-para-trabajar-con-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de OpenLDAP para trabajar con LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-objectclass-en-ldap-tipos-y-clases-mas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 ObjectClass en LDAP: tipos y clases más utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 ObjectClass en LDAP: tipos y clases más utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-los-objectclass-mas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de los objectClass más comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-elegir-correctamente-los-objectclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo elegir correctamente los objectClass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas importantes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ejemplos-practicos-de-ldap-en-formato-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Ejemplos prácticos de LDAP en formato LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-la-estructura-base-del-directorio-dit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear la estructura base del directorio (DIT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-un-usuario-completo-inetorgperson-posixaccount-shadowaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear un usuario completo (inetOrgPerson + posixAccount + shadowAccount)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-un-grupo-unix-posixgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear un grupo UNIX (posixGroup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crear-un-grupo-general-ldap-groupofnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crear un grupo general LDAP (groupOfNames)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modificar-el-correo-de-un-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modificar el correo de un usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anadir-un-atributo-nuevo-a-un-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Añadir un atributo nuevo a un usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-eliminar-un-atributo-de-una-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Eliminar un atributo de una entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cambiar-el-rdn-renombrar-de-una-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cambiar el RDN (renombrar) de una entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-eliminar-una-entrada-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Eliminar una entrada completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-exportar-el-directorio-a-ldif-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Exportar el directorio a LDIF (backup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-importar-las-entradas-en-el-servidor-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Importar las entradas en el servidor LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Importar las entradas en el servidor LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividades-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividades LDAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-servicios-de-directorio-destacados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Servicios de directorio destacados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Servicios de directorio destacados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows: Active Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-openldap-y-samba" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux: OpenLDAP y Samba
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-estructura-y-funcionamiento-del-protocolo-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Estructura y Funcionamiento del Protocolo LDAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tipos-de-directorios-ldap-dit-dn-y-mas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Tipos de Directorios LDAP: DIT, DN, y más
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-formato-de-intercambio-de-datos-ldif-ldap-data-interchange-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica-de-una-entrada-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis básica de una entrada LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operaciones-habituales-en-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones habituales en LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detalles-importantes-del-formato-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detalles importantes del formato LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-openldap-para-trabajar-con-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos de OpenLDAP para trabajar con LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-objectclass-en-ldap-tipos-y-clases-mas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 ObjectClass en LDAP: tipos y clases más utilizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 ObjectClass en LDAP: tipos y clases más utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabla-de-los-objectclass-mas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabla de los objectClass más comunes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-elegir-correctamente-los-objectclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cómo elegir correctamente los objectClass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas importantes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ejemplos-practicos-de-ldap-en-formato-ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Ejemplos prácticos de LDAP en formato LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-la-estructura-base-del-directorio-dit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear la estructura base del directorio (DIT)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-un-usuario-completo-inetorgperson-posixaccount-shadowaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear un usuario completo (inetOrgPerson + posixAccount + shadowAccount)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-un-grupo-unix-posixgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear un grupo UNIX (posixGroup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crear-un-grupo-general-ldap-groupofnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Crear un grupo general LDAP (groupOfNames)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modificar-el-correo-de-un-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modificar el correo de un usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-anadir-un-atributo-nuevo-a-un-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Añadir un atributo nuevo a un usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-eliminar-un-atributo-de-una-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Eliminar un atributo de una entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cambiar-el-rdn-renombrar-de-una-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cambiar el RDN (renombrar) de una entrada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-eliminar-una-entrada-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Eliminar una entrada completa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-exportar-el-directorio-a-ldif-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Exportar el directorio a LDIF (backup)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-importar-las-entradas-en-el-servidor-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Importar las entradas en el servidor LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Importar las entradas en el servidor LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actividades-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actividades LDAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT4. Servicio de Directorio en Linux</h1>
+
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<p>Un servicio de directorio es un sistema especializado que almacena,  organiza y proporciona acceso a información relacionada con los recursos de la red y los usuarios, actuando como un nexo centralizado para la  gestión de la infraestructura de TI.</p>
+<p><strong>Los servicios de directorios</strong>, son un conjunto de aplicaciones que guardan y administran toda la información sobre los elementos de una red.</p>
+<ul>
+<li>Cada <strong>recurso</strong> de la red se considera como un <strong>objeto</strong>, donde su <strong>información se almacena como atributos</strong>.</li>
+<li>Para la gestión de esta información, el <strong>servicio de directorio</strong> establece una serie de <strong>permisos de acceso y condiciones de seguridad</strong> que la salvaguardan esta información.</li>
+<li>Ofrecen una <strong>infraestructura</strong> para localizar, manejar, administrar, y organizar los componentes y recursos comunes de una red.</li>
+</ul>
+<h2 id="2-servicios-de-directorio-destacados">2. Servicios de directorio destacados<a class="headerlink" href="#2-servicios-de-directorio-destacados" title="Permanent link">&para;</a></h2>
+<h3 id="windows-active-directory"><strong>Windows: Active Directory</strong><a class="headerlink" href="#windows-active-directory" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Active Directory (AD):</strong> La solución de Microsoft para servicios de directorio en entornos Windows. Es una base de datos y un conjunto de servicios que permiten la administración centralizada de usuarios, computadoras y otros recursos en un dominio de red.</li>
+<li>Características clave:</li>
+<li>Integración con Windows Server y otros productos Microsoft.</li>
+<li>Gestión de políticas de grupo y autenticación de usuarios.</li>
+<li>Soporte para LDAP y Kerberos.</li>
+</ul>
+<h3 id="linux-openldap-y-samba"><strong>Linux: OpenLDAP y Samba</strong><a class="headerlink" href="#linux-openldap-y-samba" title="Permanent link">&para;</a></h3>
+<ul>
+<li>OpenLDAP:</li>
+<li>Un servicio de directorio de código abierto que implementa el protocolo LDAP.</li>
+<li>Utilizado para gestionar usuarios y recursos en redes Linux y multiplataforma.</li>
+<li>Samba:</li>
+<li>Permite la integración de servidores Linux/Unix en redes dominadas por Windows.</li>
+<li>Proporciona compatibilidad con Active Directory y servicios de directorio de Windows.</li>
+</ul>
+<h2 id="3-ldap">3.  LDAP<a class="headerlink" href="#3-ldap" title="Permanent link">&para;</a></h2>
+<p>LDAP, que significa <strong>Lightweight Directory Access Protocol</strong> (Protocolo Ligero de Acceso a Directorios), es un protocolo de red utilizado para acceder y administrar servicios de directorio a través de una red IP. Los servicios de directorio son bases de datos especializadas que almacenan información sobre recursos en una red, como usuarios, grupos, dispositivos y otros objetos.</p>
+<p>Algunas características clave de LDAP son:</p>
+<ol>
+<li><strong>Protocolo Ligero</strong>: LDAP es una versión simplificada del protocolo DAP (Directory Access Protocol) que facilita su implementación y uso.</li>
+<li><strong>Acceso y Consulta</strong>: Permite a los clientes consultar, buscar y modificar información en un directorio de forma eficiente.</li>
+<li><strong>Estructura Jerárquica</strong>: Los datos en un directorio LDAP se organizan en una estructura jerárquica similar a un árbol, lo que facilita la administración y búsqueda de información.</li>
+<li><strong>Interoperabilidad</strong>: LDAP es ampliamente utilizado y soportado por muchos sistemas y aplicaciones, lo que facilita la integración y compatibilidad entre diferentes plataformas.</li>
+<li><strong>Autenticación y Autorización</strong>: LDAP se usa comúnmente para gestionar la autenticación de usuarios y controlar el acceso a recursos en una red, especialmente en entornos empresariales y académicos.</li>
+</ol>
+<p>Un ejemplo común de uso de LDAP es en la administración de directorios de usuarios en empresas, donde LDAP se utiliza para gestionar credenciales de acceso y permisos a diversos servicios y aplicaciones.</p>
+<h3 id="31-estructura-y-funcionamiento-del-protocolo-ldap">3.1 <strong>Estructura y Funcionamiento del Protocolo LDAP</strong><a class="headerlink" href="#31-estructura-y-funcionamiento-del-protocolo-ldap" title="Permanent link">&para;</a></h3>
+<p>LDAP sigue una estructura jerárquica en la que los datos se organizan en un árbol llamado <strong>DIT (Directory Information Tree)</strong>. Cada nodo del árbol representa una entrada (entry), que es una colección de atributos. Cada atributo tiene un nombre y uno o más valores asociados. Por ejemplo, un usuario puede tener atributos como <code>cn</code> (Common Name), <code>uid</code> (User ID), <code>mail</code> (dirección de correo electrónico), y <code>userPassword</code> (contraseña).</p>
+<ul>
+<li><strong>Distinguished Name (DN):</strong> Cada entrada en un directorio LDAP tiene un identificador único llamado DN. Este nombre distingue de manera única cada entrada dentro del directorio. Un DN se construye concatenando los nombres de los elementos desde la entrada hasta la raíz del árbol. Por ejemplo, un DN podría ser <code>uid=jdoe,ou=users,dc=example,dc=com</code>, donde:</li>
+<li><code>uid=jdoe</code>: indica el usuario con ID "jdoe".</li>
+<li><code>ou=users</code>: indica que esta entrada está dentro de la unidad organizativa "users".</li>
+<li><code>dc=example,dc=com</code>: indica que el dominio es <code>example.com</code>.</li>
+<li><strong>Relative Distinguished Name (RDN):</strong> El RDN es la parte del DN que identifica una entrada en particular dentro de su nivel jerárquico. En el ejemplo anterior, <code>uid=jdoe</code> es el RDN para el usuario "jdoe".</li>
+</ul>
+<h3 id="32-tipos-de-directorios-ldap-dit-dn-y-mas">3.2 Tipos de Directorios LDAP: DIT, DN, y más<a class="headerlink" href="#32-tipos-de-directorios-ldap-dit-dn-y-mas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>DIT (Directory Information Tree):</strong> Es la estructura jerárquica en la que se organizan las entradas LDAP. El DIT se construye como un árbol invertido, con la raíz en la parte superior y las ramas extendiéndose hacia abajo. Las ramas representan las distintas divisiones de la organización, como departamentos o ubicaciones, y las hojas del árbol representan los objetos, como usuarios o dispositivos.</li>
+</ul>
+<p><img alt="dit" src="../../assets/img/linux/dit.png" /></p>
+<ul>
+<li><strong>DN (Distinguished Name):</strong> Como se mencionó anteriormente, el DN es la ruta completa a una entrada en el DIT. Es un identificador único para cada entrada en el directorio. Se construye concatenando los nombres de los nodos desde la entrada hasta la raíz, utilizando una estructura jerárquica.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Ejemplo de un DN:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>uid=jperez,ou=clientes,dc=Empresa,dc=com
+</code></pre></div>
+<ul>
+<li><strong>uid=jperez</strong>: Identificador único del cliente "jperez".</li>
+<li><strong>ou=clientes</strong>: Unidad organizativa "clientes".</li>
+<li>
+<p><strong>dc=Empresa,dc=com</strong>: Dominio principal "Empresa.com".</p>
+</li>
+<li>
+<p><strong>Atributos y Objetos:</strong> Las entradas en LDAP se componen de atributos, que son pares nombre-valor, y de clases de objeto, que definen qué atributos puede o debe tener una entrada. Por ejemplo, una clase de objeto <code>inetOrgPerson</code> puede tener atributos como <code>cn</code>, <code>sn</code> (surname o apellido), y <code>mail</code>.</p>
+</li>
+<li>
+<p><strong>Esquemas LDAP:</strong> El esquema define las reglas sobre qué clases de objeto y atributos pueden existir en el directorio. Establece la estructura de los datos permitidos en el directorio, definiendo qué tipos de objetos (como usuarios, grupos, etc.) pueden almacenarse y qué atributos puede tener cada uno. Los esquemas son cruciales para garantizar la coherencia de los datos dentro del DIT.</p>
+</li>
+</ul>
+<h3 id="33-formato-de-intercambio-de-datos-ldif-ldap-data-interchange-format">3.3 Formato de intercambio de datos LDIF (LDAP Data Interchange Format)<a class="headerlink" href="#33-formato-de-intercambio-de-datos-ldif-ldap-data-interchange-format" title="Permanent link">&para;</a></h3>
+<p>El formato <strong>LDIF (LDAP Data Interchange Format)</strong> es un estándar basado en <strong>texto plano</strong> que se utiliza para representar datos de un directorio LDAP y definir operaciones de modificación sobre dicho directorio.</p>
+<p>En OpenLDAP, LDIF es esencial para:</p>
+<ul>
+<li>Construir la estructura inicial del <strong>DIT</strong>.</li>
+<li>Añadir usuarios, grupos y unidades organizativas en bloque.</li>
+<li>Modificar atributos existentes (correo, contraseña, grupo, etc.).</li>
+<li>Exportar datos del directorio para copias de seguridad o migraciones.</li>
+<li>Automatizar tareas de administración del directorio.</li>
+</ul>
+<hr />
+<h4 id="sintaxis-basica-de-una-entrada-ldif">Sintaxis básica de una entrada LDIF<a class="headerlink" href="#sintaxis-basica-de-una-entrada-ldif" title="Permanent link">&para;</a></h4>
+<p>Una entrada se compone de:</p>
+<ul>
+<li>Una línea con el <strong>DN (Distinguished Name)</strong>.</li>
+<li>Varias líneas con atributos en formato <code>atributo: valor</code>.</li>
+<li>Una línea en blanco para separar entradas.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">usuario1</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">People</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ejemplo</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">inetOrgPerson</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixAccount</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="na">uid</span><span class="p">:</span><span class="w"> </span><span class="s">usuario1</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">Usuario Uno</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="na">sn</span><span class="p">:</span><span class="w"> </span><span class="s">Uno</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="na">uidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1001</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">1001</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="na">homeDirectory</span><span class="p">:</span><span class="w"> </span><span class="s">/home/usuario1</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="na">loginShell</span><span class="p">:</span><span class="w"> </span><span class="s">/bin/bash</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="na">userPassword</span><span class="p">:</span><span class="w"> </span><span class="s">123456</span>
+</code></pre></div>
+<hr />
+<h4 id="operaciones-habituales-en-ldif">Operaciones habituales en LDIF<a class="headerlink" href="#operaciones-habituales-en-ldif" title="Permanent link">&para;</a></h4>
+<p>Además de crear entradas nuevas, LDIF permite describir operaciones:</p>
+<p><strong>Añadir (<code>add</code>)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">maria</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">empresa</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">add</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">inetOrgPerson</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">Maria López</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="na">sn</span><span class="p">:</span><span class="w"> </span><span class="s">López</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="na">uid</span><span class="p">:</span><span class="w"> </span><span class="s">maria</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="na">mail</span><span class="p">:</span><span class="w"> </span><span class="s">maria@empresa.com</span>
+</code></pre></div>
+<p><strong>Modificar (<code>modify</code>)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">maria</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">empresa</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modify</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">replace</span><span class="p">:</span><span class="w"> </span><span class="na">mail</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="na">mail</span><span class="p">:</span><span class="w"> </span><span class="s">maria.nueva@empresa.com</span>
+</code></pre></div>
+<p><strong>Eliminar (<code>delete</code>)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">usuario1</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">People</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ejemplo</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">delete</span>
+</code></pre></div>
+<p><strong>Renombrar o mover (<code>modrdn</code>)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">usuario1</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">People</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ejemplo</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">com</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modrdn</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">newrdn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">usuario2</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">deleteoldrdn</span><span class="p">:</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<hr />
+<h4 id="detalles-importantes-del-formato-ldif">Detalles importantes del formato LDIF<a class="headerlink" href="#detalles-importantes-del-formato-ldif" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Si un valor contiene caracteres especiales, empieza por espacio o no es ASCII, se representa en <strong>Base64</strong> usando <code>::</code>.</li>
+<li>Las líneas largas pueden <strong>plegarse</strong> iniciando la línea siguiente con un espacio.</li>
+<li>Algunos archivos incluyen metadatos como:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>version: 1
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>charset: UTF-8
+</code></pre></div></li>
+</ul>
+<hr />
+<h4 id="comandos-de-openldap-para-trabajar-con-ldif">Comandos de OpenLDAP para trabajar con LDIF<a class="headerlink" href="#comandos-de-openldap-para-trabajar-con-ldif" title="Permanent link">&para;</a></h4>
+<p><strong>Importar entradas</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ldapadd<span class="w"> </span>-x<span class="w"> </span>-D<span class="w"> </span><span class="s2">&quot;cn=admin,dc=empresa,dc=com&quot;</span><span class="w"> </span>-W<span class="w"> </span>-f<span class="w"> </span>archivo.ldif
+</code></pre></div>
+<p><strong>Modificar entradas</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ldapmodify<span class="w"> </span>-x<span class="w"> </span>-D<span class="w"> </span><span class="s2">&quot;cn=admin,dc=empresa,dc=com&quot;</span><span class="w"> </span>-W<span class="w"> </span>-f<span class="w"> </span>cambios.ldif
+</code></pre></div>
+<p><strong>Exportar (backup del directorio)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>slapcat<span class="w"> </span>-v<span class="w"> </span>-l<span class="w"> </span>backup.ldif
+</code></pre></div>
+<p><strong>Importar una base completa (modo offline)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>slapadd<span class="w"> </span>-l<span class="w"> </span>base.ldif
+</code></pre></div>
+<hr />
+<h4 id="resumen">Resumen<a class="headerlink" href="#resumen" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><strong>LDIF es el formato estándar de intercambio en LDAP.</strong><br />
+Sirve para crear el DIT, añadir usuarios y grupos, modificar valores, migrar datos y automatizar la administración del servicio de directorio en Linux.</p>
+</blockquote>
+<h3 id="34-objectclass-en-ldap-tipos-y-clases-mas-utilizadas">3.4 ObjectClass en LDAP: tipos y clases más utilizadas<a class="headerlink" href="#34-objectclass-en-ldap-tipos-y-clases-mas-utilizadas" title="Permanent link">&para;</a></h3>
+<p>Los <strong>objectClass</strong> definen el <em>tipo de objeto</em> que representa cada entrada del directorio LDAP.<br />
+Según el objectClass elegido, la entrada tendrá unos <strong>atributos obligatorios (MUST)</strong> y otros <strong>opcionales (MAY)</strong>.</p>
+<p>Existen tres categorías:</p>
+<ul>
+<li><strong>Estructurales</strong> → definen qué “es” la entrada (usuario, grupo, OU, dominio…).  </li>
+<li><strong>Auxiliares</strong> → añaden atributos extra a una entrada ya existente (cuenta UNIX, shadow, sudo…).  </li>
+<li><strong>Abstractas</strong> → clases base de las que heredan las demás (normalmente solo <code>top</code>).</li>
+</ul>
+<p>A continuación se muestran los objectClass más importantes y utilizados en OpenLDAP.</p>
+<hr />
+<h4 id="tabla-de-los-objectclass-mas-comunes">Tabla de los objectClass más comunes<a class="headerlink" href="#tabla-de-los-objectclass-mas-comunes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>objectClass</th>
+<th>Tipo</th>
+<th>Esquema</th>
+<th>¿Para qué se utiliza?</th>
+<th>MUST (obligatorios)</th>
+<th>MAY (opcionales)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>top</strong></td>
+<td>Abstracta</td>
+<td>core</td>
+<td>Clase base de todas las entradas</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>domain</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Nodo raíz del dominio (dc=)</td>
+<td>dc</td>
+<td>associatedName</td>
+</tr>
+<tr>
+<td><strong>organization</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Representa una empresa u organización</td>
+<td>o</td>
+<td>telephoneNumber, description</td>
+</tr>
+<tr>
+<td><strong>organizationalUnit (ou)</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Estructura: contenedores del DIT</td>
+<td>ou</td>
+<td>description</td>
+</tr>
+<tr>
+<td><strong>person</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Representa una persona básica</td>
+<td>sn, cn</td>
+<td>telephoneNumber, userPassword</td>
+</tr>
+<tr>
+<td><strong>organizationalPerson</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Persona dentro de una organización</td>
+<td>hereda MUST de person</td>
+<td>title, postalAddress</td>
+</tr>
+<tr>
+<td><strong>inetOrgPerson</strong></td>
+<td>Estructural</td>
+<td>inetorgperson/cosine</td>
+<td>Usuario completo (el más usado)</td>
+<td>sn, cn</td>
+<td>mail, uid, mobile, employeeNumber</td>
+</tr>
+<tr>
+<td><strong>groupOfNames</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Grupo cuyos miembros son DN completos</td>
+<td>member</td>
+<td>description</td>
+</tr>
+<tr>
+<td><strong>groupOfUniqueNames</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Grupo con entradas únicas</td>
+<td>uniqueMember</td>
+<td>description</td>
+</tr>
+<tr>
+<td><strong>posixAccount</strong></td>
+<td>Auxiliar</td>
+<td>nis</td>
+<td>Usuario UNIX (UID, GID, home, shell)</td>
+<td>cn, uid, uidNumber, gidNumber, homeDirectory</td>
+<td>loginShell, gecos</td>
+</tr>
+<tr>
+<td><strong>shadowAccount</strong></td>
+<td>Auxiliar</td>
+<td>nis</td>
+<td>Atributos de contraseñas estilo shadow</td>
+<td>uid</td>
+<td>shadowLastChange, shadowExpire</td>
+</tr>
+<tr>
+<td><strong>posixGroup</strong></td>
+<td>Estructural</td>
+<td>nis</td>
+<td>Grupo UNIX con GID</td>
+<td>cn, gidNumber</td>
+<td>memberUid</td>
+</tr>
+<tr>
+<td><strong>ipHost</strong></td>
+<td>Auxiliar</td>
+<td>nis</td>
+<td>Representa un host con dirección IP</td>
+<td>cn, ipHostNumber</td>
+<td>l, description</td>
+</tr>
+<tr>
+<td><strong>device</strong></td>
+<td>Estructural</td>
+<td>core</td>
+<td>Representa un dispositivo físico</td>
+<td>cn</td>
+<td>serialNumber</td>
+</tr>
+<tr>
+<td><strong>simpleSecurityObject</strong></td>
+<td>Auxiliar</td>
+<td>core</td>
+<td>Entradas con contraseña simple</td>
+<td>userPassword</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>organizationalRole</strong></td>
+<td>Estructural</td>
+<td>cosine</td>
+<td>Representa un rol dentro de la organización</td>
+<td>cn</td>
+<td>roleOccupant</td>
+</tr>
+<tr>
+<td><strong>room</strong></td>
+<td>Estructural</td>
+<td>cosine</td>
+<td>Habitaciones o espacios físicos</td>
+<td>cn, roomNumber</td>
+<td>phone, description</td>
+</tr>
+<tr>
+<td><strong>dhcpHost</strong></td>
+<td>Auxiliar</td>
+<td>misc</td>
+<td>Host gestionado por DHCP</td>
+<td>dhcpHWAddress</td>
+<td>dhcpOption</td>
+</tr>
+<tr>
+<td><strong>sudoRole</strong></td>
+<td>Auxiliar</td>
+<td>sudo-ldap</td>
+<td>Permisos sudo centralizados</td>
+<td>cn</td>
+<td>sudoUser, sudoCommand</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="como-elegir-correctamente-los-objectclass">Cómo elegir correctamente los objectClass<a class="headerlink" href="#como-elegir-correctamente-los-objectclass" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Para <strong>usuarios reales</strong> → <code>inetOrgPerson</code> (+ <code>posixAccount</code> si se usan en Linux).  </li>
+<li>Para <strong>grupos UNIX</strong> → <code>posixGroup</code>.  </li>
+<li>Para <strong>grupos genéricos</strong> → <code>groupOfNames</code>.  </li>
+<li>Para <strong>estructura del DIT</strong> → <code>organizationalUnit</code> y <code>domain</code>.  </li>
+<li>Para <strong>hosts o máquinas</strong> → <code>ipHost</code>.  </li>
+<li>Para <strong>contraseñas tipo shadow</strong> → añadir <code>shadowAccount</code>.  </li>
+<li>Para <strong>sudo centralizado</strong> → <code>sudoRole</code>.</li>
+</ul>
+<hr />
+<h4 id="reglas-importantes">Reglas importantes<a class="headerlink" href="#reglas-importantes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Toda entrada LDAP debe tener <strong>solo un objectClass estructural principal</strong>.  </li>
+<li>Puede tener <strong>varios objectClass auxiliares</strong>.  </li>
+<li>Todos los objectClass heredan de <strong>top</strong>.  </li>
+<li>Una mala elección de objectClass provoca errores al añadir la entrada.</li>
+</ul>
+<hr />
+<h4 id="resumen_1">Resumen<a class="headerlink" href="#resumen_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Los <strong>objectClass</strong> definen el tipo de cada entrada del directorio y determinan qué atributos puede o debe tener.<br />
+Conocer los objectClass más comunes permite diseñar un DIT coherente, válido y funcional para usuarios, grupos, dispositivos y servicios.</p>
+</blockquote>
+<h3 id="35-ejemplos-practicos-de-ldap-en-formato-ldif">3.5 Ejemplos prácticos de LDAP en formato LDIF<a class="headerlink" href="#35-ejemplos-practicos-de-ldap-en-formato-ldif" title="Permanent link">&para;</a></h3>
+<p>En esta sección se muestran ejemplos completos y comentados de entradas LDAP en formato <strong>LDIF</strong>, tal y como se utilizan en OpenLDAP.<br />
+Los ejemplos incluyen: creación de la estructura del DIT, usuarios, grupos, modificaciones y operaciones habituales.</p>
+<hr />
+<h2 id="1-crear-la-estructura-base-del-directorio-dit">1. Crear la estructura base del directorio (DIT)<a class="headerlink" href="#1-crear-la-estructura-base-del-directorio-dit" title="Permanent link">&para;</a></h2>
+<p>Este archivo crea el dominio <code>dc=ies,dc=local</code> y dos unidades organizativas: <em>Usuarios</em> y <em>Grupos</em>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">domain</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="na">dc</span><span class="p">:</span><span class="w"> </span><span class="s">ies</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalUnit</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="na">ou</span><span class="p">:</span><span class="w"> </span><span class="s">Usuarios</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">ou</span><span class="o">=</span><span class="s">Grupos</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalUnit</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="na">ou</span><span class="p">:</span><span class="w"> </span><span class="s">Grupos</span>
+</code></pre></div>
+<hr />
+<h2 id="2-crear-un-usuario-completo-inetorgperson-posixaccount-shadowaccount">2. Crear un usuario completo (inetOrgPerson + posixAccount + shadowAccount)<a class="headerlink" href="#2-crear-un-usuario-completo-inetorgperson-posixaccount-shadowaccount" title="Permanent link">&para;</a></h2>
+<p>Este es el modelo recomendado para un usuario real en OpenLDAP integrado con Linux.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">person</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">organizationalPerson</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">inetOrgPerson</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixAccount</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">shadowAccount</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="na">uid</span><span class="p">:</span><span class="w"> </span><span class="s">ana</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">Ana García</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="na">sn</span><span class="p">:</span><span class="w"> </span><span class="s">García</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="na">mail</span><span class="p">:</span><span class="w"> </span><span class="s">ana.garcia@ies.local</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="na">uidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">10001</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">500</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="na">homeDirectory</span><span class="p">:</span><span class="w"> </span><span class="s">/home/ana</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="na">loginShell</span><span class="p">:</span><span class="w"> </span><span class="s">/bin/bash</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="na">userPassword</span><span class="p">:</span><span class="w"> </span><span class="s">{SSHA}CONTRASEÑA_ENCRIPTADA</span>
+</code></pre></div>
+<hr />
+<h2 id="3-crear-un-grupo-unix-posixgroup">3. Crear un grupo UNIX (posixGroup)<a class="headerlink" href="#3-crear-un-grupo-unix-posixgroup" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">profesores</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Grupos</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">posixGroup</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">profesores</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="na">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="s">500</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="na">memberUid</span><span class="p">:</span><span class="w"> </span><span class="s">ana</span>
+</code></pre></div>
+<hr />
+<h2 id="4-crear-un-grupo-general-ldap-groupofnames">4. Crear un grupo general LDAP (groupOfNames)<a class="headerlink" href="#4-crear-un-grupo-general-ldap-groupofnames" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">cn</span><span class="o">=</span><span class="s">EquipoDirectivo</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Grupos</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">top</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="na">objectClass</span><span class="p">:</span><span class="w"> </span><span class="s">groupOfNames</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="na">cn</span><span class="p">:</span><span class="w"> </span><span class="s">EquipoDirectivo</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="na">member</span><span class="p">:</span><span class="w"> </span><span class="s">uid=ana,ou=Usuarios,dc=ies,dc=local</span>
+</code></pre></div>
+<hr />
+<h2 id="5-modificar-el-correo-de-un-usuario">5. Modificar el correo de un usuario<a class="headerlink" href="#5-modificar-el-correo-de-un-usuario" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modify</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">replace</span><span class="p">:</span><span class="w"> </span><span class="na">mail</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="na">mail</span><span class="p">:</span><span class="w"> </span><span class="s">ana.nueva@ies.local</span>
+</code></pre></div>
+<hr />
+<h2 id="6-anadir-un-atributo-nuevo-a-un-usuario">6. Añadir un atributo nuevo a un usuario<a class="headerlink" href="#6-anadir-un-atributo-nuevo-a-un-usuario" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modify</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">add</span><span class="p">:</span><span class="w"> </span><span class="na">mobile</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="na">mobile</span><span class="p">:</span><span class="w"> </span><span class="s">600123456</span>
+</code></pre></div>
+<hr />
+<h2 id="7-eliminar-un-atributo-de-una-entrada">7. Eliminar un atributo de una entrada<a class="headerlink" href="#7-eliminar-un-atributo-de-una-entrada" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modify</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">delete</span><span class="p">:</span><span class="w"> </span><span class="na">telephoneNumber</span>
+</code></pre></div>
+<hr />
+<h2 id="8-cambiar-el-rdn-renombrar-de-una-entrada">8. Cambiar el RDN (renombrar) de una entrada<a class="headerlink" href="#8-cambiar-el-rdn-renombrar-de-una-entrada" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">modrdn</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">newrdn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana.garcia</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">deleteoldrdn</span><span class="p">:</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<hr />
+<h2 id="9-eliminar-una-entrada-completa">9. Eliminar una entrada completa<a class="headerlink" href="#9-eliminar-una-entrada-completa" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">dn</span><span class="p">:</span><span class="w"> </span><span class="na">uid</span><span class="o">=</span><span class="s">ana</span><span class="p">,</span><span class="na">ou</span><span class="o">=</span><span class="s">Usuarios</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">ies</span><span class="p">,</span><span class="na">dc</span><span class="o">=</span><span class="s">local</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">changetype</span><span class="p">:</span><span class="w"> </span><span class="k">delete</span>
+</code></pre></div>
+<hr />
+<h2 id="10-exportar-el-directorio-a-ldif-backup">10. Exportar el directorio a LDIF (backup)<a class="headerlink" href="#10-exportar-el-directorio-a-ldif-backup" title="Permanent link">&para;</a></h2>
+<p>Desde terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>slapcat<span class="w"> </span>-v<span class="w"> </span>-l<span class="w"> </span>backup.ldif
+</code></pre></div>
+<hr />
+<h2 id="11-importar-las-entradas-en-el-servidor-ldap">11. Importar las entradas en el servidor LDAP<a class="headerlink" href="#11-importar-las-entradas-en-el-servidor-ldap" title="Permanent link">&para;</a></h2>
+<p>Alta de nuevas entradas:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ldapadd<span class="w"> </span>-x<span class="w"> </span>-D<span class="w"> </span><span class="s2">&quot;cn=admin,dc=ies,dc=local&quot;</span><span class="w"> </span>-W<span class="w"> </span>-f<span class="w"> </span>archivo.ldif
+</code></pre></div>
+<p>Modificaciones:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ldapmodify<span class="w"> </span>-x<span class="w"> </span>-D<span class="w"> </span><span class="s2">&quot;cn=admin,dc=ies,dc=local&quot;</span><span class="w"> </span>-W<span class="w"> </span>-f<span class="w"> </span>cambios.ldif
+</code></pre></div>
+<hr />
+<h3 id="resumen_2">Resumen<a class="headerlink" href="#resumen_2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Estos ejemplos muestran cómo se crean usuarios, grupos, unidades organizativas y cómo se gestionan modificaciones en un directorio LDAP mediante LDIF.<br />
+Saber construir manualmente estos archivos es clave para administrar OpenLDAP de forma profesional y automatizada.</p>
+</blockquote>
+<h3 id="actividades-ldap">Actividades LDAP<a class="headerlink" href="#actividades-ldap" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><a href="../../assets/UT4_Practica1.pdf"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> Práctica 1 — Instalación y configuración básica del servidor OpenLDAP</a></p>
+<p><a href="../../assets/UT4_Practica2.pdf"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> Práctica 2 — Creación de usuarios y grupos en OpenLDAP</a></p>
+<p><a href="../../assets/UT4_Practica3.pdf"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> Práctica 3 — OpenLDAP</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../acceso-remoto/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT3. Acceso y Administración Remota en Linux">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT3. Acceso y Administración Remota en Linux
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../samba/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT4. Samba">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT4. Samba
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

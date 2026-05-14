@@ -1,0 +1,2042 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/acceso-remoto/">
+      
+      
+        <link rel="prev" href="../procesos/">
+      
+      
+        <link rel="next" href="../directorio/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT3. Acceso y Administración Remota en Linux - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-introduccion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT3. Acceso y Administración Remota en Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-terminales-en-modo-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Terminales en modo texto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ssh-secure-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SSH (Secure Shell)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSH (Secure Shell)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-conexion-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Conexión básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-autenticacion-basada-en-claves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Autenticación basada en claves
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Autenticación basada en claves">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-generar-el-par-de-claves-en-el-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1 — Generar el par de claves en el cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-copiar-la-clave-publica-al-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2 — Copiar la clave pública al servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-configuracion-del-servidor-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Configuración del servidor SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-transferencia-segura-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Transferencia segura de ficheros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Transferencia segura de ficheros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-scp-secure-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 SCP (Secure Copy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-sftp-ssh-file-transfer-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 SFTP (SSH File Transfer Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 SFTP (SSH File Transfer Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listado de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulacion-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulación de directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulacion-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulación de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-escritorio-remoto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Escritorio remoto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Escritorio remoto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-xrdp-escritorio-remoto-con-rdp-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 xRDP — Escritorio remoto con RDP en Linux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 xRDP — Escritorio remoto con RDP en Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-en-ubuntu-server-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación en Ubuntu Server / Desktop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permitir-el-puerto-en-el-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permitir el puerto en el firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-desde-un-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión desde un cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-vnc-virtual-network-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 VNC — Virtual Network Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 VNC — Virtual Network Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-del-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación del servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-contrasena-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurar contraseña VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-el-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Iniciar el servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detener-el-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detener el servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-desde-un-cliente_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión desde un cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-comparativa-rdp-vs-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Comparativa RDP vs VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Actividades
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-terminales-en-modo-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Terminales en modo texto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ssh-secure-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SSH (Secure Shell)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SSH (Secure Shell)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-conexion-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Conexión básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-autenticacion-basada-en-claves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Autenticación basada en claves
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Autenticación basada en claves">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-generar-el-par-de-claves-en-el-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1 — Generar el par de claves en el cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-copiar-la-clave-publica-al-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2 — Copiar la clave pública al servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-configuracion-del-servidor-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Configuración del servidor SSH
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-transferencia-segura-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Transferencia segura de ficheros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Transferencia segura de ficheros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-scp-secure-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 SCP (Secure Copy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-sftp-ssh-file-transfer-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 SFTP (SSH File Transfer Protocol)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 SFTP (SSH File Transfer Protocol)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listado de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulacion-de-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulación de directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulacion-de-ficheros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulación de ficheros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-escritorio-remoto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Escritorio remoto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Escritorio remoto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-xrdp-escritorio-remoto-con-rdp-en-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 xRDP — Escritorio remoto con RDP en Linux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 xRDP — Escritorio remoto con RDP en Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-en-ubuntu-server-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación en Ubuntu Server / Desktop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permitir-el-puerto-en-el-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permitir el puerto en el firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-desde-un-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión desde un cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-vnc-virtual-network-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 VNC — Virtual Network Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 VNC — Virtual Network Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-del-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instalación del servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-contrasena-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurar contraseña VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iniciar-el-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Iniciar el servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detener-el-servidor-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detener el servidor VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-desde-un-cliente_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conexión desde un cliente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-comparativa-rdp-vs-vnc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Comparativa RDP vs VNC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Actividades
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT3. Acceso y Administración Remota en Linux</h1>
+
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<p>En la mayoría de los casos, los servidores y máquinas que necesitamos gestionar no comparten el mismo espacio físico. Pueden estar ubicados en:</p>
+<ul>
+<li>Diferentes departamentos de una empresa.</li>
+<li>Centros de Proceso de Datos (CPD) generales.</li>
+<li>Infraestructura en la nube.</li>
+</ul>
+<p>Para acceder a ellos de forma remota existen servicios, métodos y herramientas que se agrupan en dos grandes categorías: <strong>acceso por terminal de texto</strong> y <strong>acceso por escritorio gráfico</strong>.</p>
+<hr />
+<h2 id="2-terminales-en-modo-texto">2. Terminales en modo texto<a class="headerlink" href="#2-terminales-en-modo-texto" title="Permanent link">&para;</a></h2>
+<p>Una de las formas de administrar un sistema de forma remota es usar un servidor que permita el acceso como terminal de texto. El usuario se conecta al equipo a través de la red con nombre de usuario y contraseña, como si estuviera delante de él. Los principales protocolos son:</p>
+<table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>Puerto</th>
+<th>Cifrado</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Telnet</strong></td>
+<td>23</td>
+<td>No — la información viaja en claro</td>
+<td>Obsoleto</td>
+</tr>
+<tr>
+<td><strong>Rlogin</strong></td>
+<td>513</td>
+<td>No — usa mecanismo Rhosts</td>
+<td>Obsoleto</td>
+</tr>
+<tr>
+<td><strong>SSH</strong></td>
+<td>22</td>
+<td>Sí — cifrado fuerte</td>
+<td>Estándar actual</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Telnet y Rlogin envían contraseñas en texto plano por la red. No deben usarse en entornos de producción. <strong>SSH es el único estándar seguro</strong> para acceso remoto por terminal.</p>
+</div>
+<hr />
+<h2 id="3-ssh-secure-shell">3. SSH (Secure Shell)<a class="headerlink" href="#3-ssh-secure-shell" title="Permanent link">&para;</a></h2>
+<p><strong>SSH (Secure Shell)</strong> es un protocolo de red que permite acceder a otro equipo a través de una red para ejecutar comandos, controlarlo de manera remota e intercambiar archivos de forma segura. Ofrece autenticación fuerte y comunicaciones cifradas.</p>
+<h3 id="31-instalacion">3.1 Instalación<a class="headerlink" href="#31-instalacion" title="Permanent link">&para;</a></h3>
+<p><strong>Servidor SSH</strong> (en la máquina a la que nos conectaremos):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-server
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>ssh
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>ssh
+</code></pre></div>
+<p><strong>Cliente SSH</strong> (normalmente ya instalado en Linux):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openssh-client
+</code></pre></div>
+<h3 id="32-conexion-basica">3.2 Conexión básica<a class="headerlink" href="#32-conexion-basica" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span>usuario@ip_o_hostname
+</code></pre></div>
+<p>Ejemplos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Conectar con usuario &quot;alumno&quot; a la IP 192.168.1.10</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ssh<span class="w"> </span>alumno@192.168.1.10
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Conectar especificando puerto distinto al 22</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>alumno@192.168.1.10
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Ejecutar un comando remoto directamente sin abrir sesión interactiva</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>ssh<span class="w"> </span>alumno@192.168.1.10<span class="w"> </span><span class="s1">&#39;df -h&#39;</span>
+</code></pre></div>
+<p>En la primera conexión, SSH muestra la huella digital (<em>fingerprint</em>) del servidor y pide confirmación para añadirlo a <code>~/.ssh/known_hosts</code>.</p>
+<h3 id="33-autenticacion-basada-en-claves">3.3 Autenticación basada en claves<a class="headerlink" href="#33-autenticacion-basada-en-claves" title="Permanent link">&para;</a></h3>
+<p>La autenticación por clave pública es más segura que la contraseña y permite la automatización de tareas. Funciona con un par de claves:</p>
+<ul>
+<li><strong>Clave privada</strong>: permanece en el cliente (<code>~/.ssh/id_rsa</code> o <code>~/.ssh/id_ed25519</code>).</li>
+<li><strong>Clave pública</strong>: se copia al servidor (<code>~/.ssh/authorized_keys</code>).</li>
+</ul>
+<h4 id="paso-1-generar-el-par-de-claves-en-el-cliente">Paso 1 — Generar el par de claves en el cliente<a class="headerlink" href="#paso-1-generar-el-par-de-claves-en-el-cliente" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;comentario_identificativo&quot;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-t ed25519</code></td>
+<td>Algoritmo de cifrado (más moderno y seguro que RSA)</td>
+</tr>
+<tr>
+<td><code>-t rsa -b 4096</code></td>
+<td>Alternativa RSA de 4096 bits</td>
+</tr>
+<tr>
+<td><code>-C</code></td>
+<td>Comentario para identificar la clave</td>
+</tr>
+</tbody>
+</table>
+<p>El comando crea dos ficheros en <code>~/.ssh/</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>~/.ssh/id_ed25519       ← clave privada (NUNCA compartir)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>~/.ssh/id_ed25519.pub   ← clave pública (se copia al servidor)
+</code></pre></div>
+<h4 id="paso-2-copiar-la-clave-publica-al-servidor">Paso 2 — Copiar la clave pública al servidor<a class="headerlink" href="#paso-2-copiar-la-clave-publica-al-servidor" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh-copy-id<span class="w"> </span>usuario@ip_servidor
+</code></pre></div>
+<p>Esto añade la clave pública al fichero <code>~/.ssh/authorized_keys</code> del servidor. A partir de ahora la conexión no pedirá contraseña.</p>
+<h4 id="verificacion">Verificación<a class="headerlink" href="#verificacion" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ssh<span class="w"> </span>usuario@ip_servidor<span class="w">   </span><span class="c1"># debe conectar sin pedir contraseña</span>
+</code></pre></div>
+<h3 id="34-configuracion-del-servidor-ssh">3.4 Configuración del servidor SSH<a class="headerlink" href="#34-configuracion-del-servidor-ssh" title="Permanent link">&para;</a></h3>
+<p>El fichero de configuración principal del servidor es <code>/etc/ssh/sshd_config</code>. Tras modificarlo, hay que reiniciar el servicio:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/ssh/sshd_config
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>ssh
+</code></pre></div>
+<p>Parámetros más importantes:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Valor por defecto</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Port</code></td>
+<td><code>22</code></td>
+<td>Puerto de escucha</td>
+</tr>
+<tr>
+<td><code>PermitRootLogin</code></td>
+<td><code>prohibit-password</code></td>
+<td>Acceso directo de root (<code>no</code> para máxima seguridad)</td>
+</tr>
+<tr>
+<td><code>PasswordAuthentication</code></td>
+<td><code>yes</code></td>
+<td>Permite autenticación por contraseña</td>
+</tr>
+<tr>
+<td><code>MaxAuthTries</code></td>
+<td><code>6</code></td>
+<td>Intentos máximos de autenticación por conexión</td>
+</tr>
+<tr>
+<td><code>AllowUsers</code></td>
+<td>(no definido)</td>
+<td>Lista blanca de usuarios que pueden conectarse</td>
+</tr>
+<tr>
+<td><code>ClientAliveInterval</code></td>
+<td><code>0</code></td>
+<td>Segundos entre keepalives al cliente</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo de configuración reforzada:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Port 22
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>PermitRootLogin no
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>PasswordAuthentication no
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>MaxAuthTries 3
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>AllowUsers alumno admin
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ClientAliveInterval 300
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Antes de deshabilitar <code>PasswordAuthentication</code>, asegúrate de que la autenticación por clave funciona correctamente. De lo contrario perderás el acceso al servidor.</p>
+</div>
+<hr />
+<h2 id="4-transferencia-segura-de-ficheros">4. Transferencia segura de ficheros<a class="headerlink" href="#4-transferencia-segura-de-ficheros" title="Permanent link">&para;</a></h2>
+<h3 id="41-scp-secure-copy">4.1 SCP (Secure Copy)<a class="headerlink" href="#41-scp-secure-copy" title="Permanent link">&para;</a></h3>
+<p><code>scp</code> copia ficheros entre equipos usando el protocolo SSH. Su sintaxis es similar a <code>cp</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Copiar fichero local al servidor remoto</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>scp<span class="w"> </span>fichero.txt<span class="w"> </span>usuario@192.168.1.10:/ruta/destino/
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Copiar directorio completo al servidor</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>scp<span class="w"> </span>-r<span class="w"> </span>directorio/<span class="w"> </span>usuario@192.168.1.10:/ruta/destino/
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Descargar fichero del servidor al equipo local</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>scp<span class="w"> </span>usuario@192.168.1.10:/ruta/fichero.txt<span class="w"> </span>./
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># Especificar puerto</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>scp<span class="w"> </span>-P<span class="w"> </span><span class="m">2222</span><span class="w"> </span>fichero.txt<span class="w"> </span>usuario@192.168.1.10:/tmp/
+</code></pre></div>
+<h3 id="42-sftp-ssh-file-transfer-protocol">4.2 SFTP (SSH File Transfer Protocol)<a class="headerlink" href="#42-sftp-ssh-file-transfer-protocol" title="Permanent link">&para;</a></h3>
+<p><code>sftp</code> abre una sesión interactiva de transferencia de ficheros sobre SSH, similar a un cliente FTP pero cifrado.</p>
+<div class="admonition note">
+<p class="admonition-title">Cheat Sheet</p>
+<p><a href="../../assets/sftp-cheatsheet.pdf"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> SFTP Commands Cheat Sheet</a> — resumen de todos los comandos SFTP en una página.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sftp<span class="w"> </span>usuario@192.168.1.10
+</code></pre></div>
+<p>Una vez dentro, los comandos se dividen en tres categorías:</p>
+<h4 id="listado-de-ficheros">Listado de ficheros<a class="headerlink" href="#listado-de-ficheros" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls [opciones] [ruta]</code></td>
+<td>Lista ficheros en el servidor remoto</td>
+</tr>
+<tr>
+<td><code>lls [opciones] [ruta]</code></td>
+<td>Lista ficheros en el equipo local</td>
+</tr>
+</tbody>
+</table>
+<p>Opciones de <code>ls</code>: <code>-1</code> (una columna), <code>-a</code> (todos), <code>-h</code> (tamaño legible), <code>-l</code> (formato largo), <code>-S</code> (ordenar por tamaño), <code>-t</code> (ordenar por fecha), <code>-r</code> (orden inverso).</p>
+<h4 id="manipulacion-de-directorios">Manipulación de directorios<a class="headerlink" href="#manipulacion-de-directorios" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pwd</code></td>
+<td>Muestra el directorio actual en el servidor</td>
+</tr>
+<tr>
+<td><code>lpwd</code></td>
+<td>Muestra el directorio actual en el equipo local</td>
+</tr>
+<tr>
+<td><code>cd ruta</code></td>
+<td>Cambia directorio en el servidor</td>
+</tr>
+<tr>
+<td><code>lcd ruta</code></td>
+<td>Cambia directorio en el equipo local</td>
+</tr>
+<tr>
+<td><code>mkdir ruta</code></td>
+<td>Crea directorio en el servidor</td>
+</tr>
+<tr>
+<td><code>rmdir ruta</code></td>
+<td>Elimina directorio vacío en el servidor</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Las rutas absolutas siempre empiezan por <code>/</code> (ej. <code>/home/usuario/data</code>). Las rutas relativas parten del directorio actual.</p>
+</div>
+<h4 id="manipulacion-de-ficheros">Manipulación de ficheros<a class="headerlink" href="#manipulacion-de-ficheros" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get fichero-remoto [dir-local]</code></td>
+<td>Descarga un fichero del servidor</td>
+</tr>
+<tr>
+<td><code>put fichero-local [dir-remoto]</code></td>
+<td>Sube un fichero al servidor</td>
+</tr>
+<tr>
+<td><code>rm fichero-remoto</code></td>
+<td>Elimina un fichero en el servidor</td>
+</tr>
+</tbody>
+</table>
+<p>Se pueden usar comodines (<code>*</code>) para transferir múltiples ficheros:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sftp&gt; get *.pdf
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sftp&gt; put data.xml /users/mike/data/
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sftp&gt; rm /users/mike/data/*
+</code></pre></div>
+<hr />
+<h2 id="5-escritorio-remoto">5. Escritorio remoto<a class="headerlink" href="#5-escritorio-remoto" title="Permanent link">&para;</a></h2>
+<p>Se habla de <strong>escritorio remoto</strong> cuando un usuario se conecta a un equipo desde otro utilizando la red y accede a su entorno gráfico. Se utiliza habitualmente para administración remota de sistemas con entorno de escritorio.</p>
+<p>Para cualquier solución de escritorio remoto existen dos partes:</p>
+<ul>
+<li><strong>Servidor</strong>: se instala en el equipo a controlar remotamente.</li>
+<li><strong>Cliente</strong>: se instala en el equipo desde el que se quiere acceder.</li>
+</ul>
+<p>Los protocolos más habituales en Linux son:</p>
+<table>
+<thead>
+<tr>
+<th>Protocolo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RDP</strong> (Remote Desktop Protocol)</td>
+<td>Protocolo de Microsoft. En Linux se implementa con <strong>xRDP</strong>. Permite conectar desde un cliente Windows con la herramienta nativa "Conexión a Escritorio Remoto".</td>
+</tr>
+<tr>
+<td><strong>VNC</strong> (Virtual Network Computer)</td>
+<td>Multiplataforma. Comparte el escritorio del servidor. El cliente puede ver y controlar la sesión gráfica del usuario remoto.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-xrdp-escritorio-remoto-con-rdp-en-linux">5.1 xRDP — Escritorio remoto con RDP en Linux<a class="headerlink" href="#51-xrdp-escritorio-remoto-con-rdp-en-linux" title="Permanent link">&para;</a></h3>
+<p><strong>xRDP</strong> es un servidor RDP de código abierto para Linux que permite recibir conexiones desde clientes RDP (Windows, Linux, macOS).</p>
+<h4 id="instalacion-en-ubuntu-server-desktop">Instalación en Ubuntu Server / Desktop<a class="headerlink" href="#instalacion-en-ubuntu-server-desktop" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>xrdp
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>xrdp
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>xrdp
+</code></pre></div>
+<h4 id="permitir-el-puerto-en-el-firewall">Permitir el puerto en el firewall<a class="headerlink" href="#permitir-el-puerto-en-el-firewall" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">3389</span>/tcp
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>reload
+</code></pre></div>
+<h4 id="conexion-desde-un-cliente">Conexión desde un cliente<a class="headerlink" href="#conexion-desde-un-cliente" title="Permanent link">&para;</a></h4>
+<p><strong>Desde Windows</strong>: Inicio → "Conexión a Escritorio Remoto" → introducir la IP del servidor Linux.</p>
+<p><strong>Desde Linux</strong> (con cliente <code>rdesktop</code> o <code>freerdp</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Con rdesktop</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>rdesktop
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>rdesktop<span class="w"> </span><span class="m">192</span>.168.1.10
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Con FreeRDP</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>freerdp2-x11
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>xfreerdp<span class="w"> </span>/u:usuario<span class="w"> </span>/p:contraseña<span class="w"> </span>/v:192.168.1.10
+</code></pre></div>
+<h3 id="52-vnc-virtual-network-computing">5.2 VNC — Virtual Network Computing<a class="headerlink" href="#52-vnc-virtual-network-computing" title="Permanent link">&para;</a></h3>
+<p>VNC comparte el escritorio gráfico del servidor. Hay múltiples implementaciones; una de las más usadas en Ubuntu es <strong>TigerVNC</strong>.</p>
+<h4 id="instalacion-del-servidor-vnc">Instalación del servidor VNC<a class="headerlink" href="#instalacion-del-servidor-vnc" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tigervnc-standalone-server
+</code></pre></div>
+<h4 id="configurar-contrasena-vnc">Configurar contraseña VNC<a class="headerlink" href="#configurar-contrasena-vnc" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>vncpasswd
+</code></pre></div>
+<h4 id="iniciar-el-servidor-vnc">Iniciar el servidor VNC<a class="headerlink" href="#iniciar-el-servidor-vnc" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>vncserver<span class="w"> </span>:1<span class="w"> </span>-geometry<span class="w"> </span>1280x720<span class="w"> </span>-depth<span class="w"> </span><span class="m">24</span>
+</code></pre></div>
+<p>Esto arranca una sesión VNC en el display <code>:1</code> (puerto <strong>5901</strong>).</p>
+<h4 id="detener-el-servidor-vnc">Detener el servidor VNC<a class="headerlink" href="#detener-el-servidor-vnc" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>vncserver<span class="w"> </span>-kill<span class="w"> </span>:1
+</code></pre></div>
+<h4 id="conexion-desde-un-cliente_1">Conexión desde un cliente<a class="headerlink" href="#conexion-desde-un-cliente_1" title="Permanent link">&para;</a></h4>
+<p><strong>Desde Linux</strong> (con <code>tigervnc-viewer</code> o <code>vinagre</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>tigervnc-viewer
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>vncviewer<span class="w"> </span><span class="m">192</span>.168.1.10:1
+</code></pre></div>
+<p><strong>Desde Windows</strong>: descargar TigerVNC Viewer o RealVNC Viewer e introducir <code>192.168.1.10:5901</code>.</p>
+<h3 id="53-comparativa-rdp-vs-vnc">5.3 Comparativa RDP vs VNC<a class="headerlink" href="#53-comparativa-rdp-vs-vnc" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>xRDP</th>
+<th>VNC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocolo base</td>
+<td>RDP (Microsoft)</td>
+<td>RFB</td>
+</tr>
+<tr>
+<td>Puerto por defecto</td>
+<td>3389</td>
+<td>5900+display</td>
+</tr>
+<tr>
+<td>Cifrado nativo</td>
+<td>Sí (TLS)</td>
+<td>Básico (depende del cliente)</td>
+</tr>
+<tr>
+<td>Compresión</td>
+<td>Alta</td>
+<td>Media</td>
+</tr>
+<tr>
+<td>Cliente nativo en Windows</td>
+<td>Sí</td>
+<td>No (requiere instalar)</td>
+</tr>
+<tr>
+<td>Multiplataforma</td>
+<td>Sí (con xRDP)</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Rendimiento</td>
+<td>Alto</td>
+<td>Medio</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-actividades">6. Actividades<a class="headerlink" href="#6-actividades" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 1. SSH — Red Hat Academy</strong></p>
+<p><img alt="Red Hat Academy" src="../../assets/img/rha-logo.png" width="300" /></p>
+<p>Para esta práctica trabajarás con el material del <strong>Capítulo 10 — Configuración y seguridad de SSH</strong> de <em>Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.0</em>.</p>
+<p>Accede al portal de <a href="https://www.redhat.com/es/services/training/red-hat-academy">Red Hat Academy</a> e inicia el entorno de laboratorio. Completa las siguientes secciones del capítulo:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Tipo</th>
+<th>Duración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introducción</td>
+<td>Lectura</td>
+<td>3 min</td>
+</tr>
+<tr>
+<td>Acceso a la línea de comandos remota con SSH</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Configurar autenticación basada en claves de SSH</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Personalización de la configuración del servicio SSH</td>
+<td>Lectura + Ejercicio guiado</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Configuración y seguridad de SSH</td>
+<td>Laboratorio</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Conclusión</td>
+<td>Lectura</td>
+<td>2 min</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Duración total estimada: 110 minutos.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No olvides iniciar el entorno de laboratorio antes de comenzar los ejercicios guiados.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 2. Transferencia segura de archivos — Red Hat Academy</strong></p>
+<p><img alt="Red Hat Academy" src="../../assets/img/rha-logo.png" width="300" /></p>
+<p>Para esta práctica trabajarás con el material del <strong>Capítulo 4 — Almacenamiento y transferencia de archivos de forma segura entre sistemas</strong> de <em>Red Hat Academy: Administración de sistemas en Red Hat II (RH134) 9.3</em>.</p>
+<p>Accede al portal de <a href="https://www.redhat.com/es/services/training/red-hat-academy">Red Hat Academy</a> e inicia el entorno de laboratorio. Completa las siguientes secciones del capítulo:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Tipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gestión de archivos comprimidos tar</td>
+<td>Lectura + Ejercicio guiado</td>
+</tr>
+<tr>
+<td>Transferencia de archivos entre sistemas de forma segura (SCP, SFTP)</td>
+<td>Lectura + Ejercicio guiado</td>
+</tr>
+<tr>
+<td>Sincronización de archivos entre sistemas de forma segura (rsync)</td>
+<td>Lectura + Ejercicio guiado</td>
+</tr>
+<tr>
+<td>Laboratorio final</td>
+<td>Laboratorio</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No olvides iniciar el entorno de laboratorio antes de comenzar los ejercicios guiados.</p>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 3. Escritorio remoto con VNC</strong></p>
+<p>Instala y configura un servidor VNC (TigerVNC) en Linux y accede a él desde un cliente Linux.</p>
+<ol>
+<li>Instala <code>tigervnc-standalone-server</code> en el servidor.</li>
+<li>Configura la contraseña VNC.</li>
+<li>Inicia una sesión VNC en el display <code>:1</code>.</li>
+<li>Instala <code>tigervnc-viewer</code> en el cliente y conéctate.</li>
+<li>Documenta el proceso con capturas de pantalla.</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Reto</p>
+<p><strong>Práctica 4 (Avanzado). Comparativa de soluciones de escritorio remoto</strong></p>
+<p>Realiza una comparativa de las diferentes soluciones de escritorio remoto disponibles para Linux (xRDP, TigerVNC, RealVNC, NoMachine, TeamViewer) indicando:</p>
+<ul>
+<li>Características principales.</li>
+<li>Ventajas y desventajas.</li>
+<li>Casos de uso recomendados.</li>
+<li>Nivel de seguridad.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../procesos/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT2. Procesos, Servicios y Automatización">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT2. Procesos, Servicios y Automatización
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../directorio/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT4. Servicio de Directorio en Linux">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT4. Servicio de Directorio en Linux
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

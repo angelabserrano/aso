@@ -1,0 +1,1460 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/git/introduccion/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../linux/bash/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT0. Introducción a Git y Github - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objetivos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT0. Introducción a Git y Github
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenidos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contenidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-conceptos-basicos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Conceptos Básicos de Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Conceptos Básicos de Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es Git?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-importancia-en-el-desarrollo-de-software-y-administracion-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Importancia en el desarrollo de software y administración de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-instalacion-de-git-en-diferentes-sistemas-operativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Instalación de Git en diferentes sistemas operativos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-configuracion-inicial-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Configuración inicial de Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-comandos-basicos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Comandos básicos de Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-flujo-de-trabajo-en-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Flujo de trabajo en Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-comandos-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Resumen de comandos Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conceptos-basicos-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Conceptos Básicos de GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Conceptos Básicos de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-que-es-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 ¿Qué es GitHub?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 ¿Qué es GitHub?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plataforma-para-alojar-repositorios-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plataforma para alojar repositorios Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colaboracion-y-control-de-versiones-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colaboración y control de versiones en la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-creacion-de-una-cuenta-en-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Creación de una cuenta en GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-creacion-de-un-repositorio-publico-en-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Creación de un repositorio público en GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-configuracion-de-ssh-para-autenticacion-segura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Configuración de SSH para autenticación segura
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contenidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contenidos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contenidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-conceptos-basicos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Conceptos Básicos de Git
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Conceptos Básicos de Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es Git?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-importancia-en-el-desarrollo-de-software-y-administracion-de-sistemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Importancia en el desarrollo de software y administración de sistemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-instalacion-de-git-en-diferentes-sistemas-operativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Instalación de Git en diferentes sistemas operativos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-configuracion-inicial-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Configuración inicial de Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-comandos-basicos-de-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Comandos básicos de Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-flujo-de-trabajo-en-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Flujo de trabajo en Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-comandos-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Resumen de comandos Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conceptos-basicos-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Conceptos Básicos de GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Conceptos Básicos de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-que-es-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 ¿Qué es GitHub?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 ¿Qué es GitHub?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plataforma-para-alojar-repositorios-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plataforma para alojar repositorios Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colaboracion-y-control-de-versiones-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Colaboración y control de versiones en la nube
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-creacion-de-una-cuenta-en-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Creación de una cuenta en GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-creacion-de-un-repositorio-publico-en-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Creación de un repositorio público en GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-configuracion-de-ssh-para-autenticacion-segura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Configuración de SSH para autenticación segura
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT0. Introducción a Git y Github</h1>
+
+<p>Antes de comenzar con los contenidos específicos de administración de sistemas operativos , es fundamental que los estudiantes se familiaricen con las herramientas de control de versiones y colaboración en desarrollo de software. Git y GitHub son herramientas esenciales en el entorno profesional que permitirán a los estudiantes almacenar, gestionar y compartir su trabajo de manera eficiente.</p>
+<h2 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Comprender los conceptos básicos de Git y GitHub.</li>
+<li>Configurar un repositorio público en GitHub.</li>
+<li>Almacenar scripts y documentación de la asignatura en el repositorio.</li>
+</ul>
+<h2 id="contenidos">Contenidos<a class="headerlink" href="#contenidos" title="Permanent link">&para;</a></h2>
+<h3 id="1-conceptos-basicos-de-git">1 Conceptos Básicos de Git<a class="headerlink" href="#1-conceptos-basicos-de-git" title="Permanent link">&para;</a></h3>
+<h4 id="11-que-es-git">1.1 ¿Qué es Git?<a class="headerlink" href="#11-que-es-git" title="Permanent link">&para;</a></h4>
+<p>Git es un sistema de control de versiones distribuido, diseñado para manejar todo, desde proyectos pequeños hasta proyectos muy grandes con rapidez y eficiencia. Fue creado por Linus Torvalds en 2005 para el desarrollo del kernel de Linux. Su objetivo principal es mantener un seguimiento de los cambios en los archivos y coordinar el trabajo en esos archivos entre múltiples personas.</p>
+<h4 id="12-importancia-en-el-desarrollo-de-software-y-administracion-de-sistemas">1.2 Importancia en el desarrollo de software y administración de sistemas<a class="headerlink" href="#12-importancia-en-el-desarrollo-de-software-y-administracion-de-sistemas" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Colaboración</strong>: Git permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente sin conflictos. Cada desarrollador puede tener una copia completa del historial del proyecto.</li>
+<li><strong>Historial de cambios</strong>: Cada cambio en el código se registra con un mensaje de commit, permitiendo un seguimiento preciso de la evolución del proyecto.</li>
+<li><strong>Ramas y fusión</strong>: Facilita la creación de ramas para el desarrollo de nuevas características o corrección de errores, las cuales se pueden fusionar al proyecto principal una vez finalizadas.</li>
+<li><strong>Recuperación</strong>: Permite revertir a versiones anteriores del proyecto si se introducen errores.</li>
+</ul>
+<h4 id="13-instalacion-de-git-en-diferentes-sistemas-operativos">1.3 Instalación de Git en diferentes sistemas operativos<a class="headerlink" href="#13-instalacion-de-git-en-diferentes-sistemas-operativos" title="Permanent link">&para;</a></h4>
+<p><strong>Windows</strong></p>
+<ol>
+<li>Descargar el instalador desde el <a href="https://git-scm.com/">sitio oficial de Git</a>.</li>
+<li>Ejecutar el instalador y seguir las instrucciones en pantalla, seleccionando las opciones deseadas.</li>
+</ol>
+<p><strong>Linux</strong></p>
+<ul>
+<li>
+<p>Para distribuciones basadas en Debian/Ubuntu:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo apt update
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo apt install git
+</code></pre></div>
+</li>
+</ul>
+<h4 id="14-configuracion-inicial-de-git">1.4 Configuración inicial de Git<a class="headerlink" href="#14-configuracion-inicial-de-git" title="Permanent link">&para;</a></h4>
+<p>Después de instalar Git, es importante configurarlo con tu nombre de usuario y correo electrónico, ya que esta información se usará en los commits.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git config --global user.name &quot;Tu Nombre&quot;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git config --global user.email &quot;tuemail@ejemplo.com&quot;
+</code></pre></div>
+<p>Para comprobar la ejecución ejecutamos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git config --list
+</code></pre></div>
+<h4 id="15-comandos-basicos-de-git">1.5 Comandos básicos de Git<a class="headerlink" href="#15-comandos-basicos-de-git" title="Permanent link">&para;</a></h4>
+<p><code>git init</code></p>
+<p>Inicializa un nuevo repositorio de Git en el directorio actual.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git init
+</code></pre></div>
+<p><code>git clone</code></p>
+<p>Clona un repositorio existente desde una URL a tu máquina local.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git clone git@github.com:usuario/repositorio.git
+</code></pre></div>
+<p><code>git add</code></p>
+<p>Agrega archivos al área de preparación (staging area), preparándolos para el commit.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git add archivo.txt
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git add .
+</code></pre></div>
+<p><code>git commit</code></p>
+<p>Guarda los cambios añadidos al área de preparación en el historial del repositorio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git commit -m &quot;Mensaje del commit&quot;
+</code></pre></div>
+<p><code>git push</code></p>
+<p>Envía los commits realizados en la rama local al repositorio remoto (rama principal).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git push origin main
+</code></pre></div>
+<p><code>git pull</code></p>
+<p>Actualiza tu repositorio local con los cambios del repositorio remoto.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git pull origin main
+</code></pre></div>
+<p><code>git status</code></p>
+<p>Muestra el estado de los archivos en el directorio de trabajo y el área de preparación.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git status
+</code></pre></div>
+<p><code>git log</code></p>
+<p>Muestra el historial de commits del repositorio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git log
+</code></pre></div>
+<h4 id="16-flujo-de-trabajo-en-git">1.6 Flujo de trabajo en Git<a class="headerlink" href="#16-flujo-de-trabajo-en-git" title="Permanent link">&para;</a></h4>
+<p>A continuación se muestra un esquema visual del <strong>ciclo de vida de los cambios en Git</strong>:</p>
+<p><img alt="Desarrollo completo con GitHub" src="../../assets/img/git/image10_1a4384e5fa.avif" /></p>
+<p>En este diagrama se distinguen las partes principales:</p>
+<ul>
+<li>
+<p><strong>Working Directory (directorio de trabajo):</strong> donde editas archivos en tu PC.</p>
+</li>
+<li>
+<p><strong>Staging Area (área de preparación):</strong> donde seleccionas qué cambios quieres guardar. (<code>git add</code>)</p>
+</li>
+<li>
+<p><strong>Local Repo (repositorio local):</strong> base de datos con tus commits en tu máquina. (<code>git commit</code>)</p>
+</li>
+<li>
+<p><strong>Remote Repo (GitHub):</strong> copia del repositorio accesible online para colaborar. (<code>git push</code> / <code>git pull</code>)</p>
+</li>
+</ul>
+<p>Y los comandos clave:</p>
+<ul>
+<li>
+<p><code>git add</code> → mover cambios al <strong>Staging Area</strong>.</p>
+</li>
+<li>
+<p><code>git commit</code> → guardar en el <strong>repositorio local</strong>.</p>
+</li>
+<li>
+<p><code>git push</code> → enviar al <strong>repositorio remoto (GitHub)</strong>.</p>
+</li>
+<li>
+<p><code>git pull</code> → traer cambios del remoto a tu local.</p>
+</li>
+<li>
+<p><code>git checkout</code> / <code>git merge</code> → cambiar de rama o fusionar.</p>
+</li>
+</ul>
+<h4 id="resumen-de-comandos-git">📚 Resumen de comandos Git<a class="headerlink" href="#resumen-de-comandos-git" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Cheat Sheet</p>
+<p><a href="../../assets/git-cheatsheet.pdf"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> Git Cheat Sheet (GitHub Education)</a> — resumen de los comandos Git más útiles en dos páginas.</p>
+</div>
+<h3 id="2-conceptos-basicos-de-github">2 Conceptos Básicos de GitHub<a class="headerlink" href="#2-conceptos-basicos-de-github" title="Permanent link">&para;</a></h3>
+<h4 id="21-que-es-github">2.1 ¿Qué es GitHub?<a class="headerlink" href="#21-que-es-github" title="Permanent link">&para;</a></h4>
+<p>GitHub es una plataforma en línea que permite a los desarrolladores alojar y gestionar sus proyectos utilizando Git. Proporciona un entorno colaborativo donde los desarrolladores pueden compartir sus proyectos, trabajar juntos en el código, y gestionar el historial de versiones de manera eficiente.</p>
+<h5 id="plataforma-para-alojar-repositorios-git">Plataforma para alojar repositorios Git<a class="headerlink" href="#plataforma-para-alojar-repositorios-git" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>Alojamiento de Repositorios</strong>: GitHub ofrece almacenamiento para repositorios Git, permitiendo a los desarrolladores guardar y compartir su código con facilidad.</li>
+<li><strong>Interfaz Web</strong>: Proporciona una interfaz web intuitiva para interactuar con los repositorios, revisar el historial de commits, gestionar problemas (issues) y realizar solicitudes de extracción (pull requests).</li>
+</ul>
+<h5 id="colaboracion-y-control-de-versiones-en-la-nube">Colaboración y control de versiones en la nube<a class="headerlink" href="#colaboracion-y-control-de-versiones-en-la-nube" title="Permanent link">&para;</a></h5>
+<ul>
+<li>
+<p><strong>Colaboración</strong>: Permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente. Las características como los pull requests y las revisiones de código facilitan la colaboración y revisión de cambios.</p>
+</li>
+<li>
+<p><strong>Control de Versiones</strong>: Utilizando Git como backend, GitHub proporciona control de versiones robusto, permitiendo a los desarrolladores rastrear y revertir cambios en el código.</p>
+</li>
+</ul>
+<h4 id="22-creacion-de-una-cuenta-en-github">2.2 Creación de una cuenta en GitHub<a class="headerlink" href="#22-creacion-de-una-cuenta-en-github" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Registro</strong>: Ve a la <a href="https://github.com/join">página de registro de GitHub</a>.</li>
+<li><strong>Formulario de Registro</strong>: Completa el formulario de registro con tu nombre de usuario, correo electrónico y contraseña.</li>
+<li><strong>Verificación</strong>: Sigue las instrucciones para verificar tu cuenta a través del correo electrónico.</li>
+<li><strong>Configuración Inicial</strong>: Opcionalmente, puedes configurar algunas preferencias iniciales como temas y notificaciones.</li>
+</ol>
+<h4 id="23-creacion-de-un-repositorio-publico-en-github">2.3 Creación de un repositorio público en GitHub<a class="headerlink" href="#23-creacion-de-un-repositorio-publico-en-github" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Iniciar Sesión</strong>: Inicia sesión en tu cuenta de GitHub.</li>
+<li><strong>Nuevo Repositorio</strong>: Haz clic en el botón "+" en la esquina superior derecha y selecciona "New repository".</li>
+<li>Detalles del Repositorio<ul>
+<li><strong>Nombre del Repositorio</strong>: Proporciona un nombre único para tu repositorio.</li>
+<li><strong>Descripción</strong>: Opcionalmente, añade una descripción para tu repositorio.</li>
+<li><strong>Visibilidad</strong>: Selecciona "Public" para hacer que el repositorio sea accesible para todos.</li>
+</ul>
+</li>
+<li>Opciones Iniciales<ul>
+<li>Puedes inicializar el repositorio con un archivo README, un archivo .gitignore y una licencia.</li>
+</ul>
+</li>
+<li><strong>Crear Repositorio</strong>: Haz clic en el botón "Create repository" para finalizar.</li>
+</ol>
+<h4 id="24-configuracion-de-ssh-para-autenticacion-segura">2.4 Configuración de SSH para autenticación segura<a class="headerlink" href="#24-configuracion-de-ssh-para-autenticacion-segura" title="Permanent link">&para;</a></h4>
+<p>La autenticación SSH proporciona un método seguro para interactuar con GitHub sin tener que ingresar tu nombre de usuario y contraseña cada vez.</p>
+<ol>
+<li>
+<p><strong>Generar una clave SSH</strong>:</p>
+<ul>
+<li>Abre una terminal y ejecuta el siguiente comando (reemplaza  youremail@example.com  con tu correo electrónico):</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ssh-keygen -t rsa -b 4096 -C &quot;youremail@example.com&quot;
+</code></pre></div>
+   2. <strong>Agregar la clave SSH a tu cuenta de GitHub</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cat ~/.ssh/id_rsa.pub
+</code></pre></div>
+</li>
+<li>
+<p>Ve a <a href="https://github.com/settings/keys">Configuración de SSH en GitHub</a> y haz clic en "New SSH key".</p>
+</li>
+<li>
+<p>Pega la clave pública en el campo "Key" y proporciona un título descriptivo.</p>
+</li>
+<li>
+<p>Haz clic en "Add SSH key".</p>
+</li>
+<li>
+<p><strong>Probar la conexión</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh -T git@github.com
+</code></pre></div>
+</li>
+</ol>
+<h3 id="practica-1">Práctica 1<a class="headerlink" href="#practica-1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1. Configuración del entorno</strong></p>
+<ol>
+<li>Crea una cuenta en <a href="https://github.com">GitHub</a> si no tienes una.</li>
+<li>Configura Git con tu nombre y correo electrónico:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git config --global user.name &quot;Tu Nombre&quot;
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git config --global user.email &quot;tuemail@ejemplo.com&quot;
+</code></pre></div></li>
+<li>Genera una clave SSH y añádela a tu cuenta de GitHub siguiendo los pasos del apartado 2.4.</li>
+<li>Verifica que la conexión SSH funciona correctamente:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh -T git@github.com
+</code></pre></div></li>
+</ol>
+<p><strong>Ejercicio 2. Creación del repositorio</strong></p>
+<ol>
+<li>Crea un repositorio <strong>público</strong> en GitHub con el nombre <strong>aso</strong>. Inicialízalo con un archivo <code>README.md</code> donde describas brevemente el propósito del repositorio.</li>
+<li>Clona el repositorio en tu máquina local:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git clone git@github.com:tu-usuario/aso.git
+</code></pre></div></li>
+<li>Edita el <code>README.md</code> añadiendo tu nombre y el curso. Sube los cambios a GitHub:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>git add README.md
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>git commit -m &quot;Actualizar README con información del curso&quot;
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>git push origin main
+</code></pre></div></li>
+</ol>
+<p><strong>Entrega:</strong> Proporciona la URL de tu repositorio de GitHub en la tarea <strong>UT0. Práctica 0</strong> de Aules.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Inicio">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Inicio
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../linux/bash/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT1. Bash">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT1. Bash
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

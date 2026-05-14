@@ -1,0 +1,1907 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/kubernetes/">
+      
+      
+        <link rel="prev" href="../../wserver/administracion/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT9. Kubernetes - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prerequisitos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT9. Kubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-limitaciones-de-docker-en-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Limitaciones de Docker en producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-que-es-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 ¿Qué es Kubernetes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Control Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-worker-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Worker Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion-del-entorno-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Instalación del entorno: Minikube
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación del entorno: Minikube">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion-de-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación de Minikube
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-instalacion-de-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Instalación de kubectl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-iniciar-el-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Iniciar el clúster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-objetos-de-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Objetos de Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Objetos de Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configmaps-y-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ConfigMaps y Secrets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ConfigMaps y Secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-configmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 ConfigMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-almacenamiento-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Almacenamiento persistente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Almacenamiento persistente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-persistentvolume-y-persistentvolumeclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 PersistentVolume y PersistentVolumeClaim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-referencia-rapida-de-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Referencia rápida de kubectl
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Actividades
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-limitaciones-de-docker-en-produccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Limitaciones de Docker en producción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-que-es-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 ¿Qué es Kubernetes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Control Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-worker-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Worker Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion-del-entorno-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Instalación del entorno: Minikube
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación del entorno: Minikube">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-instalacion-de-minikube" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Instalación de Minikube
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-instalacion-de-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Instalación de kubectl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-iniciar-el-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Iniciar el clúster
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-objetos-de-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Objetos de Kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Objetos de Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Namespace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configmaps-y-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ConfigMaps y Secrets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ConfigMaps y Secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-configmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 ConfigMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-almacenamiento-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Almacenamiento persistente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Almacenamiento persistente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-persistentvolume-y-persistentvolumeclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 PersistentVolume y PersistentVolumeClaim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-referencia-rapida-de-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Referencia rápida de kubectl
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-actividades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Actividades
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT9. Kubernetes</h1>
+
+<h2 id="prerequisitos">Prerequisitos<a class="headerlink" href="#prerequisitos" title="Permanent link">&para;</a></h2>
+<p>En esta unidad se asume que ya conoces los conceptos básicos de contenedores trabajados en la asignatura <strong>Implantación de Aplicaciones Web</strong>:</p>
+<ul>
+<li>Qué es una <strong>imagen</strong> y un <strong>contenedor</strong>.</li>
+<li>Comandos básicos de Docker (<code>run</code>, <code>build</code>, <code>ps</code>, <code>stop</code>, <code>rm</code>).</li>
+<li>Qué es <strong>Docker Hub</strong> y cómo usar imágenes públicas.</li>
+<li>Ficheros <code>Dockerfile</code> y <code>docker-compose.yml</code>.</li>
+</ul>
+<hr />
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<h3 id="11-limitaciones-de-docker-en-produccion">1.1 Limitaciones de Docker en producción<a class="headerlink" href="#11-limitaciones-de-docker-en-produccion" title="Permanent link">&para;</a></h3>
+<p>Docker es ideal para ejecutar contenedores en un único servidor. Sin embargo, en entornos de producción reales surgen problemas que Docker por sí solo no resuelve:</p>
+<table>
+<thead>
+<tr>
+<th>Problema</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Alta disponibilidad</strong></td>
+<td>Si el servidor cae, todos los contenedores caen con él</td>
+</tr>
+<tr>
+<td><strong>Escalado</strong></td>
+<td>Escalar manualmente réplicas de un servicio es complejo</td>
+</tr>
+<tr>
+<td><strong>Balanceo de carga</strong></td>
+<td>No hay mecanismo automático para distribuir tráfico entre réplicas</td>
+</tr>
+<tr>
+<td><strong>Recuperación automática</strong></td>
+<td>Si un contenedor falla, no se reinicia solo en otro nodo</td>
+</tr>
+<tr>
+<td><strong>Despliegues sin downtime</strong></td>
+<td>Actualizar una imagen sin interrumpir el servicio es difícil</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-que-es-kubernetes">1.2 ¿Qué es Kubernetes?<a class="headerlink" href="#12-que-es-kubernetes" title="Permanent link">&para;</a></h3>
+<p><strong>Kubernetes</strong> (también llamado <strong>K8s</strong>) es una plataforma de código abierto para la <strong>orquestación de contenedores</strong>. Fue desarrollado originalmente por Google y donado a la Cloud Native Computing Foundation (CNCF) en 2014.</p>
+<p>Kubernetes automatiza el despliegue, el escalado y la gestión de aplicaciones en contenedores, distribuyéndolas entre un conjunto de máquinas llamado <strong>clúster</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">¿Por qué K8s?</p>
+<p>El nombre abreviado K8s viene de sustituir las 8 letras entre la K y la s de "Kubernetes".</p>
+</div>
+<hr />
+<h2 id="2-arquitectura">2. Arquitectura<a class="headerlink" href="#2-arquitectura" title="Permanent link">&para;</a></h2>
+<p>Un clúster Kubernetes está formado por dos tipos de nodos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                     CLÚSTER KUBERNETES                  │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                                                         │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ┌──────────────────────────────┐                       │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  │       CONTROL PLANE          │                       │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │  ┌──────────┐ ┌───────────┐  │                       │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  │  │API Server│ │  etcd     │  │                       │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  │  └──────────┘ └───────────┘  │                       │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  │  ┌──────────┐ ┌───────────┐  │                       │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  │  │Scheduler │ │Controller │  │                       │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  │  └──────────┘ └───────────┘  │                       │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│  └──────────────────────────────┘                       │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                                                         │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  │  WORKER     │  │  WORKER     │  │  WORKER     │     │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  │  NODE 1     │  │  NODE 2     │  │  NODE 3     │     │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│  │  kubelet    │  │  kubelet    │  │  kubelet    │     │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│  │  kube-proxy │  │  kube-proxy │  │  kube-proxy │     │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  │  [pods...]  │  │  [pods...]  │  │  [pods...]  │     │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│  └─────────────┘  └─────────────┘  └─────────────┘     │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="21-control-plane">2.1 Control Plane<a class="headerlink" href="#21-control-plane" title="Permanent link">&para;</a></h3>
+<p>El <strong>Control Plane</strong> (plano de control) gestiona el estado del clúster. Sus componentes principales son:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API Server</strong></td>
+<td>Punto de entrada de todas las operaciones. Expone la API REST de Kubernetes</td>
+</tr>
+<tr>
+<td><strong>etcd</strong></td>
+<td>Base de datos distribuida clave-valor que almacena el estado del clúster</td>
+</tr>
+<tr>
+<td><strong>Scheduler</strong></td>
+<td>Decide en qué nodo se ejecuta cada Pod según los recursos disponibles</td>
+</tr>
+<tr>
+<td><strong>Controller Manager</strong></td>
+<td>Bucle de control que asegura que el estado actual coincide con el deseado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-worker-nodes">2.2 Worker Nodes<a class="headerlink" href="#22-worker-nodes" title="Permanent link">&para;</a></h3>
+<p>Los <strong>Worker Nodes</strong> son las máquinas que ejecutan las aplicaciones. Cada uno tiene:</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>kubelet</strong></td>
+<td>Agente que se comunica con el API Server y gestiona los Pods del nodo</td>
+</tr>
+<tr>
+<td><strong>kube-proxy</strong></td>
+<td>Gestiona las reglas de red para que los Pods se puedan comunicar</td>
+</tr>
+<tr>
+<td><strong>Container Runtime</strong></td>
+<td>Motor que ejecuta los contenedores (containerd, CRI-O...)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-instalacion-del-entorno-minikube">3. Instalación del entorno: Minikube<a class="headerlink" href="#3-instalacion-del-entorno-minikube" title="Permanent link">&para;</a></h2>
+<p><strong>Minikube</strong> crea un clúster Kubernetes de un solo nodo en tu máquina local, ideal para aprender y hacer pruebas.</p>
+<h3 id="31-instalacion-de-minikube">3.1 Instalación de Minikube<a class="headerlink" href="#31-instalacion-de-minikube" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Descargar el binario</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Instalar</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>sudo<span class="w"> </span>install<span class="w"> </span>minikube-linux-amd64<span class="w"> </span>/usr/local/bin/minikube
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Verificar</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>minikube<span class="w"> </span>version
+</code></pre></div>
+<h3 id="32-instalacion-de-kubectl">3.2 Instalación de kubectl<a class="headerlink" href="#32-instalacion-de-kubectl" title="Permanent link">&para;</a></h3>
+<p><code>kubectl</code> es la herramienta de línea de comandos para interactuar con el clúster.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Descargar kubectl</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://dl.k8s.io/release/</span><span class="k">$(</span>curl<span class="w"> </span>-L<span class="w"> </span>-s<span class="w"> </span>https://dl.k8s.io/release/stable.txt<span class="k">)</span><span class="s2">/bin/linux/amd64/kubectl&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Instalar</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>sudo<span class="w"> </span>install<span class="w"> </span>kubectl<span class="w"> </span>/usr/local/bin/kubectl
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Verificar</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>kubectl<span class="w"> </span>version<span class="w"> </span>--client
+</code></pre></div>
+<h3 id="33-iniciar-el-cluster">3.3 Iniciar el clúster<a class="headerlink" href="#33-iniciar-el-cluster" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Iniciar Minikube (usa Docker como driver)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>minikube<span class="w"> </span>start<span class="w"> </span>--driver<span class="o">=</span>docker
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Ver el estado</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>minikube<span class="w"> </span>status
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Parar el clúster</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>minikube<span class="w"> </span>stop
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Eliminar el clúster</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>minikube<span class="w"> </span>delete
+</code></pre></div>
+<hr />
+<h2 id="4-objetos-de-kubernetes">4. Objetos de Kubernetes<a class="headerlink" href="#4-objetos-de-kubernetes" title="Permanent link">&para;</a></h2>
+<p>Todo en Kubernetes se describe mediante <strong>objetos</strong>. Los más importantes son:</p>
+<h3 id="41-pod">4.1 Pod<a class="headerlink" href="#41-pod" title="Permanent link">&para;</a></h3>
+<p>El <strong>Pod</strong> es la unidad mínima de despliegue en Kubernetes. Contiene uno o más contenedores que comparten red y almacenamiento.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># pod-nginx.yaml</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-pod</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:latest</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Crear el Pod</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pod-nginx.yaml
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Ver Pods en ejecución</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Ver detalles del Pod</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>mi-pod
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Ver logs del contenedor</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>mi-pod
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># Acceder al contenedor</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mi-pod<span class="w"> </span>--<span class="w"> </span>/bin/bash
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Eliminar el Pod</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>mi-pod
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Los Pods son efímeros — si fallan, no se reinician solos. Para gestionar la disponibilidad se usan <strong>Deployments</strong>.</p>
+</div>
+<h3 id="42-deployment">4.2 Deployment<a class="headerlink" href="#42-deployment" title="Permanent link">&para;</a></h3>
+<p>Un <strong>Deployment</strong> gestiona un conjunto de réplicas de un Pod, asegurando que siempre haya el número deseado en ejecución. Si un Pod falla, lo recrea automáticamente.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># deployment-nginx.yaml</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.25</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Crear el Deployment</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deployment-nginx.yaml
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Ver Deployments</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Ver el estado del rollout</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/nginx-deployment
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># Escalar a 5 réplicas</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>nginx-deployment<span class="w"> </span>--replicas<span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1"># Actualizar la imagen (rolling update)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment/nginx-deployment<span class="w"> </span><span class="nv">nginx</span><span class="o">=</span>nginx:1.26
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1"># Deshacer el último cambio</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment/nginx-deployment
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="c1"># Eliminar el Deployment</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>nginx-deployment
+</code></pre></div>
+<h3 id="43-service">4.3 Service<a class="headerlink" href="#43-service" title="Permanent link">&para;</a></h3>
+<p>Un <strong>Service</strong> expone un conjunto de Pods como un servicio de red estable, con una IP y nombre DNS fijos. Los Pods pueden cambiar, pero el Service siempre apunta a los correctos mediante <strong>selectores de etiquetas</strong>.</p>
+<p>Tipos de Service:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ClusterIP</strong></td>
+<td>Accesible solo dentro del clúster (por defecto)</td>
+</tr>
+<tr>
+<td><strong>NodePort</strong></td>
+<td>Expone el servicio en un puerto de cada nodo (30000–32767)</td>
+</tr>
+<tr>
+<td><strong>LoadBalancer</strong></td>
+<td>Crea un balanceador de carga externo (en cloud providers)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># service-nginx.yaml</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-service</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30080</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Crear el Service</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>service-nginx.yaml
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Ver Services</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>kubectl<span class="w"> </span>get<span class="w"> </span>services
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Obtener la URL en Minikube</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>minikube<span class="w"> </span>service<span class="w"> </span>nginx-service<span class="w"> </span>--url
+</code></pre></div>
+<h3 id="44-namespace">4.4 Namespace<a class="headerlink" href="#44-namespace" title="Permanent link">&para;</a></h3>
+<p>Los <strong>Namespaces</strong> permiten dividir el clúster en entornos virtuales aislados (producción, desarrollo, testing...).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Ver namespaces</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>namespaces
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Crear un namespace</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>desarrollo
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Desplegar en un namespace concreto</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deployment-nginx.yaml<span class="w"> </span>-n<span class="w"> </span>desarrollo
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># Ver Pods de un namespace</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>desarrollo
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># Ver Pods de todos los namespaces</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>--all-namespaces
+</code></pre></div>
+<hr />
+<h2 id="5-configmaps-y-secrets">5. ConfigMaps y Secrets<a class="headerlink" href="#5-configmaps-y-secrets" title="Permanent link">&para;</a></h2>
+<h3 id="51-configmap">5.1 ConfigMap<a class="headerlink" href="#51-configmap" title="Permanent link">&para;</a></h3>
+<p>Un <strong>ConfigMap</strong> almacena configuración no sensible (variables de entorno, ficheros de configuración) desacoplada de la imagen del contenedor.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># configmap.yaml</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-config</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nt">data</span><span class="p">:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="nt">APP_ENV</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;produccion&quot;</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nt">APP_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="nt">LOG_LEVEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;info&quot;</span>
+</code></pre></div>
+<p>Usar el ConfigMap en un Deployment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app:1.0</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">      </span><span class="nt">envFrom</span><span class="p">:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">configMapRef</span><span class="p">:</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-config</span>
+</code></pre></div>
+<h3 id="52-secret">5.2 Secret<a class="headerlink" href="#52-secret" title="Permanent link">&para;</a></h3>
+<p>Los <strong>Secrets</strong> almacenan información sensible (contraseñas, tokens, claves) codificada en base64.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Crear un Secret desde la línea de comandos</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>db-credenciales<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">usuario</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>S3cur3Pass!
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Usar el Secret en un Deployment</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app:1.0</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_USER</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-credenciales</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">usuario</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_PASS</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-credenciales</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Los Secrets solo están codificados en base64, no cifrados. Para producción real se deben usar soluciones adicionales como <strong>Sealed Secrets</strong> o <strong>HashiCorp Vault</strong>.</p>
+</div>
+<hr />
+<h2 id="6-almacenamiento-persistente">6. Almacenamiento persistente<a class="headerlink" href="#6-almacenamiento-persistente" title="Permanent link">&para;</a></h2>
+<p>Los contenedores son efímeros — al eliminarse, sus datos desaparecen. Para datos persistentes se usan <strong>Volumes</strong>.</p>
+<h3 id="61-persistentvolume-y-persistentvolumeclaim">6.1 PersistentVolume y PersistentVolumeClaim<a class="headerlink" href="#61-persistentvolume-y-persistentvolumeclaim" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Objeto</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PersistentVolume (PV)</strong></td>
+<td>Recurso de almacenamiento físico aprovisionado en el clúster</td>
+</tr>
+<tr>
+<td><strong>PersistentVolumeClaim (PVC)</strong></td>
+<td>Solicitud de almacenamiento hecha por un Pod</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># persistent-volume.yaml</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pv-datos</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/datos</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="nn">---</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc-datos</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+</code></pre></div>
+<p>Montar el PVC en un Pod:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mi-app:1.0</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">      </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/datos</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">almacenamiento</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">almacenamiento</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pvc-datos</span>
+</code></pre></div>
+<hr />
+<h2 id="7-referencia-rapida-de-kubectl">7. Referencia rápida de kubectl<a class="headerlink" href="#7-referencia-rapida-de-kubectl" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Comando</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kubectl get pods</code></td>
+<td>Lista los Pods</td>
+</tr>
+<tr>
+<td><code>kubectl get pods -o wide</code></td>
+<td>Lista Pods con IP y nodo</td>
+</tr>
+<tr>
+<td><code>kubectl get all</code></td>
+<td>Lista todos los recursos</td>
+</tr>
+<tr>
+<td><code>kubectl describe pod &lt;nombre&gt;</code></td>
+<td>Detalles de un Pod</td>
+</tr>
+<tr>
+<td><code>kubectl logs &lt;pod&gt;</code></td>
+<td>Logs de un Pod</td>
+</tr>
+<tr>
+<td><code>kubectl logs -f &lt;pod&gt;</code></td>
+<td>Logs en tiempo real</td>
+</tr>
+<tr>
+<td><code>kubectl exec -it &lt;pod&gt; -- bash</code></td>
+<td>Acceso interactivo al contenedor</td>
+</tr>
+<tr>
+<td><code>kubectl apply -f &lt;fichero.yaml&gt;</code></td>
+<td>Crear/actualizar recursos desde YAML</td>
+</tr>
+<tr>
+<td><code>kubectl delete -f &lt;fichero.yaml&gt;</code></td>
+<td>Eliminar recursos definidos en YAML</td>
+</tr>
+<tr>
+<td><code>kubectl delete pod &lt;nombre&gt;</code></td>
+<td>Eliminar un Pod</td>
+</tr>
+<tr>
+<td><code>kubectl scale deployment &lt;nombre&gt; --replicas=N</code></td>
+<td>Escalar un Deployment</td>
+</tr>
+<tr>
+<td><code>kubectl rollout status deployment/&lt;nombre&gt;</code></td>
+<td>Estado del despliegue</td>
+</tr>
+<tr>
+<td><code>kubectl rollout undo deployment/&lt;nombre&gt;</code></td>
+<td>Revertir un despliegue</td>
+</tr>
+<tr>
+<td><code>kubectl port-forward pod/&lt;nombre&gt; 8080:80</code></td>
+<td>Redirigir puerto local al Pod</td>
+</tr>
+<tr>
+<td><code>kubectl top pods</code></td>
+<td>Uso de CPU y memoria por Pod</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-actividades">8. Actividades<a class="headerlink" href="#8-actividades" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 1. Instalación y primer despliegue</strong></p>
+<ol>
+<li>Instala Minikube y kubectl en tu máquina virtual.</li>
+<li>Inicia el clúster con <code>minikube start</code>.</li>
+<li>Verifica que el clúster funciona con <code>kubectl get nodes</code>.</li>
+<li>Despliega un Pod con la imagen <code>nginx:latest</code> usando un manifiesto YAML.</li>
+<li>Accede a los logs del Pod y conéctate a él con <code>kubectl exec</code>.</li>
+<li>Elimina el Pod y verifica que desaparece.</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 2. Deployment y escalado</strong></p>
+<ol>
+<li>Crea un Deployment con 2 réplicas de <code>nginx:1.25</code>.</li>
+<li>Verifica que se crean 2 Pods con <code>kubectl get pods</code>.</li>
+<li>Escala el Deployment a 4 réplicas y comprueba el resultado.</li>
+<li>Actualiza la imagen a <code>nginx:1.26</code> y observa el rolling update con <code>kubectl rollout status</code>.</li>
+<li>Deshaz la actualización con <code>kubectl rollout undo</code> y verifica que vuelve a <code>nginx:1.25</code>.</li>
+<li>Expón el Deployment con un Service de tipo NodePort y accede desde el navegador usando <code>minikube service</code>.</li>
+</ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Práctica 3. ConfigMaps, Secrets y Namespaces</strong></p>
+<ol>
+<li>Crea un Namespace llamado <code>produccion</code>.</li>
+<li>Crea un ConfigMap con las variables <code>APP_ENV=produccion</code> y <code>LOG_LEVEL=info</code>.</li>
+<li>Crea un Secret con un usuario y contraseña de base de datos.</li>
+<li>Despliega un Pod en el Namespace <code>produccion</code> que use el ConfigMap y el Secret como variables de entorno.</li>
+<li>Verifica dentro del contenedor con <code>kubectl exec</code> que las variables están disponibles.</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Reto</p>
+<p><strong>Práctica 4 (Avanzado). Aplicación con base de datos persistente</strong></p>
+<p>Despliega una aplicación WordPress completa en Kubernetes:</p>
+<ol>
+<li>Crea un Namespace <code>wordpress</code>.</li>
+<li>Crea un Secret con las credenciales de MySQL.</li>
+<li>Despliega MySQL con un PersistentVolumeClaim de 2Gi y un Service ClusterIP.</li>
+<li>Despliega WordPress con un Service NodePort, usando el Secret para conectar a MySQL.</li>
+<li>Accede a WordPress desde el navegador y completa la instalación.</li>
+<li>Elimina el Pod de MySQL, deja que Kubernetes lo recree y verifica que los datos persisten.</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../wserver/administracion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT8. Administración en Windows">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT8. Administración en Windows
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

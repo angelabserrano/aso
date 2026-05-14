@@ -1,0 +1,1738 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/wserver/administracion/">
+      
+      
+        <link rel="prev" href="../../scripts/powershell-directorio/">
+      
+      
+        <link rel="next" href="../../linux/kubernetes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT8. Administración en Windows - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-definicion-de-un-proceso" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT8. Administración en Windows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definicion-de-un-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Definición de un proceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estructura-de-los-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Estructura de los procesos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tipos de procesos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-estados-de-un-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Estados de un proceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-hilos-de-ejecucion-threads-o-procesos-ligeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Hilos de ejecución (Threads o procesos ligeros )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gestion-de-los-procesos-y-servicios-en-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Gestión de los procesos y servicios en Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Gestión de los procesos y servicios en Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-administrador-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Administrador de tareas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestanas-del-administrador-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestañas del Administrador de Tareas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pestañas del Administrador de Tareas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pestana-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-historial-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Historial de Aplicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Inicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Detalles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-administrar-los-procesos-y-servicios-utilizando-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Administrar los procesos y servicios utilizando PowerShell
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Administrar los procesos y servicios utilizando PowerShell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-consultar-la-informacion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Consultar la información de procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-detener-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Detener procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-iniciar-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Iniciar procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-consultar-informacion-de-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Consultar información de los servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-detener-un-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Detener un servicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-iniciar-un-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Iniciar un servicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-modificar-propiedades-de-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 Modificar propiedades de los servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definicion-de-un-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Definición de un proceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estructura-de-los-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Estructura de los procesos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tipos de procesos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-estados-de-un-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Estados de un proceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-hilos-de-ejecucion-threads-o-procesos-ligeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Hilos de ejecución (Threads o procesos ligeros )
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gestion-de-los-procesos-y-servicios-en-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Gestión de los procesos y servicios en Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Gestión de los procesos y servicios en Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-administrador-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Administrador de tareas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestanas-del-administrador-de-tareas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestañas del Administrador de Tareas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pestañas del Administrador de Tareas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pestana-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-rendimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Rendimiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-historial-de-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Historial de Aplicaciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Inicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Usuarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-detalles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Detalles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pestana-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pestaña Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-administrar-los-procesos-y-servicios-utilizando-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Administrar los procesos y servicios utilizando PowerShell
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Administrar los procesos y servicios utilizando PowerShell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-consultar-la-informacion-de-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Consultar la información de procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-detener-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Detener procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-iniciar-procesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Iniciar procesos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-consultar-informacion-de-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Consultar información de los servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-detener-un-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Detener un servicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-iniciar-un-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Iniciar un servicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-modificar-propiedades-de-los-servicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 Modificar propiedades de los servicios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT8. Administración en Windows</h1>
+
+<h2 id="1-definicion-de-un-proceso">1. Definición de un proceso<a class="headerlink" href="#1-definicion-de-un-proceso" title="Permanent link">&para;</a></h2>
+<p>Un <strong>proceso</strong> es una instancia de un programa en ejecución. Es decir, cada vez que se lanza un programa, se crea un proceso.  </p>
+<h2 id="2-estructura-de-los-procesos">2. Estructura de los procesos<a class="headerlink" href="#2-estructura-de-los-procesos" title="Permanent link">&para;</a></h2>
+<p>Los procesos se estructuran de forma <strong>jerárquica</strong>. El sistema operativo lanza el primero y a partir de este se crean todos los demás.</p>
+<p>El sistema operativo crea una estructura de control en la que tiene toda la información del proceso. A esta estructura se le llama <strong>BCP</strong> (Bloque de control de proceso).</p>
+<p>El <strong>BCP</strong> (Bloque de control del proceso), dependiendo del sistema operativo, suele almacenar :</p>
+<ul>
+<li>
+<p><strong>Identificador del proceso</strong> <strong>(PID)</strong></p>
+</li>
+<li>
+<p>Estado del proceso: preparado, activo o bloqueado.</p>
+</li>
+<li>
+<p><strong>Contexto de la ejecución</strong>: registros del procesador, bits de estado.</p>
+</li>
+<li>
+<p>Aspectos relacionados con la <strong>administración de la memoria</strong>: espacio de direcciones y cantidad asignada</p>
+</li>
+<li>
+<p>Aspectos relacionados con la <strong>administración de ficheros:</strong> ficheros con los que el proceso está operando actualmente.</p>
+</li>
+<li>
+<p><strong>Estadísticas temporales</strong>: Tiempo de lanzamiento del proceso, tiempo en estado activo, etc.</p>
+</li>
+</ul>
+<h2 id="3-tipos-de-procesos">3. Tipos de procesos<a class="headerlink" href="#3-tipos-de-procesos" title="Permanent link">&para;</a></h2>
+<p>Atendiendo a la interacción con el usuario podemos distinguir:</p>
+<ul>
+<li><strong>Procesos en primer plano (foreground)</strong>: precisan de la intervención del usuario.</li>
+<li><strong>Procesos en segundo plano (background):</strong> Se ejecutan sin que el usuario tenga que hacer nada</li>
+</ul>
+<p>Atendiendo al modo en que se ejecutan podemos distinguir:</p>
+<ul>
+<li><strong>Procesos en modo kernel:</strong> Son procesos que tienen acceso privilegiado a todo el equipo. Son mucho más seguros. La mayoría de procesos del sistema operativo son de este tipo.</li>
+<li><strong>Procesos en modo usuario:</strong>Menos seguros. Todos los que ejecutan los usuarios y/o aplicaciones de usuario suelen ser de este tipo .</li>
+</ul>
+<p>Dependiendo de quien lo ejecutó podemos distinguir:</p>
+<ul>
+<li><strong>Procesos del sistema:</strong> Los que han sido lanzados por el propio sistema operativo.</li>
+<li><strong>Procesos del usuario:</strong> Los que ha lanzado un usuario</li>
+</ul>
+<h2 id="4-estados-de-un-proceso">4. Estados de un proceso<a class="headerlink" href="#4-estados-de-un-proceso" title="Permanent link">&para;</a></h2>
+<p>Hay tres estados básicos en los que puede estar un proceso:</p>
+<ul>
+<li><strong>En ejecución</strong>: Tiene asignada la CPU</li>
+<li><strong>En espera:</strong> Está en la lista para que se le conceda el procesador.</li>
+<li><strong>Bloqueado:</strong> Está esperando a que se libere un recurso para poder seguir con su ejecución.</li>
+</ul>
+<p>Al ejecutar un programa:</p>
+<p>1- Nueva entrada en la tabla de procesos.</p>
+<p>2 - Se le asigna un PID al proceso.</p>
+<p>3 - Asignan recursos y memoria</p>
+<p>4 - Se cargan las páginas del programa en memoria</p>
+<p>5 - Se pone el proceso en la lista de espera</p>
+<p>Cuando se le concede el procesador el proceso pasa a estar en <strong>ejecución</strong>. Y si necesita algún recurso que no está disponible pasa al estado de <strong>bloqueado</strong>. En el momento en que el recurso se libere, vuelve a estar en <strong>espera</strong>. También puede pasar que se le acabe su tiempo de CPU y vuelva al estado de <strong>espera.</strong></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/qWCv0-QfL7kCwPhGyK7A3HNaLu9L_vhFLHDmdFJ9Vu3wpm9Ju1c47Ip8Of9X1WG3LhZVA35N9asOM4Ky-Wd48Xkz_LG7OS0fSxmea50BPGOGIr1l8yt85ZM5bUZHa-GQ_o8cAovRJCwRA0xqtaPPL4E_=s2048" /></p>
+<h2 id="5-hilos-de-ejecucion-threads-o-procesos-ligeros">5. Hilos de ejecución (Threads o procesos ligeros )<a class="headerlink" href="#5-hilos-de-ejecucion-threads-o-procesos-ligeros" title="Permanent link">&para;</a></h2>
+<p>Los procesos pueden ejecutarse como <strong>un solo hilo,</strong> es decir, las instrucciones van siguiendo un orden y nunca se pueden ejecutar a la vez dos instrucciones del mismo proceso, o en <strong>multihilo</strong>. Esta última consiste en que partes del mismo proceso pueden ejecutarse en paralelo, es decir, el mismo proceso tiene partes que pueden ejecutarse a la vez.</p>
+<p>Un proceso tiene asignado un BCP y los hilos son parte del mismo proceso. La memoria asignada se comparte entre todos los hilos. También se comparten el resto de recursos.</p>
+<p>Podemos distinguir:</p>
+<ul>
+<li>
+<p><strong>Hilos a nivel de usuario</strong>: Son los cuales crean los programadores y de los cuales el kernel o núcleo del sistema no es consciente de que existan, por lo que el programador debe encargarse de la sincronización.</p>
+</li>
+<li>
+<p><strong>Hilos a nivel de kernel:</strong> Son gestionados por el sistema operativo. Si tenemos un procesador con varios núcleos y/o varios procesadores, se acelerará la ejecución del proceso. </p>
+</li>
+</ul>
+<p><strong>Ventajas de los hilos frente a los procesos</strong> </p>
+<ul>
+<li>Los hilos son mucho más ligeros. En la creación de un procso se necesita un tiempo para la adjudicación de recursos, cosa innecesaria en el cambio entre hilos.</li>
+<li>En caso de procesadores multinúcleo o sistemas multiprocesador, la eficiencia de los procesos que utilizan hilos es evidente, al poder realizar varias tareas en paralelo</li>
+</ul>
+<h2 id="6-gestion-de-los-procesos-y-servicios-en-windows">6. Gestión de los procesos y servicios en Windows<a class="headerlink" href="#6-gestion-de-los-procesos-y-servicios-en-windows" title="Permanent link">&para;</a></h2>
+<h3 id="61-administrador-de-tareas">6.1 Administrador de tareas<a class="headerlink" href="#61-administrador-de-tareas" title="Permanent link">&para;</a></h3>
+<p>El <strong>Administrador de tareas de Windows</strong> proporciona información de los procesos que el ordenador está ejecutando, la actividad de red, los usuarios y los servicios del sistema.</p>
+<p><strong>Iniciar el Administrador de Tareas</strong></p>
+<p>Para iniciar el administrador de tareas podemos utilizar cualquiera de los siguientes métodos:</p>
+<ol>
+<li>Mediante el menú contextual en la barra de tareas y seleccionando "Administrador de tareas".</li>
+<li>Pulsando las teclas <strong>Ctrl+Mayus+Esc</strong></li>
+<li>Pulsando las teclas <strong>Ctrl+Alt+Supr</strong> y seleccionar <strong>Administrador de Tareas</strong>.</li>
+<li>Desde la línea de comandos ejecutando <strong>taskmgr</strong>.</li>
+</ol>
+<p><img alt="image-20231101203513655" src="../../assets/img/windows_server/image-20231101203513655.png" /></p>
+<h3 id="pestanas-del-administrador-de-tareas"><strong>Pestañas del Administrador de Tareas</strong><a class="headerlink" href="#pestanas-del-administrador-de-tareas" title="Permanent link">&para;</a></h3>
+<h4 id="pestana-procesos">Pestaña Procesos<a class="headerlink" href="#pestana-procesos" title="Permanent link">&para;</a></h4>
+<p>En la pestaña <strong>Procesos</strong> podemos observar las aplicaciones en funcionamiento, así como los procesos en segundo plano que están ejecutándose. Las columnas siguientes indican los porcentajes de recurso que utilizan: <strong>Procesador(CPU), Memoria, Disco y Red.</strong></p>
+<p>En la parte inferior disponemos del botón <strong>Finalizar Tarea</strong> que cierra la tarea seleccionada.</p>
+<h4 id="pestana-rendimiento">Pestaña Rendimiento<a class="headerlink" href="#pestana-rendimiento" title="Permanent link">&para;</a></h4>
+<p>En esta pestaña podemos observar toda la información referente al rendimiento del equipo. </p>
+<p><img alt="image-20231101204306144" src="../../assets/img/windows_server/image-20231101204306144.png" /></p>
+<h4 id="pestana-historial-de-aplicaciones">Pestaña Historial de Aplicaciones<a class="headerlink" href="#pestana-historial-de-aplicaciones" title="Permanent link">&para;</a></h4>
+<p>En la pestaña <strong>Historial de Aplicaciones</strong> mostrará el uso de CPU y red de determinadas aplicaciones desde una determinada fecha.</p>
+<p><img alt="image-20231101204717670" src="../../assets/img/windows_server/image-20231101204717670.png" /></p>
+<h4 id="pestana-inicio">Pestaña Inicio<a class="headerlink" href="#pestana-inicio" title="Permanent link">&para;</a></h4>
+<p>En esta pestaña nos muestra una lista de aplicaciones que pueden habilitarse al inicio. Si hacemos clic en cualquiera de ellas podemos habilitar/deshabilitar pulsando en el botón inferior derecho. </p>
+<p><img alt="image-20231101205339461" src="../../assets/img/windows_server/image-20231101205339461.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>Muchas aplicaciones habilitadas al inicio pueden hacer que el equipo arranque más lento</p>
+</div>
+<h4 id="pestana-usuarios">Pestaña Usuarios<a class="headerlink" href="#pestana-usuarios" title="Permanent link">&para;</a></h4>
+<p>En esta pestaña se muestran los usuarios que tienen la sesión abierta en el equipo y su estado.</p>
+<h4 id="pestana-detalles">Pestaña Detalles<a class="headerlink" href="#pestana-detalles" title="Permanent link">&para;</a></h4>
+<p>Muestra información detallada de los procesos y aplicación en ejecución, así como una descripción de cada uno de ellos.</p>
+<h4 id="pestana-servicios">Pestaña Servicios<a class="headerlink" href="#pestana-servicios" title="Permanent link">&para;</a></h4>
+<p>Muestra información acerca de los servicios disponibles en el sistema. Desde esta pantalla, pulsando clic derecho sobre cada servicio, el usuario podrá iniciar, detener o reiniciar cualquier servicio.</p>
+<p><img alt="image-20231101210133930" src="../../assets/img/windows_server/image-20231101210133930.png" /></p>
+<h3 id="62-servicios">6.2 Servicios<a class="headerlink" href="#62-servicios" title="Permanent link">&para;</a></h3>
+<p>Los <strong>servicios</strong> son procesos del sistema que están ejecutándose en segundo plano. Desde el administrador de tareas podemos iniciar o detener un servicio, pero si queremos definir los servicios que se arrancan al inicio debemos realizarlo a través del <strong>Administrador del Servidor -&gt; Servicios</strong>.</p>
+<h2 id="7-administrar-los-procesos-y-servicios-utilizando-powershell">7. Administrar los procesos y servicios utilizando PowerShell<a class="headerlink" href="#7-administrar-los-procesos-y-servicios-utilizando-powershell" title="Permanent link">&para;</a></h2>
+<h3 id="71-consultar-la-informacion-de-procesos">7.1 Consultar la información de procesos<a class="headerlink" href="#71-consultar-la-informacion-de-procesos" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Get-Process (ps)</strong> nos permite mostrar la información de un proceso. A continuación se muestran algunos parámetros que pueden utilizarse con este cmdlet.</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Id</td>
+<td>Especifica uno o varios procesos por su número de identificador de proceso (PID).</td>
+</tr>
+<tr>
+<td>-Name</td>
+<td>Especifica uno o varios procesos por su nombre</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo: Mostrar los procesos activos</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">Get-Process</span> 
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Out-GridView</span>
+</code></pre></div>
+<p><strong>Columnas</strong>:</p>
+<ul>
+<li>
+<p><strong>Handles</strong>: nº de referencias abiertas por el proceso</p>
+</li>
+<li>
+<p><strong>NPM y PM(KB)</strong>: memoria utilizada (no paginada y paginada) por el proceso.</p>
+</li>
+<li>
+<p><strong>WS(KB)</strong>: Tamaño del proceso.</p>
+</li>
+<li>
+<p><strong>CPU(s)</strong>: Tiempo de procesador utlizado por el proceso.</p>
+</li>
+<li>
+<p><strong>Id</strong>: Número que identifica al proceso.</p>
+</li>
+<li>
+<p><strong>SI</strong>: Es un número que identifica al dueño del proceso.</p>
+</li>
+<li>
+<p><strong>ProcessName</strong>: Nombre del proceso.</p>
+</li>
+</ul>
+<p><strong>Ejemplo: Mostrar los 10 procesos que consume más CPU</strong></p>
+<ol>
+<li>
+<p>Ordenamos los procesos por consumo de CPU en forma descendente</p>
+</li>
+<li>
+<p>Seleccionamos los 10 primeros .</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">sort </span><span class="n">cpu</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">10</span>
+</code></pre></div>
+<p><strong>Ejemplo: Muestra los procesos del usuario Administrador del dominio EMPRESA</strong></p>
+<p><img alt="img" src="https://lh7-us.googleusercontent.com/D75pb-J6wK1oKECF5zSeHpZ_D_ZZQPUESe4S3gF-ge2Nyw81oA8SefdGK9CrG-eWw7PSUvwsWLRBP1nVEcb4pGXJAM-_PsP5l05y97r_YofSGfwmOAHLTLcpCdy8IB8ci-1zDOcPDgxHN90N61JW3N3gGw=s2048" /></p>
+<p><strong>Ejemplo: Obtener información sobre un proceso: notepad</strong></p>
+<p>Ejecutamos el programa Notepad (Bloc de notas) </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">notepad</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span>  <span class="p">|</span> <span class="nb">fl </span><span class="p">*</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c">#Extraemos una propiedad de un proceso: Ubicación del archivo.</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">(</span><span class="nb">Get-Process</span> <span class="n">notepad</span><span class="p">).</span><span class="n">path</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c">#Extraemos una propiedad de un proceso: Tamaño del proceso.</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">(</span><span class="nb">Get-Process</span> <span class="n">notepad</span><span class="p">).</span><span class="n">ws</span> 
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c">#Tamaño del proceso expresado en MB</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">(</span><span class="nb">Get-Process</span> <span class="n">notepad</span><span class="p">).</span><span class="n">ws</span><span class="p">/</span><span class="n">1mb</span>
+</code></pre></div>
+<h3 id="72-detener-procesos">7.2 Detener procesos<a class="headerlink" href="#72-detener-procesos" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Stop-Process</strong> nos permite detener uno o más procesos en ejecución.</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Id</td>
+<td>Especifica uno o varios procesos por su número identificador del proceso (PID).</td>
+</tr>
+<tr>
+<td>-Name</td>
+<td>Especifica uno o varios procesos por su nombre</td>
+</tr>
+<tr>
+<td>-Force</td>
+<td>Detiene el proceso identificado sin pedir una confirmación de la operación</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo: Detener el proceso notepad</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c">#Localizamos el proceso notepad</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">Get-Process</span> <span class="n">-Name</span> <span class="n">notepad</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c">#Detenemos el proceso notepad</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">Stop-Process</span> <span class="n">-Name</span> <span class="n">Notepad</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c">#También podemos detenerlo especificando el identificador</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">Stop-Process</span> <span class="n">-Id</span> <span class="n">4388</span>
+</code></pre></div>
+<h3 id="73-iniciar-procesos">7.3 Iniciar procesos<a class="headerlink" href="#73-iniciar-procesos" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Start-Process</strong> nos permite iniciar procesos.</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-FilePath</td>
+<td>Especifica la ruta de acceso al archivo que se va a ejecutar.</td>
+</tr>
+<tr>
+<td>-ArgumentList</td>
+<td>Especifica los parámetros o los valores de parámetros que se van a utilizar durante el arranque del proceso.</td>
+</tr>
+<tr>
+<td>-Wait</td>
+<td>Espera a que finalice la ejecución del proceso especificado antes de aceptar una nueva entrada.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo: Iniciar un proceso especificando la ruta</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="s2">&quot;C:\Windows\notepad.exe&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="s2">&quot;C:\ProgramFiles(x86)\Google\Chrome\Application\chrome.exe&quot;</span>
+</code></pre></div>
+<p><strong>Ejemplo: Iniciar un proceso especificando solo el nombre</strong></p>
+<p>También se puede iniciar un proceso especificando solo el nombre, ya que la ruta la encuentra el sistema porque se encuentra en la variable de entorno $PATH</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">Start-Process</span> <span class="n">notepad</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">Start-Process</span> <span class="n">chrome</span>
+</code></pre></div>
+<p><strong>Ejemplo: Iniciar un proceso pasándole un argumento</strong></p>
+<p>Abrimos Chrome y la página web de google.es</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">Start-Process</span> <span class="n">chrome</span> <span class="n">-ArgumentList</span> <span class="n">google</span><span class="p">.</span><span class="n">es</span>
+</code></pre></div>
+<p><strong>Iniciar una APP de Windows</strong> </p>
+<p>Aunque las apps de Windows tienen un archivo exe asociado que se encuentra en C:\Windows\SystemApps, no se pueden ejecutar desde el archivo.exe. Hay que utilizar el <strong>protocolo asociado</strong>.</p>
+<p><strong>Edge</strong>: Start-Process Microsoft-Edge://</p>
+<p><strong>Edge:</strong> Start-Process Microsoft-Edge:https://google.es</p>
+<p><strong>Windows Store</strong>: Start-Process Ms-Windows-Store://</p>
+<p><strong>Alarmas y reloj</strong>: Start-Process Ms-clock://</p>
+<p><strong>Mapas</strong>:Start-Process BingMaps://</p>
+<h3 id="74-consultar-informacion-de-los-servicios">7.4 Consultar información de los servicios<a class="headerlink" href="#74-consultar-informacion-de-los-servicios" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Get-Service</strong> nos proporciona información de los servicios. A continuación se muestran algunos parámetros utilizados por este cmdlet:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Name</td>
+<td>Especifica los nombres de los servicios que hay que obtener</td>
+</tr>
+<tr>
+<td>-DisplayName</td>
+<td>Especifica los nombres mostrador de los servicios que hay que obtener.</td>
+</tr>
+<tr>
+<td>-DependentServices</td>
+<td>Obtiene únicamente los servicios que dependen del servicio especificado.</td>
+</tr>
+<tr>
+<td>-RequiredServices</td>
+<td>Obtiene únicamente los servicios que este servicio requiere</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">Get-Service</span>
+</code></pre></div>
+<p><strong>Columnas por defecto</strong></p>
+<p><strong>Status</strong>: Estado del servicio (Stopped, running, etc)</p>
+<p><strong>Name</strong>: Nombre del servicio.</p>
+<p><strong>DisplayName</strong>: Nombre para mostrar.</p>
+<p><strong>Ejemplo: Muestra los servicios que están arrancados</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">Get-Service</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Status</span> <span class="o">-eq</span> <span class="s2">&quot;Running&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Mostrar información detallada de un servicio.</strong></p>
+<p>Cola de impresión (Spooler): Este servicio pone en cola los trabajos de impresión y administra la interacción con la impresora. Si lo desactiva, no podrá imprimir ni ver las impresoras.</p>
+<p><strong>Ejemplo: Buscar el servicio spooler</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c">#Buscamos el servicio Name</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="s2">&quot;Spoo*&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c">#Buscamos el servicio por DisplayName</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">Get-Service</span> <span class="n">-DisplayName</span> <span class="s2">&quot;cola*&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c">#Obtenemos más información del servicio:</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="n">spooler</span> <span class="p">|</span> <span class="nb">fl </span><span class="p">*</span>
+</code></pre></div>
+<p><img alt="img" src="https://lh7-us.googleusercontent.com/wEjW9VdqBPwDJcKV-b7QrX3YrlQLCi3BlMhnwmO8zc8unrxmxzfAQq43RuWT__bI1sDHOJjc7MLWo-XieQd_p5hTIJaTrrsAd8x_b1b-iU8HaAfrJdAJsEQA0igGYhnML-W3I5gkG6oRmQRxWIl6z3mi=s2048" /></p>
+<p><strong>Ejemplo: Mostrar los servicios necesarios para iniciar el servicio spooler</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">Get-Service</span> <span class="n">-Name</span> <span class="n">spooler</span> <span class="n">-RequiredServices</span>
+</code></pre></div>
+<p><img alt="image-20231102103757525" src="../../assets/img/windows_server/image-20231102103757525.png" /></p>
+<h3 id="75-detener-un-servicio">7.5 Detener un servicio<a class="headerlink" href="#75-detener-un-servicio" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Stop-Service</strong> se utiliza para detener un servicio.</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-Name</td>
+<td>Especifica los nombres de los servicios que hay que detener.</td>
+</tr>
+<tr>
+<td>-DisplayName</td>
+<td>Especifica los nombres para mostrar de los servicios que hay que detener.</td>
+</tr>
+<tr>
+<td>-Force</td>
+<td>Permite detener un servicio incluso aunque tenga servicios dependientes.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo: Detener el servicio de la cola de impresión</strong></p>
+<p>Debemos ejecutar el siguiente comando como <strong>administrador</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">spooler</span>
+</code></pre></div>
+<p><strong>Ejemplo: Detener el servicio Windows Update</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c">#En caso de no detener el servicio utilizamos la opción -force</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">Stop-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span> <span class="n">-Force</span>
+</code></pre></div>
+<h3 id="76-iniciar-un-servicio">7.6 Iniciar un servicio<a class="headerlink" href="#76-iniciar-un-servicio" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Start-Service</strong> se utiliza para iniciar un servicio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c">#Iniciar el servicio de cola de impresión.</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">Start-Service</span> <span class="n">-Name</span> <span class="n">Spooler</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c">#Iniciar el servicio de Windows Update</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">Start-Service</span> <span class="n">-Name</span> <span class="n">wuauserv</span>
+</code></pre></div>
+<h3 id="77-modificar-propiedades-de-los-servicios">7.7 Modificar propiedades de los servicios<a class="headerlink" href="#77-modificar-propiedades-de-los-servicios" title="Permanent link">&para;</a></h3>
+<p>El cmdlet <strong>Set-Service</strong> nos permite modificar algún parámetro de un servicio.</p>
+<p>Podemos modificar:</p>
+<ul>
+<li>Description: Descripción del servicio.</li>
+<li>DisplayName: Nombre para mostrar</li>
+<li>Tipo de inicio: StartupType</li>
+<li>Estado del servicio: Status</li>
+</ul>
+<p><strong>Ejemplo: Modificar una propiedad - Tipo de inicio</strong></p>
+<p>Los modos de arranque de un servicio son los siguientes:</p>
+<ul>
+<li><strong>Manual</strong>: Lo arranca Windows cuando es necesario.</li>
+<li><strong>Automático</strong>: Se arranca automáticamente con el inicio de Windows .</li>
+<li><strong>Automático (Inicio retrasado)</strong>: Se arranca automáticamente, pero con cierto retraso respecto al inicio de Windows.</li>
+<li><strong>Deshabilitado</strong>: El servicio no arrancará en ningún caso.</li>
+</ul>
+<p><img alt="img" src="https://lh7-us.googleusercontent.com/sLU3kIa_QwwU2TwZ7xl6zPb1KjIz81Kg1MZHyhrcd8lT6z4zElAkL8VXpyqOeZD8XyQ3dElfuNYnpY2GrawoRfxARQ7L337cuSM2PWZrc1bq4ZVK0UEPsHszskhto7-L7CWoY1BOOZiqs-4M_s0ObG3l=s2048" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../scripts/powershell-directorio/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT7. PowerShell - Directorio Activo">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT7. PowerShell - Directorio Activo
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../linux/kubernetes/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT9. Kubernetes">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT9. Kubernetes
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

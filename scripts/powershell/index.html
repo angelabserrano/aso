@@ -1,0 +1,3426 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/scripts/powershell/">
+      
+      
+        <link rel="prev" href="../../linux/ansible/">
+      
+      
+        <link rel="next" href="../../wserver/directorio-activo/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT6. PowerShell - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#programacion-de-aula" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT6. PowerShell
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-6-sesiones-12-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (6 sesiones / 12 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es PowerShell?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-versiones-de-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Versiones de PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ejecucion-de-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Ejecución de PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-execution-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Execution Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creacion-de-mi-primer-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Creación de mi Primer Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Depuración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.7 Depuración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-puntos-de-interrupcion-breakpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de puntos de interrupción (breakpoint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#establecer-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Establecer un punto de interrupción.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumerar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quitar-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quitar un punto de interrupción.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deshabilitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deshabilitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#habilitar-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Habilitar un punto de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#habilitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Habilitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-administrar-una-sesion-de-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo administrar una sesión de depuración?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.8 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-comandos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Comandos básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Comandos básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-comandos-basicos-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Comandos básicos. Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comandos-de-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Comandos de fecha y hora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-comandos-de-archivos-y-carpetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Comandos de archivos y carpetas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-variables-y-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Variables y tipos de datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Variables y tipos de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-variables-predefinidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Variables predefinidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tipos-de-datos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tipos de datos básicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-comando-para-obtener-el-tipo-de-datos-de-una-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Comando para obtener el tipo de datos de una variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-definicion-de-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Definición de variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-operaciones-basicas-en-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Operaciones básicas en Powershell
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Operaciones básicas en Powershell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-entrada-y-salida-de-informacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Entrada y salida de información
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-operadores-aritmeticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Operadores aritméticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-operadores-de-comparacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Operadores de comparación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Operadores lógicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-operaciones-con-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Operaciones con cadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-estructuras-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Estructuras condicionales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Estructuras condicionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-la-orden-if-else-elseif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de la orden If, Else, ElseIf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-la-orden-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de la orden switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estructuras-repetitivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Estructuras repetitivas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Estructuras repetitivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-la-estructura-do-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 La estructura do while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-la-estructura-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 La estructura while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-la-estructura-do-until" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 La estructura do until
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-la-estructura-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 La estructura for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-la-estructura-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 La estructura foreach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Importación de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-6-sesiones-12-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (6 sesiones / 12 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 ¿Qué es PowerShell?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-versiones-de-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Versiones de PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-ejecucion-de-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Ejecución de PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-execution-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Execution Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creacion-de-mi-primer-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Creación de mi Primer Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Depuración
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.7 Depuración">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-puntos-de-interrupcion-breakpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tipos de puntos de interrupción (breakpoint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#establecer-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Establecer un punto de interrupción.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumerar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumerar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quitar-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quitar un punto de interrupción.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deshabilitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deshabilitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#habilitar-un-punto-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Habilitar un punto de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#habilitar-todos-los-puntos-de-interrupcion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Habilitar todos los puntos de interrupción
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#como-administrar-una-sesion-de-depuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Cómo administrar una sesión de depuración?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.8 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-comandos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Comandos básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Comandos básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-comandos-basicos-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Comandos básicos. Alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comandos-de-fecha-y-hora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Comandos de fecha y hora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-comandos-de-archivos-y-carpetas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Comandos de archivos y carpetas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-variables-y-tipos-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Variables y tipos de datos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Variables y tipos de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32-variables-predefinidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Variables predefinidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tipos-de-datos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tipos de datos básicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-comando-para-obtener-el-tipo-de-datos-de-una-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Comando para obtener el tipo de datos de una variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-definicion-de-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Definición de variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-operaciones-basicas-en-powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Operaciones básicas en Powershell
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Operaciones básicas en Powershell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-entrada-y-salida-de-informacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Entrada y salida de información
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-operadores-aritmeticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Operadores aritméticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-operadores-de-comparacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Operadores de comparación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Operadores lógicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-operaciones-con-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Operaciones con cadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-estructuras-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Estructuras condicionales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Estructuras condicionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-la-orden-if-else-elseif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de la orden If, Else, ElseIf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-la-orden-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uso de la orden switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estructuras-repetitivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Estructuras repetitivas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Estructuras repetitivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-la-estructura-do-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 La estructura do while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-la-estructura-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 La estructura while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-la-estructura-do-until" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 La estructura do until
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-la-estructura-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 La estructura for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-la-estructura-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 La estructura foreach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Importación de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>UT6. PowerShell</h1>
+
+<h2 id="programacion-de-aula">Programación de Aula<a class="headerlink" href="#programacion-de-aula" title="Permanent link">&para;</a></h2>
+<h3 id="resultados-de-aprendizaje">Resultados de Aprendizaje<a class="headerlink" href="#resultados-de-aprendizaje" title="Permanent link">&para;</a></h3>
+<p>Esta unidad cubre el <strong>Resultado de aprendizaje 7 (RA7)</strong> según el <strong>Real Decreto 1629/2009, de 30 de octubre</strong>, el cual es:</p>
+<ol>
+<li>Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.</li>
+</ol>
+<p>Los criterios de evaluación asociados son:</p>
+<p>​   a. Se han utilizado y combinado las estructuras del lenguaje para crear guiones.</p>
+<p>​   b. Se han utilizado herramientas para depurar errores sintácticos y de ejecución.</p>
+<p>​   c. Se han implantado guiones en sistemas libres y propietario.</p>
+<p>​   d. Se han realizado cambios y adaptaciones de guiones del sistema.</p>
+<p>​   e. Se han implantado guiones en sistemas libres y propietarios</p>
+<p>​   f. Se han consultado y utilizado librerías de funciones.</p>
+<p>​   g. Se han documentado los guiones creados.</p>
+<h3 id="planificacion-temporal-6-sesiones-12-horas">Planificación Temporal (6 sesiones / 12 horas)<a class="headerlink" href="#planificacion-temporal-6-sesiones-12-horas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Introducción PowerShell, Creación Primer Script, Comentarios y depuración.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Comandos básicos, Variables, Tipos de Datos y Operaciones Básicas</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Estructuras condicionales</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Estructuras repetitivas</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Importación de datos y funciones</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Refuerzo y Ampliación</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<h3 id="11-que-es-powershell">1.1 ¿Qué es PowerShell?<a class="headerlink" href="#11-que-es-powershell" title="Permanent link">&para;</a></h3>
+<p><strong>PowerShell</strong> es un intérprete de línea de comandos orientado a objetos de Microsoft. Fue diseñado para su uso por parte de administradores, con el propósito de automatizar tareas o realizarlas de forma más controlada. Se incluye por defecto desde WS 2008 R2 y Windows 7.</p>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Las órdenes incluidas en Powershell son muchas y reciben el nombre de <strong>cmdlets</strong> . Un cmdlet se nombra siempre mediante el siguiente formato: Verbo-Sustantivo</p>
+</div>
+<p>PowerShell se ejecuta en Windows, Linux y MacOS. </p>
+<h3 id="12-versiones-de-powershell"><strong>1.2 Versiones de PowerShell</strong><a class="headerlink" href="#12-versiones-de-powershell" title="Permanent link">&para;</a></h3>
+<p>A partir de la versión 6, PowerShell se puede instalar en varios sistemas operativos. A esta versión se la conoce como <strong>PowerShell Core</strong>. A continuación, se muestran las diferentes versiones de PowerShell:</p>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha de lanzamiento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PowerShell 7.2</td>
+<td>Noviembre de 2024</td>
+<td>Compilado en .NET 6.0</td>
+</tr>
+<tr>
+<td>PowerShell 7.1</td>
+<td>Noviembre de 2020</td>
+<td>Compilado en .NET 5.0</td>
+</tr>
+<tr>
+<td>PowerShell 7.0</td>
+<td>Marzo de 2020</td>
+<td>Compilado en .NET Core 3.1</td>
+</tr>
+<tr>
+<td>PowerShell 6.2</td>
+<td>Marzo de 2019</td>
+<td></td>
+</tr>
+<tr>
+<td>PowerShell 6.1</td>
+<td>Septiembre de 2018</td>
+<td>Compilado en .NET Core 2.1</td>
+</tr>
+<tr>
+<td>PowerShell 6.0</td>
+<td>Enero de 2018</td>
+<td>Primera versión compilada en .NET Core 2.0 . Instalable en Windows, MacOS y Linux.</td>
+</tr>
+<tr>
+<td>Windows PowerShell 5.1</td>
+<td>Agosto de 2016</td>
+<td>Publicado en Windows 10 Anniversary Update y Windows Server 2016, WMF 5.1</td>
+</tr>
+<tr>
+<td>Windows PowerShell 5.0</td>
+<td>Febrero de 2016</td>
+<td>Publicado en Windows Management Framework [WMF] 5.0</td>
+</tr>
+<tr>
+<td>Windows PowerShell 4.0</td>
+<td>Octubre de 2013</td>
+<td>Integrado en Windows 8.1 y con Windows Server 2012 R2, WMF 4.0</td>
+</tr>
+<tr>
+<td>Windows PowerShell 3.0</td>
+<td>Octubre de 2012</td>
+<td>Integrado en Windows 8 y con Windows Server 2012, WMF 3.0</td>
+</tr>
+<tr>
+<td>Windows PowerShell 2.0</td>
+<td>Julio de 2009</td>
+<td>Integrado en Windows 7 y Windows Server 2008 R2</td>
+</tr>
+<tr>
+<td>Windows PowerShell 1.0</td>
+<td>Noviembre de 2006</td>
+<td>Componente opcional en Windows Server 2008</td>
+</tr>
+</tbody>
+</table>
+<p>Para obtener la versión de PowerShell instalada:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$PSVersionTable
+</code></pre></div>
+<p><img alt="image-20230715104849336" src="../../assets/img/powershell/image-20230715104849336.png" /></p>
+<h3 id="13-ejecucion-de-powershell">1.3 Ejecución de PowerShell<a class="headerlink" href="#13-ejecucion-de-powershell" title="Permanent link">&para;</a></h3>
+<p>En <strong>Windows</strong> tenemos dos opciones a la hora de ejecutar PowerShell:</p>
+<ol>
+<li>Entorno gráfico: PowerShell ISE (del inglés, Integrated Scripting Environment).</li>
+<li>Entorno comando: Windows Powershell</li>
+</ol>
+<p><img alt="image-20230714211446318" src="../../assets/img/powershell/image-20230714211446318.png" /></p>
+<p>En <strong>Linux</strong> tenemos varios métodos para instalar PowerShell.</p>
+<p>Instalación de PowerShell en Ubuntu:</p>
+<p>Accedemos al respositorio oficial de PowerShell https://github.com/PowerShell y nos descargamos el paquete .deb para la versión de Ubuntu que tenemos instalada en nuestro PC.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>dpkg -i powershell-lts_7.2.13-1.deb_amd64.deb
+</code></pre></div>
+<p>Una vez instalado,  para abrir PowerShell tecleamos en el terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pwsh
+</code></pre></div>
+<h3 id="14-execution-policies">1.4 Execution Policies<a class="headerlink" href="#14-execution-policies" title="Permanent link">&para;</a></h3>
+<p>La <strong>política de ejecución</strong> (execution policy) de PowerShell es una característica de seguridad destinada a controlar las condiciones bajo las cuales PowerShell carga los archivos de configuración y ejecuta scripts. Esta característica ayuda a controlar la ejecución de scripts maliciosos.</p>
+<p>Tenemos las siguientes políticas de ejecución:</p>
+<p><strong>Unrestricted</strong>: Es la política menos restrictiva. Los usuarios pueden ejecutar todos los scripts.</p>
+<p><strong>Bypass</strong>: Al igual que unrestricted, esta política de ejecución no bloquea nada. </p>
+<p><strong>Undefined</strong>: PowerShell elimina cualquier política de ejecución asignada.</p>
+<p><strong>RemoteSigned</strong>: Esta política, establece que todos los scripts remotos deben estar firmados.</p>
+<p><strong>AllSigned</strong>: Todos los scripts deben esta firmados.</p>
+<p><strong>Restricted</strong>: Es la polícita más restrictiva. Si se establece esta polícita no se puede ejecutar ningún script.</p>
+<p>Para consultar la política de ejecución configurada ejecutamos el siguiente comando:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">Get-ExecutionPolicy</span>
+</code></pre></div>
+<p>Si deseamos consultar todas las políticas de ejecución disponibles:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">Get-ExecutionPolicy</span> <span class="n">-List</span>
+</code></pre></div>
+<p>Por razones de seguridad, PowerShell está configurado de forma predeterminada para permitir solo la ejecución de scripts firmados. La ejecución del siguiente comando le permitirá ejecutar scripts sin firmar (debe ejecutar PowerShell como administrador para hacer esto)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">RemoteSigned</span>
+</code></pre></div>
+<h3 id="15-creacion-de-mi-primer-script">1.5 Creación de mi Primer Script<a class="headerlink" href="#15-creacion-de-mi-primer-script" title="Permanent link">&para;</a></h3>
+<p>Vamos a crear nuestro primer script, y como en todos los lenguajes de  programación el primero programa siempre es un "Hola mundo", pues ese  será también nuestro primer script.</p>
+<p>Para comenzar a crear nuestros script utilizaremos el IDE llamado <strong>PowerShell ISE</strong></p>
+<iframe id="aswift_8" name="aswift_8" style="left: 0px; top: 0px; border: 0px; width: 892px; height: 0px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="892" height="0" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" src="https://googleads.g.doubleclick.net/pagead/ads?npa=1&amp;gdpr=1&amp;gdpr_consent=CQBsaMAQBsaMAEsACBESA9EoAP_gAEPgABi4INJB7C7FbSFCwH5zaLsAMAhHRsAAQoQAAASBAmABQAKQIAQCgkAQFASgBAACAAAAICZBIQIECAAACUAAQAAAAAAEAAAAAAAIIAAAgAEAAAAIAAACAAAAEAAIAAAAEAAAmAgAAIIACAAAhAAAAAAAAAAAAAAAAgCAAAAAAAAAAAAAAAAAAQOhSD2F2K2kKFkPCmwXYAYBCujYAAhQgAAAkCBMACgAUgQAgFJIAgCIFAAAAAAAAAQEiCQAAQABAAAIACgAAAAAAIAAAAAAAQQAABAAIAAAAAAAAEAAAAIAAQAAAAIAABEhCAAQQAEAAAAAAAQAAAAAAAAAAABAAA&amp;addtl_consent=2~70.89.93.108.122.149.196.236.259.311.313.323.358.415.449.486.494.495.540.574.609.827.864.981.1029.1048.1051.1095.1097.1126.1205.1276.1301.1365.1415.1423.1449.1514.1570.1577.1598.1651.1716.1735.1753.1765.1870.1878.1889.1958.2072.2253.2299.2357.2373.2415.2506.2526.2568.2571.2575.2624.2677~dv.&amp;client=ca-pub-2309336300368049&amp;output=html&amp;h=280&amp;adk=4117628194&amp;adf=3198517752&amp;pi=t.aa~a.1261311059~i.51~rp.4&amp;w=892&amp;abgtt=6&amp;fwrn=4&amp;fwrnh=100&amp;lmt=1718754728&amp;num_ads=1&amp;rafmt=1&amp;armr=3&amp;sem=mc&amp;pwprc=6208560315&amp;ad_type=text_image&amp;format=892x280&amp;url=https%3A%2F%2Fwww.respuestasit.com.mx%2F2021%2F02%2Fprimer-script-powershell.html&amp;host=ca-host-pub-1556223355139109&amp;fwr=0&amp;pra=3&amp;rh=200&amp;rw=892&amp;rpe=1&amp;resp_fmts=3&amp;wgl=1&amp;fa=27&amp;dt=1720868866528&amp;bpp=1&amp;bdt=6186&amp;idt=1&amp;shv=r20240709&amp;mjsv=m202407110101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3Dc921c266f382e703%3AT%3D1720868865%3ART%3D1720868865%3AS%3DALNI_MYFk732uBxTEsgkl5sxBWT0g1DAaQ&amp;gpic=UID%3D00000e87fc7edd10%3AT%3D1720868865%3ART%3D1720868865%3AS%3DALNI_MZzzYdfnTktkbRcuGmBN_GcMX9sRw&amp;eo_id_str=ID%3D3f6753cbc647a9d5%3AT%3D1720868865%3ART%3D1720868865%3AS%3DAA-AfjZtc4aIfTGj8kC_ZcMEGcrO&amp;prev_fmts=0x0%2C1044x280%2C120x600%2C200x200%2C120x600%2C120x600%2C120x600%2C120x600&amp;nras=2&amp;correlator=5734655040389&amp;frm=20&amp;pv=1&amp;ga_vid=1434918925.1720868861&amp;ga_sid=1720868865&amp;ga_hid=385865076&amp;ga_fc=1&amp;u_tz=120&amp;u_his=1&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1048&amp;u_aw=1854&amp;u_cd=24&amp;u_sd=1&amp;adx=391&amp;ady=4768&amp;biw=1854&amp;bih=963&amp;scr_x=0&amp;scr_y=2287&amp;eid=44759875%2C44759926%2C44759837%2C31085138%2C31085211%2C95331689%2C95334508%2C95334529%2C95334828%2C31085242%2C31084184%2C95331954&amp;oid=2&amp;pvsid=2301904729429406&amp;tmod=1375128532&amp;uas=3&amp;nvt=1&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;fc=1408&amp;brdim=66%2C32%2C66%2C32%2C1854%2C32%2C1854%2C1048%2C1854%2C963&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=128&amp;bc=31&amp;bz=1&amp;ifi=9&amp;uci=a!9&amp;btvi=6&amp;fsb=1&amp;dtd=12" data-google-container-id="a!9" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true" data-google-query-id="CJWM_Yvwo4cDFflRpAQdkq0AsA"></iframe>
+
+<p>Cuando entremos al ISE daremos clic en el botón de Nuevo, que se encuentra en la esquina superior izquierda.</p>
+<p><img alt="img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJ1KQ2ehgir96N1_9IQ_twRpAyFSdAzfKxpcsmKEuzdJKmOmY1YQxlsR9YblVzT8s6qHcQvqA-472WPKgYgvbdMAnMHtbSQsoM-HbTjGcSFzOpNauxIqu4CiQ-HC65x-lCOtYCBMy_Axpi/w640-h274/Captura.PNG" /></p>
+<p>En la parte de la derecha, encontramos una lista de comandos  disponibles y un poco de ayuda con ellos, una vez abierto el documento  para el script procedemos a mostrar en pantalla nuestro "Hola Mundo"</p>
+<p>Write-Host "Hola Mundo" </p>
+<p><img alt="img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwt60KwyENbAHNSIPCq5NF-yy_Em51aNAxSgBr1Nfjj2PfYVejcibIa5dr7QMsKszIQgpucQYK0-E2IVmH40urbmmqOufBfUyqq5VhD7lYM1R5yCSfs27n-hIzYqMdm1fFuP1dUhnieclU/w640-h274/Captura.PNG" /></p>
+<h3 id="16-comentarios">1.6 Comentarios<a class="headerlink" href="#16-comentarios" title="Permanent link">&para;</a></h3>
+<p>Los comentarios en PowerShell se escriben utilizando el símbolo de <strong>almohadilla</strong> (#).</p>
+<p>▸ <strong>Comentar una línea.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a> <span class="c">#Este es un comentario.</span>
+</code></pre></div>
+<p>▸ <strong>Comentar un bloque</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">&lt;#</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cm">Esto es un comentario</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="cm">de varias líneas</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="cm">#&gt;</span>
+</code></pre></div>
+<h3 id="17-depuracion">1.7 Depuración<a class="headerlink" href="#17-depuracion" title="Permanent link">&para;</a></h3>
+<p>PowerShell es un potente lenguaje de scripting que puede  automatizar tareas y administrar sistemas. Sin embargo, escribir y  ejecutar scripts de PowerShell también puede introducir errores y  errores que deben corregirse. La depuración es el proceso de buscar y  resolver estos problemas en el código. A continuación se describe como depurar scripts en un equipo local mediante Windows PowerShell ISE.</p>
+<ul>
+<li>
+<h4 id="tipos-de-puntos-de-interrupcion-breakpoint">Tipos de puntos de interrupción (breakpoint)<a class="headerlink" href="#tipos-de-puntos-de-interrupcion-breakpoint" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Un punto de interrupción es una zona designada en un script que desee  que la operación entre en pausa para poder examinar el estado actual de  las variables y el entorno en que se ejecuta el script.</p>
+<p>Puede establecer tres tipos de puntos de interrupción en el entorno de depuración de Windows PowerShell:</p>
+<ol>
+<li>
+<p><strong>Punto de interrupción de línea</strong>. El script se pausa cuando se alcanza la línea designada durante la operación del script.</p>
+</li>
+<li>
+<p><strong>Variable breakpoint.</strong> El script se pausa cuando cambia el valor de la variable designada.</p>
+</li>
+<li>
+<p><strong>Command breakpoint.</strong> El script se pausa cada vez  que el comando designado está a punto de ejecutarse durante la operación del script. Puede incluir parámetros para filtrar aún más el punto de  interrupción solo para operación deseada. El comando también puede ser  una función que ha creado.</p>
+<p>En el entorno de depuración Windows PowerShell ISE, solo se pueden  establecer puntos de interrupción de línea usando el menú o los métodos  abreviados de teclado. Los otros dos tipos de puntos de interrupción se  pueden establecer, pero debe hacerse desde el panel de consola mediante  el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Set-PSBreakpoint">Set-PSBreakpoint</a>.</p>
+</li>
+<li>
+<h4 id="establecer-un-punto-de-interrupcion">Establecer un punto de interrupción.<a class="headerlink" href="#establecer-un-punto-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ol>
+<p>Solo se puede establecer un punto de interrupción en un script después  de guardarlo. Haga clic con el botón derecho en la línea donde desee  establecer un punto de interrupción y después haga clic en <strong>Alternar punto de interrupción</strong>. O bien, haga clic en la línea donde desee establecer un punto de interrupción y presione F9 o, en el menú <strong>Depurar</strong>, haga clic en <strong>Alternar punto de interrupción</strong>.</p>
+<p>El script siguiente es un ejemplo de cómo establecer un punto de  interrupción de variable desde el panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Set-PSBreakpoint">Set-PSBreakpoint</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c"># This command sets a breakpoint on the Server variable in the Sample.ps1 script.</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">Set-PSBreakpoint</span> <span class="n">-Script</span> <span class="n">sample</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Variable</span> <span class="n">Server</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="enumerar-todos-los-puntos-de-interrupcion">Enumerar todos los puntos de interrupción<a class="headerlink" href="#enumerar-todos-los-puntos-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Muestra todos los puntos de interrupción de la sesión actual de Windows PowerShell.</p>
+<p>En el menú <strong>Depurar</strong>, haga clic en <strong>Mostrar puntos de interrupción</strong>. El script siguiente es un ejemplo de cómo enumerar todos los puntos de  interrupción desde el panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Get-PSBreakpoint">Get-PSBreakpoint</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c"># This command lists all breakpoints in the current session.</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">Get-PSBreakpoint</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="quitar-un-punto-de-interrupcion">Quitar un punto de interrupción.<a class="headerlink" href="#quitar-un-punto-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Al quitar un punto de interrupción, este se elimina. Haga clic con el botón derecho en la línea donde desee quitar un punto de interrupción y después haga clic en <strong>ToggleBreakpoint</strong>. O bien, haga clic en la línea donde desee quitar un punto de interrupción y, en el menú <strong>Depurar</strong>, haga clic en <strong>Alternar punto de interrupción</strong>.</p>
+<ul>
+<li>
+<h4 id="quitar-todos-los-puntos-de-interrupcion">Quitar todos los puntos de interrupción<a class="headerlink" href="#quitar-todos-los-puntos-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Para quitar todos los puntos de interrupción definidos en la sesión actual, en el menú <strong>Depurar</strong>, haga clic en <strong>Quitar todos los puntos de interrupción</strong>.</p>
+<p>El script siguiente es un ejemplo de cómo quitar todos los puntos de interrupción del panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Remove-PSBreakpoint">Remove-PSBreakpoint</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c"># This command deletes all of the breakpoints in the current session.</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">Get-PSBreakpoint</span> <span class="p">|</span> <span class="nb">Remove-PSBreakpoint</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="deshabilitar-todos-los-puntos-de-interrupcion">Deshabilitar todos los puntos de interrupción<a class="headerlink" href="#deshabilitar-todos-los-puntos-de-interrupcion" title="Permanent link">&para;</a></h4>
+  Al deshabilitar un punto de interrupción, este no se quita; permanece desactivado hasta que se vuelve a habilitar. Para deshabilitar todos los puntos de interrupción de la sesión actual, en el menú <strong>Depurar</strong>, haga clic en <strong>Deshabilitar todos los puntos de interrupción</strong>.  El script siguiente es un ejemplo de cómo deshabilitar todos los  puntos de interrupción desde el panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Disable-PSBreakpoint">Disable-PSBreakpoint</a>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c"># This command disables all breakpoints in the current session.</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c"># You can abbreviate this command as: &quot;gbp | dbp&quot;.</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">Get-PSBreakpoint</span> <span class="p">|</span> <span class="nb">Disable-PSBreakpoint</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="habilitar-un-punto-de-interrupcion">Habilitar un punto de interrupción<a class="headerlink" href="#habilitar-un-punto-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Para habilitar un punto de interrupción específico, haga clic con el  botón derecho en la línea donde desee habilitar un punto de interrupción y después haga clic en <strong>Habilitar punto de interrupción</strong>. O bien, haga clic en la línea donde desee habilitar un punto de interrupción y presione F9 o, en el menú <strong>Depurar</strong>, haga clic en <strong>Habilitar punto de interrupción</strong>. El script siguiente es un ejemplo de cómo habilitar puntos de interrupción desde el panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Enable-PSBreakpoint">Enable-PSBreakpoint</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c"># This command enables breakpoints with breakpoint IDs 0, 1, and 5.</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">Enable-PSBreakpoint</span> <span class="n">-Id</span> <span class="n">0</span><span class="p">,</span> <span class="n">1</span><span class="p">,</span> <span class="n">5</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="habilitar-todos-los-puntos-de-interrupcion">Habilitar todos los puntos de interrupción<a class="headerlink" href="#habilitar-todos-los-puntos-de-interrupcion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Para habilitar todos los puntos de interrupción definidos en la sesión actual, en el menú <strong>Depurar</strong>, haga clic en <strong>Habilitar todos los puntos de interrupción</strong>. El script siguiente es un ejemplo de cómo habilitar todos los puntos de interrupción desde el panel de consola mediante el cmdlet <a href="https://learn.microsoft.com/es-es/powershell/module/Microsoft.PowerShell.Utility/Enable-PSBreakpoint">Enable-PSBreakpoint</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c"># This command enables all breakpoints in the current session.</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c"># You can abbreviate the command by using their aliases: &quot;gbp | ebp&quot;.</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">Get-PSBreakpoint</span> <span class="p">|</span> <span class="nb">Enable-PSBreakpoint</span>
+</code></pre></div>
+<ul>
+<li>
+<h4 id="como-administrar-una-sesion-de-depuracion">¿Cómo administrar una sesión de depuración?<a class="headerlink" href="#como-administrar-una-sesion-de-depuracion" title="Permanent link">&para;</a></h4>
+</li>
+</ul>
+<p>Antes de iniciar la depuración, debe establecer uno o varios puntos de  interrupción. No se puede establecer un punto de interrupción si no se  guarda el script que desea depurar. Después de iniciar la depuración, no se puede editar un script hasta  que la depuración se detenga. Un script con uno o más puntos de  interrupción establecidos se guarda automáticamente antes de ejecutarse.</p>
+<ul>
+<li>
+<p><strong>Iniciar la depuración</strong></p>
+<p>Presione F5 o haga clic en el icono <strong>Ejecutar script</strong> en la barra de herramientas, o bien, en el menú <strong>Depurar</strong>, haga clic en <strong>Ejecutar o continuar</strong>. El script se ejecuta hasta que encuentra el primer punto de  interrupción. Detiene la operación en este punto y resalta la línea en  la que se produce la pausa.</p>
+</li>
+<li>
+<p><strong>Continuar la depuración</strong></p>
+<p>Presione F5 o haga clic en el icono <strong>Ejecutar Script</strong> en la barra de herramientas, o bien, en el menú <strong>Depurar</strong>, haga clic en <strong>Ejecutar o continuar</strong>. También puede escribir <code>C</code> en el panel de consola y presionar ENTRAR. Esto hace que el script se siga ejecutando hasta el punto de  interrupción siguiente o hasta el final si no se encuentran más puntos  de interrupción.    </p>
+</li>
+<li>
+<p><strong>Ver la pila de llamadas</strong>    </p>
+<p>La pila de llamadas muestra la ubicación de ejecución actual en el  script. Si el script se ejecuta en una función que llamó una función  diferente, se representa mediante filas adicionales en la salida. La  última fila muestra el script original y la línea en la que se llamó a  una función. La siguiente línea muestra esa función y la línea en la que se podría haber llamado a otra función. La primera fila muestra el  contexto actual de la línea actual en la que se estableció el punto de  interrupción.</p>
+<p>Mientras está en pausa, para ver la pila de llamadas actual, presione CTRL+MAYÚS+D o, en el menú <strong>Depurar</strong>, haga clic en <strong>Mostrar pila de llamadas</strong>. También puede escribir <code>K</code> en el panel de consola y presionar ENTRAR.</p>
+</li>
+<li>
+<p><strong>Detener la depuración</strong> </p>
+</li>
+</ul>
+<p>​       Presione MAYÚS+F5 o, en el menú <strong>Depurar</strong>, haga clic en <strong>Detener el depurador</strong>. También puede escribir <code>Q</code> en el panel de consola y presionar       ENTRAR.</p>
+<h3 id="18-ejercicios">1.8 Ejercicios<a class="headerlink" href="#18-ejercicios" title="Permanent link">&para;</a></h3>
+<h4 id="practica-1">Práctica 1<a class="headerlink" href="#practica-1" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1</strong> . Ejecuta Windows PowerShell en Windows 2019 Server  el cmdlet adecuado para visualizar la política de ejecución de scripts actual  y cambia las políticas de ejecución de scripts (execution policy) para que se pueda ejecutar cualquier script en PowerShell. Ejecuta el cmdlet correspondiente para mostrar la versión instalada en el sistema.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 2.</strong> Realiza una instalación de PowerShell Core en un contenedor Docker o una máquina virtual con Ubuntu . Ejecuta el cmdlet necesario para mostrar la versión de PowerShell instalada.
+[Instalacion Powershell Linux] (https://learn.microsoft.com/ca-es/powershell/scripting/install/install-ubuntu?view=powershell-7.4)
+Se obtendrá mejor puntuación en el ejercicio si se realiza la instalación en un contenedor Docker. Tip: <a href="../../assets/img/docker/dockercheatsheet.png">Docker cheat sheet</a></p>
+</div>
+<h2 id="2-comandos-basicos">2. Comandos básicos<a class="headerlink" href="#2-comandos-basicos" title="Permanent link">&para;</a></h2>
+<p>A continuación, abordaremos los comandos básicos de PowerShell </p>
+<ul>
+<li>
+<p><strong>Get-Command</strong> : Muestra todos los comandos disponibles</p>
+</li>
+<li>
+<p><strong>Clear-Host</strong> : Limpia la pantalla</p>
+</li>
+</ul>
+<p><img alt="image-20230715104944576" src="../../assets/img/powershell/image-20230715104944576.png" /></p>
+<h3 id="21-comandos-basicos-alias">2.1 Comandos básicos. Alias<a class="headerlink" href="#21-comandos-basicos-alias" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Un <strong>alias</strong> es un nombre alternativo o sobrenombre para un cmdlet o un elemento de un comando, como una funcion, un script, un archivo o un archivo ejecutable.</p>
+</div>
+<p>Podemos utilizar el alias en lugar de el nombre completo del cmdlet. Por ejemplo, podemos utilizar los comandos  “dir” o “ls” y muchos más. Estos no son mas que alias definidos a otros comandos de Powershell</p>
+<ul>
+<li><strong>Get-Alias</strong> : Nos devuelve un listado con todos los alias definidos en el sistema</li>
+</ul>
+<p><img alt="" src="../../assets/img/powershell/image-20230715105148686.png" /></p>
+<ul>
+<li><strong>Get-Help  \<Comando> :</strong> Muestra ayuda del comando indicado</li>
+</ul>
+<p><img alt="img" src="https://lh4.googleusercontent.com/vdl-YzlGFChqGyNfmfPvza78qpBGxjUz8Pw5uc4ndTbIKO90eeQpvZkGvSLly-V9V-Fr66U_7xeog3CA0Pul1c2ev9XAenYdyNoTSMdUAZjc-mJvxZCFCBsxyibjzF4VTAaCnDpIkUwPk5CcuHa0J9fbIw=s2048" /></p>
+<ul>
+<li><strong>Get-Help  \<Comando> -examples:</strong> Muestra ayuda del comando indicado, mostrando ejemplos.</li>
+</ul>
+<p><img alt="img" src="https://lh6.googleusercontent.com/WKSh_5cbRsntD99JZI2aJHzUcNgx5yAvqzfOUZsvD83SXA0y083CBEAYWXwIvnVftLtD8EpmyqDqo1Ow6N_NA2FPoS15gQrOvSSUD3fiJmq0tqdbs7YIteCEEEfCPuCsV56725r7UfARi-EYLLTiKt03vw=s2048" /></p>
+<h3 id="23-comandos-de-fecha-y-hora">2.3  Comandos de fecha y hora<a class="headerlink" href="#23-comandos-de-fecha-y-hora" title="Permanent link">&para;</a></h3>
+<p>El comando <strong>Get-Date</strong> nos permite recuperar la fecha y hora actuales.</p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/MK-rKiIKftaAdXM1udwa3RhsKc2lvDnC4zPEQdd5efHfWS2sXlGFkLStL-e6IguOWU3NA5bXs2c37QswEDzCy8g6wKx1J_QZz1OfhliyexElpJNyVacfydwP3qJTgUsAAHj6cBbiUeIysG1ar4kE0V-HKA=s2048" /></p>
+<p>Si deseamos obtener solo la fecha o la hora usaremos el parámetro <strong>-DisplayHint</strong></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/IkyNbYIvrSHRJ0GfoBXNVqyBxsUlwfIave4619wmxhBmCS3nuoSRH2v3AntY7pRme5fSSOjLKJ9adArN-5Yz0QhSx6HvW5ZGFdJdu12LTUJMAM-bOYLw7YfI4B_i7PZrT9oBeid-2XIU2nk9l53yHFawpw=s2048" /><img alt="img" src="https://lh3.googleusercontent.com/a4W7xSMe99adzt1HPDZI7dmZ3lbicQOLKna77O1nYTD-e35G_DGH5pSrIHspWUP4rdSSJwSwZSFu9EV-KN_PL1lP3ImVKifIQGM8yqvfN5XOeRQTZm5xwNGiXobpEqZCQVbb1yVXRwMOMK3FAdKpObhOxw=s2048" /></p>
+<p>Podemos asignar a una variable el resultado del comando Get-Date para almacenar la fecha, hora.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">$fechaActual</span> <span class="p">=</span> <span class="nb">Get-Date</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nv">$fechaHora</span><span class="p">=</span><span class="nb">Get-Date</span> <span class="err">“</span><span class="n">01</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">2018</span> <span class="n">11</span><span class="p">:</span><span class="n">00</span> <span class="n">AM</span><span class="err">”</span> 
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nv">$fecha</span> <span class="p">=</span> <span class="nb">Get-Date</span> <span class="err">“</span><span class="n">01</span><span class="p">/</span><span class="n">12</span><span class="p">/</span><span class="n">2018</span><span class="err">”</span>
+</code></pre></div>
+<h3 id="24-comandos-de-archivos-y-carpetas">2.4.  Comandos de archivos y carpetas<a class="headerlink" href="#24-comandos-de-archivos-y-carpetas" title="Permanent link">&para;</a></h3>
+<p><strong>Ruta del directorio actual</strong></p>
+<p>El cmdlet <strong>Get-Location (gl,pwd)</strong> se utiliza para obtener la ruta del directorio actual en el que se está trabajando</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">Get-Location</span> 
+</code></pre></div>
+<p><strong>Navegar entre directorios</strong></p>
+<p>El cmdlet <strong>Set-Location(sl, cd)</strong> establece la ubicación de trabajo en una ubicación especificada. Esa ubicación puede ser un directorio, subdirectorio, una ubicación del registro o cualquier ruta de acceso del proveedor.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">Set-Location</span> <span class="n">D</span><span class="p">:\</span><span class="n">scripts</span>
+</code></pre></div>
+<p><strong>Listar archivos en una carpeta</strong> </p>
+<p>El cmdlet <strong>Get-ChildItem (gci, ls,dir) **  en PowerShell se utiliza para obtener una </strong>lista de los elementos que se encuentran en el directorio actual**, incluyendo archivos y subdirectorios.</p>
+<p>Puedes usarlo para buscar archivos o carpetas específicos y para explorar el contenido del directorio actual. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="n">C</span><span class="p">:\</span> <span class="n">-Recurse</span>
+</code></pre></div>
+<p><strong>Copiar archivos y carpetas</strong></p>
+<p>El cmdlet <strong>Copy-Item (copy, cp, cpi)</strong> nos permite copiar archivos o carpetas. Ejemplo: Copia todos los archivos de la carpeta scripts de la unidad E: a la carpeta Users/Scripts de la unidad C:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">Copy-Item</span> <span class="n">E</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\*</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">scripts</span><span class="p">\</span>
+</code></pre></div>
+<p><strong>Crear una nueva carpeta o archivo</strong></p>
+<p>El cmdlet <strong>New-Item (ni)</strong>  nos permite crear un nuevo archivo o carpeta</p>
+<p>Ejemplo: Crea la carpeta scripts en la unidad C:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">New-Item</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span> <span class="n">-ItemType</span> <span class="n">directory</span>
+</code></pre></div>
+<p>Ejemplo: Crea el archivo ejemplo1.ps1 en la carpeta scripts</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">New-Item</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\</span><span class="n">ejemplo1</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-ItemType</span> <span class="n">file</span>
+</code></pre></div>
+<p><strong>Borrar un archivo o carpeta</strong></p>
+<p>El cmdlet <strong>Remove-Item (del, erase, rm, ri, rmdir)</strong> nos permite borrar un archivo o carpeta.</p>
+<p>Ejemplo: Borra el archivo prueba1.ps1</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">Remove-Item</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\</span><span class="n">prueba1</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Ejemplo: Borra todos los archivos de la carpeta scripts</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">Remove-Item</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\*</span>
+</code></pre></div>
+<p><strong>Mover un archivo o carpeta</strong></p>
+<p>El cmdlet <strong>Move-Item (mi, move, mv)</strong> nos permite mover un archivo de una ubicación a otra.</p>
+<p>Ejemplo: Mueve el archivo fichero1.txt a la ruta indicada</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">Move-Item</span> <span class="n">-Path</span> <span class="s2">&quot;C:\fichero1.txt&quot;</span> <span class="n">-Destination</span> <span class="s2">&quot;C:\copias&quot;</span> 
+</code></pre></div>
+<p><strong>Renombrar un archivo o carpeta</strong></p>
+<p>El cmdlet <strong>Rename-Item</strong> nos permite cambiar el nombre de archivos y carpetas</p>
+<p>Ejemplo: Cambia el nombre de script1 a script2</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">Rename-Item</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\</span><span class="n">script1</span><span class="p">.</span><span class="n">ps1</span> <span class="n">script2</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p><strong>Muestra el contenido de un archivo</strong> </p>
+<p>El cmdlet <strong>Get-Content</strong> nos permite mostrar el contenido de un archivo.</p>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">Get-Content</span> <span class="n">-Path</span> <span class="s2">&quot;C:\copias\fichero1.txt&quot;</span>
+</code></pre></div>
+<p><strong>Verificar la existencia de un archivo o carpeta</strong></p>
+<p>Uno de los principales usos de <strong>Test-Path</strong> es verificar la existencia de un archivo o carpeta. Si obtenemos el valor <strong>true</strong> existe, en caso contrario devuelve el valor <strong>false</strong> </p>
+<p>Ejemplo 1: Devuelve true si script1.ps1 existe</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">Test-Path</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\</span><span class="n">script1</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Ejemplo 2: Devuelve true si $elem existe y es un directorio</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">Test-Path</span> <span class="nv">$elem</span> <span class="n">-PathType</span> <span class="n">container</span> 
+</code></pre></div>
+<h2 id="3-variables-y-tipos-de-datos">3. Variables y tipos de datos<a class="headerlink" href="#3-variables-y-tipos-de-datos" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Información</p>
+<p>Una <strong>variable</strong> es una porción de memoria principal a la que ponemos un nombre que facilite su identificación y manejo.</p>
+</div>
+<p>Su objetivo consiste en permitir el almacenamiento de un valor en particular para su uso posterior a lo largo del <em>script</em>.  Comienzan con el carácter <strong>$</strong>. Los nombres de variable en PowerShell no distinguen **mayúsculas de minúsculas ** .</p>
+<p><strong>Definición Implícita</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">$hola</span> <span class="p">=</span> <span class="s2">&quot;Hola mundo&quot;</span>
+</code></pre></div>
+<p><strong>Definición Explícita</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">New-variable</span> <span class="n">hola</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">$hola</span> <span class="p">=</span> <span class="s2">&quot;Hola mundo&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong>Get-Variable</strong> : Devuelve un listado completo de las variables que se han definido</li>
+</ul>
+<p><img alt="img" src="https://lh3.googleusercontent.com/mJwXgV3s86CFMH801um9mlUmqbYHkKb_VQbRDvnz6jW5S1tXZdUVUAVgv7XG7bvXxb0NA-Ww4IV7JjxKc3eAcsh2VEqnHIFFjCRsRYKD3uDMmPzhGRZWpacHaLUkn5bdpVXWABM29t7eXsXT4bNMIla2pw=s2048" /></p>
+<h3 id="32-variables-predefinidas">3.2 Variables predefinidas<a class="headerlink" href="#32-variables-predefinidas" title="Permanent link">&para;</a></h3>
+<p><strong>Windows Powershell</strong> dispone de muchas variables predefinidas también llamadas “<em>variables integradas</em>” o “<em>variables internas</em>“.</p>
+<table>
+<thead>
+<tr>
+<th>$true</th>
+<th>Valor true.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>$false</strong></td>
+<td>Valor false.</td>
+</tr>
+<tr>
+<td><strong>$home</strong></td>
+<td>El directorio home del usuario actual.</td>
+</tr>
+<tr>
+<td><strong>$host</strong></td>
+<td>Información de instalación del host.</td>
+</tr>
+<tr>
+<td><strong>$error</strong></td>
+<td>Lista de los errores que han ocurrido desde que se ha iniciado WPS.</td>
+</tr>
+</tbody>
+</table>
+<p>PowerShell puede acceder a las <strong>variables de entorno</strong>. Estas variables se exponen a través de una unidad denominada env:.</p>
+<ul>
+<li>Muestra todas las variables de entorno</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nb">Get-ChildItem</span> <span class="n">env</span><span class="p">:</span>
+</code></pre></div>
+<ul>
+<li>Muestra el usuario del sistema</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nv">$env:USERNAME</span>
+</code></pre></div>
+<ul>
+<li>Muestra el nombre del equipo</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nv">$env:COMPUTERNAME</span>
+</code></pre></div>
+<h3 id="33-tipos-de-datos-basicos">3.3 Tipos de datos básicos<a class="headerlink" href="#33-tipos-de-datos-basicos" title="Permanent link">&para;</a></h3>
+<p><img alt="img" src="https://lh5.googleusercontent.com/DrA7lM8sbJRri-68r9yBDKu-C7KT-M2wH21K-PYx7Su6U47UBFGLx-VlD0uDdBQfbQ2sJ3k3CtdsNDI7JfdbMloER6LxjyNi4WNC0DnveEKRGkDmr1r5SN_k0p9xjMTnecwNcSP4D5UshUl7v7JeiHKExw=s2048" />D</p>
+<h3 id="34-comando-para-obtener-el-tipo-de-datos-de-una-variable">3.4 Comando para obtener el tipo de datos de una variable<a class="headerlink" href="#34-comando-para-obtener-el-tipo-de-datos-de-una-variable" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nv">$numero</span> <span class="p">=</span> <span class="n">15</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nv">$numero</span><span class="p">.</span><span class="n">GetType</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="img" src="https://lh4.googleusercontent.com/F9bvPpsRN2QNFG6Bszo5AtxsUtkzl_C8OaF2l2wtw0vWtloUAYHNnWJJs-TvHttpP72Sm9oP_uh-4so-ILLM2iHcgBkvkjIYBg0yUrf11d20UP23dq5RO6p5NVfVbmDVdTIlZAMfet09cYSebq5cikOOhQ=s2048" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tarea</p>
+<p><strong>Pregunta: ¿Qué tipo de dato almacena la variable $a=8.5?</strong></p>
+<ul>
+<li>[ ] Int</li>
+<li>[ ] Long</li>
+<li>[ ] Double</li>
+<li>[ ] String</li>
+</ul>
+</div>
+<details class="details">
+<summary>Ver más</summary>
+<p>Ver la respuesta correcta</p>
+<p>El tipo de dato almacenado es <strong>double</strong></p>
+</details>
+<h3 id="35-definicion-de-variables">3.5 Definición de variables<a class="headerlink" href="#35-definicion-de-variables" title="Permanent link">&para;</a></h3>
+<p>Podemos definir explícitamente el tipo de datos de una variable o asignarle un valor y automáticamente se le asignará el tipo de datos correspondiente.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="no">[int]</span> <span class="nv">$var</span> <span class="p">=</span> <span class="n">15</span>
+</code></pre></div>
+<p>es equivalente a</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nv">$var</span> <span class="p">=</span> <span class="n">15</span>
+</code></pre></div>
+<h2 id="4-operaciones-basicas-en-powershell">4 Operaciones básicas en Powershell<a class="headerlink" href="#4-operaciones-basicas-en-powershell" title="Permanent link">&para;</a></h2>
+<h3 id="41-entrada-y-salida-de-informacion">4.1 Entrada y salida de información<a class="headerlink" href="#41-entrada-y-salida-de-informacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Read-Host</strong> . Guarda en una variable lo que escriba el usuario, **pero como texto **</li>
+</ul>
+<p><strong>Pedir información al usuario</strong></p>
+<p><img alt="img" src="https://lh3.googleusercontent.com/avW1MyAsuCw4WyLTOY4-JoVJMEdE7vGHkohbMvMOKAXRklhAPMZke70n2GNPZRtvrlgoKWZbAjsKR-aDOUxaMl6-Uz_qYjk9_A6MjwyDPVRzLteHp10SCgOQkMVrt_kLOeXZTRJLdXaU3TIlZpVC2s1dtA=s2048" /></p>
+<ul>
+<li><strong>Write-Host</strong>  .Muestra en pantalla un texto o el contenido de una variable.</li>
+</ul>
+<p><strong>Mostrar información al usuario</strong></p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/G4BO5_x70Jq_pL4u_TlF6NKL9tIPezgAjTzHblJ1ZKfKvyQuG7-T2PDjjd00Nd4bl1s_v1MMOzoxf3LzEx5NUjN0-SosPAEJ-4pkXSErqPnLR0aeHG8CDo4uHR5W9IwRqED4y3SPxlIH0IpHL6M5ElmY1g=s2048" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nv">$edad</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&quot;Escribe tu edad&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p><strong>Read-Host</strong>  siempre almacena las variables como String (cadena de texto). Esto puede ocasionar problemas cuando estamos intentando almacenar un número.</p>
+</div>
+<p>Para forzar a que sea un entero:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="no">[int]</span><span class="nv">$edad</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&quot;Escribe tu edad&quot;</span>
+</code></pre></div>
+<h3 id="42-operadores-aritmeticos">4.2 Operadores aritméticos<a class="headerlink" href="#42-operadores-aritmeticos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Operador</th>
+<th>Función</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">+</td>
+<td>Suma</td>
+<td>$resultado = $x + 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">-</td>
+<td>Resta</td>
+<td>$resultado = $x - 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">*</td>
+<td>Multiplicación</td>
+<td>$resultado = $x * 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">/</td>
+<td>División</td>
+<td>$resultado = $x / 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">%</td>
+<td>Resto</td>
+<td>$resultado = $x % 3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Operadores aritméticos especiales</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Operador</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+<th>Equivalencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">+=</td>
+<td>Incrementa el valor de la variable</td>
+<td>$x+=3</td>
+<td>$x = $x + 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">-=</td>
+<td>Reduce el valor de la variable</td>
+<td>$x-=3</td>
+<td>$x = $x - 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">*=</td>
+<td>Multiplica el valor de la variable</td>
+<td>$x*=3</td>
+<td>$x = $x * 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">/=</td>
+<td>Divide el valor de la variable</td>
+<td>$x/=3</td>
+<td>$x = $x / 3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-operadores-de-comparacion">4.3 <strong>Operadores de comparación</strong><a class="headerlink" href="#43-operadores-de-comparacion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Operador</th>
+<th>Significado</th>
+<th>Ejemplo <br />($true)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">-eq</td>
+<td>Igual</td>
+<td>1 -eq 1</td>
+</tr>
+<tr>
+<td style="text-align: center;">-ieq</td>
+<td>Igual <br />Con valores de tipo texto, no tendrá en cuenta la diferencia entre mayúsculas y minúsculas.</td>
+<td>"Hola" -ieq "HOLA"</td>
+</tr>
+<tr>
+<td style="text-align: center;">-ceq</td>
+<td>Igual<br />Con valores de tipo texto, tendrá en cuenta la diferencia entre mayúsculas y minúsculas.</td>
+<td>"HOLA" -ceq "HOLA"</td>
+</tr>
+<tr>
+<td style="text-align: center;">-ne</td>
+<td>Diferente</td>
+<td>3 -ne 5</td>
+</tr>
+<tr>
+<td style="text-align: center;">-lt</td>
+<td>Menor</td>
+<td>3 -lt 5</td>
+</tr>
+<tr>
+<td style="text-align: center;">-le</td>
+<td>Menor o igual</td>
+<td>5 -le 5<br />3 -le 5</td>
+</tr>
+<tr>
+<td style="text-align: center;">-gt</td>
+<td>Mayor</td>
+<td>5 -gt 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">-ge</td>
+<td>Mayor o igual</td>
+<td>5 -ge 5<br />5 -ge 3</td>
+</tr>
+<tr>
+<td style="text-align: center;">-like</td>
+<td>Es como</td>
+<td>"Fermín" -like "Fer*"</td>
+</tr>
+<tr>
+<td style="text-align: center;">-notlike</td>
+<td>No es como</td>
+<td>"Fermín" -notlike "Fa*"</td>
+</tr>
+<tr>
+<td style="text-align: center;">-contains</td>
+<td>Contiene</td>
+<td>9,5,2 -contains 5</td>
+</tr>
+<tr>
+<td style="text-align: center;">-notcontains</td>
+<td>No contiene</td>
+<td>9,5,2 -notcontains 1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="44-operadores-logicos">4.4 Operadores lógicos<a class="headerlink" href="#44-operadores-logicos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Significado</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-and</td>
+<td>AND lógico. TRUE cuando las dos expresiones son ciertas</td>
+<td>(1 -eq 1) -and (1 -eq 2)<br />False</td>
+</tr>
+<tr>
+<td>-or</td>
+<td>OR lógico. TRUE cuando alguna expresión es cierta</td>
+<td>(1 -eq 1) -or (1 -eq 2) <br />True</td>
+</tr>
+<tr>
+<td>-xor</td>
+<td>OR exclusivo. TRUE cuando sólo una expresión es cierta</td>
+<td>(1 -eq 1) -xor (2 -eq 2)<br />False</td>
+</tr>
+<tr>
+<td>-not</td>
+<td>Negación lógica. Niega la expresión</td>
+<td>-not (1 -eq 1)<br />False</td>
+</tr>
+<tr>
+<td>!</td>
+<td>Idéntico a -not</td>
+<td>!(1 -eq 1)<br />False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-operaciones-con-cadenas">4.5 Operaciones con cadenas<a class="headerlink" href="#45-operaciones-con-cadenas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Una de las operaciones más habituales es la <strong>concatenación (+)</strong>, que nos permite unir dos o más variables.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nv">$nombre</span><span class="p">=</span><span class="s2">&quot;Pepe &quot;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nv">$apellidos</span><span class="p">=</span><span class="s2">&quot;Garcia Sanchez&quot;</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nv">$nombreCompleto</span><span class="p">=</span><span class="nv">$nombre</span><span class="p">+</span><span class="nv">$apellidos</span>
+</code></pre></div>
+<ul>
+<li>El método <strong>IndexOf</strong> nos permite buscar un determinado texto.</li>
+</ul>
+<p><img alt="image-20230718093834882" src="../../assets/img/powershell/image-20230718093834882.png" /></p>
+<h3 id="46-ejercicios">4.6 Ejercicios<a class="headerlink" href="#46-ejercicios" title="Permanent link">&para;</a></h3>
+<h4 id="practica-2">Práctica 2<a class="headerlink" href="#practica-2" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1.</strong> Crea un script en lenguaje PowerShell que muestre al usuario los siguientes mensajes:</p>
+<ul>
+<li>Hola <em>nombre de usuario</em></li>
+<li>Tu directorio de trabajo es <em>directorio</em></li>
+<li>Perteneces al dominio <em>Nombre_dominio</em></li>
+<li>Tu equipo se llama <em>Nombre_equipo.</em></li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio2</strong>.  Crea un script en PowerShell que pida dos números al usuario e imprima por pantalla su suma, la resta, la multiplicación, división y resto.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio3</strong>. Crea un script en PowerShell que pregunte al usuario por el número de horas trabajadas y el coste por hora. Después debe mostrar por pantalla el salario que debemos pagarle.</p>
+</div>
+<h2 id="5-estructuras-condicionales">5. Estructuras condicionales<a class="headerlink" href="#5-estructuras-condicionales" title="Permanent link">&para;</a></h2>
+<h3 id="uso-de-la-orden-if-else-elseif">Uso de la orden If, Else, ElseIf<a class="headerlink" href="#uso-de-la-orden-if-else-elseif" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">If</span><span class="p">(</span><span class="n">condicion</span><span class="p">)</span> <span class="p">{</span> <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span> <span class="n">1</span><span class="p">}</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">Else</span> <span class="p">{</span><span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span> <span class="n">2</span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p>C<em>ondición</em> se refiere a una expresión lógica. Es decir, que al evaluarla se obtendrá un valor <strong>$true</strong> o <strong>$false</strong>.</p>
+</li>
+<li>
+<p>El bloque de código será un conjunto de instrucciones que sólo se ejecutarán cuando la condición ofrezca el valor <strong>$true</strong>. </p>
+</li>
+</ul>
+<p><strong>Bloque If</strong> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">If</span> <span class="p">(</span><span class="nv">$x</span>  <span class="o">-gt</span> <span class="n">50</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La variable x es mayor que 50&quot;</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Bloque if-else</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">If</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">-gt</span> <span class="n">50</span><span class="p">){</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La variable x es mayor que 50&quot;</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="p">}</span><span class="k">Else</span> <span class="p">{</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La variable es menor o igual que 50&quot;</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Bloque if-ElseIf</strong> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">If</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">-gt</span> <span class="n">50</span><span class="p">){</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La variable x es mayor que 50&quot;</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="p">}</span><span class="k">ElseIf</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">-eq</span> <span class="n">50</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La variable x es igual a 50&quot;</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">}</span><span class="k">Else</span> <span class="p">{</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>    <span class="n">Write_host</span> <span class="s2">&quot;La variable es es menor que 50&quot;</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="uso-de-la-orden-switch">Uso de la orden switch<a class="headerlink" href="#uso-de-la-orden-switch" title="Permanent link">&para;</a></h3>
+<p>La instrucción <strong>switch</strong> permite organizar bloques de código de forma que se ejecutan cuando se cumpla la condición.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">switch</span><span class="p">(</span><span class="n">valor</span> <span class="n">de</span> <span class="n">prueba</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="n">Patron</span> <span class="n">1</span> <span class="p">{</span><span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span> <span class="n">1</span><span class="p">}</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="n">Patron</span> <span class="n">2</span> <span class="p">{</span><span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span> <span class="n">2</span><span class="p">}</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="n">Patron</span> <span class="n">n</span> <span class="p">{</span><span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span> <span class="n">n</span><span class="p">}</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="k">default</span> <span class="p">{</span><span class="n">Bloque</span> <span class="n">por</span> <span class="n">defecto</span><span class="p">}</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="p">}</span>
+</code></pre></div>
+<strong>Ejemplo 1:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="no">[Int]</span><span class="nv">$x</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&quot;Introduce un valor&quot;</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c">#Bloque Switch</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="k">switch</span> <span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span> 
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>    <span class="n">1</span> <span class="p">{</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>        <span class="c">#Bloque de instrucciones cuando $x es igual a 1</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;Has introducido el valor 1&quot;</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>    <span class="p">}</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>    <span class="n">2</span> <span class="p">{</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>        <span class="c">#Bloque de instrucciones cuando $x es igual a 2</span>
+<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;Has introducido el valor 2&quot;</span>
+<a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>    <span class="p">}</span>
+<a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>    <span class="n">3</span> <span class="p">{</span>
+<a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>        <span class="c">#Bloque de instrucciones cuando $x es igual a 3</span>
+<a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;Has introducido el valor 3&quot;</span>
+<a id="__codelineno-44-15" name="__codelineno-44-15" href="#__codelineno-44-15"></a>    <span class="p">}</span>
+<a id="__codelineno-44-16" name="__codelineno-44-16" href="#__codelineno-44-16"></a>    <span class="k">default</span> <span class="p">{</span>
+<a id="__codelineno-44-17" name="__codelineno-44-17" href="#__codelineno-44-17"></a>        <span class="c">#Cualquier otro valor</span>
+<a id="__codelineno-44-18" name="__codelineno-44-18" href="#__codelineno-44-18"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;Has introducido cualquier otro valor&quot;</span>
+<a id="__codelineno-44-19" name="__codelineno-44-19" href="#__codelineno-44-19"></a>    <span class="p">}</span>
+<a id="__codelineno-44-20" name="__codelineno-44-20" href="#__codelineno-44-20"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Ejemplo 2:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="no">[int]</span><span class="nv">$nota</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&quot;Escribe una nota&quot;</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="k">switch</span> <span class="p">(</span><span class="nv">$nota</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>    <span class="p">{</span><span class="nv">$_</span> <span class="o">-lt</span> <span class="n">5</span><span class="p">}</span>                      <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Suspenso&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>    <span class="p">{(</span><span class="nv">$_</span> <span class="o">-ge</span> <span class="n">5</span><span class="p">)</span> <span class="o">-and</span> <span class="p">(</span><span class="nv">$_</span> <span class="o">-le</span> <span class="n">10</span><span class="p">)}</span>   <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Aprobado&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>    <span class="p">{</span><span class="nv">$_</span> <span class="n">-in</span> <span class="n">1</span><span class="p">..</span><span class="n">4</span><span class="p">}</span>                   <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Insuficiente&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>    <span class="n">5</span>                               <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Suficiente&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>    <span class="n">6</span>                               <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Bien&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a>    <span class="p">{</span><span class="nv">$_</span> <span class="n">-in</span> <span class="n">7</span><span class="p">,</span><span class="n">8</span><span class="p">}</span>                    <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Notable&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a>    <span class="p">{</span><span class="nv">$_</span> <span class="n">-in</span> <span class="n">9</span><span class="p">,</span><span class="n">10</span><span class="p">}</span>                   <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;Sobresaliente&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a>    <span class="k">default</span>                         <span class="p">{</span><span class="nb">Write-Host</span> <span class="s2">&quot;No conozco esa nota&quot;</span><span class="p">}</span>
+<a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="ejercicios">Ejercicios<a class="headerlink" href="#ejercicios" title="Permanent link">&para;</a></h3>
+<h4 id="practica-3">Práctica 3<a class="headerlink" href="#practica-3" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1</strong>. Crea un script que solicite un número al usuario. El programa debe indicar si el número es impar o par.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio2</strong>. Escribir un programa que pregunte al usuario su edad y muestre por pantalla si es mayor de edad o no.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 3.</strong> Crea un script en el que se pida dos números enteros al usuario. El script debe indicar si el primer número es mayor, menor o igual que el otro.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 4</strong>. Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.</p>
+<p>Ejemplo:</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong><strong> CALCULADORA </strong><strong><em>*</em></strong><strong><em>*</em></strong>****</p>
+<ol>
+<li>Sumar </li>
+<li>Restar </li>
+<li>Multiplicar </li>
+<li>Dividir</li>
+</ol>
+<p>¿Qué desea hacer?Elige una opción:</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 5</strong>. Crea un script en el que pidas un fichero o carpeta por teclado y te diga si existe o no.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 6.</strong>  Crea un script   que diga si lo que se pasa por teclado es un directorio. En ese caso sacará una lista con los archivos que contiene y subdirectorios. Debes utilizar el parámetro Recurse.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 7.</strong>  Escribir un programa que almacene la cadena de caracteres contraseña en una variable, pregunte al usuario por la contraseña e imprima por pantalla si la contraseña introducida por el usuario coincide con la guardada en la variable sin tener en cuenta mayúsculas y minúsculas.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 8.</strong>  Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A esta formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto.
+Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 9.</strong> Los tramos impositivos para la declaración de la renta en un determinado país son los siguientes:</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Renta</th>
+<th>Tipo Impositivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Menos de 10000€</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>Entre 10000€ y 20000€</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Entre 20000€ y 35000€</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Entre 35000€ y 60000€</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Más de 60000€</td>
+<td>45%</td>
+</tr>
+</tbody>
+</table>
+<p>Escribir un programa que pregunte al usuario su renta anual y muestre por pantalla el tipo impositivo que le corresponde.</p>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 10.</strong> En una determinada empresa, sus empleados son evaluados al final de cada año. Los puntos que pueden obtener en la evaluación comienzan en 0.0 y pueden ir aumentando, traduciéndose en mejores beneficios. Los puntos que pueden conseguir los empleados pueden ser 0.0, 0.4, 0.6 o más, pero no valores intermedios entre las cifras mencionadas. A continuación se muestra una tabla con los niveles correspondientes a cada puntuación. La cantidad de dinero conseguida en cada nivel es de 2.400€ multiplicada por la puntuación del nivel.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Puntuación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inaceptable</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Aceptable</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Meritorio</td>
+<td>0.6 o más</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Escribir un programa que lea la puntuación del usuario e indique su nivel de rendimiento, así como la cantidad de dinero que recibirá el usuario.</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 11.</strong> Escribir un programa para una empresa que tiene salas de juegos para todas las edades y quiere calcular de forma automática el precio que debe cobrar a sus clientes por entrar. El programa debe preguntar al usuario la edad del cliente y mostrar el precio de la entrada. Si el cliente es menor de 4 años puede entrar gratis, si tiene entre 4 y 18 años debe pagar 5€ y si es mayor de 18 años, 10€.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 12.</strong> La pizzería Bella Napoli ofrece pizzas vegetarianas y no vegetarianas a sus clientes. Los ingredientes para cada tipo de pizza aparecen a continuación.</p>
+<ul>
+<li>Ingredientes vegetarianos: Pimiento y tofu.</li>
+<li>Ingredientes no vegetarianos: Peperoni, Jamón y Salmón.
+Escribir un programa que pregunte al usuario si quiere una pizza vegetariana o no, y en función de su respuesta le muestre un menú con los ingredientes disponibles para que elija. Solo se puede eligir un ingrediente además de la mozzarella y el tomate que están en todas la pizzas. Al final se debe mostrar por pantalla si la pizza elegida es vegetariana o no y todos los ingredientes que lleva.</li>
+</ul>
+</div>
+<p>Los enunciados de estos ejercicos están extraidos de la siguiente página web:</p>
+<p>https://aprendeconalf.es/docencia/python/ejercicios/condicionales/</p>
+<h2 id="6-estructuras-repetitivas">6. Estructuras repetitivas<a class="headerlink" href="#6-estructuras-repetitivas" title="Permanent link">&para;</a></h2>
+<p>Todos los lenguajes de programación necesitan un método que les permita repetir un bloque de instrucciones. En PowerShell puedes utilizar:</p>
+<ul>
+<li>
+<p><strong>do while</strong>: repite mientras la condición vale $true</p>
+</li>
+<li>
+<p><strong>while</strong>: repite mientras la condición vale $true</p>
+</li>
+<li>
+<p><strong>do until</strong>: repite hasta que la condición vale $true</p>
+</li>
+<li>
+<p><strong>for:</strong> repite durante un nº de veces</p>
+</li>
+<li>
+<p><strong>foreach:</strong> repite una vez para cada elemento de la lista</p>
+</li>
+</ul>
+<h3 id="61-la-estructura-do-while">6.1 La estructura do while<a class="headerlink" href="#61-la-estructura-do-while" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">do</span> <span class="p">{</span> 
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>    <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="p">}</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="k">while</span> <span class="p">(</span><span class="n">condicion</span><span class="p">)</span>
+</code></pre></div>
+<strong>Ejemplo:</strong></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nv">$a</span> <span class="p">=</span> <span class="n">1</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="k">do</span> 
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="p">{</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>    <span class="nb">Write-Host</span> <span class="nv">$a</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a>    <span class="nv">$a</span><span class="p">++</span>
+<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="p">}</span><span class="k">while</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">-le</span> <span class="n">5</span><span class="p">)</span>
+</code></pre></div>
+<strong>Resultado por pantalla:</strong> 
+1
+2
+3
+4
+5</p>
+<h3 id="62-la-estructura-while">6.2 La estructura while<a class="headerlink" href="#62-la-estructura-while" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">while</span> <span class="p">(</span><span class="n">condicion</span><span class="p">){</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>    <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nv">$a</span> <span class="p">=</span> <span class="n">1</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="k">while</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">-le</span> <span class="n">5</span><span class="p">)</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="p">{</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>    <span class="nb">Write-Host</span> <span class="nv">$a</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>    <span class="nv">$a</span><span class="p">++</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Resultado por pantalla:</strong></p>
+<p>1
+2
+3
+4
+5</p>
+<h3 id="63-la-estructura-do-until">6.3 La estructura do until<a class="headerlink" href="#63-la-estructura-do-until" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="k">do</span> <span class="p">{</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>    <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="p">}</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="k">until</span> <span class="p">(</span><span class="n">condicion</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="nv">$a</span> <span class="p">=</span> <span class="n">1</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="k">do</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="p">{</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>    <span class="nb">Write-Host</span> <span class="nv">$a</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>    <span class="nv">$a</span><span class="p">++</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="p">}</span> <span class="k">until</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">-gt</span> <span class="n">5</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Resultado por pantalla:</strong></p>
+<p>1
+2
+3
+4
+5</p>
+<h3 id="64-la-estructura-for">6.4 La estructura for<a class="headerlink" href="#64-la-estructura-for" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">for</span> <span class="p">(</span><span class="n">inicializacion</span><span class="p">;</span> <span class="n">condicion</span><span class="p">;</span> <span class="n">incremento</span><span class="p">)</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="p">{</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>    <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">for</span> <span class="p">(</span><span class="nv">$a</span> <span class="p">=</span> <span class="n">1</span><span class="p">;</span> <span class="nv">$a</span> <span class="o">-le</span> <span class="n">5</span><span class="p">;</span> <span class="nv">$a</span><span class="p">++)</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="p">{</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>    <span class="nb">Write-Host</span> <span class="nv">$a</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="p">}</span> 
+</code></pre></div>
+<p><strong>Resultado por pantalla:</strong></p>
+<p>1
+2
+3
+4
+5</p>
+<h3 id="65-la-estructura-foreach">6.5 La estructura foreach<a class="headerlink" href="#65-la-estructura-foreach" title="Permanent link">&para;</a></h3>
+<p>La estructura <strong>foreach</strong> funciona en cualquier situación donde pueda obtenerse una lista de elementos.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">foreach</span> <span class="p">(</span><span class="n">elemento</span> <span class="k">in</span> <span class="n">coleccion</span><span class="p">)</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="p">{</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>    <span class="n">Bloque</span> <span class="n">de</span> <span class="n">codigo</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$a</span> <span class="k">in</span> <span class="n">1</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">3</span><span class="p">,</span><span class="n">4</span><span class="p">,</span><span class="n">5</span><span class="p">)</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="p">{</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>    <span class="nb">Write-Host</span> <span class="nv">$a</span>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="p">}</span> 
+</code></pre></div>
+<p><strong>Resultado por pantalla:</strong></p>
+<p>1
+2
+3
+4
+5</p>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nv">$ruta</span> <span class="p">=</span> <span class="s2">&quot;C:\Windows\System32&quot;</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="nv">$texto</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&quot;Escribe el texto a buscar&quot;</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$archivo</span> <span class="k">in</span> <span class="nb">Get-ChildItem</span> <span class="nv">$ruta</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>    <span class="k">if</span><span class="p">(</span><span class="nv">$archivo</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">IndexOf</span><span class="p">(</span><span class="nv">$texto</span><span class="p">)</span> <span class="o">-ge</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>        <span class="nb">Write-Host</span> <span class="nv">$archivo</span><span class="p">.</span><span class="n">Name</span>
+<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a>    <span class="p">}</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><img alt="image-20230720204431719" src="../../assets/img/powershell/image-20230720204431719.png" /></p>
+<h3 id="66-ejercicios">6.6 Ejercicios<a class="headerlink" href="#66-ejercicios" title="Permanent link">&para;</a></h3>
+<h4 id="practica-4">Práctica 4<a class="headerlink" href="#practica-4" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio1</strong>. Escribir un programa que pregunte el nombre del usuario en la consola y un número entero e imprima por pantalla en líneas distintas el nombre del usuario tantas veces como el número introducido.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 2</strong>. Escribir un programa que pregunte al usuario su edad y muestre por pantalla todos los años que ha cumplido (desde 1 hasta su edad).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio3</strong>. Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla la cuenta atrás desde ese número hasta cero separados por comas.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio4</strong> Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla todos los números impares desde 1 hasta ese número separados por comas.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 5</strong>. Crea un script  que utilice for para mostrar la tabla de multiplicar de un número que se solicita al usuario.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 6.</strong>  Crea un script en lenguaje PowerShell que sea un juego de adivinar un número de 0 a 100. El número se pondrá fijo al principio del procedimiento. Se irá preguntando al usuario números y se dirá si es mayor o menor en caso de no adivinar el numero. Al adivinar el número mostrará un mensaje de enhorabuena y se detendrá el juego.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 7</strong> Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo, de altura el número introducido.</p>
+<p><img alt="image-20230924192557853" src="../../assets/img/powershell/image-20230924192557853.png" /> </p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 8</strong> Escribir un programa que pida al usuario un número entero y muestre por pantalla un triángulo rectángulo como el de más abajo.</p>
+<p><img alt="image-20230926115734084" src="../../assets/img/powershell/image-20230926115734084.png" /></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 9</strong> Escribir un programa que almacene la cadena de caracteres <code>contraseña</code> en una variable, pregunte al usuario por la contraseña hasta que introduzca la contraseña correcta.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 10</strong>. Crea un script  que muestre un menú con las siguientes opciones:</p>
+<p>a) Crear una carpeta </p>
+<p>b) Crear un fichero nuevo </p>
+<p>c) Cambiar el nombre de un fichero o carpeta </p>
+<p>d) Borrar un archivo o carpeta </p>
+<p>e) Verificar si existe un fichero o carpeta </p>
+<p>f) Mostrar el contenido de un directorio. </p>
+<p>g) Mostar la fecha y hora actuales </p>
+<p>x) Salir </p>
+<p>El menú se mostrará hasta que el usuario seleccione la opción Salir. Todos los datos que necesite el usuario se pedirán por teclado al usuario. </p>
+</div>
+<h2 id="7-importacion-de-datos">7 Importación de datos<a class="headerlink" href="#7-importacion-de-datos" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Importación de un archivo de texto</strong></li>
+</ol>
+<p>Para importar los datos de un fichero .txt usaremos el comando <strong>Get-Content</strong> para almacenar los datos en una variable.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nv">$ciudades</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">ciudades</span><span class="p">.</span><span class="n">txt</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="k">foreach</span><span class="p">(</span><span class="nv">$ciudad</span> <span class="k">in</span> <span class="nv">$ciudades</span><span class="p">)</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="p">{</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>    <span class="nb">Write-Host</span> <span class="nv">$ciudad</span>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a><span class="p">}</span>
+</code></pre></div>
+<p><img alt="img" src="https://lh3.googleusercontent.com/TtRQwDNRx_itz1YhGKWjOxzqRlFjLfDpntT3nXOGIk3msPmFo7ovMJk_SC6dRgQ7pGEunsFXNXQc-3yR994285QmRKEMKLsKkiCd5deFoy_tIy2Uh7oCKqY2UqMDcFnAqkR6x238xNMtaSTLYn5EqbWwpg=s2048" /></p>
+<p><strong>Importación de un archivo CSV</strong></p>
+<p>Para importar los datos de un fichero csv usaremos el método <strong>Import-CSV</strong> para almacenar los datos en una variable.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="nv">$ordenadores</span> <span class="p">=</span> <span class="nb">import-CSV</span> <span class="n">computers</span><span class="p">.</span><span class="n">csv</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="k">foreach</span><span class="p">(</span><span class="nv">$pc</span> <span class="k">in</span> <span class="nv">$ordenadores</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;Equipo: </span><span class="p">$(</span><span class="nv">$pc</span><span class="p">.</span><span class="n">Nombre</span><span class="p">)</span><span class="s2"> </span><span class="p">$(</span><span class="nv">$pc</span><span class="p">.</span><span class="n">IP</span><span class="p">)</span><span class="s2"> </span><span class="p">$(</span><span class="nv">$pc</span><span class="p">.</span><span class="n">Oficina</span><span class="p">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="p">}</span>
+</code></pre></div>
+<p><img alt="img" src="https://lh4.googleusercontent.com/oWQbVFqzpSUTpMwWeFuHDdnleWjJXb_DVh7yepZPq_T6YKo8Emfwk_eGLgxklv4uUl7EiwEvKOAFAI_yZ-ZrS82KiZul1bZ3HpqT1Wj3XPFrP15CK2z04zc0D_mpfJWwRiu0tvlt1pcJpYah8gFgsqow8g=s2048" /></p>
+<p><img alt="img" src="https://lh5.googleusercontent.com/lv4H5XO8V1iKYKGhpxDfHFPQC9PW7MxtQlXsnybhZbfyNBEQP4DnQDe9ZRsX0a43CKL8cmIfx_zwlrGD7UsBIiOC0HcvDOQMWQwVCFLgnTMV8-m4DNttOY5VANeJGEKg_jIsbOFsmpWtwmod-fGRUo1wNQ=s2048" /></p>
+<p><strong>Import-CSV</strong>: con powershell podemos importar cualquier archivo CSV. Por defecto el delimitador es la coma, pero se puede indicar otro.La cabecera del archivo pasan a ser los nombres de las propiedades pero también se pueden indicar otros.</p>
+<p><img alt="img" src="https://lh6.googleusercontent.com/uS2-CyRXvA04jp9IZbw9dbrctMhrR-MFsKJXddh7A_wnKKnewzJq4_AXdaaPu292f2PKmuVm1AXFsaSwVTZHEKF1Y0Hysnd_0BQmwbo4BiocpBOhAljub2NdZSk7F-L25mF4WUe3079-Bty2Lu-oH52RjA=s2048" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="nv">$empleados</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">C</span><span class="p">:\</span><span class="n">scripts</span><span class="p">\</span><span class="n">empleados</span><span class="p">.</span><span class="n">csv</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$em</span> <span class="k">in</span> <span class="nv">$empleados</span><span class="p">)</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="p">{</span>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;Usuario: </span><span class="p">$(</span><span class="nv">$em</span><span class="p">.</span><span class="n">nombre</span><span class="p">)</span><span class="s2"> </span><span class="p">$(</span><span class="nv">$em</span><span class="p">.</span><span class="n">apellido</span><span class="p">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="8-funciones">8. Funciones<a class="headerlink" href="#8-funciones" title="Permanent link">&para;</a></h2>
+<p>Una función no es más que un conjunto de instrucciones a las que le damos un nombre. </p>
+<p>Las funciones tienen varias ventajas en la programación:</p>
+<ol>
+<li><strong>Reutilización de código</strong>: Puedes definir una función una vez y luego llamarla en múltiples partes de tu programa. Esto evita la necesidad de repetir el mismo código una y otra vez.</li>
+<li><strong>Modularidad</strong>: Las funciones permiten dividir un programa grande y complejo en partes más pequeñas y manejables. Cada función se encarga de una tarea específica, lo que facilita la comprensión y mantenimiento del código.</li>
+<li><strong>Abstracción</strong>: Una función te permite encapsular un conjunto de operaciones en un nombre significativo. Esto hace que el código sea más legible y fácil de entender.</li>
+<li><strong>Facilita la depuración</strong>: Al dividir un programa en funciones más pequeñas, es más fácil identificar y corregir errores o fallos en el código.</li>
+<li><strong>Permite la organización</strong>: Al utilizar funciones, puedes organizar tu código de manera lógica y estructurada, lo que facilita su comprensión y mantenimiento.</li>
+<li><strong>Mejora la colaboración</strong>: Al trabajar en equipo, las funciones permiten a diferentes programadores trabajar en diferentes partes del código al mismo tiempo sin interferir con el trabajo de los demás.</li>
+</ol>
+<p><strong>Sintaxis</strong>                            </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>Function &lt;nombre&gt; { 
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>&lt;bloque de código&gt; 
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>}
+</code></pre></div>
+<p><strong>Ejemplo 1</strong> </p>
+<p>En PowerShell, hay dos formas de definir parámetros en una función:</p>
+<ol>
+<li>Usando la palabra clave <code>param</code>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">Function</span> <span class="n">Sumar</span> <span class="p">{</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>    <span class="k">param</span> <span class="p">(</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>        <span class="no">[int]</span><span class="nv">$x</span><span class="p">,</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>        <span class="no">[int]</span><span class="nv">$y</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>    <span class="p">)</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>    <span class="nv">$sumar</span> <span class="p">=</span> <span class="nv">$x</span> <span class="p">+</span> <span class="nv">$y</span>
+<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La respuesta es $sumar&quot;</span>
+<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a><span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Especificando los parámetros directamente en la definición de la función:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">Function</span> <span class="n">Sumar</span> <span class="p">(</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>    <span class="nv">$sumar</span> <span class="p">=</span> <span class="nv">$x</span> <span class="p">+</span> <span class="nv">$y</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>    <span class="nb">Write-Host</span> <span class="s2">&quot;La respuesta es $sumar&quot;</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>Para usar esta función, simplemente llama a <code>Sumar</code> y proporciona los valores para <code>$x</code> y <code>$y</code>. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">Sumar</span> <span class="n">3</span> <span class="n">5</span>
+</code></pre></div>
+<p>Ambas formas son correctas y válidas en PowerShell. Sin embargo, la primera opción (<code>param</code>) proporciona una mayor claridad en cuanto a la declaración de los tipos de datos esperados para cada parámetro. Esto puede hacer que tu código sea más legible y menos propenso a errores si los tipos de datos incorrectos se pasan a la función.</p>
+<p><strong>Ejemplo 2</strong> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">function</span> <span class="n">TestPing</span><span class="p">(</span><span class="nv">$Address</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>    <span class="nv">$Result</span><span class="p">=</span><span class="nb">Test-Connection</span> <span class="n">-ComputerName</span> <span class="nv">$Address</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>    <span class="k">if</span> <span class="p">($?</span> <span class="o">-eq</span> <span class="nv">$true</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>
+<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>            <span class="nb">write-output</span> <span class="s2">&quot;ICMP Test to ${Address}: OK&quot;</span>
+<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a>
+<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>
+<a id="__codelineno-64-10" name="__codelineno-64-10" href="#__codelineno-64-10"></a>            <span class="nb">write-output</span> <span class="s2">&quot;ICMP Test to ${Address}: Error&quot;</span>
+<a id="__codelineno-64-11" name="__codelineno-64-11" href="#__codelineno-64-11"></a>    <span class="p">}</span>
+<a id="__codelineno-64-12" name="__codelineno-64-12" href="#__codelineno-64-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>En nuestro ejemplo, creamos una función denominada <strong>TestPing</strong> para probar la conectividad a una dirección variable.</p>
+<p>Para utilizar la función, debemos realizar la llamada:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="n">TestPing</span>  <span class="s2">&quot;8.8.8.8&quot;</span> 
+</code></pre></div>
+<h3 id="ejercicios_1">Ejercicios<a class="headerlink" href="#ejercicios_1" title="Permanent link">&para;</a></h3>
+<h4 id="practica-5">Práctica 5<a class="headerlink" href="#practica-5" title="Permanent link">&para;</a></h4>
+<p>En esta práctica vas a reescribir algunos de los scripts realizados anteriormente, pero haciendo uso de las funciones.</p>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 1</strong>  Crea una calculadora muy sencilla, en la que se preguntará al usuario dos números y que operación desea realizar.</p>
+<p>Ejemplo:</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong><strong> CALCULADORA </strong><strong><em>*</em></strong><strong><em>*</em></strong>****</p>
+<ol>
+<li>Sumar </li>
+<li>Restar </li>
+<li>Multiplicar </li>
+<li>Dividir</li>
+<li>Salir</li>
+</ol>
+<p>¿Qué desea hacer?Elige una opción: </p>
+<p>Debes crear las funciones Sumar, Restar, Multiplicar y Dividir. Cada una de estas funciones tendrá dos parámetros.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>Ejercicio 2</strong> Haciendo uso de la estructura repetitiva foreach, debes leer todos los datos del archivo <a href="../../assets/usuarios.csv">usuarios.csv</a> e imprimir el nombre, apellidos y grupo del usuario</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../linux/ansible/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT5. Ansible">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT5. Ansible
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../wserver/directorio-activo/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT7. Directorio Activo en Windows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT7. Directorio Activo en Windows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

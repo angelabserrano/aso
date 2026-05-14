@@ -1,0 +1,22 @@
+/* Custom admonition: reto */
+:root {
+    --md-admonition-icon--reto: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 2c0 0-3.3 0-6 2.6C9.3 2 6 2 6 2H2v8c0 2.8 1.9 5.1 4.5 5.8.9 2.4 2.8 4.3 5.5 4.2 2.7 0 4.6-1.8 5.5-4.2C19.9 15.1 22 12.8 22 10V2h-4zM8 13.8C6.2 13.2 4 11.3 4 9V4h2v6c0 1.4.5 2.7 2 3.8zm4 2.2c-2.2 0-4-1.8-4-4V4h3c1.1.9 2.1 2.2 2.5 3.3.4-1.1 1.4-2.4 2.5-3.3H19v8c0 2.2-1.8 4-4 4zm4-2.2c1.5-1.1 2-2.4 2-3.8V4h2v5c0 2.3-2.2 4.2-4 4.8z'/></svg>");
+}
+
+.md-typeset .admonition.reto,
+.md-typeset details.reto {
+    border-color: rgb(255, 145, 0);
+}
+
+.md-typeset .reto > .admonition-title,
+.md-typeset .reto > summary {
+    background-color: rgba(255, 145, 0, 0.1);
+    color: rgb(200, 100, 0);
+}
+
+.md-typeset .reto > .admonition-title::before,
+.md-typeset .reto > summary::before {
+    background-color: rgb(255, 145, 0);
+    -webkit-mask-image: var(--md-admonition-icon--reto);
+            mask-image: var(--md-admonition-icon--reto);
+}

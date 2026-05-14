@@ -1,0 +1,3377 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Apuntes de Administración de Sistemas Operativos">
+      
+      
+        <meta name="author" content="Angela B. Serrano">
+      
+      
+        <link rel="canonical" href="https://angelabserrano.github.io/aso2026-27/linux/bash/">
+      
+      
+        <link rel="prev" href="../../git/introduccion/">
+      
+      
+        <link rel="next" href="../bash-avanzado/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/img/logoASO.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>UT1. Bash - Administración de Sistemas Operativos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#manual-de-shell-script" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-header__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Administración de Sistemas Operativos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UT1. Bash
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Administración de Sistemas Operativos" class="md-nav__button md-logo" aria-label="Administración de Sistemas Operativos" data-md-component="logo">
+      
+  <img src="../../assets/img/logoASO.png" alt="logo">
+
+    </a>
+    Administración de Sistemas Operativos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT0. Introducción a Git y Github
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-6-sesiones-12-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (6 sesiones / 12 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-primer-script-hola-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Primer script hola mundo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrada-de-datos-por-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Entrada de datos por el usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Parámetros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Parámetros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-las-variables-utilizadas-con-los-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen de las variables utilizadas con los parámetros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arrays
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-matematicas-en-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Matematicas en bash
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Matematicas en bash">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operadores-matematicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores matemáticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#81-doble-parentesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Doble paréntesis (( ))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-expr-no-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Expr (No recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-let-no-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Let (No recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-matematicas-en-bash-con-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Matemáticas en bash con bc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-evaluacion-de-expresiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Evaluación de expresiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Evaluación de expresiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-expresiones-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Expresiones de archivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-expresiones-de-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Expresiones de cadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#921-extraccion-de-subcadenas-substring-y-manipulacion-de-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Sintaxis básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subcadenas-desde-el-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Subcadenas desde el final
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminacion-de-prefijos-y-sufijos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Eliminación de prefijos y sufijos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔹 Eliminación de prefijos y sufijos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefijos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ➕ Prefijos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Ejemplo práctico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-operadores-de-subcadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Resumen de operadores de subcadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-expresiones-numericas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Expresiones numéricas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-expresiones-logicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Expresiones lógicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Condicionales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-bucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Bucles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Bucles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-bucles-con-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Bucles con for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-bucles-con-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Bucles con while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-bucles-con-until" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Bucles con until
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-continue-y-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Continue y Break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-concepto-y-sintaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Concepto y sintaxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-declaracion-antes-de-la-llamada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Declaración antes de la llamada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-paso-de-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Paso de parámetros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-archivos-de-funciones-source-filenames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Archivos de funciones (Source Filenames)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-devolver-datos-desde-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 Devolver datos desde funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.5 Devolver datos desde funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#devolver-datos-mediante-la-salida-estandar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📤 Devolver datos mediante la salida estándar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-utilidades-y-herramientas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Utilidades y herramientas comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-depuracion-y-testeo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Depuración y testeo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-buenas-practicas-y-recomendaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Buenas prácticas y recomendaciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Buenas prácticas y recomendaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios prácticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bash-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT1. Bash Avanzado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT2. Procesos, Servicios y Automatización
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acceso-remoto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT3. Acceso y Administración Remota en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Servicio de Directorio en Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../samba/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT4. Samba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT5. Ansible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT6. PowerShell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/directorio-activo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. Directorio Activo en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scripts/powershell-directorio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT7. PowerShell - Directorio Activo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wserver/administracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT8. Administración en Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UT9. Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#programacion-de-aula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programación de Aula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Programación de Aula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultados-de-aprendizaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados de Aprendizaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planificacion-temporal-6-sesiones-12-horas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificación Temporal (6 sesiones / 12 horas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introducción
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-primer-script-hola-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Primer script hola mundo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-variables-de-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Variables de entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrada-de-datos-por-el-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Entrada de datos por el usuario
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Comentarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Parámetros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Parámetros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-las-variables-utilizadas-con-los-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen de las variables utilizadas con los parámetros
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arrays
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-matematicas-en-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Matematicas en bash
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Matematicas en bash">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operadores-matematicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operadores matemáticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#81-doble-parentesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Doble paréntesis (( ))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-expr-no-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Expr (No recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-let-no-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Let (No recomendado)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-matematicas-en-bash-con-bc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Matemáticas en bash con bc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-evaluacion-de-expresiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Evaluación de expresiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Evaluación de expresiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-expresiones-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Expresiones de archivos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-expresiones-de-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Expresiones de cadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#921-extraccion-de-subcadenas-substring-y-manipulacion-de-cadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sintaxis-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Sintaxis básica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subcadenas-desde-el-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Subcadenas desde el final
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eliminacion-de-prefijos-y-sufijos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Eliminación de prefijos y sufijos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔹 Eliminación de prefijos y sufijos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefijos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ➕ Prefijos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-practico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 Ejemplo práctico
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-operadores-de-subcadenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Resumen de operadores de subcadenas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-expresiones-numericas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Expresiones numéricas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-expresiones-logicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Expresiones lógicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Condicionales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-bucles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Bucles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Bucles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-bucles-con-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Bucles con for
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-bucles-con-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Bucles con while
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-bucles-con-until" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Bucles con until
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-continue-y-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Continue y Break
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-concepto-y-sintaxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Concepto y sintaxis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-declaracion-antes-de-la-llamada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Declaración antes de la llamada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-paso-de-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Paso de parámetros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-archivos-de-funciones-source-filenames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Archivos de funciones (Source Filenames)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-devolver-datos-desde-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 Devolver datos desde funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.5 Devolver datos desde funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#devolver-datos-mediante-la-salida-estandar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📤 Devolver datos mediante la salida estándar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-utilidades-y-herramientas-comunes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Utilidades y herramientas comunes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-depuracion-y-testeo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Depuración y testeo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-buenas-practicas-y-recomendaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Buenas prácticas y recomendaciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Buenas prácticas y recomendaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios prácticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><strong>CFGS Administración de Sistemas Informáticos y Redes</strong></p>
+<p>Material elaborado por Ángela Bañuls Serrano</p>
+<div class="admonition info">
+<p class="admonition-title">Contenido visto en 1º</p>
+<p>Esta unidad fue trabajada en el módulo <strong>Implantación de Sistemas Operativos</strong> de 1º. Debes <strong>repasarla de forma autónoma</strong> antes de continuar con los contenidos del curso.</p>
+</div>
+<h1 id="manual-de-shell-script">Manual de Shell Script<a class="headerlink" href="#manual-de-shell-script" title="Permanent link">&para;</a></h1>
+<p><strong>Índice</strong></p>
+<ol>
+<li><a href="#id1">Introducción</a></li>
+<li><a href="#id2">Nuestro primer Script "Hola mundo"</a></li>
+<li><a href="#id3">Variables</a></li>
+<li><a href="#id4">Entrada de datos por el usuario</a></li>
+<li><a href="#id5">Comentarios</a></li>
+<li><a href="#id6">Parámetros</a></li>
+<li><a href="#id7">Arrays</a></li>
+<li><a href="#id8">Matemáticas en bash</a></li>
+<li><a href="#id9">Evaluación de expresiones</a><ol>
+<li><a href="#id91">Expresiones de archivos</a></li>
+<li><a href="#id92">Expresiones de cadenas</a></li>
+<li><a href="#id93">Expresiones numéricas</a></li>
+<li><a href="#id94">Expresiones lógicas</a></li>
+</ol>
+</li>
+<li><a href="#id10">Condicionales</a></li>
+<li><a href="#id11">Bucles</a><ol>
+<li><a href="#id111">Bucles con for</a></li>
+<li><a href="#id112">Bucles con while</a></li>
+<li><a href="#id113">Bucles con until</a></li>
+<li><a href="#id114">Continue y Break</a></li>
+</ol>
+</li>
+<li><a href="#id12">Funciones</a> </li>
+<li><a href="#id13">Depuración y testeo</a></li>
+</ol>
+<h2 id="programacion-de-aula">Programación de Aula<a class="headerlink" href="#programacion-de-aula" title="Permanent link">&para;</a></h2>
+<h3 id="resultados-de-aprendizaje">Resultados de Aprendizaje<a class="headerlink" href="#resultados-de-aprendizaje" title="Permanent link">&para;</a></h3>
+<p>Esta unidad cubre el <strong>Resultado de aprendizaje 7 (RA7)</strong> según el <strong>Real Decreto 1629/2009, de 30 de octubre</strong>, el cual es:</p>
+<ol>
+<li>Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.</li>
+</ol>
+<p>Los criterios de evaluación asociados son:</p>
+<p>​   a. Se han utilizado y combinado las estructuras del lenguaje para crear guiones.</p>
+<p>​   b. Se han utilizado herramientas para depurar errores sintácticos y de ejecución.</p>
+<p>​   c. Se han implantado guiones en sistemas libres y propietario.</p>
+<p>​   d. Se han realizado cambios y adaptaciones de guiones del sistema.</p>
+<p>​   e. Se han implantado guiones en sistemas libres y propietarios</p>
+<p>​   f. Se han consultado y utilizado librerías de funciones.</p>
+<p>​   g. Se han documentado los guiones creados.</p>
+<h3 id="planificacion-temporal-6-sesiones-12-horas">Planificación Temporal (6 sesiones / 12 horas)<a class="headerlink" href="#planificacion-temporal-6-sesiones-12-horas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Introducción, comentarios, variables,  tipos de datos, parámetros y operaciones básicas</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Estructuras condicionales</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Estructuras repetitivas</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Importación de datos y funciones</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Refuerzo y Ampliación</td>
+</tr>
+</tbody>
+</table>
+<div id="id1" />
+
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<p>Linux dispone de varios intérpretes de comandos (“shells”) diferentes csh, bash, sh,ksh, etc</p>
+<p>En este tema nos centraremos en el shell <strong>bash</strong>  (Bourne-again shell).
+* Es una alternativa libre a Bourne shell
+* Versión mejorada de csh y ksh</p>
+<p>Debemos usar bash para:
+* Agilizar procesos largos y tediosos
+* Automatizar acciones repetitivas
+* Mejorar la experiencia del usuario</p>
+<div id="id2" />
+
+<h2 id="2-primer-script-hola-mundo">2. Primer script hola mundo<a class="headerlink" href="#2-primer-script-hola-mundo" title="Permanent link">&para;</a></h2>
+<p>Crearemos un nuevo archivo llamado holamundo.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>touch holamundo.sh
+</code></pre></div>
+También podemos utilizar un editor:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nano holamundo.sh
+</code></pre></div>
+A continuación añadimos las siguientes líneas en nuestro archivo <code>holamundo.sh</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola mundo&quot;</span>
+</code></pre></div>
+Guardamos el archivo y le damos a salir</p>
+<p>Después le damos permisos de ejecución al script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>chmod +x holamundo.sh
+</code></pre></div>
+Ejecutamos el script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./holamundo.sh
+</code></pre></div>
+Mostrará por pantalla el mensaje Hola mundo</p>
+<p>Otra forma de ejecutar el script sería
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bash holamundo.sh
+</code></pre></div></p>
+<div id="id3" />
+
+<h2 id="3-variables">3. Variables<a class="headerlink" href="#3-variables" title="Permanent link">&para;</a></h2>
+<p>Como en cualquier lenguaje de programación, podemos utilizar variables. Una variable es un elemento que tiene un nombre y que almacena un valor.</p>
+<p>Para asignar un valor a una variable todo lo que necesitas es usar el signo <code>=</code>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">nombre</span><span class="o">=</span><span class="s2">&quot;Pepe&quot;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Nota : No pueden haber espacios delante y detrás del signo =</p>
+</blockquote>
+<p>Después, para acceder a la variable debemos utilizar el signo <code>$</code> de la siguiente forma:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$nombre</span>
+</code></pre></div></p>
+<p>Si modificamos nuestro script anterior <code>holamundo.sh</code> 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nv">nombre</span><span class="o">=</span><span class="s2">&quot;Pepe&quot;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+</code></pre></div>
+Si lo ejecutamos nos devuelve 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Hola Pepe
+</code></pre></div></p>
+<div id="id4" />
+
+<h3 id="31-variables-de-entorno">3.1 Variables de entorno<a class="headerlink" href="#31-variables-de-entorno" title="Permanent link">&para;</a></h3>
+<p>Una <strong>variable de entorno</strong> es un valor almacenado en el sistema operativo que puede ser utilizado por aplicaciones, scripts y procesos para obtener información sobre el entorno en el que se están ejecutando.</p>
+<table>
+<thead>
+<tr>
+<th>Variable de Entorno</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PATH</code></td>
+<td>Define la secuencia de directorios para buscar ejecutables.</td>
+</tr>
+<tr>
+<td><code>HOME</code></td>
+<td>Indica el directorio principal del usuario.</td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td>Muestra el nombre del usuario actual.</td>
+</tr>
+<tr>
+<td><code>SHELL</code></td>
+<td>Especifica la shell por defecto para el usuario.</td>
+</tr>
+<tr>
+<td><code>PWD</code></td>
+<td>Representa el directorio de trabajo actual.</td>
+</tr>
+<tr>
+<td><code>LANG</code></td>
+<td>Establece el idioma preferido para mensajes.</td>
+</tr>
+<tr>
+<td><code>TERM</code></td>
+<td>Especifica el tipo de terminal en uso.</td>
+</tr>
+<tr>
+<td><code>DISPLAY</code></td>
+<td>Indica la pantalla para mostrar aplicaciones gráficas.</td>
+</tr>
+<tr>
+<td><code>TZ</code></td>
+<td>Define la zona horaria del sistema.</td>
+</tr>
+<tr>
+<td><code>LD_LIBRARY_PATH</code></td>
+<td>Lista de directorios para buscar bibliotecas compartidas.</td>
+</tr>
+<tr>
+<td><code>PS1</code></td>
+<td>Formato del indicador de comandos en la línea de comandos.</td>
+</tr>
+<tr>
+<td><code>LOGNAME</code></td>
+<td>Nombre de inicio de sesión del usuario.</td>
+</tr>
+<tr>
+<td><code>MAIL</code></td>
+<td>Ruta al buzón de correo del usuario.</td>
+</tr>
+<tr>
+<td><code>UID</code></td>
+<td>Identificación numérica del usuario.</td>
+</tr>
+<tr>
+<td><code>GID</code></td>
+<td>Identificación numérica del grupo.</td>
+</tr>
+<tr>
+<td><code>EDITOR</code></td>
+<td>Editor predeterminado para editar archivos.</td>
+</tr>
+<tr>
+<td><code>HOSTNAME</code></td>
+<td>Nombre del host de la máquina.</td>
+</tr>
+<tr>
+<td><code>OSTYPE</code></td>
+<td>Tipo de sistema operativo.</td>
+</tr>
+<tr>
+<td><code>MANPATH</code></td>
+<td>Ruta para buscar las páginas del manual.</td>
+</tr>
+<tr>
+<td><code>PS2</code></td>
+<td>Segundo prompt de comandos.</td>
+</tr>
+<tr>
+<td><code>IFS</code></td>
+<td>Separador de campos internos para expansión de palabras.</td>
+</tr>
+<tr>
+<td><code>COLUMNS</code></td>
+<td>Número de columnas en la ventana de la terminal.</td>
+</tr>
+<tr>
+<td><code>LINES</code></td>
+<td>Número de líneas en la ventana de la terminal.</td>
+</tr>
+<tr>
+<td><code>EUID</code></td>
+<td>Identificación efectiva del usuario.</td>
+</tr>
+<tr>
+<td><code>PPID</code></td>
+<td>Identificación del proceso padre.</td>
+</tr>
+<tr>
+<td><code>HISTSIZE</code></td>
+<td>Número máximo de líneas de historial a recordar.</td>
+</tr>
+<tr>
+<td><code>HOSTTYPE</code></td>
+<td>Tipo de máquina en la que se está ejecutando el sistema.</td>
+</tr>
+<tr>
+<td><code>MACHTYPE</code></td>
+<td>Tipo de máquina.</td>
+</tr>
+<tr>
+<td><code>PS3</code></td>
+<td>Prompt utilizado por el comando <code>select</code> en un script.</td>
+</tr>
+<tr>
+<td><code>PS4</code></td>
+<td>Prefijo utilizado en la salida del script con traza.</td>
+</tr>
+<tr>
+<td><code>MAILCHECK</code></td>
+<td>Intervalo de tiempo entre comprobaciones de nuevo correo.</td>
+</tr>
+<tr>
+<td><code>TMP</code> o <code>TEMP</code></td>
+<td>Directorio para archivos temporales.</td>
+</tr>
+<tr>
+<td><code>USERAGENT</code></td>
+<td>Agente de usuario para aplicaciones web.</td>
+</tr>
+<tr>
+<td><code>XDG_CONFIG_HOME</code></td>
+<td>Directorio base para archivos de configuración del usuario.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-entrada-de-datos-por-el-usuario">4. Entrada de datos por el usuario<a class="headerlink" href="#4-entrada-de-datos-por-el-usuario" title="Permanent link">&para;</a></h2>
+<p>Para leer datos del usuario y almacenarlo en una variable utilizaremos el comando <code>read</code>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;¿Cómo te llamas?&quot;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">read</span><span class="w"> </span>nombre
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Bienvenido/a </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Nota: Se puede utilizar el comando <code>read</code> con la opción  -p para indicar en la misma línea el mensaje que se mostrará por pantalla</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;¿Cómo te llamas?&quot;</span><span class="w"> </span>nombre
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Bienvenido/a </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+</code></pre></div>
+<div id="id5" />
+<p><br/><br/></p>
+<h2 id="5-comentarios">5. Comentarios<a class="headerlink" href="#5-comentarios" title="Permanent link">&para;</a></h2>
+<p>Como en cualquier lenguaje de programación, puedes añadir comentarios a tu script
+Para ello, solo debes añadir el símbolo <code>#</code> al principio de la línea.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">#Solicita el nombre al usuario</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;¿Cómo te llamas?&quot;</span><span class="w"> </span>nombre
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1">#Saluda al usuario por su nombre</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Bienvenido/a </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+<div id="id6" />
+
+<h2 id="6-parametros">6. Parámetros<a class="headerlink" href="#6-parametros" title="Permanent link">&para;</a></h2>
+<p>Al ejecutar un script podemos pasarle parámetros. Para pasarle un parámetro, sólo debemos escribirlo detrás del nombre del script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./script.sh parametro
+</code></pre></div>
+En el script, podemos hacer referencia al primer parámetro pasado con la variable <code>$1</code>, al segundo parámetro con la varible <code>$2</code> y así sucesivamente.</p>
+<p>Vamos a crear el script <code>parametros.sh</code> de ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Primer parámetro es </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Segundo parámetro es </span><span class="nv">$2</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Tercer parámetro es </span><span class="nv">$3</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Guardamos el archivo y le damos permisos de ejecución
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>chmod +x parametros.sh
+</code></pre></div>
+A continuación lo ejecutamos y le pasamos 3 parámetros:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>./parametros.sh azul amarillo azul
+</code></pre></div>
+Obtenemos la siguiente salida:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Primer parámetro es azul
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Segundo parámetro es amarillo
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Tercer parámetro es azul
+</code></pre></div>
+Para obtener todos los parámetros podemos usar el símbolo <code>$@</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Todos los parámetros: </span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Si ejecutamos de nuevo el script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>./parametros.sh azul amarillo azul
+</code></pre></div>
+Obtenemos la siguiente salida:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Todos los parámetros: azul amarillo azul
+</code></pre></div></p>
+<h3 id="resumen-de-las-variables-utilizadas-con-los-parametros">Resumen de las variables utilizadas con los parámetros<a class="headerlink" href="#resumen-de-las-variables-utilizadas-con-los-parametros" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$0</code></td>
+<td>Nombre del script</td>
+</tr>
+<tr>
+<td><code>$1</code> ... <code>$9</code></td>
+<td>Parámetros pasados al script</td>
+</tr>
+<tr>
+<td><code>$#</code></td>
+<td>Número de parámetros pasados al script</td>
+</tr>
+<tr>
+<td><code>$*</code></td>
+<td>Parámetros pasados al script separados por IFS (Internal Field Separator), que por defecto es el espacio.</td>
+</tr>
+<tr>
+<td><code>$@</code></td>
+<td>Parámetros pasados al script, pero cada argumento se mantiene como una entidad separada.</td>
+</tr>
+</tbody>
+</table>
+<div id="id7" />
+
+<h2 id="7-arrays">7. Arrays<a class="headerlink" href="#7-arrays" title="Permanent link">&para;</a></h2>
+<p>Si ya sabes programar en algún lenguaje de programación, ya estarás familiarizado con los arrays (matrices). En caso contrario, a diferencia de las variables, los arrays pueden contener varios valores bajo un nombre.</p>
+<p>Puedes inicializar un array asignando valores separados por espacios y encerrados entre <code>()</code>.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">mi_array</span><span class="o">=(</span><span class="s2">&quot;valor1&quot;</span><span class="w"> </span><span class="s2">&quot;valor2&quot;</span><span class="w"> </span><span class="s2">&quot;valor3&quot;</span><span class="w"> </span><span class="s2">&quot;valor4&quot;</span><span class="o">)</span>
+</code></pre></div>
+Para acceder a los elementos en un array, necesitas referenciarlos con un índice numérico.</p>
+<blockquote>
+<p>Nota: No debes olvidar que necesitas usar llaves <code>{}</code></p>
+</blockquote>
+<ul>
+<li>Esto daría como resultado: valor 2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">mi_array</span><span class="p">[1]</span><span class="si">}</span>
+</code></pre></div></li>
+<li>
+<p>Esto daría como resultado el último elemento: valor4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">mi_array</span><span class="p">[-1]</span><span class="si">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Esto imprimiría el número total de elementos en el array: 4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">mi_array</span><span class="p">[@]</span><span class="si">}</span>
+</code></pre></div>
+<br/><br/></p>
+</li>
+</ul>
+<div id="id8" />
+
+<h2 id="8-matematicas-en-bash">8. Matematicas en bash<a class="headerlink" href="#8-matematicas-en-bash" title="Permanent link">&para;</a></h2>
+<p>Por defecto, una variable, en cualquier script en Bash, con independencia de su contenido, es tratada como una cadena de texto, y no como un número. 
+Sin embargo, una observación importante, <strong>Bash solo opera con enteros</strong>. Para realizar operaciones matemáticas en Bash con números reales, necesitas utilizar <code>bc</code></p>
+<h3 id="operadores-matematicos">Operadores matemáticos<a class="headerlink" href="#operadores-matematicos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>(adición o suma)</td>
+</tr>
+<tr>
+<td>-</td>
+<td>(sustracción o resta)</td>
+</tr>
+<tr>
+<td>*</td>
+<td>(producto o multiplicación)</td>
+</tr>
+<tr>
+<td>/</td>
+<td>(división)</td>
+</tr>
+<tr>
+<td>%</td>
+<td>(módulo)</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">2</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">num3</span><span class="o">=</span><span class="k">$((</span><span class="nv">num1</span><span class="o">+</span><span class="nv">num2</span><span class="k">))</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$num3</span>
+</code></pre></div></p>
+<p>En Bash, hay varias formas de realizar operaciones matemáticas, y la elección de cuál utilizar dependerá del tipo de operación que se desea realizar y de las necesidades específicas de cada situación.</p>
+<h3 id="81-doble-parentesis">8.1 Doble paréntesis (( ))<a class="headerlink" href="#81-doble-parentesis" title="Permanent link">&para;</a></h3>
+<p>Esta sintaxis permite realizar operaciones aritméticas básicas y avanzadas, así como comparaciones numéricas y lógicas. Los doble paréntesis permiten utilizar variables sin necesidad de utilizar el signo "$" y también permiten la asignación de valores a variables en la misma línea de código. Por ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nv">resultado</span><span class="o">=</span><span class="k">$((</span><span class="nv">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">num2</span><span class="k">))</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$resultado</span>
+</code></pre></div></p>
+<h3 id="82-expr-no-recomendado">8.2 Expr (No recomendado)<a class="headerlink" href="#82-expr-no-recomendado" title="Permanent link">&para;</a></h3>
+<p>Esta herramienta se utiliza para realizar operaciones aritméticas básicas utilizando la línea de comandos de Bash. Expr no permite la asignación de valores a variables ni la realización de operaciones avanzadas, pero es útil para operaciones sencillas. Por ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nv">resultado</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="nv">$num1</span><span class="w"> </span>+<span class="w"> </span><span class="nv">$num2</span><span class="k">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$resultado</span>
+</code></pre></div></p>
+<h3 id="83-let-no-recomendado">8.3 Let (No recomendado)<a class="headerlink" href="#83-let-no-recomendado" title="Permanent link">&para;</a></h3>
+<p>Esta sintaxis también se utiliza para realizar operaciones aritméticas básicas utilizando la línea de comandos de Bash. Let es similar a los doble paréntesis, pero no permite la comparación ni la asignación de valores en la misma línea de código. Por ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nb">let</span><span class="w"> </span><span class="nv">resultado</span><span class="o">=</span><span class="nv">$num1</span>+<span class="nv">$num2</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$resultado</span>
+</code></pre></div>
+Ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nv">resultado</span><span class="o">=</span><span class="k">$((</span><span class="nv">num1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">(</span><span class="nv">num2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="k">))</span><span class="o">)</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$resultado</span>
+</code></pre></div>
+En este ejemplo, se utiliza los doble paréntesis para realizar la operación (num2 + 2) antes de multiplicar el resultado por num1. Si se utilizara let para realizar esta operación, tendríamos que almacenar el resultado de la suma en una variable temporal antes de multiplicarla por num1, como se muestra a continuación:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nv">num1</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nv">num2</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nv">temp</span><span class="o">=</span><span class="k">$((</span><span class="nv">$num2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="k">))</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nv">resultado</span><span class="o">=</span><span class="k">$((</span><span class="nv">$num1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$temp</span><span class="k">))</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$resultado</span>
+</code></pre></div>
+En este caso, es más fácil y legible utilizar los doble paréntesis para realizar la operación en una sola línea de código.</p>
+<p>En las guías de estilo, <strong>se recomienda utilizar los <code>doble paréntesis (( ))</code></strong> en lugar de expr o let. </p>
+<h3 id="84-matematicas-en-bash-con-bc">8.4 Matemáticas en bash con bc<a class="headerlink" href="#84-matematicas-en-bash-con-bc" title="Permanent link">&para;</a></h3>
+<p>Todas las operaciones matemáticas realizadas hasta el momento solo implican números enteros. Sin embargo, cuando quieres realizar operaciones con numeros reales, necesitarás recurrir a una herramienta como es <code>bc</code>.
+Ejemplos:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;4.1+5.2&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="w"> </span><span class="c1">#devuelve 9.3</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;4.1*5.2&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="w"> </span><span class="c1">#devuelve 21.3</span>
+</code></pre></div>
+Si quieres guardar el resultado de la operación en una variable, tienes que modificar los ejemplos anteriores como sigue,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nv">z</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;4.1+5.2&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span><span class="p">;</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$z</span><span class="w"> </span><span class="c1">#devuelve 9.3</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nv">z</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;4.1*5.2&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span><span class="p">;</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$z</span><span class="w"> </span><span class="c1">#devuelve 21.3</span>
+</code></pre></div>
+<div id="id9" />
+
+<p>Otro ejemplo del uso de bc:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="c1"># Definir variables</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nv">numero1</span><span class="o">=</span><span class="m">3</span>.14
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nv">numero2</span><span class="o">=</span><span class="m">2</span>.71
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="c1"># Suma . scale=4 indica precisión de 4 decimales</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="nv">suma</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;scale=4; </span><span class="nv">$numero1</span><span class="s2"> + </span><span class="nv">$numero2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="c1"># Resta</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="nv">resta</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;scale=4; </span><span class="nv">$numero1</span><span class="s2"> - </span><span class="nv">$numero2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="c1"># Multiplicación</span>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="nv">multiplicacion</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;scale=4; </span><span class="nv">$numero1</span><span class="s2"> * </span><span class="nv">$numero2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="c1"># División</span>
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="nv">division</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;scale=4; </span><span class="nv">$numero1</span><span class="s2"> / </span><span class="nv">$numero2</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bc<span class="k">)</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="c1"># Mostrar resultados</span>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Suma: </span><span class="nv">$suma</span><span class="s2">&quot;</span>
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Resta: </span><span class="nv">$resta</span><span class="s2">&quot;</span>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Multiplicación: </span><span class="nv">$multiplicacion</span><span class="s2">&quot;</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;División: </span><span class="nv">$division</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="9-evaluacion-de-expresiones">9. Evaluación de expresiones<a class="headerlink" href="#9-evaluacion-de-expresiones" title="Permanent link">&para;</a></h2>
+<p>En informática, las evaluación de expresiones condicionales son características de un lenguaje de programación, que realizan diferentes cálculos o acciones dependiendo de si una condición booleana especificada por el programador se evalúa como verdadera o falsa.</p>
+<p>Para evaluar expresiones utilizaremos el comando <code>test expresion</code> o su equivalente <code>[ expresion ]</code>. También podemos utilizar los dobles corchetes <code>[[ expresion ]]</code> que representa una mejora respecto a los simples.</p>
+<p>A continuación veremos las expresiones condicionales más utilizadas.</p>
+<div id="id91" />
+
+<h3 id="91-expresiones-de-archivos">9.1 Expresiones de archivos<a class="headerlink" href="#91-expresiones-de-archivos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Devuelve verdadero si el archivo existe y se trata de un archivo especial de bloque
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">[[</span><span class="w"> </span>-b<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+<blockquote>
+<p>Nota: Los archivos especiales se utilizan para representar un dispositivo físico real que se utilizan para operaciones de entrada/salida. Los archivos especiales de bloque leen/escriben en bloque, como por ejemplo un disco /dev/sda1 y los de carácter realizan las operaciones de lectura/escritura carácter a carácter como por ejemplo una impresora, terminal, etc.</p>
+</blockquote>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y se trata de un archivo especial de carácter
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[[</span><span class="w"> </span>-c<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y se trata de un directorio
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[[</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">[[</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y se trata de un archivo regular
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y se trata de un enlace simbólico
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="o">[[</span><span class="w"> </span>-h<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="o">[[</span><span class="w"> </span>-L<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y es legible
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[[</span><span class="w"> </span>-r<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y tiene un tamaño superior a cero.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[[</span><span class="w"> </span>-s<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y se puede escribir
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">[[</span><span class="w"> </span>-w<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si el archivo existe y es ejecutable
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="o">[[</span><span class="w"> </span>-x<span class="w"> </span><span class="nv">$archivo</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+</ul>
+<div id="id92" />
+
+<h3 id="92-expresiones-de-cadenas">9.2 Expresiones de cadenas<a class="headerlink" href="#92-expresiones-de-cadenas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Expresión</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">-v $cadena</td>
+<td>Devuelve verdadero si a la variable se le ha asignado algún valor</td>
+</tr>
+<tr>
+<td style="text-align: left;">-z $cadena</td>
+<td>Devuelve verdadero si la longitud de la cadena es igual a cero</td>
+</tr>
+<tr>
+<td style="text-align: left;">-n $cadena</td>
+<td>Devuelve verdadero si la longitud de la cadena no es cero</td>
+</tr>
+<tr>
+<td style="text-align: left;">$cadena1 = $cadena 2</td>
+<td>Devuelve verdadero si las dos cadenas son iguales.</td>
+</tr>
+<tr>
+<td style="text-align: left;">$cadena1 != $cadena2</td>
+<td>Devuelve verdadero si las cadenas NO son iguales</td>
+</tr>
+<tr>
+<td style="text-align: left;">$cadena1 &lt; $cadena2</td>
+<td>Devuelve verdadero si la cadena1 es más pequeña que la cadena2</td>
+</tr>
+<tr>
+<td style="text-align: left;">$cadena 1 &gt; $cadena2</td>
+<td>Devuelve verdadero si la cadena1 es mayor que la cadena 2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ejemplo</strong>: Supongamos que queremos comprobar si una variable llamada "fruta" contiene el valor "manzana". Si es así, imprimimos un mensaje que dice "La fruta es una manzana", de lo contrario, imprimimos un mensaje que dice "La fruta no es una manzana". </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="nv">fruta</span><span class="o">=</span><span class="s2">&quot;manzana&quot;</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$fruta</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;La fruta es una manzana&quot;</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="k">else</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;La fruta no es una manzana&quot;</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a><span class="k">fi</span>
+</code></pre></div>
+<div id="id83" />
+<h3 id="921-extraccion-de-subcadenas-substring-y-manipulacion-de-cadenas">9.2.1 Extracción de subcadenas (substring y manipulación de cadenas)<a class="headerlink" href="#921-extraccion-de-subcadenas-substring-y-manipulacion-de-cadenas" title="Permanent link">&para;</a></h3>
+<p>Además de las comparaciones vistas anteriormente, Bash permite <strong>extraer, eliminar y sustituir partes de una cadena</strong> de texto mediante la <strong>expansión de parámetros</strong>.<br />
+Estas operaciones son muy útiles para manipular rutas, nombres de ficheros o variables sin recurrir a herramientas externas como <code>cut</code>, <code>awk</code> o <code>sed</code>.</p>
+<hr />
+<h4 id="sintaxis-basica">🔹 Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="si">${</span><span class="nv">variable</span><span class="p">:</span><span class="nv">inicio</span><span class="p">:</span><span class="nv">longitud</span><span class="si">}</span>
+</code></pre></div>
+<ul>
+<li><code>inicio</code>: posición inicial (empieza en 0).</li>
+<li><code>longitud</code>: número de caracteres a extraer.</li>
+<li>Si se omite la longitud, extrae desde <code>inicio</code> hasta el final de la cadena.</li>
+</ul>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nv">cadena</span><span class="o">=</span><span class="s2">&quot;administracion&quot;</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">cadena</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span><span class="w">     </span><span class="c1"># admin</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">cadena</span><span class="p">:</span><span class="nv">5</span><span class="p">:</span><span class="nv">3</span><span class="si">}</span><span class="w">     </span><span class="c1"># ist</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">cadena</span><span class="p">:</span><span class="nv">10</span><span class="si">}</span><span class="w">      </span><span class="c1"># cion</span>
+</code></pre></div>
+<h4 id="subcadenas-desde-el-final">🔹 Subcadenas desde el final<a class="headerlink" href="#subcadenas-desde-el-final" title="Permanent link">&para;</a></h4>
+<p>Se pueden usar índices negativos para contar desde el final de la cadena.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nv">cadena</span><span class="o">=</span><span class="s2">&quot;servidor&quot;</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">cadena</span><span class="p">: -3</span><span class="si">}</span><span class="w">   </span><span class="c1"># dor</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">cadena</span><span class="p">: -6:</span><span class="nv">3</span><span class="si">}</span><span class="w"> </span><span class="c1"># rvi</span>
+</code></pre></div>
+<p>⚠️ <em>Debe dejarse un espacio antes del signo menos (<code>: -3</code>).</em></p>
+<h4 id="eliminacion-de-prefijos-y-sufijos">🔹 Eliminación de prefijos y sufijos<a class="headerlink" href="#eliminacion-de-prefijos-y-sufijos" title="Permanent link">&para;</a></h4>
+<p>La expansión de parámetros permite eliminar partes del principio o del final que coincidan con un <strong>patrón</strong>.</p>
+<h5 id="prefijos">➕ Prefijos<a class="headerlink" href="#prefijos" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>ruta=&quot;/home/usuario/documento.txt&quot;
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>echo ${ruta#*/}    # home/usuario/documento.txt   → elimina el primer &#39;/&#39;
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>echo ${ruta##*/}   # documento.txt                → elimina hasta el último &#39;/&#39;
+</code></pre></div>
+<p>➖ Sufijos</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">ruta</span><span class="p">%/*</span><span class="si">}</span><span class="w">    </span><span class="c1"># /home/usuario                → elimina la última parte</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">ruta</span><span class="p">%%/*</span><span class="si">}</span><span class="w">   </span><span class="c1">#                              → elimina desde el primer &#39;/&#39;</span>
+</code></pre></div>
+<p>🔹 Longitud de una cadena</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="nv">cadena</span><span class="o">=</span><span class="s2">&quot;sistemas&quot;</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${#</span><span class="nv">cadena</span><span class="si">}</span><span class="w">   </span><span class="c1"># 8</span>
+</code></pre></div>
+<h4 id="ejemplo-practico">🔹 Ejemplo práctico<a class="headerlink" href="#ejemplo-practico" title="Permanent link">&para;</a></h4>
+<p>Extraer el nombre y la extensión de un fichero:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="nv">archivo</span><span class="o">=</span><span class="s2">&quot;reporte_final.pdf&quot;</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="nv">nombre</span><span class="o">=</span><span class="si">${</span><span class="nv">archivo</span><span class="p">%.*</span><span class="si">}</span><span class="w">   </span><span class="c1"># reporte_final</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="nv">ext</span><span class="o">=</span><span class="si">${</span><span class="nv">archivo</span><span class="p">##*.</span><span class="si">}</span><span class="w">     </span><span class="c1"># pdf</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Nombre: </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Extensión: </span><span class="nv">$ext</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="resumen-de-operadores-de-subcadenas">🧠 Resumen de operadores de subcadenas<a class="headerlink" href="#resumen-de-operadores-de-subcadenas" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Sintaxis / Ejemplo</th>
+<th>Resultado / Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subcadena desde posición</td>
+<td><code>${var:2:4}</code></td>
+<td>4 caracteres desde la posición 2</td>
+</tr>
+<tr>
+<td>Subcadena hasta el final</td>
+<td><code>${var:5}</code></td>
+<td>Desde la posición 5</td>
+</tr>
+<tr>
+<td>Subcadena desde el final</td>
+<td><code>${var: -3}</code></td>
+<td>Últimos 3 caracteres</td>
+</tr>
+<tr>
+<td>Quitar prefijo corto</td>
+<td><code>${var#*/}</code></td>
+<td>Elimina hasta el primer <code>/</code></td>
+</tr>
+<tr>
+<td>Quitar prefijo largo</td>
+<td><code>${var##*/}</code></td>
+<td>Elimina hasta el último <code>/</code></td>
+</tr>
+<tr>
+<td>Quitar sufijo corto</td>
+<td><code>${var%/*}</code></td>
+<td>Elimina desde el último <code>/</code></td>
+</tr>
+<tr>
+<td>Quitar sufijo largo</td>
+<td><code>${var%%/*}</code></td>
+<td>Elimina desde el primer <code>/</code></td>
+</tr>
+<tr>
+<td>Sustituir primera coincidencia</td>
+<td><code>${var/palabra/nueva}</code></td>
+<td>Reemplaza una sola coincidencia</td>
+</tr>
+<tr>
+<td>Sustituir todas las coincidencias</td>
+<td><code>${var//palabra/nueva}</code></td>
+<td>Reemplaza todas las coincidencias</td>
+</tr>
+<tr>
+<td>Longitud de la cadena</td>
+<td><code>${#var}</code></td>
+<td>Devuelve número de caracteres</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-expresiones-numericas">9.3 Expresiones numéricas<a class="headerlink" href="#93-expresiones-numericas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Expresion</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$num1 <strong>-eq</strong> $num2</td>
+<td>Devuelve verdadero si los dos números <strong>son iguales</strong> "equal"</td>
+</tr>
+<tr>
+<td>$num1 <strong>-ne</strong> $num2</td>
+<td>Devuelve verdadero si los dos números <strong>NO son iguales</strong> "not equal"</td>
+</tr>
+<tr>
+<td>$num1 <strong>-lt</strong> $num2</td>
+<td>Devuelve verdadero si el num1 <strong>es menor que</strong> "less than" num2</td>
+</tr>
+<tr>
+<td>$num1 <strong>-le</strong> $num2</td>
+<td>Devuelve verdadero si el num1 <strong>es menor o igual</strong> "less or equal " num2</td>
+</tr>
+<tr>
+<td>$num1 <strong>-gt</strong> $num2</td>
+<td>Devuelve verdadero si el num1 <strong>es mayor que</strong> "greater than" num2</td>
+</tr>
+<tr>
+<td>$num1 <strong>-ge</strong> $num2</td>
+<td>Devuelve verdadero si el num1 <strong>es mayor o igual que</strong> "greater or equal than" num2</td>
+</tr>
+</tbody>
+</table>
+<div id="id94" />
+
+<h3 id="94-expresiones-logicas">9.4 Expresiones lógicas<a class="headerlink" href="#94-expresiones-logicas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Devuelve verdadero si ambas expresiones son verdaderas, en otro caso devuelve falso
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1">#Doble corchete</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="o">[[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">$expresion2</span><span class="w"> </span><span class="o">]]</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="c1">#Corchete simple</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="o">[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$expresion2</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="o">[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">$expresion2</span><span class="w"> </span><span class="o">]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Devuelve verdadero si al menos una de las expresiones es verdadera
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1">#Doble corchete</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="o">[[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">$expresion2</span><span class="w"> </span><span class="o">]]</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="c1">#Corchete simple</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="o">[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$expresion22</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a><span class="o">[</span><span class="w"> </span><span class="nv">$expresion1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$expresion2</span><span class="w"> </span><span class="o">]</span>
+</code></pre></div></p>
+</li>
+</ul>
+<p>Así, las principales diferencias entre usar corchete simple o doble corchete son las siguientes:</p>
+<ol>
+<li>
+<p>No tienes que utilizar las comillas con las variables, los dobles corchetes trabajan perfectamente con los espacios. Así <code>[ -f "$file" ]</code> es equivalente a <code>[[ -f $file ]]</code>.</p>
+</li>
+<li>
+<p>Con [[ puedes utilizar los operadores || y &amp;&amp;, así como &lt; y &gt;` para las comparaciones de cadena.</p>
+</li>
+<li>
+<p>Puedes utilizar el operador <code>=~</code> para <strong>expresiones regulares</strong>, como por ejemplo 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="o">[[</span><span class="w"> </span><span class="nv">$respuesta</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>^s<span class="o">(</span>i<span class="o">)</span>?$<span class="w"> </span><span class="o">]]</span>
+</code></pre></div></p>
+</li>
+<li>También puedes utilizar comodines como por ejemplo en la expresión 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="o">[[</span><span class="w"> </span><span class="nv">abc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>a<span class="se">\*</span><span class="w"> </span><span class="o">]]</span>
+</code></pre></div></li>
+</ol>
+<div id="id10" />
+
+<h2 id="10-condicionales">10. Condicionales<a class="headerlink" href="#10-condicionales" title="Permanent link">&para;</a></h2>
+<p>En la sección anterior estudiamos las expresiones condicionales más populares. Ahora las usaremos con declaraciones <code>if</code>.</p>
+<p>Esta estructura permite controlar qué serie de instrucciones se ejecutarán, de acuerdo a si se cumplen las condiciones o no.</p>
+<p><img alt="image-20240301114643538" src="../../assets/img/linux/image-20240301114643538.png" /></p>
+<p>El formato de una declaración <code>if</code> es de la siguiente forma:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>expresion<span class="w"> </span><span class="o">]]</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="k">then</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="k">fi</span>
+</code></pre></div>
+También podemos utilizar la siguiente sintaxis:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>expresion<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="k">fi</span>
+</code></pre></div>
+La estructura condicional con else tiene este aspecto:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>expresion<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="k">else</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a><span class="k">fi</span>
+</code></pre></div>
+Ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="c1">#Ejemplo de uso de if</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;¿Cómo te llamas?&quot;</span><span class="w"> </span>nombre
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>
+<a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="nv">$nombre</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a><span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Por favor, introduce tu nombre.&quot;</span>
+<a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a><span class="k">else</span>
+<a id="__codelineno-59-10" name="__codelineno-59-10" href="#__codelineno-59-10"></a><span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="nv">$nombre</span><span class="s2">&quot;</span>
+<a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a><span class="k">fi</span>
+</code></pre></div></p>
+<p>La estructura condicional con todas las alternativas sería así:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>expresion<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="k">elif</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>expresion<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="k">else</span>
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="w">    </span>&lt;comandos&gt;
+<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a><span class="k">fi</span>
+</code></pre></div></p>
+<p>Cuando queremos comparar un elemento con muchos supuestos viene mejor utilizar  una estructura de control <code>case</code>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">case</span><span class="w"> </span>expresion<span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span>patron1<span class="o">)</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">        </span>comandos
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a><span class="w">    </span>patron2<span class="o">)</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a><span class="w">        </span>comandos
+<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a><span class="w">    </span>*<span class="o">)</span>
+<a id="__codelineno-61-9" name="__codelineno-61-9" href="#__codelineno-61-9"></a><span class="w">        </span>comandos
+<a id="__codelineno-61-10" name="__codelineno-61-10" href="#__codelineno-61-10"></a><span class="w">        </span><span class="p">;;</span>
+</code></pre></div></p>
+<p>Ejemplo1:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="k">case</span><span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="w">    </span>alta<span class="o">)</span>
+<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a><span class="w">        </span><span class="c1"># comandos para realizar un alta</span>
+<a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a><span class="w">    </span>baja<span class="o">)</span>
+<a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a><span class="w">        </span><span class="c1">#comandos para realizar una baja</span>
+<a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a><span class="w">    </span>modificar<span class="o">)</span>
+<a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a><span class="w">        </span><span class="c1">#comandos para realizar una modificacion</span>
+<a id="__codelineno-62-12" name="__codelineno-62-12" href="#__codelineno-62-12"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-62-13" name="__codelineno-62-13" href="#__codelineno-62-13"></a><span class="w">    </span>*<span class="o">)</span>
+<a id="__codelineno-62-14" name="__codelineno-62-14" href="#__codelineno-62-14"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Parametro no reconocido&quot;</span>
+<a id="__codelineno-62-15" name="__codelineno-62-15" href="#__codelineno-62-15"></a><span class="w">        </span><span class="p">;;</span>
+<a id="__codelineno-62-16" name="__codelineno-62-16" href="#__codelineno-62-16"></a><span class="k">esac</span>
+</code></pre></div>
+Ejemplo 2:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="nb">read</span><span class="w"> </span>–p<span class="w"> </span>“Introduzca<span class="w"> </span>un<span class="w"> </span>carácter<span class="w"> </span>alfanumérico:<span class="w"> </span>”<span class="w"> </span>caracter
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="k">case</span><span class="w"> </span><span class="nv">$caracter</span><span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="o">[</span>A-Z<span class="o">])</span>
+<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>“<span class="nv">$caracter</span><span class="w"> </span>es<span class="w"> </span>una<span class="w"> </span>letra<span class="w"> </span>mayúscula”
+<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a><span class="w">    </span><span class="p">;;</span>
+<a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a><span class="o">[</span>a-z<span class="o">])</span>
+<a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>“<span class="nv">$caracter</span><span class="w"> </span>es<span class="w"> </span>una<span class="w"> </span>letra<span class="w"> </span>mayúscula”
+<a id="__codelineno-63-9" name="__codelineno-63-9" href="#__codelineno-63-9"></a><span class="w">    </span><span class="p">;;</span>
+<a id="__codelineno-63-10" name="__codelineno-63-10" href="#__codelineno-63-10"></a><span class="o">[</span><span class="m">0</span>-9<span class="o">])</span>
+<a id="__codelineno-63-11" name="__codelineno-63-11" href="#__codelineno-63-11"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>“<span class="nv">$caracter</span><span class="w"> </span>es<span class="w"> </span>un<span class="w"> </span>dígito”
+<a id="__codelineno-63-12" name="__codelineno-63-12" href="#__codelineno-63-12"></a><span class="w">    </span><span class="p">;;</span>
+<a id="__codelineno-63-13" name="__codelineno-63-13" href="#__codelineno-63-13"></a>*<span class="o">)</span>
+<a id="__codelineno-63-14" name="__codelineno-63-14" href="#__codelineno-63-14"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>“carácter<span class="w"> </span>no<span class="w"> </span>identificado”
+<a id="__codelineno-63-15" name="__codelineno-63-15" href="#__codelineno-63-15"></a><span class="w">    </span><span class="p">;;</span>
+<a id="__codelineno-63-16" name="__codelineno-63-16" href="#__codelineno-63-16"></a>
+<a id="__codelineno-63-17" name="__codelineno-63-17" href="#__codelineno-63-17"></a><span class="k">esac</span>
+</code></pre></div></p>
+<h2 id="11-bucles">11. Bucles<a class="headerlink" href="#11-bucles" title="Permanent link">&para;</a></h2>
+<p>Un bucle es una secuencia de instrucciones de código que se ejecuta repetidas veces, hasta que la condición asignada a dicho bucle deja de cumplirse.</p>
+<div id="id111" />
+
+<h3 id="111-bucles-con-for">11.1 Bucles con for<a class="headerlink" href="#111-bucles-con-for" title="Permanent link">&para;</a></h3>
+<p>Esta es la estructura de un bucle for:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">for</span><span class="w"> </span>var<span class="w"> </span><span class="k">in</span><span class="w"> </span>lista<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span>comandos
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="k">done</span>
+</code></pre></div></p>
+<p>Ejemplos:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="nv">users</span><span class="o">=</span><span class="s2">&quot;Maria Juan Pepe&quot;</span>
+<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a>
+<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="k">for</span><span class="w"> </span>user<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$users</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$user</span><span class="s2">&quot;</span>
+<a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="k">done</span>
+</code></pre></div>
+Al ejecutar el script nos devuelve este resultado:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>Maria
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>Juan
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>Pepe
+</code></pre></div>
+Otro ejemplo: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>ls<span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El fichero es </span><span class="nv">$i</span><span class="s2">&quot;</span>
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a><span class="k">done</span>
+</code></pre></div>
+Si lo ejecutamos nos devuelve un listado de los ficheros que encuentra
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Descargas
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Documentos
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Escritorio
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Imágenes
+<a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Música
+<a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a>El<span class="w"> </span>fichero<span class="w"> </span>es<span class="w"> </span>Vídeos
+</code></pre></div>
+El bucle for tiene también otra sintaxis posible mucho más parecida a la de los lenguajes de programación convencionales (Java,C,C++,etc.)</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">for</span><span class="w"> </span><span class="o">((</span>inicialización<span class="p">;</span><span class="w"> </span>condición<span class="p">;</span><span class="w"> </span>incremento<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="w">    </span>comandos
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="k">done</span>
+</code></pre></div>
+Ejemplo: Imprime los números del 1 al 10
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i&lt;<span class="o">=</span><span class="m">10</span><span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a><span class="k">done</span>
+</code></pre></div></p>
+<div id="id112" />
+
+<h3 id="112-bucles-con-while">11.2 Bucles con while<a class="headerlink" href="#112-bucles-con-while" title="Permanent link">&para;</a></h3>
+<p>El bucle while repite una serie de comandos mientras una condición sea cierta.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>condicion<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="k">do</span>
+<a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="w">    </span>comandos
+<a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a><span class="k">done</span>
+</code></pre></div>
+Ejemplo: Imprime los numeros del 1 al 10
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="nv">contador</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$contador</span><span class="w"> </span>-le<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="k">do</span>
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$contador</span>
+<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a><span class="w">    </span><span class="o">((</span>contador++<span class="o">))</span>
+<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a><span class="k">done</span>
+</code></pre></div>
+Ejemplo: Solicita un nombre al usuario. Se repite una y otra vez, hasta que el usuario introduce un nombre válido
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;¿Cómo te llamas? &quot;</span><span class="w"> </span>name
+<a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a>
+<a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a><span class="k">while</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="k">do</span>
+<a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Tu nombre no puede estar en blanco, porfavor introduzca un nombre válido!</span>
+<a id="__codelineno-73-7" name="__codelineno-73-7" href="#__codelineno-73-7"></a><span class="s2">    read -p &quot;</span>Introduce<span class="w"> </span>tu<span class="w"> </span>nombre<span class="w"> </span>de<span class="w"> </span>nuevo.<span class="w"> </span><span class="s2">&quot; name</span>
+<a id="__codelineno-73-8" name="__codelineno-73-8" href="#__codelineno-73-8"></a><span class="s2">done</span>
+<a id="__codelineno-73-9" name="__codelineno-73-9" href="#__codelineno-73-9"></a>
+<a id="__codelineno-73-10" name="__codelineno-73-10" href="#__codelineno-73-10"></a><span class="s2">echo &quot;</span>Hola<span class="w"> </span><span class="nv">$name</span><span class="s2">&quot;</span>
+</code></pre></div></p>
+<div id="id113" />
+
+<h3 id="113-bucles-con-until">11.3 Bucles con until<a class="headerlink" href="#113-bucles-con-until" title="Permanent link">&para;</a></h3>
+<p>El bucle until se repite hasta que la condición sea cierta</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">until</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>condicion<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">    </span>comandos
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="k">done</span>
+</code></pre></div>
+<p>Ejemplo: Imprime los números del 1 al 10
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a><span class="k">until</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$count</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$count</span>
+<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a><span class="w">    </span><span class="o">((</span>count++<span class="o">))</span>
+<a id="__codelineno-75-7" name="__codelineno-75-7" href="#__codelineno-75-7"></a><span class="k">done</span>
+</code></pre></div></p>
+<div id="id114" />
+
+<h3 id="114-continue-y-break">11.4 Continue y Break<a class="headerlink" href="#114-continue-y-break" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>continue</code> para la iteración actual del bucle y comienza la siguiente iteración.</li>
+<li><code>break</code> finaliza el bucle </li>
+</ul>
+<div id="id12" />
+
+<h2 id="12-funciones">12. Funciones<a class="headerlink" href="#12-funciones" title="Permanent link">&para;</a></h2>
+<p>Las funciones nos van a permitir <strong>reutilizar el código</strong>, y no tener que repetir una y otra vez el mismo código.</p>
+<p><strong>Sintaxis básica</strong></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="c1"># Forma A (recomendada por portabilidad)</span>
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>nombre_funcion<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a><span class="w">  </span>comandos
+<a id="__codelineno-76-4" name="__codelineno-76-4" href="#__codelineno-76-4"></a><span class="o">}</span>
+<a id="__codelineno-76-5" name="__codelineno-76-5" href="#__codelineno-76-5"></a>
+<a id="__codelineno-76-6" name="__codelineno-76-6" href="#__codelineno-76-6"></a><span class="c1"># Forma B (válida en Bash)</span>
+<a id="__codelineno-76-7" name="__codelineno-76-7" href="#__codelineno-76-7"></a><span class="k">function</span><span class="w"> </span>nombre_funcion<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-76-8" name="__codelineno-76-8" href="#__codelineno-76-8"></a><span class="w">  </span>comandos
+<a id="__codelineno-76-9" name="__codelineno-76-9" href="#__codelineno-76-9"></a><span class="o">}</span>
+</code></pre></div>
+Ejemplo:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="k">function</span><span class="w"> </span>saluda<span class="o">(){</span>
+<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola mundo&quot;</span>
+<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a><span class="o">}</span>
+<a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a>
+<a id="__codelineno-77-6" name="__codelineno-77-6" href="#__codelineno-77-6"></a>saluda
+</code></pre></div></p>
+<blockquote>
+<p>Nota: Debes tener en cuenta que cuando llamas a la función no pones los paréntesis.</p>
+</blockquote>
+<h3 id="121-concepto-y-sintaxis">12.1 Concepto y sintaxis<a class="headerlink" href="#121-concepto-y-sintaxis" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Una función es un bloque con un <strong>nombre</strong> que se puede invocar varias veces.</p>
+</li>
+<li>
+<p>Dos sintaxis válidas en Bash (ver arriba).</p>
+</li>
+<li>
+<p>Convención recomendada: <strong>nombre_funcion() { … }</strong> (más portable entre shells).</p>
+</li>
+</ul>
+<p><strong>Ejemplo mínimo:</strong></p>
+<p>```bash
+mostrar_fecha() {
+  date "+%F %T"
+}</p>
+<p>mostrar_fecha</p>
+<p>```</p>
+<h3 id="122-declaracion-antes-de-la-llamada">12.2 Declaración antes de la llamada<a class="headerlink" href="#122-declaracion-antes-de-la-llamada" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Atención</p>
+<p>En un script de <strong>Bash</strong>, la función debe estar <strong>definida antes de poder usarse</strong>.
+ Si intentas llamar a una función antes de su declaración, el intérprete no la reconocerá y mostrará un error como <code>command not found</code>.</p>
+</div>
+<p><strong>Ejemplo incorrecto</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>saluda<span class="w"> </span>Pepe
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>saluda<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<a id="__codelineno-78-5" name="__codelineno-78-5" href="#__codelineno-78-5"></a><span class="o">}</span>
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>./script.sh: línea 1: saluda: orden no encontrada
+</code></pre></div>
+<p><strong>Ejemplo correcto</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>saluda<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hola </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<a id="__codelineno-80-3" name="__codelineno-80-3" href="#__codelineno-80-3"></a><span class="o">}</span>
+<a id="__codelineno-80-4" name="__codelineno-80-4" href="#__codelineno-80-4"></a>
+<a id="__codelineno-80-5" name="__codelineno-80-5" href="#__codelineno-80-5"></a>saluda<span class="w"> </span>Pepe
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>Hola Pepe
+</code></pre></div>
+<h3 id="123-paso-de-parametros">12.3 Paso de parámetros<a class="headerlink" href="#123-paso-de-parametros" title="Permanent link">&para;</a></h3>
+<p>Los argumentos se reciben como en cualquier script: <code>$1</code>, <code>$2</code>, …</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>info_usuario<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-82-2" name="__codelineno-82-2" href="#__codelineno-82-2"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usuario: </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<a id="__codelineno-82-3" name="__codelineno-82-3" href="#__codelineno-82-3"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;UID: </span><span class="k">$(</span>id<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;desconocido&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<a id="__codelineno-82-4" name="__codelineno-82-4" href="#__codelineno-82-4"></a><span class="o">}</span>
+<a id="__codelineno-82-5" name="__codelineno-82-5" href="#__codelineno-82-5"></a>
+<a id="__codelineno-82-6" name="__codelineno-82-6" href="#__codelineno-82-6"></a>info_usuario<span class="w"> </span>alumno
+</code></pre></div>
+<h3 id="124-archivos-de-funciones-source-filenames">12.4 Archivos de funciones (Source Filenames)<a class="headerlink" href="#124-archivos-de-funciones-source-filenames" title="Permanent link">&para;</a></h3>
+<p>Cuando el script empieza a crecer, es útil <strong>organizar las funciones en un archivo separado</strong> y “cargarlo” en el script principal.</p>
+<p>Según la <em><a href="https://google.github.io/styleguide/shellguide.html?utm_source=chatgpt.com">Google Shell Style Guide</a></em></p>
+<blockquote>
+<p><em>Los archivos que se van a importar con <code>source</code> deben tener extensión <code>.sh</code> y no ser ejecutables.</em>
+ Esto deja claro que están pensados para ser reutilizados como librerías, no para ejecutarse directamente.</p>
+</blockquote>
+<h3 id="ejemplo">Ejemplo<a class="headerlink" href="#ejemplo" title="Permanent link">&para;</a></h3>
+<p>📂 <strong>Estructura de archivos:</strong></p>
+<p><img alt="image-20250928200755720" src="../../assets/img/linux/image-20250928200755720.png" /></p>
+<p>📄 <strong>funciones.sh</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="c1"># Muestra el uso actual de disco en porcentaje</span>
+<a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>
+<a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>mostrar_uso_disco<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a><span class="w">  </span>df<span class="w"> </span>-h<span class="w"> </span>--output<span class="o">=</span>source,pcent<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;Use%&quot;</span>
+<a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a><span class="o">}</span>
+<a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a>
+<a id="__codelineno-83-7" name="__codelineno-83-7" href="#__codelineno-83-7"></a><span class="c1"># Comprueba si un usuario existe en el sistema</span>
+<a id="__codelineno-83-8" name="__codelineno-83-8" href="#__codelineno-83-8"></a>
+<a id="__codelineno-83-9" name="__codelineno-83-9" href="#__codelineno-83-9"></a>existe_usuario<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-83-10" name="__codelineno-83-10" href="#__codelineno-83-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span>id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">&amp;</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-83-11" name="__codelineno-83-11" href="#__codelineno-83-11"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El usuario </span><span class="nv">$1</span><span class="s2"> existe en el sistema.&quot;</span>
+<a id="__codelineno-83-12" name="__codelineno-83-12" href="#__codelineno-83-12"></a><span class="w">  </span><span class="k">else</span>
+<a id="__codelineno-83-13" name="__codelineno-83-13" href="#__codelineno-83-13"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El usuario </span><span class="nv">$1</span><span class="s2"> no existe.&quot;</span>
+<a id="__codelineno-83-14" name="__codelineno-83-14" href="#__codelineno-83-14"></a><span class="w">  </span><span class="k">fi</span>
+<a id="__codelineno-83-15" name="__codelineno-83-15" href="#__codelineno-83-15"></a><span class="o">}</span>
+</code></pre></div>
+<p>📄 <strong>main.sh</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-84-2" name="__codelineno-84-2" href="#__codelineno-84-2"></a>
+<a id="__codelineno-84-3" name="__codelineno-84-3" href="#__codelineno-84-3"></a><span class="c1"># Cargar funciones desde archivo externo</span>
+<a id="__codelineno-84-4" name="__codelineno-84-4" href="#__codelineno-84-4"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;./funciones.sh&quot;</span>
+<a id="__codelineno-84-5" name="__codelineno-84-5" href="#__codelineno-84-5"></a>
+<a id="__codelineno-84-6" name="__codelineno-84-6" href="#__codelineno-84-6"></a><span class="c1"># Programa principal</span>
+<a id="__codelineno-84-7" name="__codelineno-84-7" href="#__codelineno-84-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Uso de disco ===&quot;</span>
+<a id="__codelineno-84-8" name="__codelineno-84-8" href="#__codelineno-84-8"></a>mostrar_uso_disco
+<a id="__codelineno-84-9" name="__codelineno-84-9" href="#__codelineno-84-9"></a>
+<a id="__codelineno-84-10" name="__codelineno-84-10" href="#__codelineno-84-10"></a><span class="nb">echo</span>
+<a id="__codelineno-84-11" name="__codelineno-84-11" href="#__codelineno-84-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== Comprobación de usuario ===&quot;</span>
+<a id="__codelineno-84-12" name="__codelineno-84-12" href="#__codelineno-84-12"></a>existe_usuario<span class="w"> </span>alumno
+</code></pre></div>
+<p><strong>Ejecución:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>./main.sh
+</code></pre></div>
+<p><strong>Salida (ejemplo):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>=== Uso de disco ===
+<a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a>/dev/sda1      35%
+<a id="__codelineno-86-3" name="__codelineno-86-3" href="#__codelineno-86-3"></a>tmpfs          2%
+<a id="__codelineno-86-4" name="__codelineno-86-4" href="#__codelineno-86-4"></a>
+<a id="__codelineno-86-5" name="__codelineno-86-5" href="#__codelineno-86-5"></a>=== Comprobación de usuario ===
+<a id="__codelineno-86-6" name="__codelineno-86-6" href="#__codelineno-86-6"></a>El usuario alumno existe en el sistema.
+</code></pre></div>
+<p>👉 Recomendaciones importantes:</p>
+<ul>
+<li>Usa siempre <code>source "./archivo.sh"</code> .</li>
+<li>Guarda las funciones en ficheros con <strong>extensión <code>.sh</code></strong>.</li>
+<li>No marques esos ficheros como ejecutables (<code>chmod -x funciones.sh</code>).</li>
+</ul>
+<p>De esta forma tu código queda modular, ordenado y útil en un entorno de administración de sistemas.</p>
+<h3 id="125-devolver-datos-desde-funciones">12.5 Devolver datos desde funciones<a class="headerlink" href="#125-devolver-datos-desde-funciones" title="Permanent link">&para;</a></h3>
+<p>En Bash, las funciones <strong>no devuelven valores como en otros lenguajes</strong>.
+ El comando <code>return</code> <strong>solo se utiliza para indicar un código de salida</strong> (entre 0 y 255), que sirve para señalar si la función ha tenido éxito o no</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a>comprobar_archivo<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a><span class="w">  </span><span class="nv">archivo</span><span class="o">=</span><span class="nv">$1</span>
+<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>
+<a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$archivo</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="c1"># Éxito: el archivo existe</span>
+<a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a><span class="w">  </span><span class="k">else</span>
+<a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1</span><span class="w">    </span><span class="c1"># Error: el archivo no existe</span>
+<a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a><span class="w">  </span><span class="k">fi</span>
+<a id="__codelineno-87-9" name="__codelineno-87-9" href="#__codelineno-87-9"></a><span class="o">}</span>
+<a id="__codelineno-87-10" name="__codelineno-87-10" href="#__codelineno-87-10"></a>
+<a id="__codelineno-87-11" name="__codelineno-87-11" href="#__codelineno-87-11"></a>comprobar_archivo<span class="w"> </span>/etc/passwd
+<a id="__codelineno-87-12" name="__codelineno-87-12" href="#__codelineno-87-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Código devuelto: </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w">   </span><span class="c1"># 0 si existe, 1 si no</span>
+</code></pre></div>
+<h4 id="devolver-datos-mediante-la-salida-estandar">📤 Devolver datos mediante la salida estándar<a class="headerlink" href="#devolver-datos-mediante-la-salida-estandar" title="Permanent link">&para;</a></h4>
+<p>Cuando una función necesita “devolver” un valor (por ejemplo, un número o una cadena de texto), <strong>la forma correcta</strong> en Bash es <strong>escribir el resultado por la salida estándar</strong> y capturarlo con sustitución de comandos <code>$(...)</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>sumar<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a><span class="w">  </span><span class="nv">a</span><span class="o">=</span><span class="nv">$1</span>
+<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a><span class="w">  </span><span class="nv">b</span><span class="o">=</span><span class="nv">$2</span>
+<a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">b</span><span class="k">))</span>
+<a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a><span class="o">}</span>
+<a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a>
+<a id="__codelineno-88-7" name="__codelineno-88-7" href="#__codelineno-88-7"></a><span class="nv">resultado</span><span class="o">=</span><span class="k">$(</span>sumar<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="k">)</span>
+<a id="__codelineno-88-8" name="__codelineno-88-8" href="#__codelineno-88-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;El resultado es </span><span class="nv">$resultado</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="13-utilidades-y-herramientas-comunes">13. Utilidades y herramientas comunes<a class="headerlink" href="#13-utilidades-y-herramientas-comunes" title="Permanent link">&para;</a></h2>
+<p><strong>Introducción</strong></p>
+<p>Los scripts de shell se vuelven realmente poderosos cuando se combinan con una variedad de utilidades y herramientas de Unix/Linux. Estas herramientas pueden realizar desde tareas simples de manipulación de texto hasta complejas operaciones de análisis de datos. Este apartado cubre algunas de las utilidades más comunes y cómo pueden ser empleadas para mejorar tus scripts de shell.</p>
+<p><strong>grep</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>grep</code> es una herramienta de búsqueda de texto que utiliza expresiones regulares. Es ampliamente utilizado para buscar patrones específicos dentro de archivos o salidas de comandos.</li>
+<li>Uso Común: Buscar todos los archivos que contienen una palabra específica.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a>grep<span class="w"> </span><span class="s1">&#39;palabra&#39;</span><span class="w"> </span>archivo.txt
+</code></pre></div>
+<p><strong>awk</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>awk</code> es un lenguaje de programación diseñado para procesar y analizar archivos de texto. Es excepcionalmente bueno en el procesamiento de datos tabulares.</li>
+<li>Uso Común:  Imprimir la tercera columna de un archivo separado por comas. </li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a>awk<span class="w"> </span>-F,<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span><span class="w"> </span>archivo.csv
+</code></pre></div>
+<p><strong>sed</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>sed</code> (stream editor) se utiliza para realizar transformaciones básicas de texto en un flujo de entrada (un archivo o entrada desde otro comando).</li>
+<li>Uso Común: Reemplazar todas las instancias de 'texto1' por 'texto2' en un archivo.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>sed<span class="w"> </span><span class="s1">&#39;s/texto1/texto2/g&#39;</span><span class="w"> </span>archivo.txt
+</code></pre></div>
+<p><strong>cut</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>cut</code> se usa para extraer secciones de cada línea de un archivo. Puede ser utilizado para cortar por caracteres, bytes o campos.</li>
+<li>Uso Común:  Extraer la primera columna de un archivo delimitado por tabulaciones.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a>cut<span class="w"> </span>-f1<span class="w"> </span>archivo.txt
+</code></pre></div>
+<p><strong>sort</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>sort</code> ordena las líneas de texto en un archivo.</li>
+<li>Uso Común: Ordenar un archivo en orden alfabético.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>sort<span class="w"> </span>archivo.txt
+</code></pre></div>
+<p><strong>uniq</strong></p>
+<ul>
+<li><strong>Descripción:</strong> <code>uniq</code> se utiliza para reportar o filtrar líneas repetidas en un archivo. Generalmente, se usa después de <code>sort</code>.</li>
+<li>Uso Común:  Contar el número de ocurrencias únicas de cada línea en un archivo.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>sort<span class="w"> </span>archivo.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</code></pre></div>
+<p><strong>tr</strong></p>
+<ul>
+<li>
+<p><strong>Descripción:</strong> <code>tr</code> se utiliza para reemplazar o eliminar caracteres específicos.</p>
+</li>
+<li>
+<p>Uso Común:</p>
+</li>
+</ul>
+<p>Convertir todas las letras minúsculas a mayúsculas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;texto&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[:lower:]&#39;</span><span class="w"> </span><span class="s1">&#39;[:upper:]&#39;</span>
+</code></pre></div>
+<p><strong>find</strong></p>
+<ul>
+<li>
+<p><strong>Descripción:</strong> <code>find</code> busca archivos en un directorio que cumplan con una expresión dada.</p>
+</li>
+<li>
+<p>Uso Común:</p>
+</li>
+</ul>
+<p>Encontrar todos los archivos  .txt  en un directorio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>find<span class="w"> </span>/ruta/al/directorio<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span>
+</code></pre></div>
+<p><strong>xargs</strong></p>
+<ul>
+<li>
+<p><strong>Descripción:</strong> <code>xargs</code> construye y ejecuta comandos a partir de la entrada estándar. Es útil para convertir la salida de un comando en argumentos de otro.</p>
+</li>
+<li>
+<p>Uso Común:</p>
+</li>
+</ul>
+<p>Eliminar todos los archivos  .txt encontrados en un directorio.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>find<span class="w"> </span>/ruta/al/directorio<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.txt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>rm
+</code></pre></div>
+<p><strong>Conclusión</strong></p>
+<p>La combinación de estas utilidades en tus scripts de shell puede amplificar significativamente su potencial. Cada herramienta tiene su propósito específico y, cuando se usa correctamente, puede realizar tareas complejas con pocas líneas de código. La clave para convertirse en un experto en shell scripting es entender bien estas herramientas y aprender a combinarlas de manera efectiva.</p>
+<h2 id="14-depuracion-y-testeo">14. Depuración y testeo<a class="headerlink" href="#14-depuracion-y-testeo" title="Permanent link">&para;</a></h2>
+<p>Para depurar nuestros scripts, podemos usar <code>-x</code> al ejecutar el script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a>bash<span class="w"> </span>-x<span class="w"> </span>./script.sh
+</code></pre></div>
+Otra opción es utilizar <code>-v</code>al ejecutar el script
+<div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a>bash<span class="w"> </span>-v<span class="w"> </span>./script.sh
+</code></pre></div></p>
+<p>También puedes añadir <code>set -x</code> antes de la línea que quieres depurar, <code>set -x</code> habilita un modo en el que todos los comandos ejecutados son impresos por pantalla.</p>
+<p>Otra forma de testear nuestros scripts es usar esta herramienta <a href="https://www.shellcheck.net/">ShellCheck</a></p>
+<h2 id="15-buenas-practicas-y-recomendaciones">15. Buenas prácticas y recomendaciones<a class="headerlink" href="#15-buenas-practicas-y-recomendaciones" title="Permanent link">&para;</a></h2>
+<p>Durante la creación de nuestros scripts, es importante seguir unas buenas prácticas para prevenir errores comunes, mejorar la legibilidad del código y asegurar la compatibilidad entre diferentes entornos.</p>
+<p><strong>Estilo de Codificación</strong></p>
+<ul>
+<li><strong>Indentación y Espaciado:</strong> Mantén una consistencia en la indentación y usa espacios (o tabs) de forma coherente para mejorar la legibilidad.</li>
+<li><strong>Nomenclatura de Variables:</strong> Usa nombres descriptivos y sigue un estilo consistente </li>
+<li><strong>Agrupación de Código:</strong> Organiza tu código en secciones lógicas y usa comentarios para describir bloques de código importantes.</li>
+</ul>
+<p><strong>Manejo de Errores</strong></p>
+<ul>
+<li><strong>Comprobación de Errores:</strong> Verifica el estado de salida de los comandos importantes y maneja los errores de forma adecuada.</li>
+<li><strong>Uso del Comando <code>exit</code>:</strong> Utiliza valores de salida específicos para indicar diferentes tipos de errores o éxito.</li>
+</ul>
+<p><strong>Herramientas y recursos para mejorar la calidad del código</strong></p>
+<ul>
+<li><strong>Linters y Analizadores de Código:</strong> Usa herramientas como <code>shellcheck</code> para detectar problemas y posibles mejoras en tus scripts.</li>
+<li><strong>Guías de Estilo:</strong> Refiérete a guías de estilo como <a href="https://google.github.io/styleguide/shellguide.html">Google's Shell Style Guide</a> para mantener un código coherente y bien organizado. </li>
+</ul>
+<h3 id="ejercicios-practicos">Ejercicios prácticos<a class="headerlink" href="#ejercicios-practicos" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Tarea</p>
+<p><strong>BASICOS</strong></p>
+<p><strong>Ejercicio 1</strong>. Crea un shell script que muestre por pantalla el mensaje “<strong>¡Hola Mundo!</strong>”.</p>
+<p><strong>Ejercicio 2</strong>. Realiza un script que guarde en un fichero el listado de archivos y directorios de la carpeta <em>etc</em>, a posteriori que imprima por pantalla dicho listado.</p>
+<p><strong>Ejercicio 3</strong>. Modifica el script anterior para que además muestre por pantalla el número de líneas del archivo y el número de palabras.</p>
+<p><strong>Ejercicio 4</strong>. Diseña un script en Shell que pida al usuario dos números, los guarde en dos variables y los muestre por pantalla.</p>
+<p><strong>Ejercicio 5</strong>. Crea un script donde se pida al usuario dos números y muestre la media aritmética.</p>
+<p><strong>Ejercicio 6</strong>. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.</p>
+<p><strong>Ejercicio 7</strong>. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz</p>
+<p><strong>ESTRUCTURAS CONDICIONALES</strong> </p>
+<p><strong>Ejercicio 8</strong>. Crea un script donde se pida al usuario dos números y diga cúal es mayor.</p>
+<p><strong>Ejercicio 9</strong>. Realiza un script que contenga un menú, de forma que muestre las cuatro operaciones matemáticas básicas: sumar, restar, multiplicar y dividir. Solicita dos números al usuario y  muestra el resultado en función de la opción seleccionada.</p>
+<p><strong>Ejercicio 10</strong>. Crea un script parimpar.sh que solicite un número y diga si es par o
+impar. </p>
+<p><strong>Ejercicio 11</strong>. Realizar un shell script que copie el fichero indicado como primer
+parámetro posicional de manera que la copia tenga el nombre indicado en
+el segundo parámetro posicional. Hay que controlar:
+a) Que se indiquen dos parámetros.
+b) Que exista y sea archivo ordinario el primer parámetro.
+c) Que no exista un identificador (fichero ordinario, directorio, etc..) con
+el mismo nombre que el indicado en el segundo parámetro.
+Si se produce alguna de las situaciones anteriores se visualizará un
+mensaje de error indicativo.</p>
+<p><strong>Ejercicio 12</strong>. Crea un shell script que al ejecutarlo muestre por pantalla uno de estos mensajes <strong>“Buenos días”</strong>, <strong>“Buenas tardes”</strong> o <strong>“Buenas noches”</strong>, en función de la hora que sea en el sistema (de 8:00 de la mañana a  15:00 será mañana, de 15:00 a 20:00 será tarde y el resto será noche).  Para obtener la hora del sistema utiliza el comando date.</p>
+<p><strong>Ejercicio 13</strong>. Construye un programa denominado AGENDA que permita mediante un menú, el mantenimiento de un pequeño archivo lista.txt con el nombre,  dirección y teléfono de varias personas. Debes incluir estas opciones al programa:</p>
+<ul>
+<li><strong>Añadir</strong> (añadir un registro)</li>
+<li><strong>Buscar</strong> (buscar entradas por nombre, dirección o teléfono)</li>
+<li><strong>Listar</strong> (visualizar todo el archivo).</li>
+<li><strong>Ordenar</strong> (ordenar los registros alfabéticamente).</li>
+<li><strong>Borrar</strong> (borrar el archivo).</li>
+</ul>
+<p><strong>Ejercicio 14</strong>. Realizar un script <strong>gestionusuarios.sh</strong> que permita dar de alta y de baja a
+usuario del sistema GNU/Linux indicados como argumento:
+./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]</p>
+<ul>
+<li>En el caso de que se le pase la opción alta:
+El script asignará al usuario un identificativo para el sistema con el
+formato aluXXYYZ donde XX son las dos primeras letras del apellido1,
+YY son las dos primeras letras del apellido2 y Z es la inicial del nombre.
+En caso de no indicar el grupo al que pertenece, se creará un nuevo
+grupo con el mismo identificativo que el usuario.</li>
+<li>En el caso de que se le pase la opción baja:
+El programa debe calcular la identificación del usuario, igual que se
+indica en el menú anterior, y proceder a dar de baja la cuenta.</li>
+<li>En otro caso. Indicar “Error. La sintaxis correcta es
+./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]”</li>
+</ul>
+<p><strong>BUCLES</strong></p>
+<p><strong>Ejercicio 15</strong>. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.</p>
+<p><strong>Ejercicio 16</strong>. Crea un shell script que sume los números del 1 al 1000 mediante una estructura <code>for</code>, <code>while</code> y <code>until</code>.</p>
+<p><strong>Ejercicio 17</strong>. Haz un script que vaya dando la suma de todos los números que se
+introduzca por teclado hasta que se introduzca un 0, en cuyo caso se
+mostrará el último resultado y terminará el script.</p>
+<p><strong>Ejercicio 18</strong>. Realizar un script utilizando el bucle for que muestre el siguiente patrón:</p>
+<p><img alt="image-20240914191921486" src="../../assets/img/linux/image-20240914191921486.png" /></p>
+<p><strong>Ejercicio 19</strong>: Realizar un script utilizando la estructura el bucle for que muestre el
+siguiente patrón:</p>
+<p><img alt="image-20240914191301584" src="../../assets/img/linux/image-20240914191301584.png" /></p>
+<p><strong>Ejercicio 20</strong>. Crea un script primo.sh que verifique si el número pasado por parámetro es
+primo o no.</p>
+<p><strong>Ejercicio 21</strong>. Crea un script juego.sh que consista en un juego de adivinar un número del
+1 al 100. El número a adivinar se pondrá fijo al principio del script. Se le
+irán preguntando números al usuario y se dirá si el número es mayor o
+menor que el que hay que adivinar. El juego termina si el usuario averigua
+el número (Mensaje de Enhorabuena) o introduce un 0 (Se rinde) </p>
+<p><strong>Ejercicio 22</strong>. Realizar un script que reciba como único parámetro el nombre de un
+directorio, especificado mediante su nombre de ruta completo. El programa
+debe mostrar un listado no recursivo de todas las entradas contenidas en
+ese directorio, indicando para cada una de ellas si se trata de un fichero o
+de un directorio. Al final, debe mostrarse un mensaje indicando el número
+total de entradas procesadas.</p>
+<p><strong>Ejercicio 23</strong>. Modifica el script anterior para que indique si se trata de un fichero, de un
+directorio, de un enlace simbólico, un archivo especial de bloque, archivo
+especial de caracter. Debes pasarle el directorio /dev y verificar que funciona
+bien.</p>
+<p><strong>Ejercicio 24</strong>. Escribir un script que, dado el nombre de un directorio como parámetro,
+muestre las estadísticas de cuantos ficheros y cuantos subdirectorios
+contiene. Debes comprobar que existe el directorio que se pasa como
+parámetro y que efectivamente es un directorio.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../git/introduccion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: UT0. Introducción a Git y Github">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                UT0. Introducción a Git y Github
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../bash-avanzado/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: UT1. Bash Avanzado">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                UT1. Bash Avanzado
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
