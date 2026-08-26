@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Administración de Sistemas Operativos
 
 <img src="assets/img/logoASO.png" alt="Logo ASO" style="width:700px; height:200px;">
