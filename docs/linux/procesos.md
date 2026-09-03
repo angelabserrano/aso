@@ -8,7 +8,7 @@
 
 ## Programación de Aula
 
-### Planificación Temporal (5 sesiones / 10 horas)
+### Planificación Temporal (6 sesiones / 12 horas)
 
 | Sesión | Contenido                                                    |
 | ------ | ------------------------------------------------------------ |
@@ -16,7 +16,8 @@
 | 2      | Comandos para la gestión de procesos                         |
 | 3      | Control de servicios y daemons                               |
 | 4      | Automatización de tareas                                     |
-| 5      | Ampliación y refuerzo                                        |
+| 5      | Seguimiento y diagnóstico: monitorización de recursos y registros del sistema |
+| 6      | Práctica grupal. Ampliación y refuerzo                       |
 
 
 
@@ -576,7 +577,148 @@ $ atrm 14
 
 ---
 
-## 5. Práctica grupal
+## 5. Seguimiento y diagnóstico del sistema
+
+Administrar un sistema no es solo arrancar y parar procesos y servicios: también hay que **vigilar su estado y su rendimiento** para detectar incidencias, diagnosticar problemas y prever necesidades de recursos. El RD 1629/2009 lo recoge en el RA2 ("utilizar herramientas gráficas y comandos para el control y seguimiento de los procesos del sistema").
+
+Aquí se ven las **herramientas del propio sistema**, siempre disponibles y sin instalar nada. La monitorización **centralizada** de varios equipos, con histórico y alertas (Prometheus y Grafana), se trata en la **UT9**.
+
+### 5.1 Tres tipos de datos
+
+| Tipo | Qué es | Ejemplos | Herramientas |
+| ---- | ------ | -------- | ------------ |
+| **Métricas** | Valores numéricos medidos en el tiempo | % de CPU, MB libres, E/S de disco | `top`, `vmstat`, `sar` |
+| **Registros (logs)** | Mensajes con marca de tiempo | "servicio arrancado", "fallo de autenticación" | `journalctl`, `/var/log`, Visor de eventos |
+| **Trazas** | Recorrido de una petición entre componentes | petición HTTP → app → BD | (fuera del alcance del módulo) |
+
+### 5.2 Monitorización de recursos en Linux
+
+| Recurso | Comandos | Qué observar |
+| ------- | -------- | ------------ |
+| Carga y CPU | `uptime`, `top`, `htop`, `mpstat 1`, `vmstat 1` | Carga media (1/5/15 min), % de uso, procesos en cola de ejecución |
+| Memoria | `free -h`, `vmstat`, `cat /proc/meminfo` | Memoria disponible, uso de *swap*, fallos de página |
+| Disco (espacio) | `df -h`, `du -sh *` | Sistemas de archivos casi llenos |
+| Disco (E/S) | `iostat -xz 1`, `iotop` | `%util` cercano al 100 %, tiempos de espera altos |
+| Red | `ss -tulpn`, `ip -s link`, `iftop`, `nload` | Puertos a la escucha, conexiones, ancho de banda |
+| Por proceso | `ps aux --sort=-%cpu`, `ps aux --sort=-%mem`, `pidstat 1` | Qué proceso consume el recurso que se satura |
+
+!!! note "Interpretar la carga media"
+    `uptime` muestra la carga media de 1, 5 y 15 minutos: el número medio de procesos que quieren CPU. Como referencia, un valor sostenido por encima del **número de núcleos** indica saturación de CPU.
+
+Ejemplo de diagnóstico: si el sistema va lento, se mira primero `top` (¿CPU o memoria?), luego `vmstat 1` (¿*swap* activo? ¿mucha espera de E/S en la columna `wa`?) y `iostat -xz 1` (¿qué disco?).
+
+### 5.3 Histórico con sar (sysstat)
+
+Los comandos anteriores muestran una foto **del momento**. El paquete **`sysstat`** recoge métricas cada pocos minutos y permite consultarlas después:
+
+```bash
+sudo apt install sysstat
+sudo sed -i 's/ENABLED="false"/ENABLED="true"/' /etc/default/sysstat
+sudo systemctl enable --now sysstat
+
+sar -u 1 5        # CPU: 5 muestras cada segundo
+sar -r            # memoria a lo largo del día
+sar -d            # actividad de disco
+sar -n DEV        # tráfico de red por interfaz
+sar -q            # longitud de la cola de ejecución y carga
+```
+
+### 5.4 Registros del sistema con journald
+
+En los sistemas con *systemd*, el servicio **`systemd-journald`** recoge de forma centralizada los mensajes del núcleo, los servicios y las aplicaciones. Se consultan con **`journalctl`**:
+
+```bash
+journalctl -u ssh                       # mensajes del servicio ssh
+journalctl -u ssh --since "1 hour ago"
+journalctl -p err -b                    # prioridad error o superior, del arranque actual
+journalctl -k                           # solo mensajes del núcleo (kernel)
+journalctl -f                           # seguir en tiempo real (como tail -f)
+journalctl --since "2025-09-01" --until "2025-09-02 12:00"
+journalctl --disk-usage                 # espacio ocupado por el journal
+```
+
+Para que el registro **persista entre reinicios** y no crezca sin control, en `/etc/systemd/journald.conf`:
+
+```ini
+[Journal]
+Storage=persistent
+SystemMaxUse=500M
+MaxRetentionSec=1month
+```
+
+### 5.5 rsyslog, /var/log y rotación
+
+Muchos servicios siguen escribiendo en ficheros de texto dentro de **`/var/log`** (`auth.log`, `syslog`, `kern.log`…) a través de **rsyslog** (configuración en `/etc/rsyslog.conf` y `/etc/rsyslog.d/`).
+
+**logrotate** evita que esos ficheros crezcan indefinidamente: los rota, comprime y elimina los antiguos. Configuración en `/etc/logrotate.conf` y `/etc/logrotate.d/`:
+
+```
+/var/log/mi-app/*.log {
+    weekly
+    rotate 8
+    compress
+    missingok
+    notifempty
+}
+```
+
+### 5.6 Diagnóstico en Windows
+
+| Recurso / necesidad | Herramienta |
+| ------------------- | ----------- |
+| Vista rápida de procesos y recursos | **Administrador de tareas**, **Monitor de recursos** (`resmon`) |
+| Contadores de rendimiento e histórico | **Monitor de rendimiento** (`perfmon`), conjuntos de recopiladores de datos |
+| Registros del sistema | **Visor de eventos** (`eventvwr.msc`): canales Aplicación, Sistema y Seguridad |
+
+Desde PowerShell:
+
+```powershell
+Get-Counter '\Processor(_Total)\% Processor Time'
+Get-Counter '\Memory\Available MBytes'
+
+# Últimos 20 eventos del registro del sistema
+Get-WinEvent -LogName System -MaxEvents 20
+
+# Inicios de sesión fallidos (Id 4625) de las últimas 24 h
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date).AddHours(-24)}
+```
+
+### 5.7 Resumen de comandos
+
+| Ámbito | Comando | Uso |
+| ------ | ------- | --- |
+| CPU/carga | `uptime`, `top`, `mpstat 1` | Uso de CPU y carga media |
+| Memoria | `free -h`, `vmstat 1` | Memoria disponible y *swap* |
+| Disco | `df -h`, `iostat -xz 1` | Espacio y E/S de disco |
+| Red | `ss -tulpn` | Puertos y conexiones |
+| Histórico | `sar -u`, `sar -r`, `sar -q` | Métricas registradas por sysstat |
+| Logs | `journalctl -u <svc> -f` | Seguir el registro de un servicio |
+| Logs | `journalctl -p err -b` | Errores del arranque actual |
+| Windows | `Get-WinEvent -LogName System -MaxEvents 20` | Últimos eventos del sistema |
+
+### Ejercicios de seguimiento y diagnóstico
+
+!!! example "Tarea"
+
+    **Ejercicio 1. Monitorización de recursos**
+
+    - Instala `sysstat` y habilita la recogida de métricas.
+    - Genera carga de CPU (`yes > /dev/null &`, uno por núcleo) y observa cómo evolucionan `uptime`, `top` y `sar -u 1 5`.
+    - Genera carga de disco (`dd if=/dev/zero of=prueba bs=1M count=2000`) y localiza la saturación con `vmstat 1` (columna `wa`) e `iostat -xz 1`.
+    - Documenta, para cada caso, qué recurso se satura y con qué comando lo has detectado.
+
+!!! example "Tarea"
+
+    **Ejercicio 2. Registros del sistema**
+
+    - Activa el *journal* persistente y limítalo a 300 MB.
+    - Obtén con `journalctl` todos los mensajes de prioridad *warning* o superior del último arranque.
+    - Provoca tres inicios de sesión SSH fallidos desde otro equipo y localiza los eventos en `journalctl -u ssh` y en `/var/log/auth.log`.
+    - En un Windows, localiza esos mismos intentos en el registro de **Seguridad** (Id 4625) con `Get-WinEvent`.
+
+---
+
+## 6. Práctica grupal
 
 !!! example "Tarea"
 
