@@ -1,28 +1,9 @@
+# UT6. PowerShell
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA7** del RD 1629/2009: *Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.*
+
 ## Programación de Aula
-
-### Resultados de Aprendizaje
-
-Esta unidad cubre el **Resultado de aprendizaje 7 (RA7)** según el **Real Decreto 1629/2009, de 30 de octubre**, el cual es:
-
-1. Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.
-
-Los criterios de evaluación asociados son:
-
-​	a. Se han utilizado y combinado las estructuras del lenguaje para crear guiones.
-
-​	b. Se han utilizado herramientas para depurar errores sintácticos y de ejecución.
-
-​	c. Se han implantado guiones en sistemas libres y propietario.
-
-​	d. Se han realizado cambios y adaptaciones de guiones del sistema.
-
-​	e. Se han implantado guiones en sistemas libres y propietarios
-
-​	f. Se han consultado y utilizado librerías de funciones.
-
-​	g. Se han documentado los guiones creados.
-
-
 
 ### Planificación Temporal (6 sesiones / 12 horas)
 

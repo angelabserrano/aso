@@ -1,3 +1,11 @@
+# UT7. PowerShell - Directorio Activo
+
+!!! abstract "Resultados de aprendizaje"
+    Esta unidad trabaja los siguientes RA del RD 1629/2009:
+
+    - **RA7** — Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.
+    - **RA1** — Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.
+
 ## 1 Gestión de usuarios de Active Directory con PowerShell 
 
 ### 1.1 Creación de cuentas de usuario 

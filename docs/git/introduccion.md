@@ -1,3 +1,8 @@
+# UT0. Introducción a Git y Github
+
+!!! note "Sobre los resultados de aprendizaje"
+    Git y GitHub son una **herramienta transversal** del módulo: no se corresponden con un RA concreto del RD 1629/2009, pero dan soporte a todos ellos (almacenamiento, versionado y documentación de scripts y prácticas).
+
 Antes de comenzar con los contenidos específicos de administración de sistemas operativos , es fundamental que los estudiantes se familiaricen con las herramientas de control de versiones y colaboración en desarrollo de software. Git y GitHub son herramientas esenciales en el entorno profesional que permitirán a los estudiantes almacenar, gestionar y compartir su trabajo de manera eficiente.
 
 ## Objetivos

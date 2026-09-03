@@ -1,3 +1,11 @@
+# UT9. Kubernetes
+
+!!! abstract "Resultados de aprendizaje"
+    Esta unidad trabaja los siguientes RA del RD 1629/2009:
+
+    - **RA2** — Administra procesos del sistema describiéndolos y aplicando criterios de seguridad y eficiencia.
+    - **RA3** — Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.
+
 ## Prerequisitos
 
 En esta unidad se asume que ya conoces los conceptos básicos de contenedores trabajados en la asignatura **Implantación de Aplicaciones Web**:

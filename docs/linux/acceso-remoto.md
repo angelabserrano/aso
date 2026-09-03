@@ -1,3 +1,8 @@
+# UT3. Acceso y Administración Remota en Linux
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA4** del RD 1629/2009: *Administra de forma remota el sistema operativo en red valorando su importancia y aplicando criterios de seguridad.*
+
 ## 1. Introducción
 
 En la mayoría de los casos, los servidores y máquinas que necesitamos gestionar no comparten el mismo espacio físico. Pueden estar ubicados en:

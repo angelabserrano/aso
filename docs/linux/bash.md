@@ -1,3 +1,8 @@
+# UT1.1. Bash
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA7** del RD 1629/2009: *Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.*
+
 **CFGS Administración de Sistemas Informáticos y Redes**
 
 Material elaborado por Ángela Bañuls Serrano
@@ -5,7 +10,7 @@ Material elaborado por Ángela Bañuls Serrano
 !!! info "Contenido visto en 1º"
     Esta unidad fue trabajada en el módulo **Implantación de Sistemas Operativos** de 1º. Debes **repasarla de forma autónoma** antes de continuar con los contenidos del curso.
 
-# Manual de Shell Script
+## Manual de Shell Script
 
 **Índice**
 

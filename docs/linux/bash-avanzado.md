@@ -1,4 +1,7 @@
-# Bash Avanzado
+# UT1.2. Bash Avanzado
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA7** del RD 1629/2009: *Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.*
 
 Esta unidad profundiza en Bash orientado a la **administración de sistemas**, asumiendo que ya conoces los fundamentos (variables, condicionales, bucles) trabajados en 1º en el módulo de ISO.
 

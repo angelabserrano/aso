@@ -1,22 +1,9 @@
-# Ansible: Automatización de Infraestructura
+# UT5. Ansible
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA3** del RD 1629/2009: *Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.*
 
 ## Programación de Aula
-
-### Resultados de Aprendizaje
-
-Esta unidad cubre principalmente el **Resultado de aprendizaje 3 (RA3)** según el **Real Decreto 1629/2009, de 30 de octubre**, ampliando la automatización de tareas más allá de cron/at hacia la gestión de infraestructura:
-
-1. Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.
-
-Los criterios de evaluación que se trabajan son:
-
-- Se han descrito las ventajas de la automatización de las tareas repetitivas en el sistema.
-- Se han utilizado los comandos del sistema para la planificación de tareas.
-- Se han realizado planificaciones de tareas repetitivas o puntuales relacionadas con la administración del sistema.
-- Se ha automatizado la administración de cuentas.
-- Se han documentado los procesos programados como tareas automáticas.
-
-También contribuye al **RA6** (integración de sistemas libres y propietarios) al gestionar entornos heterogéneos Linux/Windows desde un único punto de control.
 
 ### Planificación Temporal (4 sesiones / 8 horas)
 

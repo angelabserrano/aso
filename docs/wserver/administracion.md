@@ -1,3 +1,8 @@
+# UT8. Administración en Windows
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA2** del RD 1629/2009: *Administra procesos del sistema describiéndolos y aplicando criterios de seguridad y eficiencia.*
+
 ## 1. Definición de un proceso
 
 Un **proceso** es una instancia de un programa en ejecución. Es decir, cada vez que se lanza un programa, se crea un proceso.  

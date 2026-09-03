@@ -1,3 +1,11 @@
+# UT4.2. Samba
+
+!!! abstract "Resultados de aprendizaje"
+    Esta unidad trabaja los siguientes RA del RD 1629/2009:
+
+    - **RA6** — Integra sistemas operativos libres y propietarios, justificando y garantizando su interoperabilidad.
+    - **RA5** — Administra servidores de impresión describiendo sus funciones e integrándolos en una red.
+
 ## 1. Introducción
 
 **Samba** es un software de código abierto muy utilizado en sistemas operativos basados en Unix y Linux para proporcionar servicios de intercambio de archivos e impresoras con sistemas Windows. Su desarrollo comenzó en la década de 1990, y desde entonces, ha sido una herramienta esencial en **entornos de red heterogéneos**, donde conviven sistemas operativos diferentes.
@@ -641,3 +649,301 @@ sudo samba-tool group delete alumnos
     - Verifica la conectividad antes de unir (`ping ieselcaminas.local`).
     - Una vez unido, inicia sesión en el cliente con el usuario `prof1` creado en la actividad anterior.
     - Desde el servidor, verifica que el equipo Windows aparece en `samba-tool computer list`.
+
+---
+
+## PRÁCTICA 2
+
+## Servidor de impresión con CUPS y compartición de colas mediante Samba
+
+### Introducción: el servicio de impresión en red
+
+Un **servidor de impresión** centraliza el acceso a una o varias impresoras: recibe los trabajos de los clientes, los **encola**, los procesa según su prioridad y los envía a la impresora física, además de gestionar permisos, estado de los dispositivos y registro de uso.
+
+En Linux el servicio de impresión estándar es **CUPS (Common UNIX Printing System)**:
+
+- Usa **IPP (Internet Printing Protocol)** como protocolo principal, sobre HTTP en el puerto **631**.
+- El demonio es **`cupsd`** (unidad `cups.service`).
+- Ofrece una **interfaz web de administración** en `http://localhost:631`.
+- Ficheros y directorios principales:
+
+    | Ruta | Contenido |
+    | ---- | --------- |
+    | `/etc/cups/cupsd.conf` | Configuración del demonio: puertos, accesos, navegación |
+    | `/etc/cups/printers.conf` | Impresoras definidas (no se edita a mano) |
+    | `/etc/cups/ppd/*.ppd` | Controlador (PostScript Printer Description) de cada impresora |
+    | `/var/spool/cups/` | Trabajos encolados |
+    | `/var/log/cups/` | Registros `access_log`, `error_log` y `page_log` |
+
+Para que un **cliente Windows** vea la cola como una impresora nativa, se comparte a través de **Samba (SMB)**, igual que se hace con las carpetas compartidas.
+
+!!! note "Escenario"
+    Esta práctica se realiza sobre un **servidor Samba autónomo (*standalone*) o miembro de dominio**, no sobre el controlador de dominio de la Práctica 1. Puede montarse en el propio DC añadiendo el recurso `[printers]` al `smb.conf`, pero en producción se recomienda **separar el servicio de impresión del controlador de dominio**.
+
+### 1. Instalación de CUPS
+
+```bash
+sudo apt update
+sudo apt install -y cups
+```
+
+Habilitar y arrancar el servicio:
+
+```bash
+sudo systemctl enable --now cups
+sudo systemctl status cups
+```
+
+Añadir tu usuario al grupo `lpadmin` para poder administrar impresoras:
+
+```bash
+sudo usermod -aG lpadmin $USER
+```
+
+Cierra la sesión y vuelve a entrar para que el cambio de grupo tenga efecto.
+
+### 2. Acceso a la interfaz de administración desde la red
+
+Por defecto CUPS solo escucha en `localhost`. Para administrarlo desde otros equipos, edita `/etc/cups/cupsd.conf`:
+
+```bash
+sudo nano /etc/cups/cupsd.conf
+```
+
+```apache
+# Escuchar en todas las interfaces (puerto 631)
+Port 631
+# (sustituye a la línea "Listen localhost:631")
+
+# Publicar las impresoras compartidas en la red local
+Browsing On
+
+<Location />
+  Order allow,deny
+  Allow @LOCAL
+</Location>
+
+<Location /admin>
+  Order allow,deny
+  Allow @LOCAL
+</Location>
+```
+
+Reinicia el servicio:
+
+```bash
+sudo systemctl restart cups
+```
+
+Ya puedes abrir en un navegador `http://IP_DEL_SERVIDOR:631`.
+
+### 3. Alta de una impresora
+
+**Opción A — Interfaz web**
+
+1. Abre `http://localhost:631` → **Administración → Añadir impresora**.
+2. Autentícate con un usuario del grupo `lpadmin`.
+3. Elige la conexión: USB, `socket://IP:9100` (red/JetDirect), `ipp://`, `lpd://`…
+4. Asigna **nombre**, **descripción** y **ubicación**.
+5. Marca **«Compartir esta impresora»**.
+6. Selecciona el **modelo/controlador** o sube un fichero **PPD**.
+
+**Opción B — Línea de comandos (`lpadmin`)**
+
+```bash
+# Impresora de red por IP (protocolo socket, puerto 9100)
+sudo lpadmin -p Laser_Aula -E \
+  -v socket://192.168.1.20 \
+  -m everywhere \
+  -D "Impresora laser del aula 12" \
+  -L "Aula 12" \
+  -o printer-is-shared=true
+
+# Establecerla como impresora por defecto
+sudo lpadmin -d Laser_Aula
+```
+
+| Opción | Significado |
+| ------ | ----------- |
+| `-p` | Nombre de la cola/impresora |
+| `-E` | Habilitarla y aceptar trabajos |
+| `-v` | URI del dispositivo (`socket://`, `ipp://`, `usb://`, `lpd://`) |
+| `-m` | Controlador (`everywhere` para IPP moderno, o un fichero `.ppd`) |
+| `-D` / `-L` | Descripción y ubicación |
+| `-o printer-is-shared=true` | Compartir la cola en la red |
+| `lpadmin -x <nombre>` | Eliminar la impresora |
+
+Consultar dispositivos y controladores disponibles:
+
+```bash
+lpinfo -v      # conexiones/dispositivos detectados
+lpinfo -m      # controladores y modelos disponibles
+```
+
+### 4. Gestión de las colas de impresión
+
+Cada cola tiene **dos estados independientes**:
+
+- **Enabled / Disabled** → si la cola **envía** trabajos a la impresora.
+- **Accepting / Rejecting** → si la cola **admite** nuevos trabajos.
+
+```bash
+# Estado de las impresoras y cuál es la predeterminada
+lpstat -p -d
+lpstat -t                 # estado completo (colas, trabajos, aceptación)
+lpstat -o                 # trabajos pendientes de todas las colas
+
+# Enviar un trabajo
+lp documento.pdf                  # a la impresora por defecto
+lp -d Laser_Aula documento.pdf    # a una cola concreta
+lpr -P Laser_Aula documento.pdf
+
+# Ver la cola de una impresora
+lpq -P Laser_Aula
+
+# Cancelar trabajos
+cancel 42                 # trabajo con ID 42
+cancel -a Laser_Aula      # todos los de esa cola
+lprm 42                   # equivalente BSD
+
+# Detener / reanudar el envío a la impresora
+sudo cupsdisable Laser_Aula
+sudo cupsenable Laser_Aula
+
+# Rechazar / admitir nuevos trabajos en la cola
+sudo cupsreject Laser_Aula
+sudo cupsaccept Laser_Aula
+
+# Enviar con prioridad (1-100, mayor = antes)
+lp -q 80 -d Laser_Aula urgente.pdf
+```
+
+| Comando | Acción |
+| ------- | ------ |
+| `lpstat -p -d` | Listar impresoras y la predeterminada |
+| `lpstat -o` | Listar trabajos pendientes de todas las colas |
+| `lp` / `lpr` | Enviar un trabajo a imprimir |
+| `lpq` | Mostrar la cola de una impresora |
+| `cancel` / `lprm` | Cancelar trabajos |
+| `cupsenable` / `cupsdisable` | Activar / detener el envío a la impresora |
+| `cupsaccept` / `cupsreject` | Admitir / rechazar nuevos trabajos |
+| `lpadmin -d <cola>` | Establecer impresora por defecto |
+| `lpoptions -p <cola> -l` | Ver opciones configurables (dúplex, bandeja, calidad…) |
+
+### 5. Compartir la cola con clientes Windows mediante Samba
+
+Aunque CUPS ya publica la impresora por IPP, los clientes Windows la integran de forma más transparente si se comparte por **SMB** con Samba.
+
+```bash
+sudo apt install -y samba
+```
+
+Edita `/etc/samba/smb.conf`:
+
+```ini
+[global]
+   workgroup = WORKGROUP
+   server string = Servidor de impresion %h
+   # Integración con CUPS
+   printing = cups
+   printcap name = cups
+   load printers = yes
+
+[printers]
+   comment = Impresoras (CUPS)
+   path = /var/spool/samba
+   browseable = no
+   printable = yes
+   guest ok = yes
+   read only = yes
+   create mask = 0700
+
+[print$]
+   comment = Controladores de impresora
+   path = /var/lib/samba/printers
+   browseable = yes
+   read only = yes
+   guest ok = yes
+```
+
+Crea el directorio de *spool* con el *sticky bit* (permisos como los de `/tmp`):
+
+```bash
+sudo mkdir -p /var/spool/samba
+sudo chmod 1777 /var/spool/samba
+```
+
+Comprueba la sintaxis y reinicia Samba:
+
+```bash
+testparm
+sudo systemctl restart smbd nmbd
+```
+
+Verifica que la cola se publica por SMB:
+
+```bash
+smbclient -L localhost -N
+# En la columna "Type" la cola debe aparecer como "Printer"
+```
+
+### 6. Instalar la impresora compartida en el cliente Windows
+
+1. **Configuración → Bluetooth y dispositivos → Impresoras y escáneres → Agregar dispositivo**.
+2. **«La impresora que quiero no está en la lista» → «Seleccionar una impresora compartida por nombre»**.
+3. Introduce la ruta UNC:  `\\IP_DEL_SERVIDOR\Laser_Aula`
+   - Alternativa por IPP:  `http://IP_DEL_SERVIDOR:631/printers/Laser_Aula`
+4. Cuando pida el **controlador**, elige el del fabricante o uno genérico **PostScript / PCL**.
+5. Imprime una **página de prueba**.
+
+!!! tip "Controladores en los clientes"
+    Para no instalar el *driver* en cada equipo, se pueden subir los controladores de Windows al recurso `print$` (con `cupsaddsmb` o desde la consola *Administración de impresión* de Windows). En un aula suele bastar con un **PostScript genérico**.
+
+### 7. Administración y diagnóstico
+
+```bash
+# Registros en tiempo real
+sudo journalctl -u cups -f
+tail -f /var/log/cups/error_log
+
+# Aumentar el nivel de detalle del log
+sudo cupsctl LogLevel=debug
+sudo systemctl restart cups
+
+# Páginas impresas por impresora y usuario
+cat /var/log/cups/page_log
+
+# Puertos a la escucha (IPP 631, SMB 445/139)
+sudo ss -tlnp | grep -E '631|445|139'
+```
+
+| Síntoma | Posible causa |
+| ------- | ------------- |
+| El cliente no ve la impresora por SMB | `smbd` parado, sección `[printers]` mal definida, cortafuegos (445/139) |
+| «Filter failed» en la web de CUPS | Controlador/PPD incorrecto para el modelo |
+| Trabajos encolados que no salen | Cola en estado *disabled* → `cupsenable`; impresora apagada o IP errónea |
+| La cola no admite trabajos | Cola en estado *rejecting* → `cupsaccept` |
+| «Acceso denegado» en `/admin` | El usuario no pertenece al grupo `lpadmin` |
+
+### 8. Actividades
+
+!!! example "Tarea"
+
+    **Actividad 4. Instalación del servidor de impresión**
+
+    Instala CUPS en un Ubuntu Server, habilita el acceso de administración desde la red y accede a la interfaz web `http://IP:631` desde otro equipo del aula.
+
+!!! example "Tarea"
+
+    **Actividad 5. Alta y gestión de una cola**
+
+    - Crea una impresora llamada `PRACTICA_<tus_iniciales>` con `lpadmin`. Si no dispones de impresora física, instala el paquete `printer-driver-cups-pdf` para tener una impresora virtual que genera PDF en `~/PDF`.
+    - Envía tres trabajos con `lp`.
+    - Detén la cola con `cupsdisable`, comprueba con `lpq` que los trabajos se acumulan y reactívala con `cupsenable`.
+    - Cancela uno de los trabajos con `cancel`.
+
+!!! example "Tarea"
+
+    **Actividad 6. Compartición con Windows**
+
+    Comparte la cola mediante Samba, instálala en un cliente Windows 10/11 usando la ruta `\\servidor\cola` e imprime una página de prueba. Adjunta las líneas de `/var/log/cups/page_log` que acreditan la impresión.

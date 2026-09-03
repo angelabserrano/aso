@@ -1,3 +1,8 @@
+# UT7. Directorio Activo en Windows
+
+!!! abstract "Resultado de aprendizaje"
+    Esta unidad trabaja el **RA1** del RD 1629/2009: *Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.*
+
 ## 1. Conceptos básicos de Active Directory
 
 El **Directorio Activo** (también conocido como **Active Directory** en inglés) es un servicio de directorio de red desarrollado por Microsoft. Su objetivo principal radica en proporcionar un servicio centralizado para la gestión y organización de recursos de red, como usuarios, grupos, impresoras y otros dispositivos, facilitando así la administración, autenticación y autorización en entornos empresariales de manera eficiente y segura.
