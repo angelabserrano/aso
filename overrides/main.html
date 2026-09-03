@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if not page.is_homepage %}
+    <a href="{{ nav.homepage.url | url }}" class="volver-unidades">⬅ Volver al índice de todas las unidades</a>
+  {% endif %}
+  {{ super() }}
+{% endblock %}

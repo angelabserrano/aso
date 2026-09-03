@@ -20,3 +20,38 @@
     -webkit-mask-image: var(--md-admonition-icon--reto);
             mask-image: var(--md-admonition-icon--reto);
 }
+
+/* En escritorio, ocultar el menú lateral izquierdo (lista de unidades) y
+   mover el índice de la unidad al lado izquierdo.
+   En móvil/tableta se conserva el menú desplegable (hamburguesa). */
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        display: none;
+    }
+
+    .md-sidebar--secondary {
+        order: -1;
+        float: left;
+    }
+}
+
+/* Enlace "Volver al índice de todas las unidades" en cada unidad */
+.volver-unidades {
+    display: inline-block;
+    margin: 0 0 1.2rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--md-primary-fg-color);
+    border: 1px solid var(--md-primary-fg-color);
+    border-radius: 0.2rem;
+    text-decoration: none;
+    transition: background-color 125ms, color 125ms;
+}
+
+.volver-unidades:hover,
+.volver-unidades:focus {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+}

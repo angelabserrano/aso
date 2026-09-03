@@ -5,6 +5,7 @@ site_author: Angela B. Serrano
 
 theme:
   name: material
+  custom_dir: overrides
   language: es
   logo: assets/img/logoASO.png
   favicon: assets/img/logoASO.png
