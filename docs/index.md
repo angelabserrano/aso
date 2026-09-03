@@ -20,8 +20,8 @@ Aquí encontrarás todos los contenidos del módulo:
 - [UT4.2. Samba](linux/samba.md)
 - [UT5. Ansible](linux/ansible.md)
 - [UT6. PowerShell](scripts/powershell.md)
-- [UT7. Directorio Activo en Windows](wserver/directorio-activo.md)
-- [UT7. PowerShell - Directorio Activo](scripts/powershell-directorio.md)
+- [UT7.1. Directorio Activo en Windows](wserver/directorio-activo.md)
+- [UT7.2. PowerShell - Directorio Activo](scripts/powershell-directorio.md)
 - [UT8. Administración en Windows](wserver/administracion.md)
 - [UT9. Kubernetes](linux/kubernetes.md)
 

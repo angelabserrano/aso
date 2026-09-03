@@ -1,4 +1,4 @@
-# UT7. PowerShell - Directorio Activo
+# UT7.2. PowerShell - Directorio Activo
 
 !!! abstract "Resultados de aprendizaje"
     Esta unidad trabaja los siguientes RA del RD 1629/2009:

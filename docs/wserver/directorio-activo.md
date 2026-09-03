@@ -1,4 +1,4 @@
-# UT7. Directorio Activo en Windows
+# UT7.1. Directorio Activo en Windows
 
 !!! abstract "Resultado de aprendizaje"
     Esta unidad trabaja el **RA1** del RD 1629/2009: *Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.*
