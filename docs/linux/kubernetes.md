@@ -1,492 +1,67 @@
-# UT9. Kubernetes
+# Contenedores y orquestación (ampliación)
 
-!!! abstract "Resultados de aprendizaje"
-    Esta unidad trabaja los siguientes RA del RD 1629/2009:
+!!! note "Contenido de ampliación"
+    Este apéndice **no forma parte de la evaluación** del módulo ni se corresponde con un resultado de aprendizaje del RD 1629/2009. Los contenedores se trabajan en profundidad en el módulo *Implantación de Aplicaciones Web*. Aquí solo se repasan las ideas clave y se introduce el concepto de **orquestación**, por su relevancia en la administración de sistemas actual.
 
-    - **RA2** — Administra procesos del sistema describiéndolos y aplicando criterios de seguridad y eficiencia.
-    - **RA3** — Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.
+## 1. Repaso: contenedores y Docker
 
-## Prerequisitos
+- **Imagen**: plantilla inmutable con una aplicación y todas sus dependencias. Se distribuye a través de un **registro** (Docker Hub, etc.).
+- **Contenedor**: instancia en ejecución de una imagen. Para el sistema operativo es un **proceso aislado** mediante *namespaces* (aislamiento de PID, red, montajes…) y limitado con *cgroups* (CPU, memoria).
+- **Dockerfile**: receta para construir una imagen (`docker build`).
+- **docker compose**: describe varios contenedores y sus relaciones en un único fichero, para **un solo host**.
 
-En esta unidad se asume que ya conoces los conceptos básicos de contenedores trabajados en la asignatura **Implantación de Aplicaciones Web**:
+| Comando | Acción |
+| ------- | ------ |
+| `docker run` | Crear y arrancar un contenedor |
+| `docker ps` | Listar contenedores en ejecución |
+| `docker build -t img .` | Construir una imagen |
+| `docker logs` / `docker exec` | Ver registros / entrar en el contenedor |
+| `docker compose up -d` | Levantar una aplicación multicontenedor |
 
-- Qué es una **imagen** y un **contenedor**.
-- Comandos básicos de Docker (`run`, `build`, `ps`, `stop`, `rm`).
-- Qué es **Docker Hub** y cómo usar imágenes públicas.
-- Ficheros `Dockerfile` y `docker-compose.yml`.
+Desde el punto de vista de la administración de sistemas, un contenedor es una forma de **empaquetar y ejecutar un servicio** con sus dependencias, reproducible entre máquinas y sin "ensuciar" el sistema anfitrión.
 
----
+## 2. Por qué hace falta orquestar
 
-## 1. Introducción
+Docker resuelve "ejecutar contenedores en **un** servidor". En producción aparecen necesidades que un único host no cubre:
 
-### 1.1 Limitaciones de Docker en producción
+| Necesidad | Qué aporta un orquestador |
+| --------- | ------------------------- |
+| Alta disponibilidad | Reparte los contenedores entre varios nodos; si un nodo cae, los recrea en otro |
+| Escalado | Ajusta el número de réplicas de un servicio (manual o automático) |
+| Balanceo de carga | Distribuye el tráfico entre las réplicas |
+| Autorreparación | Reinicia o reprograma los contenedores que fallan |
+| Despliegues sin corte | Actualiza la imagen de forma progresiva (*rolling update*) y permite revertir |
+| Configuración y secretos | Gestiona parámetros y credenciales fuera de la imagen |
 
-Docker es ideal para ejecutar contenedores en un único servidor. Sin embargo, en entornos de producción reales surgen problemas que Docker por sí solo no resuelve:
+A esto se le llama **orquestación de contenedores**. Las opciones más habituales son **Kubernetes (K8s)** —el estándar de facto—, **Docker Swarm** (más simple) y **Nomad**.
 
-| Problema | Descripción |
-|----------|-------------|
-| **Alta disponibilidad** | Si el servidor cae, todos los contenedores caen con él |
-| **Escalado** | Escalar manualmente réplicas de un servicio es complejo |
-| **Balanceo de carga** | No hay mecanismo automático para distribuir tráfico entre réplicas |
-| **Recuperación automática** | Si un contenedor falla, no se reinicia solo en otro nodo |
-| **Despliegues sin downtime** | Actualizar una imagen sin interrumpir el servicio es difícil |
+## 3. Kubernetes en 5 conceptos
 
-### 1.2 ¿Qué es Kubernetes?
+| Concepto | Idea |
+| -------- | ---- |
+| **Clúster** | Conjunto de máquinas: un *control plane* que decide y varios *worker nodes* que ejecutan las cargas |
+| **Pod** | Unidad mínima de despliegue: uno o varios contenedores que comparten red y almacenamiento |
+| **Deployment** | Mantiene *N* réplicas de un Pod y gestiona actualizaciones y *rollback* |
+| **Service** | Punto de acceso de red estable (IP y DNS fijos) a un conjunto de Pods que cambian |
+| **Estado deseado** | Se describe en YAML lo que se quiere; Kubernetes **reconcilia** la realidad con esa descripción de forma continua |
 
-**Kubernetes** (también llamado **K8s**) es una plataforma de código abierto para la **orquestación de contenedores**. Fue desarrollado originalmente por Google y donado a la Cloud Native Computing Foundation (CNCF) en 2014.
+El modelo **declarativo** de Kubernetes es el mismo que ya has visto con **Ansible**: describes el resultado, no los pasos.
 
-Kubernetes automatiza el despliegue, el escalado y la gestión de aplicaciones en contenedores, distribuyéndolas entre un conjunto de máquinas llamado **clúster**.
+## 4. Prueba rápida (opcional)
 
-!!! note "¿Por qué K8s?"
-    El nombre abreviado K8s viene de sustituir las 8 letras entre la K y la s de "Kubernetes".
-
----
-
-## 2. Arquitectura
-
-Un clúster Kubernetes está formado por dos tipos de nodos:
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                     CLÚSTER KUBERNETES                  │
-│                                                         │
-│  ┌──────────────────────────────┐                       │
-│  │       CONTROL PLANE          │                       │
-│  │  ┌──────────┐ ┌───────────┐  │                       │
-│  │  │API Server│ │  etcd     │  │                       │
-│  │  └──────────┘ └───────────┘  │                       │
-│  │  ┌──────────┐ ┌───────────┐  │                       │
-│  │  │Scheduler │ │Controller │  │                       │
-│  │  └──────────┘ └───────────┘  │                       │
-│  └──────────────────────────────┘                       │
-│                                                         │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │  WORKER     │  │  WORKER     │  │  WORKER     │     │
-│  │  NODE 1     │  │  NODE 2     │  │  NODE 3     │     │
-│  │  kubelet    │  │  kubelet    │  │  kubelet    │     │
-│  │  kube-proxy │  │  kube-proxy │  │  kube-proxy │     │
-│  │  [pods...]  │  │  [pods...]  │  │  [pods...]  │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-```
-
-### 2.1 Control Plane
-
-El **Control Plane** (plano de control) gestiona el estado del clúster. Sus componentes principales son:
-
-| Componente | Función |
-|------------|---------|
-| **API Server** | Punto de entrada de todas las operaciones. Expone la API REST de Kubernetes |
-| **etcd** | Base de datos distribuida clave-valor que almacena el estado del clúster |
-| **Scheduler** | Decide en qué nodo se ejecuta cada Pod según los recursos disponibles |
-| **Controller Manager** | Bucle de control que asegura que el estado actual coincide con el deseado |
-
-### 2.2 Worker Nodes
-
-Los **Worker Nodes** son las máquinas que ejecutan las aplicaciones. Cada uno tiene:
-
-| Componente | Función |
-|------------|---------|
-| **kubelet** | Agente que se comunica con el API Server y gestiona los Pods del nodo |
-| **kube-proxy** | Gestiona las reglas de red para que los Pods se puedan comunicar |
-| **Container Runtime** | Motor que ejecuta los contenedores (containerd, CRI-O...) |
-
----
-
-## 3. Instalación del entorno: Minikube
-
-**Minikube** crea un clúster Kubernetes de un solo nodo en tu máquina local, ideal para aprender y hacer pruebas.
-
-### 3.1 Instalación de Minikube
+Con **Minikube** puedes levantar un clúster de un solo nodo en tu propio equipo:
 
 ```bash
-# Descargar el binario
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-
-# Instalar
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
-# Verificar
-minikube version
-```
-
-### 3.2 Instalación de kubectl
-
-`kubectl` es la herramienta de línea de comandos para interactuar con el clúster.
-
-```bash
-# Descargar kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-
-# Instalar
-sudo install kubectl /usr/local/bin/kubectl
-
-# Verificar
-kubectl version --client
-```
-
-### 3.3 Iniciar el clúster
-
-```bash
-# Iniciar Minikube (usa Docker como driver)
 minikube start --driver=docker
-
-# Ver el estado
-minikube status
-
-# Parar el clúster
-minikube stop
-
-# Eliminar el clúster
+kubectl create deployment web --image=nginx --replicas=2
+kubectl expose deployment web --type=NodePort --port=80
+minikube service web --url
+kubectl get pods -o wide
 minikube delete
 ```
 
----
-
-## 4. Objetos de Kubernetes
-
-Todo en Kubernetes se describe mediante **objetos**. Los más importantes son:
-
-### 4.1 Pod
-
-El **Pod** es la unidad mínima de despliegue en Kubernetes. Contiene uno o más contenedores que comparten red y almacenamiento.
-
-```yaml
-# pod-nginx.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: mi-pod
-  labels:
-    app: nginx
-spec:
-  containers:
-    - name: nginx
-      image: nginx:latest
-      ports:
-        - containerPort: 80
-```
-
-```bash
-# Crear el Pod
-kubectl apply -f pod-nginx.yaml
-
-# Ver Pods en ejecución
-kubectl get pods
-
-# Ver detalles del Pod
-kubectl describe pod mi-pod
-
-# Ver logs del contenedor
-kubectl logs mi-pod
-
-# Acceder al contenedor
-kubectl exec -it mi-pod -- /bin/bash
-
-# Eliminar el Pod
-kubectl delete pod mi-pod
-```
-
-!!! warning "Atención"
-    Los Pods son efímeros — si fallan, no se reinician solos. Para gestionar la disponibilidad se usan **Deployments**.
-
-### 4.2 Deployment
-
-Un **Deployment** gestiona un conjunto de réplicas de un Pod, asegurando que siempre haya el número deseado en ejecución. Si un Pod falla, lo recrea automáticamente.
-
-```yaml
-# deployment-nginx.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:1.25
-          ports:
-            - containerPort: 80
-```
-
-```bash
-# Crear el Deployment
-kubectl apply -f deployment-nginx.yaml
-
-# Ver Deployments
-kubectl get deployments
-
-# Ver el estado del rollout
-kubectl rollout status deployment/nginx-deployment
-
-# Escalar a 5 réplicas
-kubectl scale deployment nginx-deployment --replicas=5
-
-# Actualizar la imagen (rolling update)
-kubectl set image deployment/nginx-deployment nginx=nginx:1.26
-
-# Deshacer el último cambio
-kubectl rollout undo deployment/nginx-deployment
-
-# Eliminar el Deployment
-kubectl delete deployment nginx-deployment
-```
-
-### 4.3 Service
-
-Un **Service** expone un conjunto de Pods como un servicio de red estable, con una IP y nombre DNS fijos. Los Pods pueden cambiar, pero el Service siempre apunta a los correctos mediante **selectores de etiquetas**.
-
-Tipos de Service:
-
-| Tipo | Descripción |
-|------|-------------|
-| **ClusterIP** | Accesible solo dentro del clúster (por defecto) |
-| **NodePort** | Expone el servicio en un puerto de cada nodo (30000–32767) |
-| **LoadBalancer** | Crea un balanceador de carga externo (en cloud providers) |
-
-```yaml
-# service-nginx.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  type: NodePort
-  selector:
-    app: nginx
-  ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30080
-```
-
-```bash
-# Crear el Service
-kubectl apply -f service-nginx.yaml
-
-# Ver Services
-kubectl get services
-
-# Obtener la URL en Minikube
-minikube service nginx-service --url
-```
-
-### 4.4 Namespace
-
-Los **Namespaces** permiten dividir el clúster en entornos virtuales aislados (producción, desarrollo, testing...).
-
-```bash
-# Ver namespaces
-kubectl get namespaces
-
-# Crear un namespace
-kubectl create namespace desarrollo
-
-# Desplegar en un namespace concreto
-kubectl apply -f deployment-nginx.yaml -n desarrollo
-
-# Ver Pods de un namespace
-kubectl get pods -n desarrollo
-
-# Ver Pods de todos los namespaces
-kubectl get pods --all-namespaces
-```
-
----
-
-## 5. ConfigMaps y Secrets
-
-### 5.1 ConfigMap
-
-Un **ConfigMap** almacena configuración no sensible (variables de entorno, ficheros de configuración) desacoplada de la imagen del contenedor.
-
-```yaml
-# configmap.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-data:
-  APP_ENV: "produccion"
-  APP_PORT: "8080"
-  LOG_LEVEL: "info"
-```
-
-Usar el ConfigMap en un Deployment:
-
-```yaml
-spec:
-  containers:
-    - name: mi-app
-      image: mi-app:1.0
-      envFrom:
-        - configMapRef:
-            name: app-config
-```
-
-### 5.2 Secret
-
-Los **Secrets** almacenan información sensible (contraseñas, tokens, claves) codificada en base64.
-
-```bash
-# Crear un Secret desde la línea de comandos
-kubectl create secret generic db-credenciales \
-  --from-literal=usuario=admin \
-  --from-literal=password=S3cur3Pass!
-```
-
-```yaml
-# Usar el Secret en un Deployment
-spec:
-  containers:
-    - name: mi-app
-      image: mi-app:1.0
-      env:
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: db-credenciales
-              key: usuario
-        - name: DB_PASS
-          valueFrom:
-            secretKeyRef:
-              name: db-credenciales
-              key: password
-```
-
-!!! warning "Atención"
-    Los Secrets solo están codificados en base64, no cifrados. Para producción real se deben usar soluciones adicionales como **Sealed Secrets** o **HashiCorp Vault**.
-
----
-
-## 6. Almacenamiento persistente
-
-Los contenedores son efímeros — al eliminarse, sus datos desaparecen. Para datos persistentes se usan **Volumes**.
-
-### 6.1 PersistentVolume y PersistentVolumeClaim
-
-| Objeto | Descripción |
-|--------|-------------|
-| **PersistentVolume (PV)** | Recurso de almacenamiento físico aprovisionado en el clúster |
-| **PersistentVolumeClaim (PVC)** | Solicitud de almacenamiento hecha por un Pod |
-
-```yaml
-# persistent-volume.yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-datos
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/datos
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-datos
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-```
-
-Montar el PVC en un Pod:
-
-```yaml
-spec:
-  containers:
-    - name: mi-app
-      image: mi-app:1.0
-      volumeMounts:
-        - mountPath: /datos
-          name: almacenamiento
-  volumes:
-    - name: almacenamiento
-      persistentVolumeClaim:
-        claimName: pvc-datos
-```
-
----
-
-## 7. Referencia rápida de kubectl
-
-| Comando | Descripción |
-|---------|-------------|
-| `kubectl get pods` | Lista los Pods |
-| `kubectl get pods -o wide` | Lista Pods con IP y nodo |
-| `kubectl get all` | Lista todos los recursos |
-| `kubectl describe pod <nombre>` | Detalles de un Pod |
-| `kubectl logs <pod>` | Logs de un Pod |
-| `kubectl logs -f <pod>` | Logs en tiempo real |
-| `kubectl exec -it <pod> -- bash` | Acceso interactivo al contenedor |
-| `kubectl apply -f <fichero.yaml>` | Crear/actualizar recursos desde YAML |
-| `kubectl delete -f <fichero.yaml>` | Eliminar recursos definidos en YAML |
-| `kubectl delete pod <nombre>` | Eliminar un Pod |
-| `kubectl scale deployment <nombre> --replicas=N` | Escalar un Deployment |
-| `kubectl rollout status deployment/<nombre>` | Estado del despliegue |
-| `kubectl rollout undo deployment/<nombre>` | Revertir un despliegue |
-| `kubectl port-forward pod/<nombre> 8080:80` | Redirigir puerto local al Pod |
-| `kubectl top pods` | Uso de CPU y memoria por Pod |
-
----
-
-## 8. Actividades
-
-!!! example "Tarea"
-
-    **Práctica 1. Instalación y primer despliegue**
-
-    1. Instala Minikube y kubectl en tu máquina virtual.
-    2. Inicia el clúster con `minikube start`.
-    3. Verifica que el clúster funciona con `kubectl get nodes`.
-    4. Despliega un Pod con la imagen `nginx:latest` usando un manifiesto YAML.
-    5. Accede a los logs del Pod y conéctate a él con `kubectl exec`.
-    6. Elimina el Pod y verifica que desaparece.
-
-!!! example "Tarea"
-
-    **Práctica 2. Deployment y escalado**
-
-    1. Crea un Deployment con 2 réplicas de `nginx:1.25`.
-    2. Verifica que se crean 2 Pods con `kubectl get pods`.
-    3. Escala el Deployment a 4 réplicas y comprueba el resultado.
-    4. Actualiza la imagen a `nginx:1.26` y observa el rolling update con `kubectl rollout status`.
-    5. Deshaz la actualización con `kubectl rollout undo` y verifica que vuelve a `nginx:1.25`.
-    6. Expón el Deployment con un Service de tipo NodePort y accede desde el navegador usando `minikube service`.
-
-!!! example "Tarea"
-
-    **Práctica 3. ConfigMaps, Secrets y Namespaces**
-
-    1. Crea un Namespace llamado `produccion`.
-    2. Crea un ConfigMap con las variables `APP_ENV=produccion` y `LOG_LEVEL=info`.
-    3. Crea un Secret con un usuario y contraseña de base de datos.
-    4. Despliega un Pod en el Namespace `produccion` que use el ConfigMap y el Secret como variables de entorno.
-    5. Verifica dentro del contenedor con `kubectl exec` que las variables están disponibles.
-
-!!! tip "Reto"
-
-    **Práctica 4 (Avanzado). Aplicación con base de datos persistente**
-
-    Despliega una aplicación WordPress completa en Kubernetes:
-
-    1. Crea un Namespace `wordpress`.
-    2. Crea un Secret con las credenciales de MySQL.
-    3. Despliega MySQL con un PersistentVolumeClaim de 2Gi y un Service ClusterIP.
-    4. Despliega WordPress con un Service NodePort, usando el Secret para conectar a MySQL.
-    5. Accede a WordPress desde el navegador y completa la instalación.
-    6. Elimina el Pod de MySQL, deja que Kubernetes lo recree y verifica que los datos persisten.
+## 5. Para seguir aprendiendo
+
+- Documentación oficial: <https://kubernetes.io/es/docs/home/>
+- Tutorial interactivo *Kubernetes Basics*: <https://kubernetes.io/docs/tutorials/kubernetes-basics/>
+- Cursos de especialización relacionados: *Administración en la nube* y *Ciberseguridad en entornos de las tecnologías de la información*.

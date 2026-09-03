@@ -23,7 +23,9 @@ Aquí encontrarás todos los contenidos del módulo:
 - [UT7.1. Directorio Activo en Windows](wserver/directorio-activo.md)
 - [UT7.2. PowerShell - Directorio Activo](scripts/powershell-directorio.md)
 - [UT8. Administración en Windows](wserver/administracion.md)
-- [UT9. Kubernetes](linux/kubernetes.md)
+- [UT9. Monitorización y Rendimiento del Sistema](linux/monitorizacion.md)
+
+**Ampliación:** [Contenedores y orquestación](linux/kubernetes.md)
 
 ## Resultados de aprendizaje del módulo
 
