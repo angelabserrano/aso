@@ -25,8 +25,6 @@ Aquí encontrarás todos los contenidos del módulo:
 - [UT8. Administración en Windows](wserver/administracion.md)
 - [UT9. Monitorización Centralizada y Alertas](linux/monitorizacion.md)
 
-**Ampliación:** [Contenedores y orquestación](linux/kubernetes.md)
-
 ## Resultados de aprendizaje del módulo
 
 Según el currículo oficial (RD 1629/2009), al finalizar el módulo el alumnado será capaz de:
