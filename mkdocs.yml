@@ -54,6 +54,9 @@ plugins:
   - search:
       lang: es
 
+hooks:
+  - overrides/hooks/proximamente.py
+
 nav:
   - Inicio: index.md
   - UT0. Introducción a Git y Github: git/introduccion.md

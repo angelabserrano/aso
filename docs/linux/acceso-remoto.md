@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT3. Acceso y Administración Remota en Linux
 
 !!! abstract "Resultado de aprendizaje"

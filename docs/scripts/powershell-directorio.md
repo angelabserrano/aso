@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT7.2. PowerShell - Directorio Activo
 
 !!! abstract "Resultados de aprendizaje"

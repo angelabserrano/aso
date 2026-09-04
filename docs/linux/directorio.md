@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT5.1. Servicio de Directorio en Linux
 
 !!! abstract "Resultado de aprendizaje"

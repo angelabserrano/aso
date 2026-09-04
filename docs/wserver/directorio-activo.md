@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT7.1. Directorio Activo en Windows
 
 !!! abstract "Resultado de aprendizaje"

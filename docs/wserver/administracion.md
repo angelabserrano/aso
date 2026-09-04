@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT8. Administración en Windows
 
 !!! abstract "Resultado de aprendizaje"

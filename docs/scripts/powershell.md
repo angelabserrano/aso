@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT6. PowerShell
 
 !!! abstract "Resultado de aprendizaje"

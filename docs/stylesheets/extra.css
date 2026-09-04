@@ -55,3 +55,22 @@
     background-color: var(--md-primary-fg-color);
     color: var(--md-primary-bg-color);
 }
+
+/* Unidades aún sin publicar (hook «Próximamente») */
+.md-typeset a.proximamente {
+    color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .proximamente-tag {
+    display: inline-block;
+    margin-left: 0.4em;
+    padding: 0.05em 0.5em;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--md-default-fg-color--light);
+    background-color: var(--md-default-fg-color--lightest);
+    border-radius: 0.6em;
+    vertical-align: middle;
+}

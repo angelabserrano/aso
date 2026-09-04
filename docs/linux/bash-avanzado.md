@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT1.2. Bash Avanzado
 
 !!! abstract "Resultado de aprendizaje"

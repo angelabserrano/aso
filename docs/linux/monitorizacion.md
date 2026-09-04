@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # UT9. Monitorización Centralizada y Alertas
 
 !!! abstract "Resultado de aprendizaje"
