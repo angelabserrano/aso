@@ -123,6 +123,22 @@ seguido del directorio acabado en .tar.gz
 
 Crea un script donde se pida al usuario dos números y diga cúal es mayor.
 
+??? success "Solución"
+    ```bash
+    #!/bin/bash
+
+    read -p "Introduce el primer número: " num1
+    read -p "Introduce el segundo número: " num2
+
+    if [ "$num1" -gt "$num2" ]; then
+        echo "El mayor es $num1"
+    elif [ "$num2" -gt "$num1" ]; then
+        echo "El mayor es $num2"
+    else
+        echo "Los dos números son iguales"
+    fi
+    ```
+
 ### Ejercicio 9. Menú de operaciones matemáticas
 
 Realiza un script que contenga un menú, de forma que muestre las cuatro
