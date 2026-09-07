@@ -184,6 +184,19 @@ seleccionada.
 
 Crea un script parimpar.sh que solicite un número y diga si es par o impar.
 
+??? success "Solución"
+    ```bash
+    #!/bin/bash
+
+    read -p "Introduce un número: " num
+
+    if [ $((num % 2)) -eq 0 ]; then
+        echo "El número $num es par"
+    else
+        echo "El número $num es impar"
+    fi
+    ```
+
 ### Ejercicio 11. Copiar un fichero con validaciones
 
 Realizar un shell script que copie el fichero indicado como primer parámetro
