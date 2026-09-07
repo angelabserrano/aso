@@ -1299,7 +1299,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 
 
-### Ejercicios prácticos
+## 16. Ejercicios prácticos
 
 Los ejercicios de esta unidad están recogidos en una página aparte:
 [**UT1.1. Bash — Ejercicios**](bash-ejercicios.md).
