@@ -1365,6 +1365,18 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
     **Ejercicio 6**. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
 
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        read -p "Introduce una palabra: " palabra
+
+        echo "$palabra" >> lista.txt
+
+        echo "Contenido actual de lista.txt:"
+        cat lista.txt
+        ```
+
     **Ejercicio 7**. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
 
     **ESTRUCTURAS CONDICIONALES** 
