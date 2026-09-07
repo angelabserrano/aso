@@ -631,6 +631,8 @@ echo "Extensión: $ext"
 | Sustituir todas las coincidencias | `${var//palabra/nueva}` | Reemplaza todas las coincidencias |
 | Longitud de la cadena             | `${#var}`               | Devuelve número de caracteres     |
 
+<div id="id93" />
+
 ### 9.3 Expresiones numéricas
 
 | Expresion | Descripción |
@@ -804,6 +806,8 @@ esac
 
 
 
+
+<div id="id11" />
 
 ## 11. Bucles
 Un bucle es una secuencia de instrucciones de código que se ejecuta repetidas veces, hasta que la condición asignada a dicho bucle deja de cumplirse.
@@ -1254,6 +1258,8 @@ La combinación de estas utilidades en tus scripts de shell puede amplificar sig
 
 
 
+<div id="id13" />
+
 ## 14. Depuración y testeo
 
 Para depurar nuestros scripts, podemos usar `-x` al ejecutar el script
@@ -1309,11 +1315,53 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
     **Ejercicio 2**. Realiza un script que guarde en un fichero el listado de archivos y directorios de la carpeta *etc*, a posteriori que imprima por pantalla dicho listado.
 
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        ls /etc > listado.txt
+        cat listado.txt
+        ```
+
     **Ejercicio 3**. Modifica el script anterior para que además muestre por pantalla el número de líneas del archivo y el número de palabras.
+
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        ls /etc > listado.txt
+        cat listado.txt
+
+        wc -l listado.txt
+        wc -w listado.txt
+        ```
 
     **Ejercicio 4**. Diseña un script en Shell que pida al usuario dos números, los guarde en dos variables y los muestre por pantalla.
 
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        read -p "Introduce el primer número: " num1
+        read -p "Introduce el segundo número: " num2
+
+        echo "El primer número es: $num1"
+        echo "El segundo número es: $num2"
+        ```
+
     **Ejercicio 5**. Crea un script donde se pida al usuario dos números y muestre la media aritmética.
+
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        read -p "Introduce el primer número: " num1
+        read -p "Introduce el segundo número: " num2
+
+        media=$(echo "scale=2; ($num1 + $num2) / 2" | bc)
+
+        echo "La media aritmética es: $media"
+        ```
 
     **Ejercicio 6**. Crea un script donde se pida al usuario una palabra y se vaya añadiendo al mismo fichero de nombre lista.txt. Cada vez que se ejecute el script, se añadirá la nueva palabra al archivo lista.txt.
 
