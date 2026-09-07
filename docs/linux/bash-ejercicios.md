@@ -146,6 +146,40 @@ operaciones matemáticas básicas: sumar, restar, multiplicar y dividir. Solicit
 dos números al usuario y muestra el resultado en función de la opción
 seleccionada.
 
+??? success "Solución"
+    ```bash
+    #!/bin/bash
+
+    echo "Menú de operaciones"
+    echo "1) Sumar"
+    echo "2) Restar"
+    echo "3) Multiplicar"
+    echo "4) Dividir"
+    read -p "Elige una opción (1-4): " opcion
+
+    read -p "Introduce el primer número: " num1
+    read -p "Introduce el segundo número: " num2
+
+    case "$opcion" in
+        1) resultado=$(echo "scale=2; $num1 + $num2" | bc) ;;
+        2) resultado=$(echo "scale=2; $num1 - $num2" | bc) ;;
+        3) resultado=$(echo "scale=2; $num1 * $num2" | bc) ;;
+        4)
+            if [ "$num2" -eq 0 ]; then
+                echo "Error: no se puede dividir entre 0"
+                exit 1
+            fi
+            resultado=$(echo "scale=2; $num1 / $num2" | bc)
+            ;;
+        *)
+            echo "Opción no válida"
+            exit 1
+            ;;
+    esac
+
+    echo "Resultado: $resultado"
+    ```
+
 ### Ejercicio 10. parimpar.sh: par o impar
 
 Crea un script parimpar.sh que solicite un número y diga si es par o impar.
