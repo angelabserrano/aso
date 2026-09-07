@@ -1300,6 +1300,13 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
     **Ejercicio 1**. Crea un shell script que muestre por pantalla el mensaje “**¡Hola Mundo!**”.
 
+    ??? example "Solución"
+        ```bash
+        #!/bin/bash
+
+        echo "¡Hola Mundo!"
+        ```
+
     **Ejercicio 2**. Realiza un script que guarde en un fichero el listado de archivos y directorios de la carpeta *etc*, a posteriori que imprima por pantalla dicho listado.
 
     **Ejercicio 3**. Modifica el script anterior para que además muestre por pantalla el número de líneas del archivo y el número de palabras.
