@@ -1379,6 +1379,20 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
     **Ejercicio 7**. Realiza un script que, dado un directorio pasado por parámetro, cree un archivo tar comprimido con gzip y con nombre igual a la fecha en formato yyyy-mm-dd seguido del directorio acabado en .tar.gz
 
+    ??? success "Solución"
+        ```bash
+        #!/bin/bash
+
+        directorio=$1
+
+        fecha=$(date +%Y-%m-%d)
+        nombre="${fecha}-$(basename "$directorio").tar.gz"
+
+        tar -czf "$nombre" "$directorio"
+
+        echo "Creado el archivo $nombre"
+        ```
+
     **ESTRUCTURAS CONDICIONALES** 
 
     **Ejercicio 8**. Crea un script donde se pida al usuario dos números y diga cúal es mayor.
