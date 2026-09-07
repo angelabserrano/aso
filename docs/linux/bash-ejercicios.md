@@ -2,8 +2,7 @@
 
 !!! example "Tarea"
     Resuelve los ejercicios que se plantean a continuación. Están agrupados por
-    bloques temáticos. Usa el índice de la derecha para saltar a cada uno; las
-    soluciones disponibles están plegadas bajo cada enunciado.
+    bloques temáticos.
 
 ## Básicos
 
