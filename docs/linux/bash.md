@@ -1302,7 +1302,9 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 ### Ejercicios prácticos
 
 !!! example "Tarea"
-    **BASICOS**
+    Resuelve los ejercicios que se plantean a continuación. Están agrupados por bloques temáticos: usa las pestañas para navegar entre ellos.
+
+=== "Básicos"
 
     **Ejercicio 1**. Crea un shell script que muestre por pantalla el mensaje “**¡Hola Mundo!**”.
 
@@ -1393,7 +1395,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
         echo "Creado el archivo $nombre"
         ```
 
-    **ESTRUCTURAS CONDICIONALES** 
+=== "Estructuras condicionales"
 
     **Ejercicio 8**. Crea un script donde se pida al usuario dos números y diga cúal es mayor.
 
@@ -1438,7 +1440,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
     - En otro caso. Indicar “Error. La sintaxis correcta es
     ./gestionusuarios.sh alta/baja nombre apellido1 apellido2 [grupo]”
 
-    **BUCLES**
+=== "Bucles"
 
     **Ejercicio 15**. Realiza un script que, dado un número n pasado por parámetro, muestre su tabla de multiplicar con el formato de salida siguiente: i x n = resultado.
 
