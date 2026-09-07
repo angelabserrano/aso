@@ -12,32 +12,6 @@ Material elaborado por Ángela Bañuls Serrano
 
 ## Manual de Shell Script
 
-**Índice**
-
-1. [Introducción](#id1)
-2. [Nuestro primer Script "Hola mundo"](#id2)
-3. [Variables](#id3)
-4. [Entrada de datos por el usuario](#id4)
-5. [Comentarios](#id5)
-6. [Parámetros](#id6)
-7. [Arrays](#id7)
-8. [Matemáticas en bash](#id8)
-9. [Evaluación de expresiones](#id9)
-    1. [Expresiones de archivos](#id91)
-    2. [Expresiones de cadenas](#id92)
-    3. [Expresiones numéricas](#id93)
-    4. [Expresiones lógicas](#id94)
-10. [Condicionales](#id10)
-11. [Bucles](#id11)
-    1. [Bucles con for](#id111)
-    2. [Bucles con while](#id112)
-    3. [Bucles con until](#id113)
-    4. [Continue y Break](#id114)
-12. [Funciones](#id12) 
-13. [Depuración y testeo](#id13)
-
-
-
 ## Programación de Aula
 
 ### Resultados de Aprendizaje
