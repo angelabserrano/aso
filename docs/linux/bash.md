@@ -10,8 +10,6 @@ Material elaborado por Ángela Bañuls Serrano
 !!! info "Contenido visto en 1º"
     Esta unidad fue trabajada en el módulo **Implantación de Sistemas Operativos** de 1º. Debes **repasarla de forma autónoma** antes de continuar con los contenidos del curso.
 
-## Manual de Shell Script
-
 ## Programación de Aula
 
 ### Resultados de Aprendizaje
