@@ -11,22 +11,20 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 - Configurar un repositorio público en GitHub.
 - Almacenar scripts y documentación de la asignatura en el repositorio.
 
-## Contenidos
+## 1. Conceptos Básicos de Git
 
-### 1 Conceptos Básicos de Git
-
-#### 1.1 ¿Qué es Git?
+### 1.1 ¿Qué es Git?
 
    Git es un sistema de control de versiones distribuido, diseñado para manejar todo, desde proyectos pequeños hasta proyectos muy grandes con rapidez y eficiencia. Fue creado por Linus Torvalds en 2005 para el desarrollo del kernel de Linux. Su objetivo principal es mantener un seguimiento de los cambios en los archivos y coordinar el trabajo en esos archivos entre múltiples personas.
 
-#### 1.2 Importancia en el desarrollo de software y administración de sistemas
+### 1.2 Importancia en el desarrollo de software y administración de sistemas
 
    - **Colaboración**: Git permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente sin conflictos. Cada desarrollador puede tener una copia completa del historial del proyecto.
    - **Historial de cambios**: Cada cambio en el código se registra con un mensaje de commit, permitiendo un seguimiento preciso de la evolución del proyecto.
    - **Ramas y fusión**: Facilita la creación de ramas para el desarrollo de nuevas características o corrección de errores, las cuales se pueden fusionar al proyecto principal una vez finalizadas.
    - **Recuperación**: Permite revertir a versiones anteriores del proyecto si se introducen errores.
 
-#### 1.3 Instalación de Git en diferentes sistemas operativos
+### 1.3 Instalación de Git en diferentes sistemas operativos
 
    **Windows**
 
@@ -43,7 +41,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
      ```
 
 
-#### 1.4 Configuración inicial de Git
+### 1.4 Configuración inicial de Git
 
    Después de instalar Git, es importante configurarlo con tu nombre de usuario y correo electrónico, ya que esta información se usará en los commits.
 
@@ -59,7 +57,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
    ```
 
 
-#### 1.5 Comandos básicos de Git
+### 1.5 Comandos básicos de Git
 
    `git init`
 
@@ -128,7 +126,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
    
 
-#### 1.6 Flujo de trabajo en Git
+### 1.6 Flujo de trabajo en Git
 
    A continuación se muestra un esquema visual del **ciclo de vida de los cambios en Git**:
 
@@ -160,24 +158,24 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
      
 
-#### 📚 Resumen de comandos Git
+### 📚 Resumen de comandos Git
 
 !!! note "Cheat Sheet"
     [:material-file-pdf-box: Git Cheat Sheet (GitHub Education)](../assets/git-cheatsheet.pdf) — resumen de los comandos Git más útiles en dos páginas.
 
 
-### 2 Conceptos Básicos de GitHub
+## 2. Conceptos Básicos de GitHub
 
-#### 2.1 ¿Qué es GitHub? 
+### 2.1 ¿Qué es GitHub? 
 
    GitHub es una plataforma en línea que permite a los desarrolladores alojar y gestionar sus proyectos utilizando Git. Proporciona un entorno colaborativo donde los desarrolladores pueden compartir sus proyectos, trabajar juntos en el código, y gestionar el historial de versiones de manera eficiente.
 
-##### Plataforma para alojar repositorios Git
+#### Plataforma para alojar repositorios Git
 
    - **Alojamiento de Repositorios**: GitHub ofrece almacenamiento para repositorios Git, permitiendo a los desarrolladores guardar y compartir su código con facilidad.
    - **Interfaz Web**: Proporciona una interfaz web intuitiva para interactuar con los repositorios, revisar el historial de commits, gestionar problemas (issues) y realizar solicitudes de extracción (pull requests).
 
-##### Colaboración y control de versiones en la nube
+#### Colaboración y control de versiones en la nube
 
    - **Colaboración**: Permite a múltiples desarrolladores trabajar en el mismo proyecto simultáneamente. Las características como los pull requests y las revisiones de código facilitan la colaboración y revisión de cambios.
 
@@ -185,14 +183,14 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
 
      
 
-#### 2.2 Creación de una cuenta en GitHub
+### 2.2 Creación de una cuenta en GitHub
 
    1. **Registro**: Ve a la [página de registro de GitHub](https://github.com/join).
    2. **Formulario de Registro**: Completa el formulario de registro con tu nombre de usuario, correo electrónico y contraseña.
    3. **Verificación**: Sigue las instrucciones para verificar tu cuenta a través del correo electrónico.
    4. **Configuración Inicial**: Opcionalmente, puedes configurar algunas preferencias iniciales como temas y notificaciones.
 
-#### 2.3 Creación de un repositorio público en GitHub
+### 2.3 Creación de un repositorio público en GitHub
 
    1. **Iniciar Sesión**: Inicia sesión en tu cuenta de GitHub.
    2. **Nuevo Repositorio**: Haz clic en el botón "+" en la esquina superior derecha y selecciona "New repository".
@@ -204,7 +202,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
       - Puedes inicializar el repositorio con un archivo README, un archivo .gitignore y una licencia.
    5. **Crear Repositorio**: Haz clic en el botón "Create repository" para finalizar.
 
-#### 2.4 Configuración de SSH para autenticación segura
+### 2.4 Configuración de SSH para autenticación segura
 
    La autenticación SSH proporciona un método seguro para interactuar con GitHub sin tener que ingresar tu nombre de usuario y contraseña cada vez.
 
@@ -236,7 +234,7 @@ Antes de comenzar con los contenidos específicos de administración de sistemas
       ```
 
 
-### Práctica 1
+## Práctica 1
 
 !!! example "Tarea"
 
