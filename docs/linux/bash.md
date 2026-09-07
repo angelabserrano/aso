@@ -1300,7 +1300,7 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
     **Ejercicio 1**. Crea un shell script que muestre por pantalla el mensaje “**¡Hola Mundo!**”.
 
-    ??? example "Solución"
+    ??? success "Solución"
         ```bash
         #!/bin/bash
 
