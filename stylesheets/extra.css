@@ -1,0 +1,76 @@
+/* Custom admonition: reto */
+:root {
+    --md-admonition-icon--reto: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M18 2c0 0-3.3 0-6 2.6C9.3 2 6 2 6 2H2v8c0 2.8 1.9 5.1 4.5 5.8.9 2.4 2.8 4.3 5.5 4.2 2.7 0 4.6-1.8 5.5-4.2C19.9 15.1 22 12.8 22 10V2h-4zM8 13.8C6.2 13.2 4 11.3 4 9V4h2v6c0 1.4.5 2.7 2 3.8zm4 2.2c-2.2 0-4-1.8-4-4V4h3c1.1.9 2.1 2.2 2.5 3.3.4-1.1 1.4-2.4 2.5-3.3H19v8c0 2.2-1.8 4-4 4zm4-2.2c1.5-1.1 2-2.4 2-3.8V4h2v5c0 2.3-2.2 4.2-4 4.8z'/></svg>");
+}
+
+.md-typeset .admonition.reto,
+.md-typeset details.reto {
+    border-color: rgb(255, 145, 0);
+}
+
+.md-typeset .reto > .admonition-title,
+.md-typeset .reto > summary {
+    background-color: rgba(255, 145, 0, 0.1);
+    color: rgb(200, 100, 0);
+}
+
+.md-typeset .reto > .admonition-title::before,
+.md-typeset .reto > summary::before {
+    background-color: rgb(255, 145, 0);
+    -webkit-mask-image: var(--md-admonition-icon--reto);
+            mask-image: var(--md-admonition-icon--reto);
+}
+
+/* En escritorio, ocultar el menú lateral izquierdo (lista de unidades) y
+   mover el índice de la unidad al lado izquierdo.
+   En móvil/tableta se conserva el menú desplegable (hamburguesa). */
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        display: none;
+    }
+
+    .md-sidebar--secondary {
+        order: -1;
+        float: left;
+    }
+}
+
+/* Enlace "Volver al índice de todas las unidades" en cada unidad */
+.volver-unidades {
+    display: inline-block;
+    margin: 0 0 1.2rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--md-primary-fg-color);
+    border: 1px solid var(--md-primary-fg-color);
+    border-radius: 0.2rem;
+    text-decoration: none;
+    transition: background-color 125ms, color 125ms;
+}
+
+.volver-unidades:hover,
+.volver-unidades:focus {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+}
+
+/* Unidades aún sin publicar (hook «Próximamente») */
+.md-typeset a.proximamente {
+    color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .proximamente-tag {
+    display: inline-block;
+    margin-left: 0.4em;
+    padding: 0.05em 0.5em;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--md-default-fg-color--light);
+    background-color: var(--md-default-fg-color--lightest);
+    border-radius: 0.6em;
+    vertical-align: middle;
+}
