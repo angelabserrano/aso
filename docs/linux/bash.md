@@ -36,18 +36,6 @@ Los criterios de evaluación asociados son:
 
 
 
-### Planificación Temporal (6 sesiones / 12 horas)
-
-| Sesión | Contenido                                                    |
-| ------ | ------------------------------------------------------------ |
-| 1      | Introducción, comentarios, variables,  tipos de datos, parámetros y operaciones básicas |
-| 2      | Estructuras condicionales                                    |
-| 3      | Estructuras repetitivas                                      |
-| 4      | Importación de datos y funciones                             |
-| 5      | Refuerzo y Ampliación                                        |
-
-
-
 
 
 <div id="id1" />
