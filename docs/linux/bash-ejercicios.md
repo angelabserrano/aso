@@ -211,6 +211,35 @@ parámetro posicional. Hay que controlar:
 Si se produce alguna de las situaciones anteriores se visualizará un mensaje de
 error indicativo.
 
+??? success "Solución"
+    ```bash
+    #!/bin/bash
+
+    # a) Se deben indicar dos parámetros
+    if [ $# -ne 2 ]; then
+        echo "Error: se deben indicar dos parámetros (origen y destino)"
+        exit 1
+    fi
+
+    origen=$1
+    destino=$2
+
+    # b) El primer parámetro debe existir y ser un archivo ordinario
+    if [ ! -f "$origen" ]; then
+        echo "Error: '$origen' no existe o no es un archivo ordinario"
+        exit 2
+    fi
+
+    # c) No debe existir ningún identificador con el nombre del segundo parámetro
+    if [ -e "$destino" ]; then
+        echo "Error: ya existe un fichero o directorio llamado '$destino'"
+        exit 3
+    fi
+
+    cp "$origen" "$destino"
+    echo "Copia realizada: '$origen' -> '$destino'"
+    ```
+
 ### Ejercicio 12. Buenos días / tardes / noches según la hora
 
 Crea un shell script que al ejecutarlo muestre por pantalla uno de estos
@@ -218,6 +247,22 @@ mensajes **“Buenos días”**, **“Buenas tardes”** o **“Buenas noches”
 función de la hora que sea en el sistema (de 8:00 de la mañana a 15:00 será
 mañana, de 15:00 a 20:00 será tarde y el resto será noche). Para obtener la hora
 del sistema utiliza el comando date.
+
+??? success "Solución"
+    ```bash
+    #!/bin/bash
+
+    # Hora actual del sistema (0-23), sin cero a la izquierda
+    hora=$(date +%-H)
+
+    if [[ $hora -ge 8 && $hora -lt 15 ]]; then
+        echo "Buenos días"
+    elif [[ $hora -ge 15 && $hora -lt 20 ]]; then
+        echo "Buenas tardes"
+    else
+        echo "Buenas noches"
+    fi
+    ```
 
 ### Ejercicio 13. AGENDA: mantenimiento de lista.txt
 
