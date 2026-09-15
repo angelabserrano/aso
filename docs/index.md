@@ -22,8 +22,7 @@ Aquí encontrarás todos los contenidos del módulo:
 - [UT6. PowerShell](scripts/powershell.md)
 - [UT7.1. Directorio Activo en Windows](wserver/directorio-activo.md)
 - [UT7.2. PowerShell - Directorio Activo](scripts/powershell-directorio.md)
-- [UT8. Administración en Windows](wserver/administracion.md)
-- [UT9. Monitorización Centralizada y Alertas](linux/monitorizacion.md)
+- [UT8. Monitorización Centralizada y Alertas](linux/monitorizacion.md)
 
 ## Resultados de aprendizaje del módulo
 

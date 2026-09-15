@@ -585,7 +585,7 @@ $ atrm 14
 
 Administrar un sistema no es solo arrancar y parar procesos y servicios: también hay que **vigilar su estado y su rendimiento** para detectar incidencias, diagnosticar problemas y prever necesidades de recursos. El RD 1629/2009 lo recoge en el RA2 ("utilizar herramientas gráficas y comandos para el control y seguimiento de los procesos del sistema").
 
-Aquí se ven las **herramientas del propio sistema**, siempre disponibles y sin instalar nada. La monitorización **centralizada** de varios equipos, con histórico y alertas (Prometheus y Grafana), se trata en la **UT9**.
+Aquí se ven las **herramientas del propio sistema**, siempre disponibles y sin instalar nada. La monitorización **centralizada** de varios equipos, con histórico y alertas (Prometheus y Grafana), se trata en la **UT8**.
 
 ### 5.1 Tres tipos de datos
 
