@@ -1217,6 +1217,36 @@ sed -n '3,7p' fichero.txt               # De la línea 3 a la 7
 cut -f1 archivo.txt
 ```
 
+- Más ejemplos:
+
+```bash
+# Especificar el delimitador con -d (por defecto es el tabulador)
+cut -d: -f1 /etc/passwd             # Nombre de los usuarios
+cut -d, -f2 empleados.csv           # Segunda columna de un CSV
+
+# Varias columnas
+cut -d: -f1,6 /etc/passwd           # Columnas 1 y 6 (usuario y directorio personal)
+cut -d: -f1-3 /etc/passwd           # Rango: de la columna 1 a la 3
+cut -d: -f5- /etc/passwd            # De la columna 5 hasta el final
+
+# Cambiar el separador de la salida
+cut -d: -f1,7 --output-delimiter=" -> " /etc/passwd   # root -> /bin/bash
+
+# Todas las columnas excepto las indicadas
+cut -d: -f2 --complement /etc/passwd
+
+# Cortar por caracteres con -c
+cut -c1-3 archivo.txt               # Los 3 primeros caracteres de cada línea
+cut -c5- archivo.txt                # Desde el carácter 5 hasta el final
+
+# Combinado con otros comandos mediante tuberías
+date | cut -d' ' -f1                # Primera palabra de la salida de date
+ip -4 addr show | grep inet | cut -d' ' -f6   # Direcciones IP con su máscara
+```
+
+!!! note "Limitación de `cut`"
+    `cut` usa como delimitador **un único carácter**, y cada aparición cuenta como una columna nueva. Si los campos están separados por varios espacios seguidos (como en la salida de `ls -l` o `ps`), es mejor usar `awk '{print $N}'`, que trata cualquier cantidad de espacios como un solo separador.
+
 **sort**
 
 - **Descripción:** `sort` ordena las líneas de texto en un archivo.
