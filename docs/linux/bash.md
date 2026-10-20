@@ -1197,6 +1197,7 @@ sed 's/texto1/texto2/g' archivo.txt
 sed 's/antiguo/nuevo/' fichero.txt      # Solo la primera ocurrencia de cada línea
 sed 's/antiguo/nuevo/g' fichero.txt     # Todas las ocurrencias (flag g)
 sed -i 's/antiguo/nuevo/g' fichero.txt  # Modifica el fichero directamente (flag -i)
+sed -i.bak 's/antiguo/nuevo/g' fichero.txt  # Igual, pero guarda antes una copia del original en fichero.txt.bak
 
 # Borrar líneas
 sed '/error/d' fichero.txt              # Borra las líneas que contienen "error"
