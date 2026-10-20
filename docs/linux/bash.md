@@ -1,14 +1,13 @@
-# UT1.1. Bash
+# UT1. Bash
 
 !!! abstract "Resultado de aprendizaje"
     Esta unidad trabaja el **RA7** del RD 1629/2009: *Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.*
 
+    **Duración:** 14 horas.
+
 **CFGS Administración de Sistemas Informáticos y Redes**
 
 Material elaborado por Ángela Bañuls Serrano
-
-!!! info "Contenido visto en 1º"
-    Esta unidad fue trabajada en el módulo **Implantación de Sistemas Operativos** de 1º. Debes **repasarla de forma autónoma** antes de continuar con los contenidos del curso.
 
 
 <div id="id1" />
@@ -1087,6 +1086,26 @@ resultado=$(sumar 3 5)
 echo "El resultado es $resultado"
 ```
 
+#### ✅ Usar una función como condición
+
+Como el código de salida de una función funciona igual que el de cualquier comando, se puede usar **directamente en un `if`**, sin consultar `$?`:
+
+```bash
+usuario_existe() {
+  if id "$1" &>/dev/null; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+if usuario_existe "alumno"; then
+  echo "El usuario existe"
+else
+  echo "El usuario no existe"
+fi
+```
+
 
 
 ## 13. Utilidades y herramientas comunes
@@ -1104,22 +1123,88 @@ Los scripts de shell se vuelven realmente poderosos cuando se combinan con una v
 grep 'palabra' archivo.txt
 ```
 
+- Opciones útiles y expresiones regulares extendidas (`-E`, equivalente al antiguo `egrep`):
+
+```bash
+grep -E "patron1|patron2" fichero.txt    # OR
+grep -E "^[0-9]{3}-[A-Z]{2}" fichero.txt # líneas que empiezan por 3 dígitos, guion y 2 mayúsculas
+grep -v "patron" fichero.txt             # líneas que NO coinciden
+grep -c "patron" fichero.txt             # cuenta las líneas que coinciden
+grep -i "patron" fichero.txt             # no distingue mayúsculas de minúsculas
+```
+
+- **Expresiones regulares básicas** (BRE). Es el modo por defecto de `grep` (sin opciones):
+
+| Patrón | Descripción | Ejemplo |
+|--------|-------------|---------|
+| `^` | Inicio de línea | `grep "^root" /etc/passwd` |
+| `$` | Fin de línea | `grep "bash$" /etc/passwd` |
+| `.` | Cualquier carácter | `grep "c.sa" fichero.txt` |
+| `*` | 0 o más repeticiones del carácter anterior | `grep "ab*c" fichero.txt` |
+| `[abc]` | Uno de los caracteres indicados | `grep "[Hh]ola" fichero.txt` |
+| `[^abc]` | Cualquier carácter excepto los indicados | `grep "[^0-9]" fichero.txt` |
+| `[a-z]` / `[0-9]` | Rango de caracteres | `grep "[0-9]" fichero.txt` |
+| `\` | Escapa un carácter especial | `grep "\." fichero.txt` |
+| `\w` | Carácter alfanumérico o `_` (`[a-zA-Z0-9_]`) | `grep "\w" fichero.txt` |
+
+- **Expresiones regulares extendidas** (ERE). Se activan con `grep -E` (antiguo `egrep`) y añaden estos operadores a los anteriores:
+
+| Patrón | Descripción | Ejemplo |
+|--------|-------------|---------|
+| `+` | 1 o más repeticiones | `grep -E "[0-9]+" fichero.txt` |
+| `?` | 0 o 1 repetición | `grep -E "colou?r" fichero.txt` |
+| `{n}` | Exactamente n repeticiones | `grep -E "^[0-9]{9}$" telefonos.txt` |
+| `{n,m}` | Entre n y m repeticiones | `grep -E "[0-9]{1,3}" fichero.txt` |
+| <code>&#124;</code> | Alternativa (OR) | <code>grep -E "error&#124;fallo" log.txt</code> |
+| `( )` | Agrupa una parte del patrón | `grep -E "(ab)+" fichero.txt` |
+
+!!! note "Básicas frente a extendidas"
+    En GNU `grep` sin `-E` también se pueden usar estos operadores, pero escapados con `\`: `\+`, `\?`, `\{n,m\}`, `\|`, `\( \)`. Con `-E` se escriben sin barra, lo que hace los patrones más legibles. `\d` (dígito) no existe en ninguno de los dos modos: usa `[0-9]` o `grep -P`.
+
 **awk**
 
-- **Descripción:** `awk` es un lenguaje de programación diseñado para procesar y analizar archivos de texto. Es excepcionalmente bueno en el procesamiento de datos tabulares.
+- **Descripción:** `awk` es un lenguaje de programación diseñado para procesar y analizar archivos de texto. Es excepcionalmente bueno en el procesamiento de datos tabulares (por columnas).
 - Uso Común:  Imprimir la tercera columna de un archivo separado por comas. 
 
 ```bash
 awk -F, '{print $3}' archivo.csv
 ```
 
+- Más ejemplos:
+
+```bash
+awk '{ print $1 }' fichero.txt              # Imprime la primera columna (separador: espacios)
+awk -F: '{ print $1 }' /etc/passwd          # Usa : como separador
+awk -F: '$3 >= 1000 { print $1, $3 }' /etc/passwd   # Filtra por condición: usuarios con UID >= 1000
+awk -F, '{ suma += $3 } END { print "Total:", suma }' fichero.csv   # Suma una columna
+```
+
+El bloque `END { ... }` se ejecuta una sola vez, después de procesar todas las líneas.
+
 **sed**
 
-- **Descripción:** `sed` (stream editor) se utiliza para realizar transformaciones básicas de texto en un flujo de entrada (un archivo o entrada desde otro comando).
+- **Descripción:** `sed` (stream editor) se utiliza para realizar transformaciones de texto línea a línea en un flujo de entrada (un archivo o entrada desde otro comando).
 - Uso Común: Reemplazar todas las instancias de 'texto1' por 'texto2' en un archivo.
 
 ```bash
 sed 's/texto1/texto2/g' archivo.txt
+```
+
+- Más ejemplos:
+
+```bash
+# Sustitución
+sed 's/antiguo/nuevo/' fichero.txt      # Solo la primera ocurrencia de cada línea
+sed 's/antiguo/nuevo/g' fichero.txt     # Todas las ocurrencias (flag g)
+sed -i 's/antiguo/nuevo/g' fichero.txt  # Modifica el fichero directamente (flag -i)
+
+# Borrar líneas
+sed '/error/d' fichero.txt              # Borra las líneas que contienen "error"
+sed '/^$/d' fichero.txt                 # Borra las líneas en blanco
+
+# Imprimir líneas concretas
+sed -n '5p' fichero.txt                 # Solo la línea 5
+sed -n '3,7p' fichero.txt               # De la línea 3 a la 7
 ```
 
 **cut**
@@ -1193,7 +1278,49 @@ La combinación de estas utilidades en tus scripts de shell puede amplificar sig
 
 <div id="id13" />
 
-## 14. Depuración y testeo
+## 14. Manejo de errores, depuración y testeo
+
+### 14.1 Códigos de salida
+
+Todo comando devuelve un código de salida: **0** indica éxito, cualquier otro valor indica error. Se consulta con `$?` justo después del comando.
+
+```bash
+ls /ruta/inexistente
+echo "Código de salida: $?"   # Mostrará un valor distinto de 0
+```
+
+### 14.2 `set -e` y `set -u`
+
+```bash
+#!/bin/bash
+set -e   # El script se detiene si cualquier comando falla
+set -u   # El script se detiene si se usa una variable no definida
+```
+
+### 14.3 `trap`: capturar señales y errores
+
+`trap` permite ejecutar código cuando el script recibe una señal o termina.
+
+```bash
+trap 'echo "Script interrumpido"; exit 1' SIGINT SIGTERM
+
+trap 'echo "Error en la línea $LINENO"' ERR
+```
+
+**Ejemplo: limpieza al salir**
+
+```bash
+#!/bin/bash
+set -e
+
+TMPFILE=$(mktemp)
+trap 'rm -f "$TMPFILE"' EXIT
+
+echo "Trabajando con $TMPFILE..."
+# Si el script falla o termina, el fichero temporal se elimina siempre
+```
+
+### 14.4 Depuración
 
 Para depurar nuestros scripts, podemos usar `-x` al ejecutar el script
 ```bash
@@ -1232,7 +1359,88 @@ Durante la creación de nuestros scripts, es importante seguir unas buenas prác
 
 
 
-## 16. Ejercicios prácticos
+## 16. Ejemplos de scripts de administración
+
+### 16.1 Parsear logs del sistema
+
+**Ejemplo: extraer las líneas de error del syslog**
+
+```bash
+#!/bin/bash
+LOG="/var/log/syslog"
+SALIDA="/tmp/errores_$(date +%Y%m%d).txt"
+
+grep -Ei "error|critical|failed" "$LOG" > "$SALIDA"
+
+echo "Errores encontrados: $(wc -l < "$SALIDA")"
+echo "Informe guardado en: $SALIDA"
+```
+
+### 16.2 Gestión masiva de usuarios desde CSV
+
+Dado un fichero `usuarios.csv` con columnas `nombre,apellido,departamento`:
+
+```bash
+#!/bin/bash
+set -e
+
+FICHERO="usuarios.csv"
+
+while IFS=, read -r nombre apellido departamento; do
+    LOGIN="${nombre,,}.${apellido,,}"   # minúsculas
+
+    if id "$LOGIN" &>/dev/null; then
+        echo "Usuario $LOGIN ya existe, omitiendo..."
+        continue
+    fi
+
+    useradd -m -c "$nombre $apellido" -G "$departamento" "$LOGIN"
+    echo "$LOGIN:Cambiar2025." | chpasswd
+    passwd --expire "$LOGIN"
+    echo "Usuario $LOGIN creado en grupo $departamento"
+done < <(tail -n +2 "$FICHERO")   # saltar cabecera
+```
+
+### 16.3 Script de backup automatizado
+
+```bash
+#!/bin/bash
+set -e
+
+ORIGEN="/home"
+DESTINO="/backups"
+FECHA=$(date +%Y%m%d_%H%M%S)
+BACKUP="$DESTINO/backup_$FECHA.tar.gz"
+
+mkdir -p "$DESTINO"
+
+tar -czf "$BACKUP" "$ORIGEN"
+echo "Backup creado: $BACKUP ($(du -sh "$BACKUP" | cut -f1))"
+
+# Eliminar backups con más de 7 días
+find "$DESTINO" -name "backup_*.tar.gz" -mtime +7 -delete
+echo "Backups antiguos eliminados"
+```
+
+### 16.4 Monitorización de servicios
+
+```bash
+#!/bin/bash
+
+SERVICIOS=("ssh" "apache2" "cron")
+LOG="/var/log/monitor_servicios.log"
+
+for servicio in "${SERVICIOS[@]}"; do
+    if systemctl is-active --quiet "$servicio"; then
+        echo "[OK]  $servicio activo" | tee -a "$LOG"
+    else
+        echo "[FAIL] $servicio caído — reiniciando..." | tee -a "$LOG"
+        systemctl start "$servicio"
+    fi
+done
+```
+
+## 17. Ejercicios prácticos
 
 Los ejercicios de esta unidad están recogidos en una página aparte:
-[**UT1.1. Bash — Ejercicios**](bash-ejercicios.md).
+[**UT1. Bash — Ejercicios**](bash-ejercicios.md).

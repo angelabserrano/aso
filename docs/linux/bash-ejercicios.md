@@ -1,4 +1,4 @@
-# UT1.1. Bash — Ejercicios
+# UT1. Bash — Ejercicios
 
 !!! example "Tarea"
     Resuelve los ejercicios que se plantean a continuación. Están agrupados por
@@ -362,3 +362,85 @@ Escribir un script que, dado el nombre de un directorio como parámetro, muestre
 las estadísticas de cuantos ficheros y cuantos subdirectorios contiene. Debes
 comprobar que existe el directorio que se pasa como parámetro y que
 efectivamente es un directorio.
+
+## Expresiones regulares
+
+### Ejercicio 25. Últimos inicios de sesión con IP de origen
+
+Realiza un script que muestre la lista de los últimos usuarios que iniciaron
+sesión, incluidas las direcciones IP de origen. (Solo debes mostrar las líneas
+en las que aparece una IP). Debes hacer uso del comando `last` y `grep -E`.
+
+??? tip "Pista"
+    El comando `last` muestra el historial de inicios de sesión. Una dirección IP está formada por cuatro grupos de 1 a 3 dígitos separados por puntos. Construye ese patrón con `grep -E`.
+
+### Ejercicio 26. Ficheros modificables por cualquier usuario
+
+Realiza un script que busque cualquier fichero que pueda ser modificado por
+cualquier usuario (`--- --- rwx`) y guarde la lista de ficheros con la ruta
+exacta en el archivo `archivos_peligrosos.txt`.
+
+??? tip "Pista"
+    Usa `find` con el flag `-perm -o+w` para localizar ficheros con permiso de escritura para otros. Redirige la salida al fichero de destino. El flag `2>/dev/null` evita los errores de permiso al recorrer el sistema de ficheros.
+
+## Funciones
+
+### Ejercicio 27. AGENDA con funciones
+
+Reescribe el script de la **agenda** (Ejercicio 13) utilizando **funciones**
+para estructurar el código. El programa debe permitir **añadir, listar, buscar,
+borrar y editar** contactos almacenados en un fichero `agenda.csv` con formato
+`Nombre;Teléfono;Email`.
+
+**Requisitos mínimos:**
+
+- Cada operación debe implementarse en una **función** (`añadir_contacto`, `listar_contactos`, `buscar_contacto`, `borrar_contacto`, `editar_contacto`, `imprimir_menu`).
+- Incluir validaciones básicas de teléfono y correo electrónico (uso de expresiones regulares).
+- Mostrar un **menú principal** que permita elegir la acción a realizar.
+- Guardar los cambios en el fichero al finalizar cada operación.
+
+??? tip "Pista"
+    Usa un `case` para el menú principal. Para validar el teléfono y el email dentro de la función puedes usar el operador `=~`:
+    ```bash
+    [[ "$tel" =~ ^[0-9]{9}$ ]]
+    [[ "$email" =~ ^[^@]+@[^@]+\.[^@]+$ ]]
+    ```
+
+### Ejercicio 28. Función `existe`
+
+Crea un script que contenga una función `existe` que reciba como parámetro el
+nombre de un fichero. Si el fichero existe, el script debe cambiar sus permisos
+a ejecutable para el propietario, pero no para el resto.
+
+??? tip "Pista"
+    Usa `[ -f "$1" ]` dentro de la función para comprobar si el fichero existe. Para cambiar los permisos solo al propietario usa `chmod u+x,go-x`.
+
+### Ejercicio 29. Informe de IP libres en la red
+
+Realiza un script utilizando funciones que permita crear un informe de las
+**IP libres** en la red en la que se encuentra el equipo con las siguientes
+secciones:
+
+1. Listado de todas las IPs de la red indicando si está libre o no (usa `ping`).
+2. Tipo de red (rango CIDR), nombre de la red, broadcast y máscara de subred.
+
+??? tip "Pista"
+    - Usa `ip route | grep -v default` para obtener el rango de red del equipo.
+    - Extrae el prefijo de red con `cut -d'.' -f1-3` para recorrer las IPs con un bucle `for i in $(seq 1 254)`.
+    - `ping -c 1 -W 1 <ip>` devuelve código 0 si la IP responde y distinto de 0 si está libre.
+    - `ipcalc` permite obtener la información de red de forma sencilla.
+
+## Práctica 1. Script de administración
+
+!!! example "Tarea"
+
+    Crea un script Bash completo que lea un fichero `empleados.csv` (columnas: `nombre`, `apellido`, `departamento`) y realice las siguientes acciones:
+
+    1. Crear un grupo por cada departamento si no existe.
+    2. Crear cada usuario con login `nombre.apellido` (en minúsculas), asignarlo a su grupo y forzar cambio de contraseña en el primer login.
+    3. Registrar en un fichero de log (`/tmp/alta_usuarios.log`) cada acción realizada (usuario creado, grupo creado, errores).
+    4. Si el usuario ya existe, mostrar un aviso y continuar sin error.
+
+    El script debe usar funciones, gestión de errores (`set -e`, `trap`) y estar correctamente documentado.
+
+    **Entrega:** Sube el script a tu repositorio de GitHub en la carpeta `UT1/` y entrega la URL en Aules.

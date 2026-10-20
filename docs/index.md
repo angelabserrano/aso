@@ -12,8 +12,7 @@ Bienvenido a los apuntes de **Administración de Sistemas Operativos (ASO)**.
 Aquí encontrarás todos los contenidos del módulo:
 
 - [UT0. Introducción a Git y Github](git/introduccion.md)
-- [UT1.1. Bash](linux/bash.md)
-- [UT1.2. Bash Avanzado](linux/bash-avanzado.md)
+- [UT1. Bash](linux/bash.md)
 - [UT2. Procesos, Servicios y Automatización](linux/procesos.md)
 - [UT3. Acceso y Administración Remota en Linux](linux/acceso-remoto.md)
 - [UT4. Ansible](linux/ansible.md)
