@@ -89,7 +89,7 @@ A continuación se muestra una tabla resumen de comandos para la gestión de pro
 
 El comando **ps** proporciona información sobre los procesos que se están ejecutando en el sistema.  Si  escribimos  en  el  terminal  `ps`,  obtendremos  como  salida  un  listado  de  los procesos lanzados con el usuario actual que aún se están ejecutando.
 
-​    <img src="../assets/img/linux/comando_ps.png" alt="img" style="zoom:75%;" />
+![img](../assets/img/linux/comando_ps.png){ width=450 }
 
 Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
@@ -103,7 +103,7 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 - **-e** devuelve un listado de todos los procesos que se están ejecutando. 
 - **-f** devuelve un listado extendido. En este último caso veremos en pantalla el **PPID** del proceso (identificador del proceso padre) y la hora en la que se ejecutó el proceso (STIME).
 
-​    ![img](../assets/img/linux/comando_ps2.png)    Resultado comando ps -f
+![img](../assets/img/linux/comando_ps2.png){ width=550 }    Resultado comando ps -f
 
 - **-ef** obtendríamos un listado extendido de todos los procesos que se están ejecutando en el sistema.
 - **-u**  informa  de  los  procesos  lanzado  por  un  determinado  usuario.  De  tal  forma  que  si escribimos “**ps -u alumno**”, aparecerá un listado de los procesos que está ejecutando el usuario alumno. 
@@ -112,7 +112,7 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
 El comando **pstree** visualiza, en forma de árbol, todos  los procesos del sistema, de esta forma se puede ver las relaciones que  existen entre los procesos.
 
-![img](../assets/img/linux/004.png)
+![img](../assets/img/linux/004.png){ width=550 }
 
 
 
@@ -127,7 +127,7 @@ En la parte superior se muestra la siguiente información adicional:
 - El número total de tareas o procesos que se están ejecutando.
 - El número de usuarios o el porcentaje de uso del procesador.
 
-![img](../assets/img/linux/005.png)
+![img](../assets/img/linux/005.png){ width=600 }
 
 
 
