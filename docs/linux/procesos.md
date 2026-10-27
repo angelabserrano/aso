@@ -110,15 +110,14 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
 **Ejemplo resuelto. Procesos de un usuario**
 
-Comprueba que el usuario `alumno` existe y muestra sus procesos indicando el PID, el estado, el % de CPU, el % de memoria y el comando.
+Muestra los procesos del usuario `alumno` indicando el PID, el estado, el % de CPU, el % de memoria y el comando.
 
 ??? success "Solución"
     ```bash
-    id alumno
     ps -u alumno -o pid,stat,%cpu,%mem,cmd
     ```
 
-    Si el usuario no existe, `id` muestra `id: «alumno»: no existe ese usuario`. La opción `-o` permite elegir las columnas que muestra `ps`.
+    La opción `-o` permite elegir las columnas que muestra `ps`.
 
 **Ejemplo resuelto. Buscar un proceso por nombre**
 
