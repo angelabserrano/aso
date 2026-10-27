@@ -601,7 +601,6 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
     6. **Finalizar un proceso:** pide el PID y una confirmación (s/n). Envía primero la señal `SIGTERM`; si a los 3 segundos el proceso sigue vivo, envía `SIGKILL`.
     7. Crea una función `validar_pid` que reciba un PID como parámetro y **devuelva** 0 si es un número y el proceso existe, o 1 en caso contrario. Reutilízala en las opciones 4 y 5.
     8. Registra cada cambio de prioridad y cada proceso finalizado en el fichero `~/gestion_procesos.log` con el formato `fecha hora - acción - PID - comando`.
-    9. Usa `trap` para que, si el usuario pulsa `Ctrl+C`, el script muestre un mensaje y vuelva al menú en lugar de terminar.
 
     **Parte C. Script `vigilante.sh`**
 
