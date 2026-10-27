@@ -560,28 +560,58 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 
     **Actividad 1. Gestión de procesos**
 
-    1. Lista los procesos que se están ejecutando en el shell actual.
+    **Parte A. Comandos de gestión de procesos**
 
-    2. Lista los procesos que se están ejecutando en el sistema.
+    1. Lista los procesos que se están ejecutando en el shell actual y, después, todos los del sistema.
 
-    3. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
+    2. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
        uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
        un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
        que están haciendo el resto de usuarios y el estado de los procesos del
        usuario1 y usuario2.
 
-    4. Haciendo uso del comando grep y ps, lista todos los procesos que se
+    3. Haciendo uso del comando grep y ps, lista todos los procesos que se
        están ejecutando en el sistema y terminan en .sh
 
-    5. Visualiza los procesos utilizando el comando pstree.
+    4. Visualiza los procesos utilizando el comando pstree.
 
-    6. Comprueba qué proceso está consumiendo más recursos utilizando top.
+    5. Comprueba qué proceso está consumiendo más recursos utilizando top.
 
-    7. Mata el proceso del script que está ejecutando el usuario 1.
+    6. Mata el proceso del script que está ejecutando el usuario 1 y comprueba que ha salido al prompt del usuario.
 
-    8. Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.
-    9. Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.
-    10. Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.
+    **Parte B. Script `gestion_procesos.sh`**
+
+    Aplicando lo trabajado en la **UT1. Bash**, crea un script `gestion_procesos.sh` que muestre un menú y repita hasta que el usuario elija salir:
+
+    ```
+    ===== GESTIÓN DE PROCESOS =====
+    1) Listar los procesos de un usuario
+    2) Buscar un proceso por nombre
+    3) Mostrar los N procesos que más CPU consumen
+    4) Cambiar la prioridad de un proceso
+    5) Finalizar un proceso
+    6) Salir
+    ```
+
+    1. Cada opción del menú debe implementarse en su propia **función** (`listar_usuario`, `buscar_proceso`, `top_cpu`, `cambiar_prioridad`, `finalizar_proceso`). Selecciona la opción con `case` dentro de un bucle `while`.
+    2. **Listar los procesos de un usuario:** pide el nombre de usuario y comprueba que existe (`id`) antes de mostrar sus procesos con `ps`.
+    3. **Buscar un proceso por nombre:** muestra el PID, el usuario, el % de CPU y el comando de los procesos que coincidan. Si no hay ninguno, informa de ello.
+    4. **Mostrar los N procesos que más CPU consumen:** la función recibe N como **parámetro** (por defecto, 5) y usa `ps` ordenado por consumo de CPU.
+    5. **Cambiar la prioridad:** pide el PID y el nuevo valor *nice*. Comprueba que el PID existe (`ps -p`) y que el valor está entre -20 y 19; si el script no se ejecuta como root, solo debe permitir valores entre 0 y 19. Aplica el cambio con `renice`.
+    6. **Finalizar un proceso:** pide el PID y una confirmación (s/n). Envía primero la señal `SIGTERM`; si a los 3 segundos el proceso sigue vivo, envía `SIGKILL`.
+    7. Crea una función `validar_pid` que reciba un PID como parámetro y **devuelva** 0 si es un número y el proceso existe, o 1 en caso contrario. Reutilízala en las opciones 4 y 5.
+    8. Registra cada cambio de prioridad y cada proceso finalizado en el fichero `~/gestion_procesos.log` con el formato `fecha hora - acción - PID - comando`.
+    9. Usa `trap` para que, si el usuario pulsa `Ctrl+C`, el script muestre un mensaje y vuelva al menú en lugar de terminar.
+
+    **Parte C. Script `vigilante.sh`**
+
+    Crea un script `vigilante.sh` que reciba como **parámetros** el nombre de un proceso y un intervalo en segundos (por defecto, 10).
+
+    - Si no se le pasa ningún parámetro, debe mostrar cómo se usa y terminar con código de salida 1.
+    - Cada intervalo comprobará si el proceso está en ejecución (`pgrep`). Si no lo está, escribirá un aviso con la fecha en `~/vigilante.log`.
+    - Ejecútalo en **segundo plano** con `&`, localízalo con `jobs` y `ps`, tráelo a primer plano con `fg`, vuelve a enviarlo a segundo plano y, por último, finalízalo con `kill`.
+
+    El código debe estar comentado y seguir las buenas prácticas vistas en la UT1.
 
 !!! example "Tarea"
 
