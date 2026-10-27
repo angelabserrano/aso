@@ -6,21 +6,6 @@
     - **RA2** — Administra procesos del sistema describiéndolos y aplicando criterios de seguridad y eficiencia.
     - **RA3** — Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.
 
-## Programación de Aula
-
-### Planificación Temporal (6 sesiones / 12 horas)
-
-| Sesión | Contenido                                                    |
-| ------ | ------------------------------------------------------------ |
-| 1      | Administración de procesos: definición, estados y principales comandos |
-| 2      | Comandos para la gestión de procesos                         |
-| 3      | Control de servicios y daemons                               |
-| 4      | Automatización de tareas                                     |
-| 5      | Seguimiento y diagnóstico: monitorización de recursos y registros del sistema |
-| 6      | Práctica grupal. Ampliación y refuerzo                       |
-
-
-
 <div id="id1" />
 
 ## 1. Introducción 
