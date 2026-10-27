@@ -223,55 +223,6 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 
 
-### Ejercicios de procesos
-
-!!! example "Tarea"
-
-    1. Lista los procesos que se están ejecutando en el shell actual.
-
-    2. Lista los procesos que se están ejecutando en el sistema.
-
-    3. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
-       uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
-       un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
-       que están haciendo el resto de usuarios y el estado de los procesos del
-       usuario1 y usuario2.
-
-    4. Haciendo uso del comando grep y ps, lista todos los procesos que se
-       están ejecutando en el sistema y terminan en .sh
-
-    5. Visualiza los procesos utilizando el comando pstree.
-
-    6. Comprueba qué proceso está consumiendo más recursos utilizando top.
-
-    7. Mata el proceso del script que está ejecutando el usuario 1.
-
-    8. Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.
-    9. Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.
-    10. Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.
-
-!!! example "Tarea"
-
-    **Ejercicios de procesos — Red Hat Academy**
-
-    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
-
-    Para esta práctica trabajarás con el material del **Capítulo 8 — Monitoreo y gestión de procesos en Linux** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.3*.
-
-    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
-
-    | Sección | Tipo | Duración |
-    |---------|------|----------|
-    | Introducción | Lectura | 3 min |
-    | Estados del proceso y ciclo de vida | Lectura + Cuestionario | 20 min |
-    | Control de trabajos | Lectura + Ejercicio guiado | 25 min |
-    | Finalización de procesos | Lectura + Ejercicio guiado | 30 min |
-
-    **Duración total estimada: 78 minutos.**
-
-    Elabora una memoria con todos los comandos aprendidos y el resultado del laboratorio de prácticas.
-
-
 
 ## 3. Administración de los servicios del sistema
 
@@ -320,25 +271,6 @@ Para verificar el estado de todos los servicios, se puede usar:
 ```bash
 sudo systemctl list-units --type=service
 ```
-
-!!! example "Tarea"
-
-    **Ejercicios de control de servicios y daemons — Red Hat Academy**
-
-    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
-
-    Para esta práctica trabajarás con el material del **Capítulo 9 — Control de servicios y daemons** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.0*.
-
-    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
-
-    | Sección | Tipo | Duración |
-    |---------|------|----------|
-    | Introducción | Lectura | 3 min |
-    | Identificación de procesos del sistema iniciados en forma automática | Lectura + Ejercicio guiado | 25 min |
-    | Control de servicios del sistema | Lectura + Ejercicio guiado | 25 min |
-    | Control de servicios y demonios | Laboratorio | 15 min |
-
-    **Duración total estimada: 70 minutos.**
 
 
 ## 4. Automatización de tareas.
@@ -499,67 +431,6 @@ Si desea borrar una tarea de `at`, puede usar el comando `atrm` seguido del ID d
 $ atrm 14
 ```
 
-
-
-### Ejercicios de automatización de tareas
-
-!!! example "Tarea"
-
-    **Ejercicio1.** **Conceptos teóricos básicos**
-
-    Responde a las siguientes cuestiones acerca de la automatización de tareas en Linux:
-
-    - ¿Cuál es la principal diferencia entre cron y at?
-    - ¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?
-    - Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
-    - Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
-    - ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
-
-    Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
-
-    | Archivo crontab    | Significado |
-    | ------------------ | ----------- |
-    | 15 14 * * 1-5      |             |
-    | 00 09-18 * * *     |             |
-    | */30 * * * *       |             |
-    | 0,20,40 14 * * fri |             |
-
-    **Ejercicio 2**
-    Crea una tarea programada para que el ordenador se apague todos los días a las 14:15
-
-    **Ejercicio 3**
-    Crea una tarea programada todos los viernes a las 14:00, que ejecute un comando para obtener el espacio en disco utilizado y envíe por correo
-    electrónico la información indicada.
-
-    **Ejercicio 4**
-    Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.
-
-!!! tip "Reto"
-
-    **Ejercicio 5 (Avanzado)**
-    Realiza el ejercicio anterior, pero utilizando las unidades Timers de Systemd
-
-!!! example "Tarea"
-
-    **Ejercicios de automatización de tareas — Red Hat Academy**
-
-    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
-
-    Para esta práctica trabajarás con el material del **Capítulo 2 — Programación de tareas futuras** de *Red Hat Academy: Administración de sistemas en Red Hat II (RH134) 9.0*.
-
-    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
-
-    | Sección | Tipo | Duración |
-    |---------|------|----------|
-    | Introducción | Lectura | 3 min |
-    | Programación de un trabajo de usuario diferido | Lectura + Ejercicio guiado | 25 min |
-    | Programación de un trabajo de usuario recurrente | Lectura + Ejercicio guiado | 25 min |
-    | Programación de trabajos del sistema recurrente | Lectura + Ejercicio guiado | 30 min |
-    | Gestión de archivos temporales | Lectura + Ejercicio guiado | 30 min |
-    | Programación de tareas futuras | Cuestionario | 5 min |
-
-    **Duración total estimada: 120 minutos.**
-
 ---
 
 ## 5. Seguimiento y diagnóstico del sistema
@@ -681,11 +552,139 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 | Logs | `journalctl -p err -b` | Errores del arranque actual |
 | Windows | `Get-WinEvent -LogName System -MaxEvents 20` | Últimos eventos del sistema |
 
-### Ejercicios de seguimiento y diagnóstico
+---
+
+## 6. Actividades
 
 !!! example "Tarea"
 
-    **Ejercicio 1. Monitorización de recursos**
+    **Actividad 1. Gestión de procesos**
+
+    1. Lista los procesos que se están ejecutando en el shell actual.
+
+    2. Lista los procesos que se están ejecutando en el sistema.
+
+    3. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
+       uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
+       un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
+       que están haciendo el resto de usuarios y el estado de los procesos del
+       usuario1 y usuario2.
+
+    4. Haciendo uso del comando grep y ps, lista todos los procesos que se
+       están ejecutando en el sistema y terminan en .sh
+
+    5. Visualiza los procesos utilizando el comando pstree.
+
+    6. Comprueba qué proceso está consumiendo más recursos utilizando top.
+
+    7. Mata el proceso del script que está ejecutando el usuario 1.
+
+    8. Vuelve al usuario 1 y comprueba que ha salido al prompt del usuario.
+    9. Crea un script de nombre procesos.sh que muestre todos los procesos activos y que permita aumentar o disminuir la prioridad de un proceso.
+    10. Crea un script de nombre matar_procesos.sh que muestre todos los procesos activos y permita matar un proceso especificando su PID.
+
+!!! example "Tarea"
+
+    **Actividad 2. Procesos — Red Hat Academy**
+
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 8 — Monitoreo y gestión de procesos en Linux** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.3*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Estados del proceso y ciclo de vida | Lectura + Cuestionario | 20 min |
+    | Control de trabajos | Lectura + Ejercicio guiado | 25 min |
+    | Finalización de procesos | Lectura + Ejercicio guiado | 30 min |
+
+    **Duración total estimada: 78 minutos.**
+
+    Elabora una memoria con todos los comandos aprendidos y el resultado del laboratorio de prácticas.
+
+!!! example "Tarea"
+
+    **Actividad 3. Control de servicios y daemons — Red Hat Academy**
+
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 9 — Control de servicios y daemons** de *Red Hat Academy: Administración de Sistemas en Red Hat I (RH124) 9.0*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Identificación de procesos del sistema iniciados en forma automática | Lectura + Ejercicio guiado | 25 min |
+    | Control de servicios del sistema | Lectura + Ejercicio guiado | 25 min |
+    | Control de servicios y demonios | Laboratorio | 15 min |
+
+    **Duración total estimada: 70 minutos.**
+
+!!! example "Tarea"
+
+    **Actividad 4. Automatización de tareas: conceptos básicos**
+
+    Responde a las siguientes cuestiones acerca de la automatización de tareas en Linux:
+
+    - ¿Cuál es la principal diferencia entre cron y at?
+    - ¿Que diferencia hay entre crear un trabajo en un cron de usuario y un cron de sistema?
+    - Si deseamos programar un trabajo para un usuario ordinario. ¿Qué comando ejecutamos?
+    - Cuando un usuario necesite consultar sus tareas programadas, ¿Qué comando debe ejecutar?
+    - ¿Qué comando podemos utilizar para eliminar las tareas programadas para el usuario actual?
+
+    Explica el significado de las siguientes especificaciones de tiempo para un archivo crontab:
+
+    | Archivo crontab    | Significado |
+    | ------------------ | ----------- |
+    | 15 14 * * 1-5      |             |
+    | 00 09-18 * * *     |             |
+    | */30 * * * *       |             |
+    | 0,20,40 14 * * fri |             |
+
+!!! example "Tarea"
+
+    **Actividad 5. Programación de tareas con cron y at**
+
+    1. Crea una tarea programada para que el ordenador se apague todos los días a las 14:15.
+
+    2. Crea una tarea programada todos los viernes a las 14:00, que ejecute un comando para obtener el espacio en disco utilizado y envíe por correo
+       electrónico la información indicada.
+
+    3. Crea una tarea programada para que hoy a las 17:00 se realice una copia de seguridad de todos los datos del usuario alumno.
+
+!!! tip "Reto"
+
+    **Actividad 6 (Avanzado). Timers de systemd**
+
+    Realiza la copia de seguridad del apartado 3 de la Actividad 5, pero utilizando las unidades Timers de Systemd.
+
+!!! example "Tarea"
+
+    **Actividad 7. Programación de tareas futuras — Red Hat Academy**
+
+    ![Red Hat Academy](../assets/img/rha-logo.png){ width=300 }
+
+    Para esta práctica trabajarás con el material del **Capítulo 2 — Programación de tareas futuras** de *Red Hat Academy: Administración de sistemas en Red Hat II (RH134) 9.0*.
+
+    Accede al portal de [Red Hat Academy](https://www.redhat.com/es/services/training/red-hat-academy) e inicia el entorno de laboratorio. Completa las siguientes secciones:
+
+    | Sección | Tipo | Duración |
+    |---------|------|----------|
+    | Introducción | Lectura | 3 min |
+    | Programación de un trabajo de usuario diferido | Lectura + Ejercicio guiado | 25 min |
+    | Programación de un trabajo de usuario recurrente | Lectura + Ejercicio guiado | 25 min |
+    | Programación de trabajos del sistema recurrente | Lectura + Ejercicio guiado | 30 min |
+    | Gestión de archivos temporales | Lectura + Ejercicio guiado | 30 min |
+    | Programación de tareas futuras | Cuestionario | 5 min |
+
+    **Duración total estimada: 120 minutos.**
+
+!!! example "Tarea"
+
+    **Actividad 8. Monitorización de recursos**
 
     - Instala `sysstat` y habilita la recogida de métricas.
     - Genera carga de CPU (`yes > /dev/null &`, uno por núcleo) y observa cómo evolucionan `uptime`, `top` y `sar -u 1 5`.
@@ -694,7 +693,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 
 !!! example "Tarea"
 
-    **Ejercicio 2. Registros del sistema**
+    **Actividad 9. Registros del sistema**
 
     - Activa el *journal* persistente y limítalo a 300 MB.
     - Obtén con `journalctl` todos los mensajes de prioridad *warning* o superior del último arranque.
