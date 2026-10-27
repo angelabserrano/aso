@@ -1,7 +1,3 @@
----
-draft: true
----
-
 # UT2. Procesos, Servicios y Automatización
 
 !!! abstract "Resultados de aprendizaje"
