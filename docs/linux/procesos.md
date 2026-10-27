@@ -556,6 +556,8 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 
 ## 6. Actividades
 
+<!-- en-revision -->
+
 !!! example "Tarea"
 
     **Actividad 1. Gestión de procesos**
@@ -824,3 +826,5 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
     - Obtén con `journalctl` todos los mensajes de prioridad *warning* o superior del último arranque.
     - Provoca tres inicios de sesión SSH fallidos desde otro equipo y localiza los eventos en `journalctl -u ssh` y en `/var/log/auth.log`.
     - En un Windows, localiza esos mismos intentos en el registro de **Seguridad** (Id 4625) con `Get-WinEvent`.
+
+<!-- /en-revision -->

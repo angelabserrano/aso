@@ -12,6 +12,15 @@ unidad aparece atenuado y con la etiqueta «Próximamente».
 
 Para publicar una unidad, borra esas tres líneas de su fichero .md (o pon
 `draft: false`) y vuelve a desplegar.
+
+Dentro de una unidad ya publicada, un apartado puede ocultarse rodeándolo con:
+
+    <!-- en-revision -->
+    ...
+    <!-- /en-revision -->
+
+Su contenido no se publica y en su lugar aparece un aviso de «En revisión...».
+Para publicarlo, borra esas dos líneas de comentario.
 """
 
 import re
@@ -23,8 +32,17 @@ AVISO = (
     "    a medida que se trabaje en clase.\n"
 )
 
+AVISO_REVISION = (
+    '!!! warning "En revisión..."\n'
+    "    Este apartado se está revisando y estará disponible próximamente.\n"
+)
+
 _FRONT_MATTER = re.compile(r"^-{3}\s*\n(.*?)\n-{3}\s*\n", re.DOTALL)
 _DRAFT_LINE = re.compile(r"^\s*draft:\s*(true|yes|on|1)\s*$", re.IGNORECASE | re.MULTILINE)
+_EN_REVISION = re.compile(
+    r"^[ \t]*<!--\s*en-revision\s*-->[ \t]*\n.*?^[ \t]*<!--\s*/en-revision\s*-->[ \t]*$",
+    re.DOTALL | re.MULTILINE,
+)
 _H1 = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 _MD_LINK = re.compile(r"\[([^\]]+)\]\(([^)]+\.md)\)")
 
@@ -54,7 +72,10 @@ def on_page_markdown(markdown, page, config, files):
             titulo = m.group(1) if m else "Unidad"
         return f"# {titulo}\n\n{AVISO}"
 
-    # 2) En la portada: marcar los enlaces de las unidades aún sin publicar.
+    # 2) Apartados en revisión: sustituir su contenido por el aviso.
+    markdown = _EN_REVISION.sub(lambda _: AVISO_REVISION, markdown)
+
+    # 3) En la portada: marcar los enlaces de las unidades aún sin publicar.
     if page.file.src_uri == "index.md":
         base = (Path(config["docs_dir"]) / page.file.src_uri).parent
 
