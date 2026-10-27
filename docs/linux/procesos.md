@@ -110,44 +110,33 @@ Las columnas que se muestran cuando ejecutamos el comando **ps** significan:
 
 **Ejemplo resuelto. Procesos de un usuario**
 
-Crea un script que pida un nombre de usuario y, si existe en el sistema (`id`), muestre sus procesos con `ps`. Si no existe, debe mostrar un mensaje de error.
+Comprueba que el usuario `alumno` existe y muestra sus procesos indicando el PID, el estado, el % de CPU, el % de memoria y el comando.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Muestra los procesos de un usuario, comprobando antes que existe
-
-    read -p "Nombre de usuario: " usuario
-
-    if id "$usuario" &> /dev/null; then
-        ps -u "$usuario" -o pid,stat,%cpu,%mem,cmd
-    else
-        echo "Error: el usuario '$usuario' no existe"
-    fi
+    id alumno
+    ps -u alumno -o pid,stat,%cpu,%mem,cmd
     ```
+
+    Si el usuario no existe, `id` muestra `id: «alumno»: no existe ese usuario`. La opción `-o` permite elegir las columnas que muestra `ps`.
 
 **Ejemplo resuelto. Buscar un proceso por nombre**
 
-Crea un script que pida el nombre de un proceso y muestre el PID, el usuario, el % de CPU y el comando de todos los que coincidan. Si no hay ninguno, debe informar de ello.
+Muestra el PID, el usuario, el % de CPU y el comando de todos los procesos `bash` que se están ejecutando.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Busca procesos por nombre y muestra PID, usuario, %CPU y comando
-
-    read -p "Nombre del proceso: " nombre
-
-    # pgrep devuelve los PID que coinciden; -d, los separa por comas
-    pids=$(pgrep -d, "$nombre")
-
-    if [ -z "$pids" ]; then
-        echo "No hay ningún proceso que coincida con '$nombre'"
-    else
-        ps -p "$pids" -o pid,user,%cpu,cmd
-    fi
+    ps -C bash -o pid,user,%cpu,cmd
     ```
 
-    `pgrep -d, bash` devuelve, por ejemplo, `812,1045,2310`, y `ps -p` acepta esa lista de PID separados por comas.
+    `-C` selecciona los procesos por el nombre del comando. Otra forma es obtener primero sus PID con `pgrep`:
+
+    ```bash
+    pgrep bash      # solo los PID
+    pgrep -a bash   # PID y comando completo
+    ```
+
+    Si no hay ningún proceso con ese nombre, `ps` solo muestra la cabecera y `pgrep` no muestra nada.
 
 #### 2.3.2 El comando pstree
 
@@ -174,25 +163,14 @@ En la parte superior se muestra la siguiente información adicional:
 
 **Ejemplo resuelto. Los N procesos que más CPU consumen**
 
-Crea una función `top_cpu` que reciba como parámetro un número N (por defecto, 5) y muestre los N procesos que más CPU consumen, usando `ps` en lugar de `top`.
+Muestra, usando `ps` en lugar de `top`, los 5 procesos que más CPU consumen.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Función que muestra los N procesos que más CPU consumen
-
-    top_cpu() {
-        local n=${1:-5}    # si no se pasa parámetro, N vale 5
-        # head -n $((n + 1)) para incluir la línea de cabecera
-        ps -eo pid,user,%cpu,comm --sort=-%cpu | head -n $((n + 1))
-    }
-
-    top_cpu       # los 5 que más consumen
-    echo
-    top_cpu 3     # los 3 que más consumen
+    ps -eo pid,user,%cpu,comm --sort=-%cpu | head -n 6
     ```
 
-    `--sort=-%cpu` ordena de mayor a menor consumo (el signo `-` indica orden descendente).
+    `--sort=-%cpu` ordena de mayor a menor consumo (el signo `-` indica orden descendente) y `head -n 6` muestra la cabecera más los 5 primeros procesos.
 
 #### 2.3.4 Procesos en primer plano y segundo plano
 
@@ -256,70 +234,30 @@ Hay un total de 32 señales que se pueden enviar a los procesos. Las más utiliz
 
 Por otra parte, el comando  **killall  nombre_programa** finaliza todos los procesos que estén ejecutando el programa.
 
-**Ejemplo resuelto. Validar un PID**
+**Ejemplo resuelto. Comprobar si un proceso existe**
 
-Crea una función `validar_pid` que reciba un PID como parámetro y **devuelva** 0 si es un número y el proceso existe, o 1 en caso contrario.
-
-??? success "Solución"
-    ```bash
-    #!/bin/bash
-    # Función que devuelve 0 si el PID es válido y el proceso existe, o 1 si no
-
-    validar_pid() {
-        local pid=$1
-        # Debe ser un número entero positivo
-        if ! [[ $pid =~ ^[0-9]+$ ]]; then
-            return 1
-        fi
-        # ps -p devuelve 0 si el proceso existe
-        ps -p "$pid" &> /dev/null
-    }
-
-    read -p "Introduce un PID: " pid
-
-    if validar_pid "$pid"; then
-        echo "El proceso $pid existe"
-    else
-        echo "Error: '$pid' no es un PID válido o el proceso no existe"
-    fi
-    ```
-
-    Una función devuelve el código de salida de su último comando, así que no hace falta un `return 0` final: si `ps -p` encuentra el proceso, la función devuelve 0.
-
-**Ejemplo resuelto. Finalizar un proceso con confirmación**
-
-Crea un script que pida un PID y una confirmación (s/n). Si se confirma, debe enviar primero la señal `SIGTERM` y, si a los 3 segundos el proceso sigue vivo, enviar `SIGKILL`.
+Comprueba si existe el proceso con PID 2345 y consulta el código de salida del comando.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Finaliza un proceso con confirmación: primero SIGTERM y, si sigue vivo, SIGKILL
-
-    read -p "PID del proceso: " pid
-
-    if ! ps -p "$pid" &> /dev/null; then
-        echo "Error: no existe ningún proceso con PID $pid"
-        exit 1
-    fi
-
-    ps -p "$pid" -o pid,user,cmd
-    read -p "¿Seguro que quieres finalizarlo? (s/n): " respuesta
-
-    case $respuesta in
-        s|S)
-            kill -15 "$pid"         # SIGTERM: le pide que termine de forma ordenada
-            sleep 3
-            if ps -p "$pid" &> /dev/null; then
-                echo "El proceso sigue vivo; se fuerza con SIGKILL"
-                kill -9 "$pid"      # SIGKILL: lo finaliza de inmediato
-            fi
-            echo "Proceso $pid finalizado"
-            ;;
-        *)
-            echo "Operación cancelada"
-            ;;
-    esac
+    ps -p 2345
+    echo $?
     ```
+
+    Si el proceso existe, `ps` lo muestra y `echo $?` devuelve **0**; si no existe, solo aparece la cabecera y devuelve **1**.
+
+**Ejemplo resuelto. Finalizar un proceso de forma ordenada**
+
+Finaliza el proceso con PID 2345 enviándole primero la señal `SIGTERM`. Comprueba si sigue vivo y, en ese caso, fuérzalo con `SIGKILL`.
+
+??? success "Solución"
+    ```bash
+    kill -15 2345    # SIGTERM: le pide que termine de forma ordenada
+    ps -p 2345       # ¿sigue vivo?
+    kill -9 2345     # SIGKILL: lo finaliza de inmediato
+    ```
+
+    Conviene probar siempre primero con `SIGTERM`, que permite al proceso cerrar ficheros y liberar recursos; `SIGKILL` no se puede ignorar, pero lo finaliza sin darle esa oportunidad.
 
 #### 2.3.6 El comando nice
 
@@ -352,111 +290,37 @@ Los usuarios que no sean el superusuario sólo pueden bajar la  prioridad de sus
 
 
 
-**Ejemplo resuelto. Cambiar la prioridad con validación**
+**Ejemplo resuelto. Cambiar la prioridad de un proceso**
 
-Crea un script que pida un PID y un nuevo valor *nice*. Debe comprobar que el proceso existe y que el valor está entre -20 y 19; si el script no se ejecuta como root, solo debe permitir valores entre 0 y 19. Aplica el cambio con `renice`.
+Como usuario normal, lanza `sleep 300` en segundo plano con prioridad 10 y cámbiala a 15. Después, intenta bajarla a 5 y, por último, ponla a -5 como root.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Cambia la prioridad de un proceso validando el valor nice
+    nice -n 10 sleep 300 &
+    ps -o pid,ni,cmd -p $!      # $! es el PID del último proceso en segundo plano
 
-    read -p "PID del proceso: " pid
-    read -p "Nuevo valor nice: " valor
-
-    if ! ps -p "$pid" &> /dev/null; then
-        echo "Error: no existe ningún proceso con PID $pid"
-        exit 1
-    fi
-
-    # El valor debe ser un número entero, con signo opcional
-    if ! [[ $valor =~ ^-?[0-9]+$ ]]; then
-        echo "Error: el valor nice debe ser un número entero"
-        exit 1
-    fi
-
-    # Root ($EUID = 0) puede usar de -20 a 19; el resto, solo de 0 a 19
-    if [ "$EUID" -eq 0 ]; then
-        minimo=-20
-    else
-        minimo=0
-    fi
-
-    if [ "$valor" -lt "$minimo" ] || [ "$valor" -gt 19 ]; then
-        echo "Error: el valor debe estar entre $minimo y 19"
-        exit 1
-    fi
-
-    renice -n "$valor" -p "$pid"
+    renice -n 15 -p 2345        # subir el valor nice: permitido
+    renice -n 5 -p 2345         # bajarlo: renice: failed to set priority ... Permission denied
+    sudo renice -n -5 -p 2345   # root puede usar cualquier valor de -20 a 19
     ```
 
-    La variable `$EUID` contiene el identificador de usuario efectivo de quien ejecuta el script; para root vale 0.
+    En el ejemplo, 2345 es el PID que ha mostrado `ps`. La columna **NI** indica el valor *nice* actual del proceso.
 
 **Ejemplo resuelto. Registrar acciones en un fichero de log**
 
-Crea una función `registrar` que reciba una acción y un PID, y añada una línea con el formato `fecha hora - acción - PID - comando` al fichero `~/gestion_procesos.log`.
+Añade al fichero `~/gestion_procesos.log` una línea con el formato `fecha hora - acción - PID - comando` que registre el cambio de prioridad del proceso 2345.
 
 ??? success "Solución"
     ```bash
-    #!/bin/bash
-    # Función que registra una acción sobre un proceso en un fichero de log
-
-    LOG=~/gestion_procesos.log
-
-    registrar() {
-        local accion=$1
-        local pid=$2
-        # comm= muestra solo el nombre del comando, sin cabecera
-        local comando=$(ps -p "$pid" -o comm=)
-        echo "$(date '+%d/%m/%Y %H:%M:%S') - $accion - $pid - $comando" >> "$LOG"
-    }
-
-    registrar "Cambio de prioridad a 10" $$    # $$ es el PID del propio script
-    cat "$LOG"
+    echo "$(date '+%d/%m/%Y %H:%M:%S') - Cambio de prioridad - 2345 - $(ps -p 2345 -o comm=)" >> ~/gestion_procesos.log
+    cat ~/gestion_procesos.log
     ```
 
-    Salida:
-
     ```
-    27/10/2026 09:41:23 - Cambio de prioridad a 10 - 2875 - bash
+    27/10/2026 09:41:23 - Cambio de prioridad - 2345 - sleep
     ```
 
-**Ejemplo resuelto. Menú con funciones**
-
-Crea un script con un menú que se repita hasta que el usuario elija salir. Cada opción debe llamar a su propia función y la opción se selecciona con `case` dentro de un bucle `while`.
-
-??? success "Solución"
-    ```bash
-    #!/bin/bash
-    # Esqueleto de menú: se repite hasta que el usuario elige salir
-
-    saludar() {
-        echo "Hola, $USER"
-    }
-
-    mostrar_fecha() {
-        date
-    }
-
-    opcion=0
-    while [ "$opcion" != "3" ]; do
-        echo "===== MENÚ ====="
-        echo "1) Saludar"
-        echo "2) Mostrar la fecha"
-        echo "3) Salir"
-        read -p "Elige una opción: " opcion
-
-        case $opcion in
-            1) saludar ;;
-            2) mostrar_fecha ;;
-            3) echo "Hasta luego" ;;
-            *) echo "Opción no válida" ;;
-        esac
-        echo
-    done
-    ```
-
-    Con esta misma estructura puedes reunir en un único script de menú las funciones de los ejemplos anteriores.
+    `-o comm=` muestra solo el nombre del comando, sin cabecera, y `>>` añade la línea al final del fichero sin borrar su contenido.
 
 ## 3. Administración de los servicios del sistema
 
