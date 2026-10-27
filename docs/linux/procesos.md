@@ -560,7 +560,122 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 
     **Actividad 1. Gestión de procesos**
 
-    **Parte A. Script `gestion_procesos.sh`**
+    **Parte A. Ejemplos resueltos de gestión de procesos**
+
+    Antes de programar los scripts, practica los comandos con estos ejemplos. Intenta resolverlos tú y después despliega la solución para comprobarla.
+
+    **Ejemplo 1.** Lista los procesos que se están ejecutando en el shell actual y, después, todos los del sistema.
+
+    ??? success "Solución"
+        ```bash
+        # Procesos del shell actual (terminal actual)
+        ps
+
+        # Todos los procesos del sistema
+        ps -ef      # formato estándar
+        ps aux      # formato BSD, incluye %CPU y %MEM
+        ```
+
+    **Ejemplo 2.** Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada uno ejecute un script diferente y déjalos en un punto en el que estén pidiendo un dato. Con `ps`, comprueba cómo se refleja lo que están haciendo y el estado de los procesos de `usuario1` y `usuario2`.
+
+    ??? success "Solución"
+        ```bash
+        # Crear los usuarios
+        sudo useradd -m -s /bin/bash usuario1
+        sudo useradd -m -s /bin/bash usuario2
+        sudo passwd usuario1
+        sudo passwd usuario2
+        ```
+
+        Inicia sesión con cada usuario en una consola distinta (por ejemplo, `Ctrl+Alt+F2` y `Ctrl+Alt+F3`, o `su - usuario1` en otra terminal) y crea un script que pida un dato:
+
+        ```bash
+        #!/bin/bash
+        # script1.sh (usuario1) — script2.sh (usuario2) igual, con otra pregunta
+        read -p "Introduce tu nombre: " nombre
+        echo "Hola, $nombre"
+        ```
+
+        ```bash
+        bash script1.sh
+        ```
+
+        Desde una tercera consola, consulta sus procesos:
+
+        ```bash
+        ps -u usuario1,usuario2 -o user,pid,ppid,tty,stat,cmd
+        ```
+
+        ```
+        USER         PID    PPID TT       STAT CMD
+        usuario1    2310    2290 tty2     S    -bash
+        usuario1    2345    2310 tty2     S+   bash script1.sh
+        usuario2    2402    2380 tty3     S    -bash
+        usuario2    2431    2402 tty3     S+   bash script2.sh
+        ```
+
+        El estado **S** (*sleeping*) indica que el script está dormido esperando a que el usuario introduzca el dato; el **+** indica que está en primer plano en su terminal. Su proceso padre (PPID) es la shell del usuario.
+
+    **Ejemplo 3.** Haciendo uso de `ps` y `grep`, lista todos los procesos del sistema que terminan en `.sh`.
+
+    ??? success "Solución"
+        ```bash
+        ps -ef | grep '\.sh$'
+
+        # Alternativa sin grep: pgrep busca en la línea de comandos completa (-f)
+        pgrep -af '\.sh$'
+        ```
+
+        El punto se escapa (`\.`) porque en una expresión regular `.` significa «cualquier carácter», y `$` indica que el texto debe estar al final de la línea.
+
+    **Ejemplo 4.** Visualiza los procesos utilizando el comando `pstree`.
+
+    ??? success "Solución"
+        ```bash
+        pstree              # árbol completo de procesos
+        pstree -p           # muestra también los PID
+        pstree -p usuario1  # solo los procesos de usuario1
+        ```
+
+        En el árbol se ve que `script1.sh` cuelga de la shell `bash` de `usuario1`, que a su vez cuelga del proceso de inicio de sesión.
+
+    **Ejemplo 5.** Comprueba qué proceso está consumiendo más recursos utilizando `top`.
+
+    ??? success "Solución"
+        ```bash
+        top
+        ```
+
+        Dentro de `top`, pulsa `Shift+P` para ordenar por CPU o `Shift+M` para ordenar por memoria; `q` sale. El proceso que más consume aparece en la primera fila.
+
+        También puede obtenerse sin entrar en modo interactivo:
+
+        ```bash
+        ps aux --sort=-%cpu | head -n 5    # los 5 que más CPU consumen
+        ps aux --sort=-%mem | head -n 5    # los 5 que más memoria consumen
+        ```
+
+    **Ejemplo 6.** Mata el proceso del script que está ejecutando `usuario1` y comprueba que ha salido al prompt del usuario.
+
+    ??? success "Solución"
+        ```bash
+        # Localizar el PID del script
+        pgrep -u usuario1 -f script1.sh
+        # 2345
+
+        # Enviar la señal SIGTERM (15) para que termine de forma ordenada
+        sudo kill 2345
+
+        # Si no termina, forzarlo con SIGKILL (9)
+        sudo kill -9 2345
+
+        # Comprobar que ya no existe
+        ps -p 2345
+        ```
+
+        En la consola de `usuario1` aparece el mensaje `Terminado` (o `Terminated`) y vuelve a mostrarse el prompt, porque el proceso hijo ha finalizado y la shell recupera el control.
+
+    **Parte B. Script `gestion_procesos.sh`**
 
     Aplicando lo trabajado en la **UT1. Bash**, crea un script `gestion_procesos.sh` que muestre un menú y repita hasta que el usuario elija salir:
 
@@ -583,7 +698,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
     7. Crea una función `validar_pid` que reciba un PID como parámetro y **devuelva** 0 si es un número y el proceso existe, o 1 en caso contrario. Reutilízala en las opciones 4 y 5.
     8. Registra cada cambio de prioridad y cada proceso finalizado en el fichero `~/gestion_procesos.log` con el formato `fecha hora - acción - PID - comando`.
 
-    **Parte B. Script `vigilante.sh`**
+    **Parte C. Script `vigilante.sh`**
 
     Crea un script `vigilante.sh` que reciba como **parámetros** el nombre de un proceso y un intervalo en segundos (por defecto, 10).
 
