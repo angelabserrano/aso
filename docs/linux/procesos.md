@@ -560,26 +560,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
 
     **Actividad 1. Gestión de procesos**
 
-    **Parte A. Comandos de gestión de procesos**
-
-    1. Lista los procesos que se están ejecutando en el shell actual y, después, todos los del sistema.
-
-    2. Crea dos usuarios y abre dos consolas con esos usuarios. Haz que cada
-       uno ejecute un script diferente. Déjalos en un punto en el que esté pidiendo
-       un dato. Vuelve a utilizar el comando ps y comprueba cómo se refleja lo
-       que están haciendo el resto de usuarios y el estado de los procesos del
-       usuario1 y usuario2.
-
-    3. Haciendo uso del comando grep y ps, lista todos los procesos que se
-       están ejecutando en el sistema y terminan en .sh
-
-    4. Visualiza los procesos utilizando el comando pstree.
-
-    5. Comprueba qué proceso está consumiendo más recursos utilizando top.
-
-    6. Mata el proceso del script que está ejecutando el usuario 1 y comprueba que ha salido al prompt del usuario.
-
-    **Parte B. Script `gestion_procesos.sh`**
+    **Parte A. Script `gestion_procesos.sh`**
 
     Aplicando lo trabajado en la **UT1. Bash**, crea un script `gestion_procesos.sh` que muestre un menú y repita hasta que el usuario elija salir:
 
@@ -602,7 +583,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date
     7. Crea una función `validar_pid` que reciba un PID como parámetro y **devuelva** 0 si es un número y el proceso existe, o 1 en caso contrario. Reutilízala en las opciones 4 y 5.
     8. Registra cada cambio de prioridad y cada proceso finalizado en el fichero `~/gestion_procesos.log` con el formato `fecha hora - acción - PID - comando`.
 
-    **Parte C. Script `vigilante.sh`**
+    **Parte B. Script `vigilante.sh`**
 
     Crea un script `vigilante.sh` que reciba como **parámetros** el nombre de un proceso y un intervalo en segundos (por defecto, 10).
 
