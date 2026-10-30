@@ -445,6 +445,50 @@ Además de la opción `-e` mencionada anteriormente, el comando `crontab` tiene 
 
   Especifica el nombre del usuario cuyo crontab necesita ser  modificado. Esta opción requiere privilegios de root y permite que el  usuario root edite los archivos crontab de otro usuario.
 
+**Ejemplo resuelto. Interpretar especificaciones de tiempo**
+
+Explica el significado de las siguientes especificaciones de tiempo que se encuentran en un archivo crontab:
+
+| Especificación | Significado |
+| -------------- | ----------- |
+| `30 13 * * 1-5` | |
+| `00 09-18 * * *` | |
+| `30 08 1 1 *` | |
+| `0,20,40 11 * * Sun` | |
+| `00 09 10-20 1-3 *` | |
+| `*/20 * * * *` | |
+
+??? success "Solución"
+    | Especificación | Significado |
+    | -------------- | ----------- |
+    | `30 13 * * 1-5` | A las 13:30, de lunes a viernes. |
+    | `00 09-18 * * *` | Cada hora en punto, de 09:00 a 18:00 (ambas incluidas), todos los días. |
+    | `30 08 1 1 *` | A las 08:30 del 1 de enero. |
+    | `0,20,40 11 * * Sun` | A las 11:00, 11:20 y 11:40 de todos los domingos. |
+    | `00 09 10-20 1-3 *` | A las 09:00 de los días 10 al 20 de enero, febrero y marzo. |
+    | `*/20 * * * *` | Cada 20 minutos (en los minutos 0, 20 y 40 de cada hora), todos los días. |
+
+**Ejemplo resuelto. Escribir líneas de crontab**
+
+Escribe la línea de crontab de usuario que ejecute el script `/home/alumno/copia.sh`:
+
+1. Todos los días a las 23:45.
+2. Cada 15 minutos.
+3. De lunes a viernes a las 08:00 y a las 15:00.
+4. El primer día de cada mes a medianoche.
+5. Cada 2 horas, entre las 08:00 y las 20:00, solo los sábados.
+
+??? success "Solución"
+    ```bash
+    45 23 * * *     /home/alumno/copia.sh   # 1
+    */15 * * * *    /home/alumno/copia.sh   # 2
+    0 8,15 * * 1-5  /home/alumno/copia.sh   # 3
+    0 0 1 * *       /home/alumno/copia.sh   # 4
+    0 8-20/2 * * 6  /home/alumno/copia.sh   # 5
+    ```
+
+    Para añadirlas se usa `crontab -e`, y para comprobar que se han guardado, `crontab -l`. En el apartado 5, `8-20/2` combina un rango y un intervalo: las 8, 10, 12, 14, 16, 18 y 20 h; el sábado puede indicarse como `6` o `sat`.
+
 #### Crontabs de sistema
 
 Los *crontabs* del sistema son archivos de texto que gestionan la programación de los trabajos de cron a nivel de sistema y solo pueden ser editados por el usuario root. El archivo `/etc/crontab` y todos los archivos dentro del directorio `/etc/cron.d` son considerados crontabs del sistema.
