@@ -7,6 +7,8 @@ draft: true
 !!! abstract "Resultado de aprendizaje"
     Esta unidad trabaja el **RA4** del RD 1629/2009: *Administra de forma remota el sistema operativo en red valorando su importancia y aplicando criterios de seguridad.*
 
+    **Duración:** 4 horas.
+
 ## 1. Introducción
 
 En la mayoría de los casos, los servidores y máquinas que necesitamos gestionar no comparten el mismo espacio físico. Pueden estar ubicados en:

@@ -4,8 +4,13 @@ draft: true
 
 # UT7.1. Directorio Activo en Windows
 
-!!! abstract "Resultado de aprendizaje"
-    Esta unidad trabaja el **RA1** del RD 1629/2009: *Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.*
+!!! abstract "Resultados de aprendizaje"
+    Esta unidad trabaja los siguientes RA del RD 1629/2009:
+
+    - **RA1** — Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.
+    - **RA5** — Administra servidores de impresión describiendo sus funciones e integrándolos en una red.
+
+    **Duración:** 2 horas.
 
 ## 1. Conceptos básicos de Active Directory
 
@@ -607,5 +612,93 @@ Existen tres tipos de perfiles:
 
 Hay que tener en cuenta de que cuando un usuario con perfil móvil inicia la sesión, la información del servidor se copia al cliente. Cuando cierra la sesión se realiza la operación inversa. Un alto número de usuarios con perfil móvil puede **sobrecargar la red** demasiado. 
 
+---
+
+## PRÁCTICA 2
+
+## 5. Servidor de impresión con Active Directory
+
+### Introducción
+
+Windows Server incluye el rol **Servicios de impresión y de documentos**, que permite convertir un servidor en un servidor de impresión: centraliza las colas, gestiona los controladores y, a diferencia de un servidor de impresión "suelto", puede **publicar las impresoras en Active Directory** para que se localicen y desplieguen automáticamente en toda la red mediante **GPO**.
+
+!!! note "Escenario"
+    Igual que se recomienda separar el servidor Samba de impresión del controlador de dominio en la práctica de Linux, en producción el rol de impresión se instala en un **servidor miembro** del dominio, no en el propio DC. Para esta práctica puede instalarse sobre `empresa-DC1` por simplicidad.
+
+### 5.1 Instalación del rol
+
+**Mediante el Administrador del servidor:**
+
+1. **Administrar → Agregar roles y características**.
+2. Tipo de instalación: **Instalación basada en características o en roles**.
+3. Seleccionar el servidor de destino.
+4. En **Roles de servidor**, marcar **Servicios de impresión y de documentos** y aceptar las características de gestión que propone el asistente.
+5. En **Servicios de rol**, dejar marcado **Servidor de impresión** (opcionalmente **Impresión en Internet** si se quiere publicar por HTTP).
+6. **Instalar**.
+
+**Mediante PowerShell** (equivalente al asistente anterior):
+
+```powershell
+Install-WindowsFeature Print-Server -IncludeManagementTools
+```
+
+### 5.2 Alta de una impresora y publicación en el directorio
+
+Desde **Herramientas → Administración de impresión** (`printmanagement.msc`):
+
+1. Click derecho sobre **Impresoras** del servidor → **Agregar impresora**.
+2. Elegir el tipo de conexión: **Agregar una impresora TCP/IP o de red mediante una dirección IP o nombre de host** (equivalente al `socket://IP:9100` que se usa en CUPS) o un puerto local/USB si es física.
+3. Indicar el **fabricante y modelo**, o instalar el controlador desde disco si no está en la lista.
+4. Nombre y **recurso compartido** para la impresora (nombre por el que la verán los clientes).
+5. Marcar **Compartir esta impresora** y, en la pestaña **Compartir** de sus propiedades, la casilla **Mostrar en el Directorio Activo**. Esto crea un objeto `printQueue` en el dominio, hijo del objeto de equipo del servidor de impresión.
+
+**Mediante PowerShell:**
+
+```powershell
+Add-PrinterPort -Name "IP_192.168.1.20" -PrinterHostAddress "192.168.1.20"
+Add-Printer -Name "Laser_Aula" -DriverName "Generic / Text Only" -PortName "IP_192.168.1.20" -Shared -ShareName "Laser_Aula" -Published
+```
+
+| Parámetro | Significado |
+| --------- | ------------ |
+| `-Shared -ShareName` | Comparte la cola por SMB con ese nombre |
+| `-Published` | Publica la impresora en Active Directory |
+| `Set-Printer -Name "Laser_Aula" -Published $true` | Publica/despublica una impresora ya existente |
+
+!!! note "Información"
+    Al igual que en la consola de **Administración de impresión** se ven de un vistazo el estado y las colas de todas las impresoras del servidor (equivalente a `lpstat -p -d` en CUPS), en Active Directory el objeto `printQueue` es lo que permite que un cliente la encuentre buscando por ubicación o funciones (color, dúplex...) sin conocer el nombre del servidor.
+
+### 5.3 Despliegue automático con Directiva de grupo
+
+En lugar de instalar la impresora manualmente en cada cliente, se despliega a toda una OU mediante GPO. Desde la **Administración de impresión**:
+
+1. Click derecho sobre la impresora → **Implementar con Directiva de grupo**.
+2. **Examinar** y seleccionar (o crear) la GPO que se va a usar, por ejemplo vinculada a la OU de equipos del aula.
+3. Marcar **Los equipos que usan esta directiva de grupo** (despliegue por equipo) o **Los usuarios que usan esta directiva de grupo** (despliegue por usuario), según si la impresora debe verla cualquiera que use ese PC o un usuario concreto desde cualquier PC.
+4. **Agregar** y **Aplicar**.
+
+Esto añade internamente una preferencia en **Configuración del equipo/usuario → Preferencias → Configuración de Windows → Impresoras** de la GPO elegida, con la ruta UNC `\\empresa-DC1\Laser_Aula`.
+
+!!! warning "Atención"
+    El cliente debe estar unido al dominio (ver [§2.3](#23-unir-un-cliente-windows-a-un-dominio)) y dentro del alcance de la GPO. El despliegue se aplica en el siguiente `gpupdate /force` + reinicio de sesión del cliente, igual que cualquier otra directiva de grupo.
+
+### 5.4 Verificación en el cliente
+
+En el equipo cliente, tras actualizar la directiva:
+
+```powershell
+gpupdate /force
+```
+
+La impresora debe aparecer en **Configuración → Bluetooth y dispositivos → Impresoras y escáneres** sin haberla instalado a mano, igual que ocurre al conectar por SMB con `\\IP_DEL_SERVIDOR\Laser_Aula` en la práctica de Samba, pero aquí el reparto es automático para todos los equipos/usuarios de la OU en lugar de uno a uno.
+
+### 5.5 Gestión de la cola de impresión
+
+Desde la **Administración de impresión** (o haciendo doble clic sobre la impresora en el cliente), se gestionan trabajos y estado de forma análoga a `lpstat`/`cupsenable`/`cupsdisable` en CUPS:
+
+- **Pausar impresora** / **Reanudar impresión** → equivalente a `cupsdisable` / `cupsenable`.
+- **No admitir más documentos** → equivalente a `cupsreject` / `cupsaccept`.
+- Ver la cola de trabajos, **pausar**, **reiniciar** o **cancelar** un documento concreto.
+- Pestaña **Avanzado** de las propiedades de la impresora → definir **prioridad** (1-99) y **horario disponible**, útil para separar impresoras urgentes de las de uso general.
 
 

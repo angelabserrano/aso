@@ -11,13 +11,13 @@ draft: true
 
 ## Programación de Aula
 
-### Planificación Temporal (3 sesiones / 6 horas)
+### Planificación Temporal (3 sesiones / 7 horas)
 
-| Sesión | Contenido |
-| ------ | --------- |
-| 1 | Arquitectura de una plataforma de monitorización. Prometheus y *exporters* |
-| 2 | Grafana: fuentes de datos, cuadros de mando y PromQL |
-| 3 | Alertas. Caso práctico integrador |
+| Sesión | Duración | Contenido |
+| ------ | :---: | --------- |
+| 1 | 2h | Arquitectura de una plataforma de monitorización. Prometheus y *exporters* |
+| 2 | 2h | Grafana: fuentes de datos, cuadros de mando y PromQL |
+| 3 | 3h | Alertas. Caso práctico integrador |
 
 ---
 

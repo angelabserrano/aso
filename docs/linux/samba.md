@@ -10,6 +10,8 @@ draft: true
     - **RA6** — Integra sistemas operativos libres y propietarios, justificando y garantizando su interoperabilidad.
     - **RA5** — Administra servidores de impresión describiendo sus funciones e integrándolos en una red.
 
+    **Duración:** 6 horas.
+
 ## 1. Introducción
 
 **Samba** es un software de código abierto muy utilizado en sistemas operativos basados en Unix y Linux para proporcionar servicios de intercambio de archivos e impresoras con sistemas Windows. Su desarrollo comenzó en la década de 1990, y desde entonces, ha sido una herramienta esencial en **entornos de red heterogéneos**, donde conviven sistemas operativos diferentes.

@@ -7,6 +7,8 @@ draft: true
 !!! abstract "Resultado de aprendizaje"
     Esta unidad trabaja el **RA1** del RD 1629/2009: *Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.*
 
+    **Duración:** 6 horas.
+
 ## 1. Introducción
 
 Un servicio de directorio es un sistema especializado que almacena,  organiza y proporciona acceso a información relacionada con los recursos de la red y los usuarios, actuando como un nexo centralizado para la  gestión de la infraestructura de TI.

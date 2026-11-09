@@ -6,6 +6,8 @@
     - **RA2** — Administra procesos del sistema describiéndolos y aplicando criterios de seguridad y eficiencia.
     - **RA3** — Gestiona la automatización de tareas del sistema, aplicando criterios de eficiencia y utilizando comandos y herramientas gráficas.
 
+    **Duración:** 4 horas.
+
 <div id="id1" />
 
 ## 1. Introducción 

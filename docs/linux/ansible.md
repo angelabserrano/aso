@@ -9,14 +9,15 @@ draft: true
 
 ## Programación de Aula
 
-### Planificación Temporal (4 sesiones / 8 horas)
+### Planificación Temporal (5 sesiones / 10 horas)
 
 | Sesión | Contenido |
 | ------ | --------- |
 | 1 | Introducción a Ansible. Arquitectura. Instalación. Inventario. Comandos ad-hoc |
 | 2 | Playbooks: estructura, tareas y módulos esenciales |
 | 3 | Variables, handlers y plantillas |
-| 4 | Caso práctico integrador: gestión de usuarios y configuración de servicios |
+| 4 | Ansible Vault y estructura de un proyecto Ansible |
+| 5 | Caso práctico integrador: gestión de usuarios y configuración de servicios |
 
 ---
 

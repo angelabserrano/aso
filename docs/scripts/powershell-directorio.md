@@ -10,6 +10,8 @@ draft: true
     - **RA7** — Utiliza lenguajes de guiones en sistemas operativos, describiendo su aplicación y administrando servicios del sistema operativo.
     - **RA1** — Administra el servicio de directorio interpretando especificaciones e integrándolo en una red.
 
+    **Duración:** 12 horas.
+
 ## 1 Gestión de usuarios de Active Directory con PowerShell 
 
 ### 1.1 Creación de cuentas de usuario 

@@ -9,7 +9,7 @@ draft: true
 
 ## Programación de Aula
 
-### Planificación Temporal (6 sesiones / 12 horas)
+### Planificación Temporal (7 sesiones / 14 horas)
 
 | Sesión | Contenido                                                    |
 | ------ | ------------------------------------------------------------ |
@@ -17,8 +17,9 @@ draft: true
 | 2      | Comandos básicos, Variables, Tipos de Datos y Operaciones Básicas |
 | 3      | Estructuras condicionales                                    |
 | 4      | Estructuras repetitivas                                      |
-| 5      | Importación de datos y funciones                             |
-| 6      | Refuerzo y Ampliación                                        |
+| 5      | Importación de datos                                         |
+| 6      | Funciones                                                     |
+| 7      | Refuerzo y Ampliación                                        |
 
 
 
