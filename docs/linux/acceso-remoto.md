@@ -1,7 +1,3 @@
----
-draft: true
----
-
 # UT3. Acceso y Administración Remota en Linux
 
 !!! abstract "Resultado de aprendizaje"
@@ -337,6 +333,8 @@ vncviewer 192.168.1.10:1
 
 ## 6. Actividades
 
+<!-- en-revision -->
+
 !!! example "Tarea"
 
     **Práctica 1. SSH — Red Hat Academy**
@@ -403,3 +401,5 @@ vncviewer 192.168.1.10:1
     - Ventajas y desventajas.
     - Casos de uso recomendados.
     - Nivel de seguridad.
+
+<!-- /en-revision -->
