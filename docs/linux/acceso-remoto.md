@@ -221,6 +221,79 @@ sftp> put data.xml /users/mike/data/
 sftp> rm /users/mike/data/*
 ```
 
+### 4.3 rsync
+
+`rsync` sincroniza ficheros y directorios entre dos ubicaciones, en el mismo equipo o entre equipos distintos. Cuando el origen o el destino es remoto, utiliza **SSH** como transporte, por lo que la transferencia va cifrada.
+
+A diferencia de `scp`, `rsync` solo transfiere **las diferencias**: compara origen y destino y copia únicamente los ficheros nuevos o modificados (e incluso solo las partes cambiadas de cada fichero). Por eso es la herramienta habitual para **copias de seguridad** y para mantener directorios sincronizados.
+
+!!! note "Instalación"
+    `rsync` debe estar instalado en **los dos equipos**:
+
+    ```bash
+    sudo apt install rsync
+    ```
+
+**Sintaxis:**
+
+```bash
+rsync [opciones] origen destino
+```
+
+#### Opciones principales
+
+| Opción | Descripción |
+|--------|-------------|
+| `-a` | Modo archivo: copia recursiva conservando permisos, propietarios, fechas y enlaces simbólicos |
+| `-v` | Muestra los ficheros que se transfieren |
+| `-z` | Comprime los datos durante la transferencia |
+| `-h` | Muestra los tamaños en formato legible |
+| `-P` | Muestra el progreso y permite reanudar transferencias interrumpidas |
+| `-n` | Simulación (*dry run*): muestra qué haría sin copiar nada |
+| `--delete` | Borra en el destino los ficheros que ya no existen en el origen |
+| `--exclude=PATRÓN` | Excluye los ficheros que coinciden con el patrón |
+| `-e "ssh -p PUERTO"` | Indica el comando SSH a usar (por ejemplo, otro puerto) |
+
+#### Ejemplos
+
+```bash
+# Sincronizar un directorio local con el servidor remoto
+rsync -avz documentos/ usuario@192.168.1.10:/home/usuario/backup/
+
+# Descargar un directorio del servidor al equipo local
+rsync -avz usuario@192.168.1.10:/var/www/ ./web/
+
+# Usar un puerto SSH distinto del 22
+rsync -avz -e "ssh -p 2222" documentos/ usuario@192.168.1.10:/home/usuario/backup/
+
+# Excluir ficheros temporales y mostrar el progreso
+rsync -avhP --exclude='*.tmp' documentos/ usuario@192.168.1.10:/home/usuario/backup/
+
+# Copia espejo: el destino queda idéntico al origen (borra lo que sobra)
+rsync -av --delete documentos/ usuario@192.168.1.10:/home/usuario/backup/
+```
+
+!!! warning "La barra final del origen importa"
+    - `rsync -a documentos/ destino/` copia **el contenido** de `documentos` dentro de `destino`.
+    - `rsync -a documentos destino/` copia **el propio directorio**, creando `destino/documentos`.
+
+!!! tip "Prueba antes con `-n`"
+    La opción `--delete` puede borrar ficheros en el destino. Antes de ejecutarla, haz una simulación con `-n` para ver qué se va a copiar y borrar:
+
+    ```bash
+    rsync -avn --delete documentos/ usuario@192.168.1.10:/home/usuario/backup/
+    ```
+
+#### Comparativa scp vs rsync
+
+| Característica | `scp` | `rsync` |
+|----------------|-------|---------|
+| Transporte | SSH | SSH (o demonio rsync) |
+| Qué copia | Siempre todos los ficheros | Solo los ficheros nuevos o modificados |
+| Reanudar transferencias | No | Sí (`-P`) |
+| Borrar en destino lo que no está en el origen | No | Sí (`--delete`) |
+| Uso típico | Copias puntuales de pocos ficheros | Copias de seguridad y sincronización |
+
 ---
 
 ## 5. Escritorio remoto
