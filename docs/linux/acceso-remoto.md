@@ -406,7 +406,10 @@ vncviewer 192.168.1.10:1
 
 ## 6. Actividades
 
-<!-- en-revision -->
+!!! info "Actividades de la unidad"
+    Las actividades de esta unidad se publicarán en **Aules**.
+
+<!-- oculto -->
 
 !!! example "Tarea"
 
@@ -475,4 +478,4 @@ vncviewer 192.168.1.10:1
     - Casos de uso recomendados.
     - Nivel de seguridad.
 
-<!-- /en-revision -->
+<!-- /oculto -->
