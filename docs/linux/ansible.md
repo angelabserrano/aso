@@ -2194,6 +2194,11 @@ proyecto-ansible/
 
 ## 18. Actividades
 
+!!! info "Actividades de la unidad"
+    Las actividades de esta unidad se publicarán en **Aules**.
+
+<!-- oculto -->
+
 Las actividades 1 a 4 forman un caso práctico progresivo sobre el escenario del laboratorio, una por sesión:
 
 !!! abstract "Caso práctico: los servidores del instituto"
@@ -2274,6 +2279,8 @@ Las actividades 1 a 4 forman un caso práctico progresivo sobre el escenario del
     4. Cambia la contraseña del vault con `ansible-vault rekey` y vuelve a ejecutar el playbook usando un fichero de contraseña con permisos `600`.
 
     **Entrega:** capturas del cifrado de `secretos.yml`, contenido de `produccion.yml`, salida de `ansible-lint` y captura de la ejecución.
+
+<!-- /oculto -->
 
 
 ### Ampliación (opcional)
