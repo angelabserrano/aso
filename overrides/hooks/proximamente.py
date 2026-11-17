@@ -21,6 +21,14 @@ Dentro de una unidad ya publicada, un apartado puede ocultarse rodeándolo con:
 
 Su contenido no se publica y en su lugar aparece un aviso de «En revisión...».
 Para publicarlo, borra esas dos líneas de comentario.
+
+Si se rodea con:
+
+    <!-- oculto -->
+    ...
+    <!-- /oculto -->
+
+el contenido simplemente no se publica, sin ningún aviso en su lugar.
 """
 
 import re
@@ -41,6 +49,10 @@ _FRONT_MATTER = re.compile(r"^-{3}\s*\n(.*?)\n-{3}\s*\n", re.DOTALL)
 _DRAFT_LINE = re.compile(r"^\s*draft:\s*(true|yes|on|1)\s*$", re.IGNORECASE | re.MULTILINE)
 _EN_REVISION = re.compile(
     r"^[ \t]*<!--\s*en-revision\s*-->[ \t]*\n.*?^[ \t]*<!--\s*/en-revision\s*-->[ \t]*$",
+    re.DOTALL | re.MULTILINE,
+)
+_OCULTO = re.compile(
+    r"^[ \t]*<!--\s*oculto\s*-->[ \t]*\n.*?^[ \t]*<!--\s*/oculto\s*-->[ \t]*\n?",
     re.DOTALL | re.MULTILINE,
 )
 _H1 = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
@@ -75,7 +87,10 @@ def on_page_markdown(markdown, page, config, files):
     # 2) Apartados en revisión: sustituir su contenido por el aviso.
     markdown = _EN_REVISION.sub(lambda _: AVISO_REVISION, markdown)
 
-    # 3) En la portada: marcar los enlaces de las unidades aún sin publicar.
+    # 3) Apartados ocultos: eliminarlos sin dejar aviso.
+    markdown = _OCULTO.sub("", markdown)
+
+    # 4) En la portada: marcar los enlaces de las unidades aún sin publicar.
     if page.file.src_uri == "index.md":
         base = (Path(config["docs_dir"]) / page.file.src_uri).parent
 
