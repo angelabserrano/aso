@@ -2280,9 +2280,6 @@ Las actividades 1 a 4 forman un caso práctico progresivo sobre el escenario del
 
     **Entrega:** capturas del cifrado de `secretos.yml`, contenido de `produccion.yml`, salida de `ansible-lint` y captura de la ejecución.
 
-<!-- /oculto -->
-
-
 ### Ampliación (opcional)
 
 Las siguientes actividades no añaden conceptos nuevos: sirven para practicar más o para quien termine antes el caso práctico.
@@ -2379,3 +2376,5 @@ Las siguientes actividades no añaden conceptos nuevos: sirven para practicar m�
     curl http://web1
     curl http://web2
     ```
+
+<!-- /oculto -->
